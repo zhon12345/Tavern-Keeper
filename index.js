@@ -1,7 +1,7 @@
+/* eslint-disable no-undef */
 require('dotenv').config();
 const { Client, Collection } = require('discord.js');
-const { prefix, version } = process.env;
-const mongoose = require('mongoose');
+const db = require('quick.db');
 
 const client = new Client({
 	disableEveryone: true,
@@ -9,17 +9,10 @@ const client = new Client({
 
 client.commands = new Collection();
 client.aliases = new Collection();
-mongoose.connect('mongodb+srv://zhon12345:zhon12345@tavern1-zdj9e.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority', {
-	useUnifiedTopology: true,
-	useNewUrlParser: true,
-});
 
 client.login(process.env.token);
 client.on('ready', () => {
-	client.user.setActivity(`${prefix}help`, { type: 'PLAYING' });
-	console.log(`Logged in as ${client.user.tag}`);
-	console.log('Version:', version);
-	console.log('Prefix:', prefix);
+	require('./events/ready') (client);
 });
 
 ['command'].forEach(handler => {
@@ -27,6 +20,15 @@ client.on('ready', () => {
 });
 
 client.on('message', async message => {
+	let prefix;
+	const prefixes = db.fetch(`prefix_${message.guild.id}`);
+	if(prefixes == null) {
+		prefix = 'm!';
+	}
+	else {
+		prefix = prefixes;
+	}
+
 	if (message.author.bot) return;
 	if (!message.guild) return;
 	if (!message.content.startsWith(prefix)) return;

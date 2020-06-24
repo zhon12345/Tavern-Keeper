@@ -1,13 +1,14 @@
 /* eslint-disable no-inner-declarations */
 const { MessageEmbed } = require('discord.js');
-const { prefix, ownerid } = process.env;
+const { ownerid } = process.env;
+const db = require('quick.db');
 
 module.exports = {
 	name: 'help',
 	aliases: ['h', 'commands'],
 	category: 'Info',
 	description: 'Returns all commands, or one specific command info',
-	usage: `${prefix}help [command]`,
+	usage: 'help [command]',
 	run: async (client, message, args) => {
 		if (args[0]) {
 			return getCMD(client, message, args[0]);
@@ -19,6 +20,14 @@ module.exports = {
 };
 
 function getAll(client, message) {
+	let prefix;
+	const prefixes = db.fetch(`prefix_${message.guild.id}`);
+	if(prefixes == null) {
+		prefix = 'm!';
+	}
+	else {
+		prefix = prefixes;
+	}
 	const embed = new MessageEmbed()
 		.setTitle(`${client.user.username}'s Commands`)
 		.setFooter(`${client.user.username}'s Help`, `${client.user.avatarURL()}`)

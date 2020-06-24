@@ -1,46 +1,31 @@
 /* eslint-disable no-unused-vars */
-const warns = require('../../models/warns');
 const { MessageEmbed } = require('discord.js');
-const prefix = process.env.prefix;
+const db = require('quick.db');
 
 module.exports = {
 	name: 'check',
-	description: 'Get a user\'s warns in the guild!',
-	aliases: ['warnings'],
 	category: 'Moderation',
-	usage: `${prefix}check <@user>`,
-	run: async (client, message, args) => {
-		const user = message.mentions.members.first();
-		if (!user) {
+	description: 'Get the warnings of you or specfied person.',
+	aliases: ['warnings'],
+	usage: 'check [@user | userid]',
+	guildOnly: true,
+	run: (client, message, args) => {
+		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]) || message.member;
+		if (!member) {
 			return message.channel.send(
-				'You did not specify a user to check.',
-			);
+				'<:vError:725270799124004934> Please provide a valid user.',
+			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 
-		warns.find(
-			{ Guild: message.guild.id, User: user.id },
-			async (err, data) => {
-				if (err) console.log(err);
-				if (!data.length) {
-					return message.channel.send(
-						`${user.user.tag} do not have any warns.`,
-					);
-				}
-				const Embed = new MessageEmbed()
-					.setTitle(`${user.user.tag}'s warns in ${message.guild.name}.. `)
-					.setColor('BLUE')
-					.setDescription(
-						data.map((d) => {
-							return d.Warns.map(
-								(w, i) =>
-									`${i} - Moderator: ${
-										message.guild.members.cache.get(w.Moderator).user.tag
-									} Reason: ${w.Reason}`,
-							).join('\n');
-						}),
-					);
-				message.channel.send(Embed);
-			},
-		);
+		let warnings = db.get(`warnings_${message.guild.id}_${member.id}`);
+
+		if(warnings === null) warnings = 0;
+
+		message.channel.send([
+			`<:vSuccess:725270799098970112> Moderation information for **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`,
+			`❯ 🚩 Strikes: **${warnings}**`,
+		]);
+
+
 	},
 };
