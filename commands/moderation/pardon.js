@@ -32,7 +32,7 @@ module.exports = {
 
 		if(message.author.id === member.id) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You are not allowed to reset your warnings',
+				'<:vError:725270799124004934> You are not allowed to reset your strikes',
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 

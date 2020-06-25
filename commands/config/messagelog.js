@@ -2,11 +2,11 @@
 const db = require('quick.db');
 
 module.exports = {
-	name: 'modlog',
+	name: 'messagelog',
 	category: 'Config',
-	description: 'Set the modlogs channel for the server.',
+	description: 'Set the message logs channel for the server.',
 	aliases: [],
-	usage: 'modlog <channel>',
+	usage: 'messagelog <channel>',
 	guildOnly: true,
 	run: (client, message, args) => {
 		if(!message.member.hasPermission('ADMINISTRATOR')) {
@@ -21,7 +21,7 @@ module.exports = {
 				'You did not specify a channel.',
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
-		db.set(`modlog_${message.guild.id}`, channel.id);
-		message.channel.send(`Mod logs has been set to ${channel}`);
+		db.set(`messagelog_${message.guild.id}`, channel.id);
+		message.channel.send(`Message logs has been set to ${channel}`);
 	},
 };

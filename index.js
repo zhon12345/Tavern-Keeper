@@ -12,7 +12,7 @@ client.aliases = new Collection();
 
 client.login(process.env.token);
 client.on('ready', () => {
-	require('./events/ready') (client);
+	require('./events/cilent/ready') (client);
 });
 
 ['command'].forEach(handler => {
@@ -44,4 +44,14 @@ client.on('message', async message => {
 	if (!command) command = client.commands.get(client.aliases.get(cmd));
 
 	if (command) {command.run(client, message, args);}
+});
+
+// Edited Messages
+client.on('messageUpdate', async (oldMessage, newMessage) => {
+	require('./events/guild/messageUpdate')(oldMessage, newMessage);
+});
+
+// Deleted Messages
+client.on('messageDelete', async (message) => {
+	require('./events/guild/messageDelete')(message);
 });
