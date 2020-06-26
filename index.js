@@ -55,3 +55,23 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
 client.on('messageDelete', async (message) => {
 	require('./events/guild/messageDelete')(message);
 });
+
+// Member Added
+client.on('guildMemberAdd', async (member) => {
+	require('./events/guild/memberAdd')(member);
+});
+
+// Member Removed
+client.on('guildMemberRemove', async (member) => {
+	require('./events/guild/memberRemove')(member);
+});
+
+// Channel Created
+client.on('channelCreate', async (channel) => {
+	require('./events/guild/channelCreate')(channel);
+});
+
+// Channel Deleted
+client.on('channelDelete', async (channel) => {
+	require('./events/guild/channelDelete')(channel);
+});

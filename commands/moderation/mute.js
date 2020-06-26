@@ -55,8 +55,13 @@ module.exports = {
 		}
 
 		const verifiedRole = db.fetch(`verifiedrole_${message.guild.id}`);
-		const mutedRole = db.fetch(`muterole_${message.guild.id}`);
+		if(!verifiedRole) {
+			return message.channel.send(
+				'<:vError:725270799124004934> Verified role not found.',
+			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+		}
 
+		const mutedRole = db.fetch(`muterole_${message.guild.id}`);
 		if(!mutedRole) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Mute role not found.',
@@ -69,6 +74,7 @@ module.exports = {
 			member.roles.add(mutedRole);
 			const logs = db.fetch(`modlog_${message.guild.id}`);
 			const channel = message.guild.channels.cache.get(logs);
+			if (!channel) return;
 			channel.send(
 				`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🔇 **${message.author.username}**#${message.author.discriminator} muted **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` ${Reason}`,
 			);
@@ -81,6 +87,7 @@ module.exports = {
 			member.roles.add(mutedRole);
 			const logs = db.fetch(`modlog_${message.guild.id}`);
 			const channel = message.guild.channels.cache.get(logs);
+			if (!channel) return;
 			channel.send(
 				`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🤐 **${message.author.username}**#${message.author.discriminator} tempmuted **${member.user.username}**#${member.user.discriminator} (ID: ${member.id}) for ${ms(ms(time))}\n\`[Reason]\` ${Reason}`,
 			);
@@ -94,6 +101,7 @@ module.exports = {
 			member.roles.remove(mutedRole);
 			const logs = db.fetch(`modlog_${message.guild.id}`);
 			const channel = message.guild.channels.cache.get(logs);
+			if (!channel) return;
 			channel.send(
 				`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🔊 **${client.user.username}**#${client.user.discriminator} unmuted **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` Temporary mute completed`,
 			);

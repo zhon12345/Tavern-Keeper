@@ -16,6 +16,9 @@ module.exports = async (oldMessage, newMessage) => {
 			);
 		const logs = db.fetch(`messagelog_${oldMessage.guild.id}`);
 		const channel = oldMessage.guild.channels.cache.get(logs);
-		channel.send(`\`[${moment(newMessage.createdTimestamp).format('HH:mm:ss')}]\` ⚠️ **${oldMessage.author.username}**#${oldMessage.author.discriminator} (ID: ${oldMessage.author.id}) edited a message.`, embed);
+		if (!channel) return;
+		channel.send(
+			`\`[${moment(newMessage.createdTimestamp).format('HH:mm:ss')}]\` ✏️ **${oldMessage.author.username}**#${oldMessage.author.discriminator} (ID: ${oldMessage.author.id}) edited a message.`, embed,
+		);
 	}
 };

@@ -40,6 +40,7 @@ module.exports = {
 		message.guild.members.unban(user.user);
 		const logs = db.fetch(`modlog_${message.guild.id}`);
 		const channel = message.guild.channels.cache.get(logs);
+		if (!channel) return;
 		channel.send(
 			`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🔧 **${message.author.username}**#${message.author.discriminator} unbanned **${user.user.username}**#${user.user.discriminator} (ID: ${user.user.id})\n\`[Reason]\` ${Reason}`,
 		);

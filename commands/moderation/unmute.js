@@ -43,6 +43,12 @@ module.exports = {
 		}
 
 		const verifiedRole = db.fetch(`verifiedrole_${message.guild.id}`);
+		if(!verifiedRole) {
+			return message.channel.send(
+				'<:vError:725270799124004934> Verified role not found.',
+			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+		}
+
 		const muteRole = db.fetch(`muterole_${message.guild.id}`);
 		if (!muteRole) {
 			return message.channel.send(
@@ -54,6 +60,7 @@ module.exports = {
 			member.roles.add(verifiedRole);
 			const logs = db.fetch(`modlog_${message.guild.id}`);
 			const channel = message.guild.channels.cache.get(logs);
+			if (!channel) return;
 			channel.send(
 				`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🔊 **${message.author.username}**#${message.author.discriminator} unmuted **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` ${Reason}`,
 			);

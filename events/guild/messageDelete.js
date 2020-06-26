@@ -15,6 +15,9 @@ module.exports = async (message) => {
 			);
 		const logs = db.fetch(`messagelog_${message.guild.id}`);
 		const channel = message.guild.channels.cache.get(logs);
-		channel.send(`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` ❌ **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id})'s message has been deleted.`, embed);
+		if (!channel) return;
+		channel.send(
+			`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` ❌ **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id})'s message has been deleted.`, embed,
+		);
 	}
 };
