@@ -7,7 +7,6 @@ module.exports = async (message) => {
 	if (message.author.bot) {return;}
 	else {
 		const embed = new MessageEmbed()
-			.setFooter(`User ID: ${message.author.id}`)
 			.setColor('RED')
 			.addFields(
 				{ name: 'Channel:', value:`${message.channel}` },

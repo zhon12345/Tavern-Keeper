@@ -2,11 +2,18 @@ const moment = require('moment');
 const db = require('quick.db');
 
 module.exports = async (member) => {
-	const channel = member.guild.channels.cache.find(ch => ch.id === '720997710911635533');
+	const welcome = db.get(`welcome_${member.guild.id}`);
+	const channel = member.guild.channels.cache.get(welcome);
+	const msg = db.get(`welcomemsg_${member.guild.id}`);
+	const message = msg
+		.replace('{name}', member.user.username)
+		.replace('{discriminator}', member.user.discriminator)
+		.replace('{id}', member.id)
+		.replace('{mention}', member)
+		.replace('{server}', member.guild.name)
+		.replace('{membercount}', member.guild.memberCount);
 	if (!channel) return;
-	channel.send(
-		`Hey ${member} welcome to ${member.guild.name}! Be sure to read <#720997711708684308> and <#720997711708684308> and assign yourself some roles in <#720997711708684308>! We are a friendly community so don't be discouraged to chat us!`,
-	);
+	channel.send(message);
 
 	const logs = db.fetch(`serverlog_${member.guild.id}`);
 	const logchannel = member.guild.channels.cache.get(logs);
