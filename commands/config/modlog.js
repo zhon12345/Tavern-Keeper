@@ -22,6 +22,8 @@ module.exports = {
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 		db.set(`modlog_${message.guild.id}`, channel.id);
-		message.channel.send(`Mod logs has been set to ${channel}`);
+		message.channel.send(
+			`<:vSuccess:725270799098970112> Mod logs will now be sent to ${channel}`,
+		).then(message.delete());
 	},
 };

@@ -2,11 +2,11 @@
 const db = require('quick.db');
 
 module.exports = {
-	name: 'serverlog',
-	category: 'Config',
-	description: 'Set the serverlogs channel for the server.',
+	name: 'leavechannel',
+	category: 'Welcomer',
+	description: 'Set the leave channel for the server.',
 	aliases: [],
-	usage: 'serverlog <channel>',
+	usage: 'leavechannel <channel>',
 	guildOnly: true,
 	run: (client, message, args) => {
 		if(!message.member.hasPermission('ADMINISTRATOR')) {
@@ -21,9 +21,10 @@ module.exports = {
 				'You did not specify a channel.',
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
-		db.set(`serverlog_${message.guild.id}`, channel.id);
+
+		db.set(`leavechannel_${message.guild.id}`, channel.id);
 		message.channel.send(
-			`<:vSuccess:725270799098970112> Server logs will now be sent to ${channel}`,
+			`<:vSuccess:725270799098970112> Leave messages will now be sent to ${channel}`,
 		).then(message.delete());
 	},
 };

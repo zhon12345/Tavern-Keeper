@@ -31,6 +31,8 @@ module.exports = {
 			return message.channel.send('My Prefix has been reset.');
 		}
 		else {db.set(`prefix_${message.guild.id}`, args[0]);}
-		message.channel.send(`My Prefix has been set to ${args[0]}`);
+		message.channel.send(
+			`<:vSuccess:725270799098970112> The server prefix has been set to \`${args[0]}\``,
+		).then(message.delete());
 	},
 };

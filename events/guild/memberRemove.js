@@ -2,11 +2,19 @@ const moment = require('moment');
 const db = require('quick.db');
 
 module.exports = async (member) => {
-	const channel = member.guild.channels.cache.find(ch => ch.id === '720997710911635533');
+	const goodbye = db.get(`leavechannel_${member.guild.id}`);
+	const channel = member.guild.channels.cache.get(goodbye);
+	const msg = db.get(`leavetext_${member.guild.id}`);
+	const message = msg
+		.split('{user.name}').join(member.user.username)
+		.split('{user.discriminator}').join(member.user.discriminator)
+		.split('{user.id}').join(member.id)
+		.split('{user.mention}').join(member)
+		.split('{guild.name}').join(member.guild.name)
+		.split('{guild.membercount}').join(member.guild.memberCount);
 	if (!channel) return;
-	channel.send(
-		`${member} just left ${member.guild.name}. Goodbye ${member}! ${member.guild.name} has ${member.guild.memberCount} members now.`,
-	);
+	if (!message) return;
+	channel.send(message);
 
 	const logs = db.fetch(`serverlog_${member.guild.id}`);
 	const logchannel = member.guild.channels.cache.get(logs);

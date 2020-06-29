@@ -4,9 +4,9 @@ const db = require('quick.db');
 module.exports = {
 	name: 'joinchannel',
 	category: 'Welcomer',
-	description: 'Set the welcome channel and message for the server.',
+	description: 'Set the welcome channel for the server.',
 	aliases: [],
-	usage: 'welcome <channel> <message>',
+	usage: 'joinchannel <channel>',
 	guildOnly: true,
 	run: (client, message, args) => {
 		if(!message.member.hasPermission('ADMINISTRATOR')) {
@@ -23,6 +23,8 @@ module.exports = {
 		}
 
 		db.set(`joinchannel_${message.guild.id}`, channel.id);
-		message.channel.send(`Welcome channel has been set to ${channel}`);
+		message.channel.send(`
+		<:vSuccess:725270799098970112> Welcome messages will now be sent to ${channel}`,
+		).then(message.delete());
 	},
 };

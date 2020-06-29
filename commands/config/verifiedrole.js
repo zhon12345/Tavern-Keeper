@@ -22,6 +22,8 @@ module.exports = {
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 		db.set(`verifiedrole_${message.guild.id}`, role.id);
-		message.channel.send(`Verified role has been set to ${role}`);
+		message.channel.send(
+			`<:vSuccess:725270799098970112> Verified role has been set to ${role}`,
+		).then(message.delete());
 	},
 };

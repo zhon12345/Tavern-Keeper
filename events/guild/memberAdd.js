@@ -2,17 +2,18 @@ const moment = require('moment');
 const db = require('quick.db');
 
 module.exports = async (member) => {
-	const welcome = db.get(`welcome_${member.guild.id}`);
+	const welcome = db.get(`joinchannel_${member.guild.id}`);
 	const channel = member.guild.channels.cache.get(welcome);
-	const msg = db.get(`welcomemsg_${member.guild.id}`);
+	const msg = db.get(`jointext_${member.guild.id}`);
 	const message = msg
-		.replace('{name}', member.user.username)
-		.replace('{discriminator}', member.user.discriminator)
-		.replace('{id}', member.id)
-		.replace('{mention}', member)
-		.replace('{server}', member.guild.name)
-		.replace('{membercount}', member.guild.memberCount);
+		.split('{user.name}').join(member.user.username)
+		.split('{user.discriminator}').join(member.user.discriminator)
+		.split('{user.id}').join(member.id)
+		.split('{user.mention}').join(member)
+		.split('{guild.name}').join(member.guild.name)
+		.split('{guild.membercount}').join(member.guild.memberCount);
 	if (!channel) return;
+	if (!message) return;
 	channel.send(message);
 
 	const logs = db.fetch(`serverlog_${member.guild.id}`);

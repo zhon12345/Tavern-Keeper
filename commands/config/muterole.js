@@ -22,6 +22,8 @@ module.exports = {
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 		db.set(`muterole_${message.guild.id}`, role.id);
-		message.channel.send(`Muted role has been set to ${role}`);
+		message.channel.send(
+			`<:vSuccess:725270799098970112> Muted role has been set to ${role}`,
+		).then(message.delete());
 	},
 };
