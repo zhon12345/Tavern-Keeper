@@ -17,12 +17,21 @@ module.exports = {
 		}
 
 		let warnings = db.get(`warnings_${message.guild.id}_${member.id}`);
-
 		if(warnings === null) warnings = 0;
+
+		let muted;
+		const mute = db.fetch(`muterole_${message.guild.id}`);
+		if(member.roles.cache.has(mute)) {
+			muted = 'Yes';
+		}
+		else {
+			muted = 'No';
+		}
 
 		message.channel.send([
 			`<:vSuccess:725270799098970112> Moderation information for **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`,
 			`❯ 🚩 Strikes: **${warnings}**`,
+			`❯ 🔇 Muted: **${muted}**`,
 		]);
 
 

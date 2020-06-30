@@ -33,7 +33,7 @@ function getAll(client, message) {
 		.setFooter(`${client.user.username}'s Help`, `${client.user.avatarURL()}`)
 		.setTimestamp()
 		.setColor('BLUE')
-		.setDescription(`This server's prefix is \`${prefix}\`.\nFor more info on a specific command, type \`${prefix}help <command name>\`.`);
+		.setDescription(`This server's prefix is \`${prefix}\`.\nFor more info on a specific command, type \`${prefix}help <command>\`.`);
 
 	let categories;
 	if(message.author.id !== ownerid) {
