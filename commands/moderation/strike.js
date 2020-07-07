@@ -6,7 +6,7 @@ module.exports = {
 	category: 'Moderation',
 	description: 'Warn a specified user for breaking the rules.',
 	aliases: ['warn'],
-	usage: 'strike <user> <reason> [amount]',
+	usage: 'strike <user> [amount] <reason>',
 	guildOnly: true,
 	run: async (client, message, args) => {
 
@@ -42,21 +42,21 @@ module.exports = {
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 
-		let amount;
-		const number = Number(args[2]);
-		if (!number) {
+		let Reason;
+		let amount = args[1];
+		if (isNaN(args[1])) {
 			amount = 1;
+			Reason = args[1];
 		}
+
 		else {
-			amount = number;
-		}
-
-		const Reason = args[1];
-
-		if(!Reason) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a reason.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			amount = Number(args[1]);
+			Reason = args[2];
+			if(!Reason) {
+				return message.channel.send(
+					'<:vError:725270799124004934> Please provide a reason.',
+				).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			}
 		}
 
 		const warnings = db.get(`warnings_${message.guild.id}_${member.id}`);

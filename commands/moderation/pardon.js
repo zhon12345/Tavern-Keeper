@@ -5,7 +5,7 @@ module.exports = {
 	name: 'pardon',
 	category: 'Moderation',
 	aliases: ['delwarn', 'unwarn'],
-	usage: 'pardon <user> <reason> [amount]',
+	usage: 'pardon <user> <amount> <reason>',
 	description: 'Remove strikes from a specified person',
 	run: async (client, message, args) => {
 
@@ -36,16 +36,14 @@ module.exports = {
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 
-		let amount;
-		const number = Number(args[2]);
-		if (!number) {
-			amount = 1;
-		}
-		else {
-			amount = number;
+		const amount = args[1];
+		if (isNaN(args[1])) {
+			return message.channel.send(
+				'<:vError:725270799124004934> Please provide a valid number',
+			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 
-		const Reason = args[1];
+		const Reason = args[2];
 
 		if(!Reason) {
 			return message.channel.send(

@@ -9,6 +9,13 @@ module.exports = {
 	aliases: ['setting'],
 	usage: 'settings',
 	run: async (client, message, args) => {
+
+		if(!message.member.hasPermission('ADMINISTRATOR')) {
+			return message.channel.send(
+				'<:vError:725270799124004934> You must have the following permissions to use that: Ban Members.',
+			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+		}
+
 		let prefix;
 		const prefixes = db.get(`prefix_${message.guild.id}`);
 		if(prefixes == null) {

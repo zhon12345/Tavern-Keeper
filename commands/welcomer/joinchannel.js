@@ -11,14 +11,14 @@ module.exports = {
 	run: (client, message, args) => {
 		if(!message.member.hasPermission('ADMINISTRATOR')) {
 			return message.channel.send(
-				'You do not have the permission to use this commnad.',
+				'<:vError:725270799124004934> You must have the following permissions to use that: Administrator.',
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 
 		const channel = message.mentions.channels.first();
 		if (!channel) {
 			return message.channel.send(
-				'You did not specify a channel.',
+				'<:vError:725270799124004934> Please provide a valid channel.',
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 

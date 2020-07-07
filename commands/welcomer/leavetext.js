@@ -19,14 +19,14 @@ module.exports = {
 		}
 		if(!message.member.hasPermission('ADMINISTRATOR')) {
 			return message.channel.send(
-				'You do not have the permission to use this commnad.',
+				'<:vError:725270799124004934> You must have the following permissions to use that: Administrator.',
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 
 		const leavetext = message.content.split(' ').slice(1).join(' ');
 		if (!leavetext) {
 			return message.channel.send(
-				'You did not specify a message.',
+				'<:vError:725270799124004934> Please provide a valid message.',
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 
