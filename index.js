@@ -12,12 +12,7 @@ const client = new Client({
 client.commands = new Collection();
 client.aliases = new Collection();
 
-client.login(process.env.token);
-client.on('ready', () => {
-	require('./events/client/ready') (client);
-});
-
-['command'].forEach(handler => {
+['command', 'event'].forEach(handler => {
 	require(`./handlers/${handler}`)(client);
 });
 
@@ -57,7 +52,7 @@ client.on('message', async message => {
 		else {
 			message.delete();
 			message.channel.send(
-				`${message.author}, you are not allowed to send links in this channel. Hence,you have received a warning.`,
+				`${message.author}, you are not allowed to send links in this channel. Hence, you have received a warning.`,
 			);
 
 			const warnings = db.get(`warnings_${message.guild.id}_${message.author.id}`);
@@ -83,32 +78,12 @@ client.on('message', async message => {
 	}
 });
 
-// Edited Messages
-client.on('messageUpdate', async (oldMessage, newMessage) => {
-	require('./events/guild/messageUpdate')(oldMessage, newMessage);
-});
-
-// Deleted Messages
-client.on('messageDelete', async (message) => {
-	require('./events/guild/messageDelete')(message);
-});
-
-// Member Added
 client.on('guildMemberAdd', async (member) => {
 	require('./events/guild/memberAdd')(member);
 });
 
-// Member Removed
 client.on('guildMemberRemove', async (member) => {
 	require('./events/guild/memberRemove')(member);
 });
 
-// Channel Created
-client.on('channelCreate', async (channel) => {
-	require('./events/guild/channelCreate')(channel);
-});
-
-// Channel Deleted
-client.on('channelDelete', async (channel) => {
-	require('./events/guild/channelDelete')(channel);
-});
+client.login(process.env.token);

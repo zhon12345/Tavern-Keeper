@@ -47,13 +47,6 @@ module.exports = {
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 
-		const Reason = args[1];
-		if (!Reason) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a reason.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
-		}
-
 		const verifiedRole = db.fetch(`verifiedrole_${message.guild.id}`);
 		if(!verifiedRole) {
 			return message.channel.send(
@@ -68,8 +61,17 @@ module.exports = {
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 
-		const time = args[2];
-		if(!time) {
+		let Reason;
+		let time = args[1];
+		if(!time.match(/[0-9][s|m|h|d]/)) {
+			time = null,
+			Reason = args[1];
+			if (!Reason) {
+				return message.channel.send(
+					'<:vError:725270799124004934> Please provide a reason.',
+				).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			}
+
 			member.roles.remove(verifiedRole);
 			member.roles.add(mutedRole);
 			const logs = db.fetch(`modlog_${message.guild.id}`);
@@ -81,8 +83,16 @@ module.exports = {
 			await message.channel.send(
 				`<:vSuccess:725270799098970112> Successfully muted **${member.user.username}**#${member.user.discriminator}`,
 			).then(message.delete());
+
 		}
 		else {
+			Reason = args[2];
+			if (!Reason) {
+				return message.channel.send(
+					'<:vError:725270799124004934> Please provide a reason.',
+				).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			}
+
 			member.roles.remove(verifiedRole);
 			member.roles.add(mutedRole);
 			const logs = db.fetch(`modlog_${message.guild.id}`);

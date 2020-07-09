@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
 const db = require('quick.db');
 
-module.exports = async (oldMessage, newMessage) => {
+module.exports = async (client, oldMessage, newMessage) => {
 	if(oldMessage.author.bot) {return;}
 	else {
 		const embed = new MessageEmbed()

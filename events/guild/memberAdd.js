@@ -1,7 +1,7 @@
 const moment = require('moment');
 const db = require('quick.db');
 
-module.exports = async (member) => {
+module.exports = async (client, member) => {
 	const welcome = db.get(`joinchannel_${member.guild.id}`);
 	const channel = member.guild.channels.cache.get(welcome);
 	const msg = db.get(`jointext_${member.guild.id}`);
