@@ -1,11 +1,9 @@
-const prefix = process.env.prefix;
-
 module.exports = {
 	name: 'nickname',
 	category: 'Utility',
 	description: 'Set a specified user\'s nickname.',
 	aliases: ['nick'],
-	usage: `${prefix}nickname <user> <nickname>`,
+	usage: 'nickname <user> <nickname>',
 	run: async (client, message, args) => {
 		if(!message.member.hasPermission('MANAGE_NICKNAMES')) {
 			return message.channel.send(
