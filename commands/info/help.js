@@ -30,7 +30,7 @@ function getAll(client, message) {
 	}
 	const embed = new MessageEmbed()
 		.setTitle(`${client.user.username}'s Commands`)
-		.setFooter(`${client.user.username}'s Help`, `${client.user.avatarURL()}`)
+		.setFooter(`Requested by ${message.author.tag} `)
 		.setTimestamp()
 		.setColor('BLUE')
 		.setDescription(`This server's prefix is \`${prefix}\`.\nFor more info on a specific command, type \`${prefix}help <command>\`.`);

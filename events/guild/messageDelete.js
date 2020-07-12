@@ -7,7 +7,7 @@ module.exports = async (client, message) => {
 	if (message.author.bot) {return;}
 	const logs = db.fetch(`messagelog_${message.guild.id}`);
 	const channel = message.guild.channels.cache.get(logs);
-	if (!channel && channel === null) {return;}
+	if (!channel || channel === null) {return;}
 	else {
 		const embed = new MessageEmbed()
 			.setColor('RED')
@@ -16,7 +16,7 @@ module.exports = async (client, message) => {
 				{ name: 'Content:', value:`${message.content}` },
 			);
 		channel.send(
-			`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` ❌ **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id})'s message has been deleted.`, embed,
+			`\`[${moment(Date.now()).format('HH:mm:ss')}]\` ❌ **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id})'s message has been deleted.`, embed,
 		);
 	}
 };

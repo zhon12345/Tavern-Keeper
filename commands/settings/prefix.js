@@ -3,7 +3,7 @@ const prefix = process.env.prefix;
 
 module.exports = {
 	name: 'setprefix',
-	category: 'Config',
+	category: 'Settings',
 	description: 'Change the bot\'s prefix for the server.',
 	aliases: ['prefix'],
 	usage: 'setprefix <prefix>',

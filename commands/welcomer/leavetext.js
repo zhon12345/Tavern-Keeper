@@ -9,30 +9,29 @@ module.exports = {
 	usage: 'leavetext <message>',
 	guildOnly: true,
 	run: (client, message, args) => {
-		let prefix;
-		const prefixes = db.fetch(`prefix_${message.guild.id}`);
-		if(prefixes == null) {
-			prefix = 'm!';
-		}
-		else {
-			prefix = prefixes;
-		}
 		if(!message.member.hasPermission('ADMINISTRATOR')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You must have the following permissions to use that: Administrator.',
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 
-		const leavetext = message.content.split(' ').slice(1).join(' ');
-		if (!leavetext) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid message.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+		if (args[0] === 'off') {
+			db.set(`leavetext_${message.guild.id}`, null);
+			message.channel.send(
+				'<:vSuccess:725270799098970112> Leave messages has been turned off.',
+			).then(message.delete());
 		}
-
-		db.set(`leavetext_${message.guild.id}`, leavetext);
-		message.channel.send(
-			`<:vSuccess:725270799098970112> Leave message has been set to:\n${leavetext}`,
-		).then(message.delete());
+		else {
+			args[0] = args.slice().join(' ');
+			if (!args[0]) {
+				return message.channel.send(
+					'<:vError:725270799124004934> Please provide a valid message.',
+				).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			}
+			db.set(`leavetext_${message.guild.id}`, args[0]);
+			message.channel.send(
+				`<:vSuccess:725270799098970112> Leave messages has been set to: \n${args[0]}`,
+			).then(message.delete());
+		}
 	},
 };

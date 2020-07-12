@@ -18,7 +18,7 @@ module.exports = async (bot, messages) =>{
 	const logsChannels = db.fetch(`modlog_${guild.id}`);
 	const logsChannel = bot.channels.cache.get(logsChannels);
 	console.log(logsChannel.guild.name);
-	if(!logsChannel && logsChannel === null) {return;}
+	if(!logsChannel || logsChannel === null) {return;}
 	else{
 		const output = messages.map((m, index) => `${new Date(m.createdAt).toLocaleString('en-US')} - ${m.author.tag}: ${m.content}`).join('\n');
 

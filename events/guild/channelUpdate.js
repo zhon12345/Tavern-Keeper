@@ -16,7 +16,7 @@ module.exports = async (client, oldChannel, newChannel) => {
 	if(newChannel.type === 'dm') return;
 	const logs = db.fetch(`serverlog_${oldChannel.guild.id}`);
 	const logchannel = oldChannel.guild.channels.cache.get(logs);
-	if (!logchannel && logchannel === null) {return;}
+	if (!logchannel || logchannel === null) {return;}
 
 	if(newChannel.name !== oldChannel.name) {
 		const embed = new MessageEmbed()
@@ -28,7 +28,7 @@ module.exports = async (client, oldChannel, newChannel) => {
 			);
 
 		logchannel.send(
-			`\`[${moment(Date.now()).format('HH:mm:ss')}]\` ✏️ #${oldChannel.name} (ID: ${oldChannel.id})'s name has been edited.\n\`[Type]\` ${types[oldChannel.type]}`, embed,
+			`\`[${moment(Date.now()).format('HH:mm:ss')}]\` ✏️ #${oldChannel.name} (ID: ${oldChannel.id})'s name has been changed.\n\`[Type]\` ${types[oldChannel.type]}`, embed,
 		);
 	}
 
@@ -42,7 +42,7 @@ module.exports = async (client, oldChannel, newChannel) => {
 			);
 
 		logchannel.send(
-			`\`[${moment(Date.now()).format('HH:mm:ss')}]\` ✏️ #${oldChannel.name} (ID: ${oldChannel.id})'s topic has been edited.\n\`[Type]\` ${types[oldChannel.type]}`, embed,
+			`\`[${moment(newChannel.createdTimestamo).format('HH:mm:ss')}]\` ✏️ #${oldChannel.name} (ID: ${oldChannel.id})'s topic has been changed.\n\`[Type]\` ${types[oldChannel.type]}`, embed,
 		);
 	}
 };

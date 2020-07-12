@@ -2,11 +2,11 @@
 const db = require('quick.db');
 
 module.exports = {
-	name: 'jointext',
-	category: 'Welcomer',
-	description: 'Set the welcome message for the server.',
+	name: 'muterole',
+	category: 'Settings',
+	description: 'Set the muted role for the server.',
 	aliases: [],
-	usage: 'jointext <message>',
+	usage: 'muterole <role>',
 	guildOnly: true,
 	run: (client, message, args) => {
 		if(!message.member.hasPermission('ADMINISTRATOR')) {
@@ -16,21 +16,21 @@ module.exports = {
 		}
 
 		if (args[0] === 'off') {
-			db.set(`jointext_${message.guild.id}`, null);
+			db.set(`muterole_${message.guild.id}`, null);
 			message.channel.send(
-				'<:vSuccess:725270799098970112> Welcome messages has been turned off.',
+				'<:vSuccess:725270799098970112> Muted role has been turned off',
 			).then(message.delete());
 		}
 		else {
-			args[0] = args.slice().join(' ');
+			args[0] = message.mentions.roles.first();
 			if (!args[0]) {
 				return message.channel.send(
-					'<:vError:725270799124004934> Please provide a valid message.',
+					'<:vError:725270799124004934> Please provide a valid role.',
 				).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 			}
-			db.set(`jointext_${message.guild.id}`, args[0]);
+			db.set(`muterole_${message.guild.id}`, args[0].id);
 			message.channel.send(
-				`<:vSuccess:725270799098970112> Welcome messages has been set to: \n${args[0]}`,
+				`<:vSuccess:725270799098970112> Muted role has been set to ${args[0]}`,
 			).then(message.delete());
 		}
 	},

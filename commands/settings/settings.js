@@ -4,7 +4,7 @@ const db = require('quick.db');
 
 module.exports = {
 	name: 'settings',
-	category: 'Config',
+	category: 'Settings',
 	description: 'Displays the server\'s settings.',
 	aliases: ['setting'],
 	usage: 'settings',

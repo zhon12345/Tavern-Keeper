@@ -6,7 +6,7 @@ const db = require('quick.db');
 module.exports = async (client, oldGuild, newGuild) => {
 	const logs = db.fetch(`serverlog_${oldGuild.id}`);
 	const logchannel = oldGuild.channels.cache.get(logs);
-	if (!logchannel && logchannel === null) {return;}
+	if (!logchannel || logchannel === null) {return;}
 
 	if(newGuild.name !== oldGuild.name) {
 		const embed = new MessageEmbed()
@@ -17,7 +17,7 @@ module.exports = async (client, oldGuild, newGuild) => {
 			);
 
 		logchannel.send(
-			`\`[${moment(Date.now()).format('HH:mm:ss')}]\` ✏️ ${oldGuild.name} (ID: ${oldGuild.id})'s name has been edited.\n\`[Time]\` ${moment(newGuild.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`, embed,
+			`\`[${moment(newGuild.createdTimestamp).format('HH:mm:ss')}]\` ✏️ ${oldGuild.name} (ID: ${oldGuild.id})'s name has been changed to ${newGuild.name}.\n\`[Time]\` ${moment(newGuild.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`, embed,
 		);
 	}
 
@@ -30,7 +30,7 @@ module.exports = async (client, oldGuild, newGuild) => {
 			);
 
 		logchannel.send(
-			`\`[${moment(Date.now()).format('HH:mm:ss')}]\` ✏️ ${oldGuild.name} (ID: ${oldGuild.id})'s icon has been changed.\n\`[Time]\` ${moment(newGuild.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`, embed,
+			`\`[${moment(newGuild.createdTimestamp).format('HH:mm:ss')}]\` ✏️ ${oldGuild.name} (ID: ${oldGuild.id})'s icon has been changed.\n\`[Time]\` ${moment(newGuild.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`, embed,
 		);
 	}
 };

@@ -15,16 +15,23 @@ module.exports = {
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 
-		const channel = message.mentions.channels.first();
-		if (!channel) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid channel.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+		if (args[0] === 'off') {
+			db.set(`leavechannel_${message.guild.id}`, null);
+			message.channel.send(
+				'<:vSuccess:725270799098970112> Leave messages will not be sent',
+			).then(message.delete());
 		}
-
-		db.set(`leavechannel_${message.guild.id}`, channel.id);
-		message.channel.send(
-			`<:vSuccess:725270799098970112> Leave messages will now be sent to ${channel}`,
-		).then(message.delete());
+		else {
+			args[0] = message.mentions.channels.first();
+			if (!args[0]) {
+				return message.channel.send(
+					'<:vError:725270799124004934> Please provide a valid channel.',
+				).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			}
+			db.set(`leavechannel_${message.guild.id}`, args[0].id);
+			message.channel.send(
+				`<:vSuccess:725270799098970112> Leave messages will now be sent to ${args[0]}`,
+			).then(message.delete());
+		}
 	},
 };

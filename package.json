@@ -19,12 +19,19 @@
   "dependencies": {
     "ascii-table": "0.0.9",
     "common-tags": "^1.8.0",
+    "cpu-stat": "^2.0.1",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
     "eslint": "^7.3.1",
+    "figlet": "^1.4.0",
+    "mathjs": "^7.0.2",
     "moment": "^2.27.0",
     "ms": "^2.1.2",
+    "os": "^0.1.1",
     "quick.db": "^7.1.1",
-    "vultrex.haste": "^1.0.1"
+    "random-puppy": "^1.1.0",
+    "twemoji-parser": "^13.0.0",
+    "vultrex.haste": "^1.0.1",
+    "weather-js": "^2.0.0"
   }
 }
