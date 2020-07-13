@@ -18,8 +18,10 @@
   "homepage": "https://github.com/zhon12345/Mod-Bot#readme",
   "dependencies": {
     "ascii-table": "0.0.9",
+    "canvacord": "^3.0.9",
     "common-tags": "^1.8.0",
     "cpu-stat": "^2.0.1",
+    "custom-discord-jokes": "^1.0.3",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
     "eslint": "^7.3.1",

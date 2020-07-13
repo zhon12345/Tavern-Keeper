@@ -7,13 +7,13 @@ module.exports = async (client, oldMember, newMember) => {
 	const logchannel = oldMember.guild.channels.cache.get(logs);
 	if (!logchannel || logchannel === null) {return;}
 
-	const newMemberRoles = newMember.roles.cache.map(role => role.toString());
-	const oldMemberRoles = oldMember.roles.cache.map(role => role.toString());
+	const newMemberRoles = newMember.roles.cache.map(role => role.name.toString());
+	const oldMemberRoles = oldMember.roles.cache.map(role => role.name.toString());
 
 	newMemberRoles.forEach(async (p) =>{
 		if(!oldMemberRoles.includes(p)) {
 			logchannel.send(
-				`\`[${moment(newMember.createdTimestamp).format('HH:mm:ss')}]\` ✏️ **${oldMember.user.username}**#${oldMember.user.discriminator} (ID: ${oldMember.user.id})was given the ${p} role.\n\`[Time]\` ${moment(newMember.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`,
+				`\`[${moment(newMember.createdTimestamp).format('HH:mm:ss')}]\` ✏️ **${oldMember.user.username}**#${oldMember.user.discriminator} (ID: ${oldMember.user.id})was given the \`${p}\` role.\n\`[Time]\` ${moment(newMember.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`,
 			);
 		}
 		else{
@@ -24,7 +24,7 @@ module.exports = async (client, oldMember, newMember) => {
 	oldMemberRoles.forEach(async (p)=>{
 		if(!newMemberRoles.includes(p)) {
 			logchannel.send(
-				`\`[${moment(newMember.createdTimestamp).format('HH:mm:ss')}]\` ✏️ **${oldMember.user.username}**#${oldMember.user.discriminator} (ID: ${oldMember.user.id})was removed from the rs${p} role.\n\`[Time]\` ${moment(newMember.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`,
+				`\`[${moment(newMember.createdTimestamp).format('HH:mm:ss')}]\` ✏️ **${oldMember.user.username}**#${oldMember.user.discriminator} (ID: ${oldMember.user.id})was removed from the \`${p}\` role.\n\`[Time]\` ${moment(newMember.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`,
 			);
 		}
 	});

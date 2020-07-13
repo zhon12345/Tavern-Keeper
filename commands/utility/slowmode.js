@@ -2,7 +2,7 @@ const ms = require('ms');
 
 module.exports = {
 	name: 'slowmode',
-	aliases: ['slow'],
+	aliases: ['slow', 'sm'],
 	category: 'Utility',
 	description: 'Set the slowmode for a specific channel.',
 	usage: 'slowmode [channel] <time>',

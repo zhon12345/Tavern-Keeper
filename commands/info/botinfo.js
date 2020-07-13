@@ -6,6 +6,7 @@ const moment = require('moment');
 const ms = require('ms');
 const os = require('os');
 const cpuStat = require('cpu-stat');
+const { ownerid } = process.env;
 
 module.exports = {
 	name: 'botinfo',
@@ -28,6 +29,7 @@ module.exports = {
 				.setFooter(`Requested by ${message.author.tag} `)
 				.setTimestamp()
 				.addField('General Statistics:', [
+					`**❯ Owner:** <@${ownerid}>`,
 					`**❯ Servers:** ${client.guilds.cache.size.toLocaleString()}`,
 					`**❯ Users:** ${client.users.cache.size.toLocaleString()}`,
 					`**❯ Channels:** ${client.channels.cache.size.toLocaleString()}`,

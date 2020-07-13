@@ -10,7 +10,11 @@ module.exports = {
 	guildOnly: true,
 	run: async (client, message, args) => {
 		const emoji = args[0];
-		if (!emoji) return message.channel.send('No emoji provided!');
+		if (!emoji) {
+			return message.channel.send(
+				'<:vError:725270799124004934> Please provide a valid emoji.',
+			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+		}
 
 		const custom = Discord.Util.parseEmoji(emoji);
 
@@ -23,7 +27,11 @@ module.exports = {
 		}
 		else {
 			const parsed = parse(emoji, { assetType: 'png' });
-			if (!parsed[0]) return message.channel.send('Invalid emoji!');
+			if (!parsed[0]) {
+				return message.channel.send(
+					'<:vError:725270799124004934> Please provide a valid emoji.',
+				).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			}
 			const embed = new Discord.MessageEmbed()
 				.setTitle(`Enlarged version of ${emoji}`)
 				.setColor('#FFFF00')

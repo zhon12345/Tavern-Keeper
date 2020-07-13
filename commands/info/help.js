@@ -1,5 +1,6 @@
 /* eslint-disable no-inner-declarations */
 const { MessageEmbed } = require('discord.js');
+const { capitalizeFirstLetter } = require('../../functions');
 const { ownerid } = process.env;
 const db = require('quick.db');
 
@@ -64,9 +65,6 @@ function getCMD(client, message, input) {
 		return message.channel.send(embed.setColor('BLUE').setDescription(info)).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 	}
 	else{
-		function capitalizeFirstLetter(string) {
-			return string.charAt(0).toUpperCase() + string.slice(1);
-		}
 		const hembed = new MessageEmbed()
 			.setTitle(`Information for ${capitalizeFirstLetter(cmd.name.toString().toLowerCase())} command`)
 			.setColor('BLUE')

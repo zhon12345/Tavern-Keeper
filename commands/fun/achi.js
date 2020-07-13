@@ -1,3 +1,5 @@
+const { MessageAttachment } = require('discord.js');
+
 module.exports = {
 	name: 'achi',
 	category: 'Fun',
@@ -5,7 +7,6 @@ module.exports = {
 	aliases: ['achivement'],
 	usage: 'achi <text>',
 	run: (client, message, args) => {
-		const { MessageEmbed } = require('discord.js');
 
 		const tips = [
 			'Dont forget milk good for you!',
@@ -37,11 +38,7 @@ module.exports = {
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 		const image = (`https://minecraftskinstealer.com/achievement/${logo}/Achievement+Get%21/${achi}`);
-		const achiem = new MessageEmbed()
-			.setTitle('New Achivement!')
-			.setDescription(tip)
-			.setColor('BLUE')
-			.setImage(image);
-		message.channel.send(achiem);
+		const attachment = new MessageAttachment(image, 'achivement.png');
+		message.channel.send(tip, attachment);
 	},
 };
