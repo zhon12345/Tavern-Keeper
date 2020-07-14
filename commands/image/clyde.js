@@ -3,11 +3,11 @@ const canvas = new Canvacord();
 const { MessageAttachment } = require('discord.js');
 
 module.exports = {
-	name: 'changemymind',
-	category: 'Fun',
-	description: 'Generate a personalised changemymind meme',
+	name: 'clyde',
+	category: 'Image',
+	description: 'Make Clyde say somthing.',
 	aliases: [],
-	usage: 'changemymind <text>',
+	usage: 'clyde <text>',
 	run: async (client, message, args) => {
 		const text = args.slice().join(' ');
 		if (!text) {
@@ -15,8 +15,8 @@ module.exports = {
 				'<:vError:725270799124004934> Please provide valid text.',
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
-		const image = await canvas.changemymind(text);
-		const attachment = new MessageAttachment(image, 'changemymind.png');
+		const image = await canvas.clyde(text);
+		const attachment = new MessageAttachment(image, 'clyde.png');
 		return message.channel.send(attachment);
 	},
 };

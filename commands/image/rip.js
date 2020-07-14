@@ -3,11 +3,11 @@ const canvas = new Canvacord();
 const { MessageAttachment } = require('discord.js');
 
 module.exports = {
-	name: 'gay',
-	category: 'Fun',
-	description: 'Show your inner gay pride',
-	aliases: ['gaypride'],
-	usage: 'gay [user]',
+	name: 'rip',
+	category: 'Image',
+	description: 'Rest in peace mate.',
+	aliases: [],
+	usage: 'rip [user]',
 	run: async (client, message, args) => {
 		let user;
 		if(message.mentions.users.first()) {
@@ -20,8 +20,8 @@ module.exports = {
 			user = message.author;
 		}
 
-		const image = await canvas.gay(user.displayAvatarURL({ format: 'png' }));
-		const attachment = new MessageAttachment(image, 'gay.png');
+		const image = await canvas.rip(user.displayAvatarURL({ format: 'png' }));
+		const attachment = new MessageAttachment(image, 'rip.png');
 		return message.channel.send(attachment);
 	},
 };

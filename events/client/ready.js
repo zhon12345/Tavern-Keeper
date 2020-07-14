@@ -1,7 +1,7 @@
 const { prefix, version } = process.env;
 
 module.exports = (client) =>{
-	client.user.setActivity(`${prefix}help`, { type: 'STREAMING', url: 'https://www.twitch.tv/zhon12345' });
+	client.user.setActivity(`${prefix}help | ${client.commands.size} Commands`, { type: 'PLAYING' });
 	console.log(`Logged in as ${client.user.tag}`);
 	console.log('Version:', version);
 	console.log('Prefix:', prefix);

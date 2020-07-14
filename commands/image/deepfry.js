@@ -3,11 +3,11 @@ const canvas = new Canvacord();
 const { MessageAttachment } = require('discord.js');
 
 module.exports = {
-	name: 'trigger',
-	category: 'Fun',
-	description: 'Make you or a specifid user triggered.',
+	name: 'deepfry',
+	category: 'Image',
+	description: 'Deepfries a avatar of yourself or a specifed user.',
 	aliases: [],
-	usage: 'trigger [user]',
+	usage: 'deepfry [user]',
 	run: async (client, message, args) => {
 		let user;
 		if(message.mentions.users.first()) {
@@ -20,8 +20,8 @@ module.exports = {
 			user = message.author;
 		}
 
-		const image = await canvas.trigger(user.displayAvatarURL({ format: 'png' }));
-		const attachment = new MessageAttachment(image, 'triggered.gif');
+		const image = await canvas.deepfry(user.displayAvatarURL({ format: 'png' }));
+		const attachment = new MessageAttachment(image, 'deepfry.png');
 		return message.channel.send(attachment);
 	},
 };

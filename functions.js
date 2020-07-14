@@ -59,7 +59,52 @@ module.exports = {
 		return `${seconds} second(s)`;
 	},
 
+	// aliases.js & help.js
 	capitalizeFirstLetter: function(string) {
 		return string.charAt(0).toUpperCase() + string.slice(1);
+	},
+
+	// uptime.js & botinfo.js
+	parseDurs: function(ms) {
+		let seconds = ms / 1000,
+			days = parseInt(seconds / 86400);
+		seconds = seconds % 86400;
+
+		const hours = parseInt(seconds / 3600);
+		seconds = seconds % 3600;
+
+		const minutes = parseInt(seconds / 60);
+		seconds = parseInt(seconds % 60);
+
+		if (days) {
+			return `${days} day, ${hours} hours, ${minutes} minutes`;
+		}
+		else if (hours) {
+			return `${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+		}
+		else if (minutes) {
+			return `${minutes} minutes, ${seconds} seconds`;
+		}
+		return `${seconds} second(s)`;
+	},
+
+	// eval,js
+	clean: function(string) {
+		if (typeof text === 'string') {
+			return string.replace(/`/g, '`' + String.fromCharCode(8203))
+				.replace(/@/g, '@' + String.fromCharCode(8203));
+		}
+		else {
+			return string;
+		}
+	},
+
+	// owoify.js
+	owoify: function(text) {
+		text = text.replace(/[lr]/g, 'w');
+		text = text.replace(/u/g, 'uw');
+		text = text.replace(/[LR]/g, 'W');
+		text = text.replace(/U/g, 'UW');
+		return text;
 	},
 };

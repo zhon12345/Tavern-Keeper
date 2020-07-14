@@ -4,7 +4,7 @@ const { MessageAttachment } = require('discord.js');
 
 module.exports = {
 	name: 'youtube',
-	category: 'Fun',
+	category: 'Image',
 	description: 'Quote yourself or a specified user in the form of a youtube comment.',
 	aliases: ['comment', 'yt'],
 	usage: 'youtube [user] <text>',

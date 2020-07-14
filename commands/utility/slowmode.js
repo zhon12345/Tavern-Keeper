@@ -38,7 +38,5 @@ module.exports = {
 				`<:vSuccess:725270799098970112> Successfully set slowmode for <#${channel.id}> to **${ms(ms(time), { long: true })}**.`,
 			);
 		}
-
-
 	},
 };

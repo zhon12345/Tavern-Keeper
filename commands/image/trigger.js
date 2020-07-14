@@ -3,11 +3,11 @@ const canvas = new Canvacord();
 const { MessageAttachment } = require('discord.js');
 
 module.exports = {
-	name: 'jail',
-	category: 'Fun',
-	description: 'Jail yourself or a specifid user.',
+	name: 'trigger',
+	category: 'Image',
+	description: 'Make you or a specifid user triggered.',
 	aliases: [],
-	usage: 'jail [user]',
+	usage: 'trigger [user]',
 	run: async (client, message, args) => {
 		let user;
 		if(message.mentions.users.first()) {
@@ -20,8 +20,8 @@ module.exports = {
 			user = message.author;
 		}
 
-		const image = await canvas.jail(user.displayAvatarURL({ format: 'png' }));
-		const attachment = new MessageAttachment(image, 'jail.png');
+		const image = await canvas.trigger(user.displayAvatarURL({ format: 'png' }));
+		const attachment = new MessageAttachment(image, 'triggered.gif');
 		return message.channel.send(attachment);
 	},
 };

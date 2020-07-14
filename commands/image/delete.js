@@ -3,11 +3,11 @@ const canvas = new Canvacord();
 const { MessageAttachment } = require('discord.js');
 
 module.exports = {
-	name: 'pixelate',
-	category: 'Fun',
-	description: 'Pixelate the avatar of yourself or a specified user.',
+	name: 'delete',
+	category: 'Image',
+	description: 'Delete yourself or a specifid user.',
 	aliases: [],
-	usage: 'pixelate [user]',
+	usage: 'delete [user]',
 	run: async (client, message, args) => {
 		let user;
 		if(message.mentions.users.first()) {
@@ -20,8 +20,8 @@ module.exports = {
 			user = message.author;
 		}
 
-		const image = await canvas.pixelate(user.displayAvatarURL({ format: 'png' }));
-		const attachment = new MessageAttachment(image, 'pixelate.png');
+		const image = await canvas.delete(user.displayAvatarURL({ format: 'png' }));
+		const attachment = new MessageAttachment(image, 'delete.png');
 		return message.channel.send(attachment);
 	},
 };

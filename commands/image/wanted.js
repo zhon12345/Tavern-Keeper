@@ -3,11 +3,11 @@ const canvas = new Canvacord();
 const { MessageAttachment } = require('discord.js');
 
 module.exports = {
-	name: 'hitler',
-	category: 'Fun',
-	description: 'It\'s not offensive if it\'s true, so use this wisely.',
+	name: 'wanted',
+	category: 'Image',
+	description: 'Make yourself or a specifid user a wanted criminal.',
 	aliases: [],
-	usage: 'hitler [user]',
+	usage: 'wanted [user]',
 	run: async (client, message, args) => {
 		let user;
 		if(message.mentions.users.first()) {
@@ -20,8 +20,8 @@ module.exports = {
 			user = message.author;
 		}
 
-		const image = await canvas.hitler(user.displayAvatarURL({ format: 'png' }));
-		const attachment = new MessageAttachment(image, 'hitler.png');
+		const image = await canvas.wanted(user.displayAvatarURL({ format: 'png' }));
+		const attachment = new MessageAttachment(image, 'wanted.png');
 		return message.channel.send(attachment);
 	},
 };

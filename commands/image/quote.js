@@ -4,7 +4,7 @@ const { MessageAttachment } = require('discord.js');
 
 module.exports = {
 	name: 'quote',
-	category: 'Fun',
+	category: 'Image',
 	description: 'Quote yourself or a specified user.',
 	aliases: [],
 	usage: 'quote [user] <text>',

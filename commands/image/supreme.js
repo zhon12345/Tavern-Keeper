@@ -2,7 +2,7 @@ const { MessageAttachment } = require('discord.js');
 
 module.exports = {
 	name: 'supreme',
-	category: 'Fun',
+	category: 'Image',
 	description: 'Make a supreme logo with text of your choice.',
 	aliases: [],
 	usage: 'supreme <text>',

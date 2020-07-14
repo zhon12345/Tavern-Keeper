@@ -3,11 +3,11 @@ const canvas = new Canvacord();
 const { MessageAttachment } = require('discord.js');
 
 module.exports = {
-	name: 'batslap',
-	category: 'Fun',
-	description: 'Batslap a specified user.',
-	aliases: ['slap'],
-	usage: 'batslap <user>',
+	name: 'bed',
+	category: 'Image',
+	description: 'Generate a personalised bed meme',
+	aliases: [],
+	usage: 'bed <user>',
 	run: async (client, message, args) => {
 		let user;
 		if(message.mentions.users.first()) {
@@ -23,8 +23,8 @@ module.exports = {
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 
-		const image = await canvas.batslap(message.author.displayAvatarURL({ format: 'png' }), user.displayAvatarURL({ format: 'png' }));
-		const attachment = new MessageAttachment(image, 'batslap.png');
+		const image = await canvas.bed(message.author.displayAvatarURL({ format: 'png' }), user.displayAvatarURL({ format: 'png' }));
+		const attachment = new MessageAttachment(image, 'bed.png');
 		return message.channel.send(attachment);
 	},
 };
