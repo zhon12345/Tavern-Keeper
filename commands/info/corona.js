@@ -1,4 +1,4 @@
-const axios = require('axios');
+const fetch = require('node-fetch');
 const { MessageEmbed } = require('discord.js');
 const { capitalizeFirstLetter } = require('../../functions');
 
@@ -15,8 +15,8 @@ module.exports = {
 
 		try {
 			url = args[0] ? `${baseUrl}/countries/${args[0]}` : `${baseUrl}/all`;
-			response = await axios.get(url);
-			corona = response.data;
+			response = await fetch(url).then(res => res.json());
+			corona = response;
 		}
 		catch (error) {
 			return message.channel.send(`***${args[0]}*** doesn't exist, or data isn't being collected`);

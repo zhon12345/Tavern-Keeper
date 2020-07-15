@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const { MessageEmbed } = require('discord.js');
-const axios = require('axios');
+const fetch = require('node-fetch');
 
 module.exports = {
 	name: 'dog',
@@ -12,18 +12,16 @@ module.exports = {
 	run: async (client, message, args) => {
 		const url = 'https://some-random-api.ml/img/dog';
 
-		let image, response;
-		let fact, responses;
+		let response;
 		try {
-			response = await axios.get(url);
-			image = response.data;
+			response = await fetch(url).then(res => res.json());
 		}
 		catch (e) {
 			return message.channel.send('An error occured, please try again!');
 		}
 
 		const embed = new MessageEmbed()
-			.setImage(image.link)
+			.setImage(response.link)
 			.setTimestamp()
 			.setColor('BLUE')
 			.setTitle('Bork Bork!🐶');

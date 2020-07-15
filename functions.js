@@ -107,4 +107,26 @@ module.exports = {
 		text = text.replace(/U/g, 'UW');
 		return text;
 	},
+
+	// spongebob.js
+	alternateCaps: function(text) {
+		let array = text.split('');
+		let n = text.length;
+		let out = '';
+		let caps = false;
+
+		for (let i = 0; i < n; i++) {
+			if (!/[A-Za-z]/.test(array[i])) {
+				out += array[i];
+				continue;
+			}
+
+			if (caps) out += array[i].toUpperCase();
+			else out += array[i].toLowerCase();
+
+			caps = !caps;
+		}
+
+		return out;
+	},
 };

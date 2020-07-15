@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const { MessageEmbed } = require('discord.js');
-const axios = require('axios');
+const fetch = require('node-fetch');
 
 module.exports = {
 	name: 'cat',
@@ -11,17 +11,10 @@ module.exports = {
 	guildOnly: true,
 	run: async (client, message, args) => {
 		const url = 'https://some-random-api.ml/img/cat';
-		const facts = 'https://some-random-api.ml/facts/cat';
 
-		let image, response;
-		let fact, responses;
+		let response;
 		try {
-			response = await axios.get(url);
-			image = response.data;
-
-			responses = await axios.get(facts);
-			fact = responses.data;
-
+			response = await fetch(url).then(res => res.json());
 		}
 		catch (e) {
 			return message.channel.send(
@@ -29,7 +22,7 @@ module.exports = {
 			);
 		}
 		const embed = new MessageEmbed()
-			.setImage(image.link)
+			.setImage(response.link)
 			.setTimestamp()
 			.setColor('BLUE')
 			.setTitle('Meow🐱');
