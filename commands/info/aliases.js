@@ -15,7 +15,7 @@ module.exports = {
 		else{
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provied a vaild command.',
-			);
+			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 
 	},
@@ -27,7 +27,7 @@ function aliases(client, message, input) {
 	if(!cmd) {
 		return message.channel.send(
 			'<:vError:725270799124004934> Please provied a vaild command.',
-		);
+		).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 	}
 	else {
 		let alias;

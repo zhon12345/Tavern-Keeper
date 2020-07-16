@@ -10,7 +10,7 @@ module.exports = {
 	run: async (client, message, args) => {
 		if (!args[0]) {
 			return message.channel.send(
-				'Please input a calculation',
+				'<:vError:725270799124004934> Please provide a valid calculation',
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 		let resp;
@@ -19,7 +19,7 @@ module.exports = {
 		}
 		catch (e) {
 			return message.channel.send(
-				'Please input a valid calculation',
+				'<:vError:725270799124004934> Please provide a valid calculation',
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 

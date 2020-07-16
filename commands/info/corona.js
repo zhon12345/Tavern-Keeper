@@ -19,7 +19,7 @@ module.exports = {
 			corona = response;
 		}
 		catch (error) {
-			return message.channel.send(`***${args[0]}*** doesn't exist, or data isn't being collected`);
+			return message.channel.send('<:vError:725270799124004934> An error occured, please try again!');
 		}
 
 		const embed = new MessageEmbed()

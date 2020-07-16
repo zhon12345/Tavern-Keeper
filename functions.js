@@ -129,4 +129,47 @@ module.exports = {
 
 		return out;
 	},
+
+	// color.js
+	isHex: function(string) {
+		let str = string;
+		if(str.charAt(0) == '#') {
+			str = str.slice(1);
+		}
+		return typeof str === 'string'
+		&& str.length === 6
+		&& !isNaN(Number('0x' + str));
+	},
+
+	// color.js
+	stringToHex: function(string) {
+		let hash = 0;
+		for (let i = 0; i < string.length; i++) {
+			hash = string.charCodeAt(i) + ((hash << 5) - hash);
+		}
+		let colour = '#';
+		for (let i = 0; i < 3; i++) {
+			const value = (hash >> (i * 8)) & 0xFF;
+			colour += ('00' + value.toString(16)).substr(-2);
+		}
+		return colour;
+	},
+
+	// memercount.js
+	checkBots: function(guild) {
+		let botCount = 0;
+		guild.members.cache.forEach(member => {
+			if (member.user.bot) botCount++;
+		});
+		return botCount;
+	},
+
+	// membercount.js
+	checkMembers: function(guild) {
+		let memberCount = 0;
+		guild.members.cache.forEach(member => {
+			if (!member.user.bot) memberCount++;
+		});
+		return memberCount;
+	},
 };

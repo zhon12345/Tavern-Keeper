@@ -28,7 +28,7 @@ module.exports = {
 				.setFooter(`Requested by ${message.author.tag} `)
 				.setTimestamp()
 				.addField('General Statistics:', [
-					`**❯ Owner:** <@${ownerid}>`,
+					`**❯ Owner:** ${client.users.cache.get(ownerid).tag}`,
 					`**❯ Servers:** ${client.guilds.cache.size.toLocaleString()}`,
 					`**❯ Users:** ${client.users.cache.size.toLocaleString()}`,
 					`**❯ Channels:** ${client.channels.cache.size.toLocaleString()}`,

@@ -11,7 +11,9 @@ module.exports = {
 	run: async (client, message, args) => {
 		const package = args[0];
 		if(!package) {
-			return message.channel.send('No package!');
+			return message.channel.send(
+				'<:vError:725270799124004934> Please provide a valid package.',
+			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 
 		let response;

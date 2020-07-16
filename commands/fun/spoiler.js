@@ -1,11 +1,11 @@
 const db = require('quick.db');
 
 module.exports = {
-	name: 'clapify',
+	name: 'spoiler',
 	category: 'Fun',
-	description: 'Generate a clapified text',
+	description: 'Make the bot say whatever you want in annoying spoiler form.',
 	aliases: [],
-	usage: 'clapify <text>',
+	usage: 'soiler <text>',
 	run: async (client, message, args) => {
 		let prefix;
 		const prefixes = db.fetch(`prefix_${message.guild.id}`);
@@ -15,21 +15,13 @@ module.exports = {
 		else {
 			prefix = prefixes;
 		}
-
 		if(!args[0]) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide valid text.',
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
-
-		let text;
-		const txt = args.join(' ');
-		if(/\s/.test(txt)) {
-			text = args.join(' 👏 ');
-		}
 		else {
-			text = message.content.substring(prefix.length + 8).split('').join(' 👏 ');
+			message.channel.send(`||${message.content.substring(prefix.length + 8).split('').join('||||')}||`);
 		}
-		message.channel.send(`${text} 👏`);
 	},
 };
