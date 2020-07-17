@@ -3,7 +3,7 @@ const ms = require('ms');
 module.exports = {
 	name: 'slowmode',
 	aliases: ['slow', 'sm'],
-	category: 'Utility',
+	category: 'Moderation',
 	description: 'Set the slowmode for a specific channel.',
 	usage: 'slowmode [channel] <time>',
 	run: async (bot, message, args) => {

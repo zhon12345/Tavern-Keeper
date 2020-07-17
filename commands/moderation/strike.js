@@ -46,12 +46,12 @@ module.exports = {
 		let amount = args[1];
 		if (isNaN(args[1])) {
 			amount = 1;
-			Reason = args[1];
+			Reason = args.slice(1).join(' ');
 		}
 
 		else {
 			amount = Number(args[1]);
-			Reason = args[2];
+			Reason = args.slice(2).join(' ');
 			if(!Reason) {
 				return message.channel.send(
 					'<:vError:725270799124004934> Please provide a reason.',

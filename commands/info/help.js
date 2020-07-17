@@ -40,6 +40,9 @@ function getAll(client, message) {
 	if(message.author.id !== ownerid) {
 		categories = [...new Set(client.commands.filter(cmd => cmd.category !== 'Owner').map(cmd =>cmd.category))];
 	}
+	else if(!message.channel.nsfw) {
+		categories = [...new Set(client.commands.filter(cmd => cmd.category !== 'NSFW').map(cmd =>cmd.category))];
+	}
 	else {
 		categories = [...new Set(client.commands.map(cmd => cmd.category))];
 	}
@@ -53,6 +56,14 @@ function getAll(client, message) {
 }
 
 function getCMD(client, message, input) {
+	let prefix;
+	const prefixes = db.fetch(`prefix_${message.guild.id}`);
+	if(prefixes == null) {
+		prefix = 'm!';
+	}
+	else {
+		prefix = prefixes;
+	}
 	const embed = new MessageEmbed();
 
 	const cmd =
@@ -74,7 +85,7 @@ function getCMD(client, message, input) {
 				`**❯ Name:** ${cmd.name}`,
 				`**❯ Category:** ${capitalizeFirstLetter(cmd.category.toString().toLowerCase())}`,
 				`**❯ Description:** ${cmd.description}`,
-				`**❯ Usage:** ${cmd.usage}`,
+				`**❯ Usage:** ${prefix}${cmd.usage}`,
 				`**❯ Aliases:** ${cmd.aliases ? cmd.aliases.map((a) => `\`${a}\``).join(', ') : '`None`'}`,
 			]);
 		message.channel.send(hembed);

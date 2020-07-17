@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
 	name: 'test',
-	category: 'Utility',
+	category: 'Owner',
 	description: 'Checks the bot is working.',
 	aliases: [],
 	usage: 'test',

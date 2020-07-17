@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
 	name: 'math',
-	category: 'Utility',
+	category: 'Misc',
 	description: 'Helps you solve a math calculation.',
 	aliases: ['calculate'],
 	usage: 'math <value> <operator> <value>',

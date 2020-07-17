@@ -29,12 +29,12 @@ module.exports = {
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 
-		let Reason = args[1];
+		let Reason;
 		if(!Reason) {
 			Reason = 'No reason specified';
 		}
 		else {
-			Reason = args[1];
+			Reason = args.slice().join(' ');
 		}
 
 		message.channel.bulkDelete(amount, true);

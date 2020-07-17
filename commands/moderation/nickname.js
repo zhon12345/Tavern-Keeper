@@ -1,6 +1,6 @@
 module.exports = {
 	name: 'nickname',
-	category: 'Utility',
+	category: 'Moderation',
 	description: 'Set a specified user\'s nickname.',
 	aliases: ['nick'],
 	usage: 'nickname <user> <nickname>',

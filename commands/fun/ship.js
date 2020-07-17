@@ -18,11 +18,11 @@ module.exports = {
 			5: '💜',
 		};
 		if (!args[0]) {
-			return message.channel.send(client.userError(exports, 'Missing argument, the `name1` argument is required!'));
+			return message.channel.send('<:vError:725270799124004934> Please provide valid users');
 		}
 
 		if (!args[1]) {
-			return message.channel.send(client.userError(exports, 'Missing argument, the `name2` argument is required!'));
+			return message.channel.send('<:vError:725270799124004934> Please provide valid users');
 		}
 
 		const firstName = args[0];

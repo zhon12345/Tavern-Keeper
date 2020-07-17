@@ -2,11 +2,11 @@
 const db = require('quick.db');
 
 module.exports = {
-	name: 'leavetext',
-	category: 'Welcomer',
-	description: 'Set the leave message for the server.',
+	name: 'jointext',
+	category: 'Settings',
+	description: 'Set the welcome message for the server.',
 	aliases: [],
-	usage: 'leavetext <message>',
+	usage: 'jointext <message>',
 	guildOnly: true,
 	run: (client, message, args) => {
 		if(!message.member.hasPermission('ADMINISTRATOR')) {
@@ -16,9 +16,9 @@ module.exports = {
 		}
 
 		if (args[0] === 'off') {
-			db.set(`leavetext_${message.guild.id}`, null);
+			db.set(`jointext_${message.guild.id}`, null);
 			message.channel.send(
-				'<:vSuccess:725270799098970112> Leave messages has been turned off.',
+				'<:vSuccess:725270799098970112> Welcome messages has been turned off.',
 			).then(message.delete());
 		}
 		else {
@@ -28,9 +28,9 @@ module.exports = {
 					'<:vError:725270799124004934> Please provide a valid message.',
 				).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 			}
-			db.set(`leavetext_${message.guild.id}`, args[0]);
+			db.set(`jointext_${message.guild.id}`, args[0]);
 			message.channel.send(
-				`<:vSuccess:725270799098970112> Leave messages has been set to: \n${args[0]}`,
+				`<:vSuccess:725270799098970112> Welcome messages has been set to: \n${args[0]}`,
 			).then(message.delete());
 		}
 	},

@@ -2,11 +2,11 @@
 const db = require('quick.db');
 
 module.exports = {
-	name: 'joinchannel',
-	category: 'Welcomer',
-	description: 'Set the welcome channel for the server.',
+	name: 'leavechannel',
+	category: 'Settings',
+	description: 'Set the leave channel for the server.',
 	aliases: [],
-	usage: 'joinchannel <channel>',
+	usage: 'leavechannel <channel>',
 	guildOnly: true,
 	run: (client, message, args) => {
 		if(!message.member.hasPermission('ADMINISTRATOR')) {
@@ -16,9 +16,9 @@ module.exports = {
 		}
 
 		if (args[0] === 'off') {
-			db.set(`joinchannel_${message.guild.id}`, null);
+			db.set(`leavechannel_${message.guild.id}`, null);
 			message.channel.send(
-				'<:vSuccess:725270799098970112> Welcome messages will not be sent',
+				'<:vSuccess:725270799098970112> Leave messages will not be sent',
 			).then(message.delete());
 		}
 		else {
@@ -28,9 +28,9 @@ module.exports = {
 					'<:vError:725270799124004934> Please provide a valid channel.',
 				).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 			}
-			db.set(`joinchannel_${message.guild.id}`, args[0].id);
+			db.set(`leavechannel_${message.guild.id}`, args[0].id);
 			message.channel.send(
-				`<:vSuccess:725270799098970112> Welcome messages will now be sent to ${args[0]}`,
+				`<:vSuccess:725270799098970112> Leave messages will now be sent to ${args[0]}`,
 			).then(message.delete());
 		}
 	},

@@ -18,7 +18,7 @@ module.exports = {
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 
-		const role = message.mentions.roles.first() || message.guild.roles.cache.get(args[0]);
+		const role = message.mentions.roles.first() || message.guild.roles.cache.get(args[1]);
 		if(!role) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide a valid role.',

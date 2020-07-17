@@ -65,7 +65,7 @@ module.exports = {
 		let time = args[1];
 		if(!time.match(/[0-9][s|m|h|d]/)) {
 			time = null,
-			Reason = args[1];
+			Reason = args.slice(1).join(' ');
 			if (!Reason) {
 				return message.channel.send(
 					'<:vError:725270799124004934> Please provide a reason.',

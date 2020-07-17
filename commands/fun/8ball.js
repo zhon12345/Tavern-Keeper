@@ -15,12 +15,18 @@ module.exports = {
 
 		const responses = [
 			'Yes',
+			'It is certain.',
 			'No',
 			'Maybe',
+			'You may rely on it.',
+			'Very doubtful.',
 			'Probably',
 			'Definetly',
+			'Concentrate and ask again.',
 			'¯\\_(ツ)_/¯',
+			'Reply hazy, try again.',
 			'Oh Hell No!',
+			'Ask again later.',
 			'Not in a million years',
 			'An error occured, Please try again',
 		];

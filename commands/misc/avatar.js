@@ -2,7 +2,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
 	name: 'avatar',
-	category: 'Info',
+	category: 'Misc',
 	description: 'Get the avatar of a specified user, or your own avatar.',
 	aliases: ['pfp', 'icon'],
 	usage: 'avatar [user]',

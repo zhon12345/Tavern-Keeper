@@ -43,7 +43,7 @@ module.exports = {
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 
-		const Reason = args[2];
+		const Reason = args.slice(2).join(' ');
 
 		if(!Reason) {
 			return message.channel.send(
