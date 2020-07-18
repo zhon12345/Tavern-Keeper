@@ -1,6 +1,4 @@
 /* eslint-disable no-unused-vars */
-const { MessageEmbed } = require('discord.js');
-const rollDice = () => Math.floor(Math.random() * 6) + 1;
 
 module.exports = {
 	name: 'lenny',
