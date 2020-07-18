@@ -9,6 +9,10 @@ module.exports = {
 	usage: 'kick <user> <reason>',
 	guildOnly: true,
 	run: async (client, message, args) => {
+		const logs = db.fetch(`modlog_${message.guild.id}`);
+		const channel = message.guild.channels.cache.get(logs);
+		if (!channel || channel === null) return;
+
 		if(!message.member.hasPermission('KICK_MEMBERS')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You must have the following permissions to use that: Kick Members.',
@@ -53,10 +57,14 @@ module.exports = {
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 
+		try {
+			await member.send(`You have been kicked from ${message.guild}\n\`[Reason]\` ${Reason}`);
+		}
+		catch(err) {
+			await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+		}
+
 		member.kick();
-		const logs = db.fetch(`modlog_${message.guild.id}`);
-		const channel = message.guild.channels.cache.get(logs);
-		if (!channel) return;
 		channel.send(
 			`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 👢 **${message.author.username}**#${message.author.discriminator} kicked **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` ${Reason}`,
 		);

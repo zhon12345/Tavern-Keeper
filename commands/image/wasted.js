@@ -5,7 +5,7 @@ const { MessageAttachment } = require('discord.js');
 module.exports = {
 	name: 'wasted',
 	category: 'Image',
-	description: 'Make yourself or a specifid user wasted.',
+	description: 'Display the wasted text on a specified user\'s avatar.',
 	aliases: [],
 	usage: 'wasted [user]',
 	run: async (client, message, args) => {

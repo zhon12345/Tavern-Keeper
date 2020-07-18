@@ -5,7 +5,7 @@ const { MessageAttachment } = require('discord.js');
 module.exports = {
 	name: 'clyde',
 	category: 'Image',
-	description: 'Make Clyde say somthing.',
+	description: 'Make Clyde say something.',
 	aliases: [],
 	usage: 'clyde <text>',
 	run: async (client, message, args) => {

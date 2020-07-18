@@ -31,7 +31,6 @@
     "node-fetch": "^2.6.0",
     "os": "^0.1.1",
     "quick.db": "^7.1.1",
-    "superagent": "^5.3.1",
     "twemoji-parser": "^13.0.0",
     "vultrex.haste": "^1.0.1",
     "weather-js": "^2.0.0"

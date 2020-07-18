@@ -6,7 +6,7 @@ const url = 'https://some-random-api.ml/meme';
 module.exports = {
 	name: 'meme',
 	category: 'Image',
-	description: 'Get a random meme.',
+	description: 'Get a random meme from the internet.',
 	aliases: ['memes'],
 	usage: 'meme',
 	guildOnly: true,

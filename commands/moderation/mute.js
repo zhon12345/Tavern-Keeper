@@ -5,7 +5,7 @@ const ms = require('ms');
 module.exports = {
 	name: 'mute',
 	category: 'Moderation',
-	description: 'Temporarily or permanantely mute a specific user.',
+	description: 'Temporarily or permanently mute a specific user.',
 	aliases: ['silent'],
 	usage: 'tempmute <user> <reason> [time]',
 	guildOnly: true,
@@ -72,11 +72,19 @@ module.exports = {
 				).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 			}
 
-			member.roles.remove(verifiedRole);
-			member.roles.add(mutedRole);
 			const logs = db.fetch(`modlog_${message.guild.id}`);
 			const channel = message.guild.channels.cache.get(logs);
-			if (!channel) return;
+			if (!channel || channel === null) return;
+
+			try {
+				await member.send(`You have been muted in ${message.guild}\n\`[Reason]\` ${Reason}`);
+			}
+			catch(err) {
+				await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+			}
+
+			member.roles.remove(verifiedRole);
+			member.roles.add(mutedRole);
 			channel.send(
 				`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🔇 **${message.author.username}**#${message.author.discriminator} muted **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` ${Reason}`,
 			);
@@ -93,11 +101,19 @@ module.exports = {
 				).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 			}
 
-			member.roles.remove(verifiedRole);
-			member.roles.add(mutedRole);
 			const logs = db.fetch(`modlog_${message.guild.id}`);
 			const channel = message.guild.channels.cache.get(logs);
-			if (!channel) return;
+			if (!channel || channel === null) return;
+
+			try {
+				await member.send(`You have been tempmuted for ${time} in ${message.guild}\n\`[Reason]\` ${Reason}`);
+			}
+			catch(err) {
+				await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+			}
+
+			member.roles.remove(verifiedRole);
+			member.roles.add(mutedRole);
 			channel.send(
 				`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🤐 **${message.author.username}**#${message.author.discriminator} tempmuted **${member.user.username}**#${member.user.discriminator} (ID: ${member.id}) for ${ms(ms(time))}\n\`[Reason]\` ${Reason}`,
 			);
@@ -107,11 +123,19 @@ module.exports = {
 		}
 
 		setTimeout(function() {
-			member.roles.add(verifiedRole);
-			member.roles.remove(mutedRole);
 			const logs = db.fetch(`modlog_${message.guild.id}`);
 			const channel = message.guild.channels.cache.get(logs);
-			if (!channel) return;
+			if (!channel || channel === null) return;
+
+			try {
+				member.send(`You have been unmuted in ${message.guild}\n\`[Reason]\` Temporary mute completed`);
+			}
+			catch(err) {
+				channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+			}
+
+			member.roles.add(verifiedRole);
+			member.roles.remove(mutedRole);
 			channel.send(
 				`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🔊 **${client.user.username}**#${client.user.discriminator} unmuted **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` Temporary mute completed`,
 			);

@@ -2,7 +2,7 @@
 module.exports = {
 	name: 'vaporwave',
 	aliases: ['aesthetic'],
-	description: 'Ｃｏｎｖｅｒｔｓ ｔｅｘｔ ｉｎｔｏ ｖａｐｏｒｗａｖｅ ',
+	description: 'Ｃｏｎｖｅｒｔｓ ｔｅｘｔ ｉｎｔｏ ｖａｐｏｒｗａｖｅ.',
 	usage: 'vapourwave <text>',
 	category: 'Fun',
 	run: async (client, message, args) => {

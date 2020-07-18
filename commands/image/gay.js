@@ -5,7 +5,7 @@ const { MessageAttachment } = require('discord.js');
 module.exports = {
 	name: 'gay',
 	category: 'Image',
-	description: 'Show your inner gay pride',
+	description: 'Show your inner gay pride.',
 	aliases: ['gaypride'],
 	usage: 'gay [user]',
 	run: async (client, message, args) => {

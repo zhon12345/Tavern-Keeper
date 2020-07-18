@@ -4,7 +4,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
 	name: 'quotes',
-	category: 'Fun',
+	category: 'Misc',
 	description: 'Get a random inspiring quote.',
 	aliases: [],
 	usage: 'quotes',

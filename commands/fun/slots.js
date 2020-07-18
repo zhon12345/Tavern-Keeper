@@ -4,74 +4,42 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
 	name: 'slots',
 	category: 'Fun',
-	description: 'Play slots.',
+	description: '​How lucky are you? Play slots to find out.',
 	aliases: [],
 	usage: 'slots',
 	run: async (client, message, args) => {
-		const replys1 = [
-			':gem: : :gem: : :gem: ',
-			':lemon: : :lemon: : :lemon: ',
-			':seven: : :seven: : :seven: ',
-			':bell: : :bell: : :bell:',
-			':cherries: : :cherries: : :cherries: ',
-			':star: : :star: : :star: ',
-			':gem: : :star: : :seven: ',
-			':star: : :bell: : :bell:',
-			':star: : :star: : :cherries: ',
-			':gem: : :gem: : :cherries:',
-			':gem: : :seven: : :seven: ',
-			':star: : :bell: : :lemon: ',
-			':star: : :star: : :cherries: ',
-			':seven: : :star: : :star: ',
-			':star: : :star: : :seven: ',
-			':gem: : :gem: : :seven: ',
-		];
-		const reponse = (replys1[Math.floor(Math.random() * replys1.length)]);
+		const slot = ['🍒', '🍊', '🍋', '🍉', '🍌'];
+		const rand1 = Math.floor(Math.random() * slot.length);
+		const rand2 = Math.floor(Math.random() * slot.length);
+		const rand3 = Math.floor(Math.random() * slot.length);
+		const result = `${slot[rand1]} : ${slot[rand2]} : ${slot[rand3]}`;
 
-		const replys2 = [
-			':gem: : :gem: : :gem: ',
-			':lemon: : :lemon: : :lemon: ',
-			':seven: : :seven: : :seven: ',
-			':bell: : :bell: : :bell:',
-			':cherries: : :cherries: : :cherries: ',
-			':gem: : :star: : :seven: ',
-			':star: : :bell: : :bell:',
-			':star: : :star: : :cherries: ',
-			':gem: : :gem: : :cherries:',
-			':gem: : :seven: : :seven: ',
-			':star: : :bell: : :lemon: ',
-			':star: : :star: : :cherries: ',
-			':seven: : :star: : :star: ',
-			':star: : :star: : :seven: ',
-			':gem: : :gem: : :seven: ',
-			':gem: : :cherries: : :cherries:',
-			':gem: : :bell: : :star:',
-		];
-		const reponse2 = (replys2[Math.floor(Math.random() * replys2.length)]);
-		const replys3 = [
-			':lemon: : :lemon: : :lemon: ',
-			':bell: : :bell: : :bell:',
-			':cherries: : :cherries: : :cherries: ',
-			':star: : :star: : :star: ',
-			':gem: : :star: : :seven: ',
-			':star: : :bell: : :bell:',
-			':star: : :star: : :cherries: ',
-			':gem: : :gem: : :cherries:',
-			':gem: : :seven: : :seven: ',
-			':star: : :bell: : :lemon: ',
-			':star: : :star: : :cherries: ',
-			':seven: : :star: : :star: ',
-			':star: : :star: : :seven: ',
-			':gem: : :gem: : :seven: ',
-		];
-		const reponse3 = (replys3[Math.floor(Math.random() * replys3.length)]);
+		message.channel.send('🎰 Spinning...').then(msg => {
+			const bembed = new MessageEmbed();
+			if(rand1 == rand2 && rand2 == rand3) {
+				bembed.setColor('GREEN');
+				bembed.setDescription([`
+            -------------------
 
-		const embed = new MessageEmbed()
-			.setColor('BLUE')
-			.setDescription(`**[ :slot_machine: ${message.author} launched the slot machine! :slot_machine: ]**`)
-			.addField('**-------------------**', '** **')
-			.addField(`${reponse} \n \n${reponse2}**<** \n \n${reponse3}`, '** **')
-			.addField('**-------------------**', '** **');
-		message.channel.send(embed);
+            ${result}
+
+            -------------------
+            You Won!
+            `]);
+			}
+			else {
+				bembed.setColor('RED');
+				bembed.setDescription([`
+            -------------------
+            
+            ${result}
+
+            -------------------
+            You Lost!
+            `]);
+			}
+			msg.edit(bembed);
+		});
+
 	},
 };

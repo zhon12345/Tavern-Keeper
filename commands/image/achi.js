@@ -3,7 +3,7 @@ const { MessageAttachment } = require('discord.js');
 module.exports = {
 	name: 'achi',
 	category: 'Image',
-	description: 'make your own achivement',
+	description: 'Make your own personalised minecraft achievement.',
 	aliases: ['achivement'],
 	usage: 'achi <text>',
 	run: (client, message, args) => {

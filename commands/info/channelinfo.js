@@ -20,7 +20,7 @@ const types = {
 module.exports = {
 	name: 'channelinfo',
 	category: 'Info',
-	description: 'Displays information about a provided role.',
+	description: 'Displays information about a provided channel.',
 	aliases: ['channel'],
 	usage: 'channelinfo [channel]',
 	run: async (client, message, args) => {

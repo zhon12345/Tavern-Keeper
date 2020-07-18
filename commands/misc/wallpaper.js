@@ -1,27 +1,19 @@
 /* eslint-disable no-unused-vars */
-const { MessageEmbed } = require('discord.js');
 const fetch = require('node-fetch');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = {
-	name: 'thigh',
-	category: 'NSFW',
-	description: 'Sends images of thighs, what do you expect?',
+	name: 'wallpaper',
+	category: 'Misc',
+	description: 'Get the wallpaper of the day from bing.',
 	aliases: [],
-	usage: 'thigh',
+	usage: 'walpaper',
 	run: async (client, message, args) => {
-		if(!message.channel.nsfw) {
-			return message.channel.send(
-				'<:vError:725270799124004934> This command can only be used in a nsfw channel.',
-			);
-		}
-		const url = [
-			'https://nekobot.xyz/api/image?type=thigh',
-		];
+		const url = 'https://bing.biturl.top/?mkt=en-US';
 
 		let response;
 		try {
 			response = await fetch(url).then(res => res.json());
-
 		}
 		catch (e) {
 			return message.channel.send(
@@ -30,7 +22,8 @@ module.exports = {
 		}
 		const embed = new MessageEmbed()
 			.setColor('BLUE')
-			.setImage(response.message);
+			.setImage(response.url)
+			.setTitle(response.copyright);
 
 		message.channel.send(embed);
 	},

@@ -6,7 +6,7 @@ module.exports = {
 	category: 'Moderation',
 	aliases: ['delwarn', 'unwarn'],
 	usage: 'pardon <user> <amount> <reason>',
-	description: 'Remove strikes from a specified person',
+	description: 'Remove strikes from a specified person.',
 	run: async (client, message, args) => {
 
 
@@ -58,10 +58,17 @@ module.exports = {
 			).then(message.delete({ timeout: 5000 })).then(embed => {embed.delete({ timeout: 5000 });});
 		}
 		else {
-			db.subtract(`warnings_${message.guild.id}_${member.id}`, amount);
 			const logs = db.fetch(`modlog_${message.guild.id}`);
 			const channel = message.guild.channels.cache.get(logs);
-			if (!channel) return;
+			if (!channel || channel === null) return;
+
+			try {
+				await member.send(`You have been pardoned ${amount}strikes in ${message.guild}\n\`[Reason]\` ${Reason}`);
+			}
+			catch(err) {
+				await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+			}
+			db.subtract(`warnings_${message.guild.id}_${member.id}`, amount);
 			channel.send(
 				`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🏳️ **${message.author.username}**#${message.author.discriminator} pardoned \`${amount}\` strikes from **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` ${Reason}`,
 			);

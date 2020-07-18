@@ -8,7 +8,7 @@ module.exports = {
 	name: 'help',
 	aliases: ['h', 'commands'],
 	category: 'Info',
-	description: 'Returns all commands, or one specific command info',
+	description: 'Returns all commands, or one specific command info.',
 	usage: 'help [command]',
 	run: async (client, message, args) => {
 		if (args[0]) {
@@ -34,7 +34,11 @@ function getAll(client, message) {
 		.setFooter(`Requested by ${message.author.tag} `)
 		.setTimestamp()
 		.setColor('BLUE')
-		.setDescription(`This server's prefix is \`${prefix}\`.\nFor more info on a specific command, type \`${prefix}help <command>\`.`);
+		.setDescription([`
+		This server's prefix is \`${prefix}\`.
+		For more info on a specific command, type \`${prefix}help <command>\`.
+		Visit the bot's website [here](https://tavern-keeper.weebly.com/) for more info on certain features.
+		`]);
 
 	let categories;
 	if(message.author.id !== ownerid) {

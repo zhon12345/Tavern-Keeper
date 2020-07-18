@@ -25,8 +25,8 @@ module.exports = async (client, oldGuild, newGuild) => {
 		const embed = new MessageEmbed()
 			.setColor('YELLOW')
 			.addFields(
-				{ name: 'Before', value: oldGuild.iconURL({ dynamic: true, format: 'png' }), inline: true },
-				{ name: 'After', value: newGuild.iconURL({ dynamic: true, format: 'png' }), inline: true },
+				{ name: 'Before', value: oldGuild.iconURL() ? oldGuild.iconURL({ dynamic: true, format: 'png' }) : 'None', inline: true },
+				{ name: 'After', value: newGuild.iconURL() ? newGuild.iconURL({ dynamic: true, format: 'png' }) : 'None', inline: true },
 			);
 
 		logchannel.send(

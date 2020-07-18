@@ -5,7 +5,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
 	name: 'urban',
 	category: 'Info',
-	description: 'Get a definition from the Urban Dictonary.',
+	description: 'Get a definition from the Urban Dictonary. (NSFW Channel required)',
 	aliases: ['ud'],
 	usage: 'urban <query>',
 	run: async (client, message, args) => {

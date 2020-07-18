@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 module.exports = {
 	name: 'joke',
 	category: 'Fun',
-	description: 'Get a joke.',
+	description: 'Get a random joke from the internet.',
 	aliases: ['joke', 'pun'],
 	usage: 'joke',
 	run: async (client, message, args) => {

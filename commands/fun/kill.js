@@ -2,7 +2,7 @@
 module.exports = {
 	name: 'kill',
 	category: 'Fun',
-	description: 'attempt to kill a specified user.',
+	description: 'Attempt to kill a specified user.',
 	aliases: [],
 	usage: 'kill <user>',
 	run: async (client, message, args) => {

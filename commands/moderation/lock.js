@@ -3,7 +3,7 @@ const db = require('quick.db');
 module.exports = {
 	name: 'lock',
 	category: 'Moderation',
-	description: 'Locks the server and prevent raids.',
+	description: 'Locks the specified channel to prevent raids.',
 	aliases: ['lockdown'],
 	usage: 'lock [channel] <on/off>',
 	guildOnly: true,

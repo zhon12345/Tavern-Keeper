@@ -5,7 +5,7 @@ const db = require('quick.db');
 module.exports = {
 	name: 'unmute',
 	category: 'Moderation',
-	description: 'Unmute a specified user.',
+	description: 'Unmute a muted user.',
 	aliases: ['unsilent'],
 	usage: 'unmute <user> <reason>',
 	guildOnly: true,
@@ -56,11 +56,18 @@ module.exports = {
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 		if(member.roles.cache.has(muteRole)) {
-			member.roles.remove(muteRole);
-			member.roles.add(verifiedRole);
 			const logs = db.fetch(`modlog_${message.guild.id}`);
 			const channel = message.guild.channels.cache.get(logs);
-			if (!channel) return;
+			if (!channel || channel === null) return;
+
+			try {
+				await member.send(`You have been unmuted in ${message.guild}\n\`[Reason]\` ${Reason}`);
+			}
+			catch(err) {
+				await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+			}
+			member.roles.remove(muteRole);
+			member.roles.add(verifiedRole);
 			channel.send(
 				`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🔊 **${message.author.username}**#${message.author.discriminator} unmuted **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` ${Reason}`,
 			);

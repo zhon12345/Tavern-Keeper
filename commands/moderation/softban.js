@@ -2,11 +2,11 @@ const moment = require('moment');
 const db = require('quick.db');
 
 module.exports = {
-	name: 'ban',
+	name: 'softban',
 	category: 'Moderation',
-	description: 'Ban a specified user from the server.',
+	description: 'softban a specified user from the server.',
 	aliases: [],
-	usage: 'ban <user> <reason>',
+	usage: 'softban <user> <reason>',
 	guildOnly: true,
 	run: async (client, message, args) => {
 		const logs = db.fetch(`modlog_${message.guild.id}`);
@@ -58,18 +58,20 @@ module.exports = {
 		}
 
 		try {
-			await member.send(`You have been banned from ${message.guild}\n\`[Reason]\` ${Reason}`);
+			await member.send(`You have been softbanned from ${message.guild}\n\`[Reason]\` ${Reason}`);
 		}
 		catch(err) {
 			await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
 		}
 
-		member.ban();
+		member.ban().then(
+			message.guild.members.unban(member.user),
+		);
 		channel.send(
-			`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🔨 **${message.author.username}**#${message.author.discriminator} banned **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` ${Reason}`,
+			`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🔨 **${message.author.username}**#${message.author.discriminator} softbanned **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` ${Reason}`,
 		);
 		await message.channel.send(
-			`<:vSuccess:725270799098970112> Successfully banned **${member.user.username}**#${member.user.discriminator}`,
+			`<:vSuccess:725270799098970112> Successfully softbanned **${member.user.username}**#${member.user.discriminator}`,
 		).then(message.delete());
 	},
 };

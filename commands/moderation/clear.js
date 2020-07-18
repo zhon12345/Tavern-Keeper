@@ -5,7 +5,7 @@ const db = require('quick.db');
 module.exports = {
 	name: 'clear',
 	category: 'Moderation',
-	description: 'Clear up to 99 messages in a specified channel',
+	description: 'Clear up to 99 messages in a specified channel.',
 	aliases: ['purge', ' prune'],
 	usage: 'clear <amount> [reason]',
 	guildOnly: true,

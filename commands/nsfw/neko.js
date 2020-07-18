@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
 const { MessageEmbed } = require('discord.js');
-const superagent = require('superagent');
+const fetch = require('node-fetch');
 
 module.exports = {
 	name: 'neko',
 	category: 'NSFW',
-	description: 'Sends images of neko, what do you expect?',
+	description: 'Sends images of nekos, what do you expect?',
 	aliases: [],
 	usage: 'neko',
 	run: async (client, message, args) => {
@@ -14,16 +14,24 @@ module.exports = {
 				'<:vError:725270799124004934> This command can only be used in a nsfw channel.',
 			);
 		}
-		else {
-			superagent.get('https://nekobot.xyz/api/image')
-				.query({ type: 'hneko' })
-				.end((err, response) => {
-					const embed = new MessageEmbed()
-						.setColor('BLUE')
-						.setImage(response.body.message);
+		const url = [
+			'https://nekobot.xyz/api/image?type=hneko',
+		];
 
-					return message.channel.send(embed);
-				});
+		let response;
+		try {
+			response = await fetch(url).then(res => res.json());
+
 		}
+		catch (e) {
+			return message.channel.send(
+				'<:vError:725270799124004934> An error occured, please try again!',
+			);
+		}
+		const embed = new MessageEmbed()
+			.setColor('BLUE')
+			.setImage(response.message);
+
+		message.channel.send(embed);
 	},
 };

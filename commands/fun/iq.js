@@ -4,7 +4,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
 	name: 'iq',
 	category: 'Fun',
-	description: 'Randomise your IQ.',
+	description: ' ̶ R̶a̶n̶d̶o̶m̶i̶s̶e̶  Calculate your IQ..',
 	aliases: [],
 	usage: 'iq',
 	run: async (client, message, args) => {

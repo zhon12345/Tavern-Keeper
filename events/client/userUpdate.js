@@ -5,7 +5,7 @@ const db = require('quick.db');
 
 module.exports = async (client, oldUser, newUser) => {
 	const logs = db.fetch(`serverlog_${client.guilds.id}`);
-	const logchannel = client.guilds.channel.cache.get(logs);
+	const logchannel = client.guilds.channels.cache.get(logs);
 	if (!logchannel || logchannel === null) {return;}
 
 	if(newUser.name !== oldUser.name) {

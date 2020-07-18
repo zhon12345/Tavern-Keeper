@@ -62,9 +62,18 @@ module.exports = {
 		const warnings = db.get(`warnings_${message.guild.id}_${member.id}`);
 
 		if(warnings <= 0) {
-			db.set(`warnings_${message.guild.id}_${member.id}`, amount);
 			const logs = db.fetch(`modlog_${message.guild.id}`);
 			const channel = message.guild.channels.cache.get(logs);
+			if(!channel || channel === null) return;
+
+			try {
+				await member.send(`You have been given ${amount}strikes in ${message.guild}\n\`[Reason]\` ${Reason}`);
+			}
+			catch(err) {
+				await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+			}
+
+			db.set(`warnings_${message.guild.id}_${member.id}`, amount);
 			channel.send(
 				`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🚩 **${message.author.username}**#${message.author.discriminator} gave \`${amount}\` strikes to **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` ${Reason}`,
 			);
@@ -73,10 +82,18 @@ module.exports = {
 			).then(message.delete());
 		}
 		else {
-			db.add(`warnings_${message.guild.id}_${member.id}`, amount);
 			const logs = db.fetch(`modlog_${message.guild.id}`);
 			const channel = message.guild.channels.cache.get(logs);
-			if (!channel) return;
+			if(!channel || channel === null) return;
+
+			try {
+				await member.send(`You have been given ${amount}strikes in ${message.guild}\n\`[Reason]\` ${Reason}`);
+			}
+			catch(err) {
+				await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+			}
+
+			db.add(`warnings_${message.guild.id}_${member.id}`, amount);
 			channel.send(
 				`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🚩 **${message.author.username}**#${message.author.discriminator} gave \`${amount}\` strikes to **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` ${Reason}`,
 			);
