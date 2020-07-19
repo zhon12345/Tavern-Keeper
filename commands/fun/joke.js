@@ -1,27 +1,18 @@
 /* eslint-disable no-unused-vars */
-const { MessageEmbed } = require('discord.js');
 const fetch = require('node-fetch');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = {
-	name: 'thigh',
-	category: 'NSFW',
-	description: 'Sends images of thighs, what do you expect?',
-	aliases: [],
-	usage: 'thigh',
+	name: 'joke',
+	category: 'Fun',
+	description: 'Get a random joke from the internet.',
+	aliases: ['pun'],
+	usage: 'joke',
 	run: async (client, message, args) => {
-		if(!message.channel.nsfw) {
-			return message.channel.send(
-				'<:vError:725270799124004934> This command can only be used in a nsfw channel.',
-			);
-		}
-		const url = [
-			'https://nekobot.xyz/api/image?type=thigh',
-		];
-
+		const url = 'https://official-joke-api.appspot.com/jokes/random';
 		let response;
 		try {
 			response = await fetch(url).then(res => res.json());
-
 		}
 		catch (e) {
 			return message.channel.send(
@@ -30,7 +21,8 @@ module.exports = {
 		}
 		const embed = new MessageEmbed()
 			.setColor('BLUE')
-			.setImage(response.message);
+			.setTitle(response.setup)
+			.setDescription(response.punchline);
 
 		message.channel.send(embed);
 	},

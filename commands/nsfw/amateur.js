@@ -16,7 +16,6 @@ module.exports = {
 		}
 		const subreddits = [
 			'RealGirls',
-			'amateur',
 			'gonewild',
 		];
 
@@ -24,7 +23,7 @@ module.exports = {
 
 
 		const url = [
-			`https://www.reddit.com/r/${sub}.json?sort=top`,
+			`https://www.reddit.com/r/${sub}/hot.json`,
 		];
 
 		let response;
@@ -44,6 +43,7 @@ module.exports = {
 			const random = post[Math.floor(Math.random() * post.length) + 1];
 			const embed = new MessageEmbed()
 				.setColor('BLUE')
+				.setURL(`https://www.reddit.com/r/${random.subreddit}/comments/${random.id}`)
 				.setTitle(random.title)
 				.setImage(random.url)
 				.setFooter(`👍 ${random.ups} | 💬 ${random.num_comments}`);

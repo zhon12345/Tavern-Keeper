@@ -14,13 +14,27 @@ module.exports = {
 				'<:vError:725270799124004934> This command can only be used in a nsfw channel.',
 			);
 		}
+		const subreddits = [
+			'booty_gifs',
+			'boobbounce',
+			'NSFW_GIF',
+			'porn_gifs',
+			'XXX_Animated_Gifs',
+		];
+
+		const sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
+
+
 		const url = [
-			'https://nekobot.xyz/api/image?type=pgif',
+			`https://www.reddit.com/r/${sub}.json?sort=top`,
 		];
 
 		let response;
 		try {
-			response = await fetch(url).then(res => res.json());
+			response = await fetch(url)
+				.then(res => res.json())
+				.then(json => json.data.children.map(v => v.data))
+				.then(post => Randomimage(post));
 
 		}
 		catch (e) {
@@ -28,10 +42,16 @@ module.exports = {
 				'<:vError:725270799124004934> An error occured, please try again!',
 			);
 		}
-		const embed = new MessageEmbed()
-			.setColor('BLUE')
-			.setImage(response.message);
+		function Randomimage(post) {
+			const random = post[Math.floor(Math.random() * post.length) + 1];
+			const embed = new MessageEmbed()
+				.setColor('BLUE')
+				.setURL(`https://www.reddit.com/r/${random.subreddit}/comments/${random.id}`)
+				.setTitle(random.title)
+				.setImage(random.url)
+				.setFooter(`👍 ${random.ups} | 💬 ${random.num_comments}`);
 
-		message.channel.send(embed);
+			message.channel.send(embed);
+		}
 	},
 };

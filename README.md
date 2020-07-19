@@ -9,7 +9,6 @@
   [![Run on Repl.it](https://repl.it/badge/github/zhon12345/Tavern_Keeper)](https://repl.it/github/zhon12345/Tavern_Keeper)
   [![Discord](https://img.shields.io/discord/450846546867519503.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/WS3GthM)
   [![library](https://img.shields.io/badge/library-discord.js-blue)](https://discord.js.org/#/)
-  [![Owner](https://img.shields.io/badge/owner-zhon12345%238585-blue)](https://discord.gg/WS3GthM)
   [![Dependancies](https://img.shields.io/depfu/zhon12345/Tavern_Keeper)](https://github.com/zhon12345/Tavern_Keeper)
   [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
 

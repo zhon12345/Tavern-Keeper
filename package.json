@@ -1,5 +1,5 @@
 {
-  "name": "mod-bot",
+  "name": "tavern-keeper-beta",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zhon12345/Mod-Bot.git"
+    "url": "git+https://github.com/zhon12345/Tavern_Keeper_Beta.git"
   },
   "author": "zhon12345",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/zhon12345/Mod-Bot/issues"
+    "url": "https://github.com/zhon12345/Tavern_Keeper_Beta/issues"
   },
-  "homepage": "https://github.com/zhon12345/Mod-Bot#readme",
+  "homepage": "https://github.com/zhon12345/Tavern_Keeper_Beta#readme",
   "dependencies": {
     "ascii-table": "0.0.9",
     "canvacord": "^3.0.9",
@@ -23,9 +23,9 @@
     "cpu-stat": "^2.0.1",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
-    "eslint": "^7.3.1",
-    "figlet": "^1.4.0",
-    "mathjs": "^7.0.2",
+    "eslint": "^7.5.0",
+    "figlet": "^1.5.0",
+    "mathjs": "^7.1.0",
     "moment": "^2.27.0",
     "ms": "^2.1.2",
     "node-fetch": "^2.6.0",

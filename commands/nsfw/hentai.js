@@ -14,20 +14,26 @@ module.exports = {
 				'<:vError:725270799124004934> This command can only be used in a nsfw channel.',
 			);
 		}
-		const urls = [
-			'https://nekos.life/api/v2/img/anal',
-			'https://nekos.life/api/v2/img/hentai',
-			'https://nekos.life/api/v2/img/boobs',
-			'https://nekos.life/api/v2/img/blowjob',
-			'https://nekos.life/api/v2/img/classic',
-			'https://nekos.life/api/v2/img/cum',
-			'https://nekos.life/api/v2/img/feet',
+		const subreddits = [
+			'hentai',
+			'ecchi',
+			'HENTAI_GIF',
+			'MonsterGirl',
+		];
+
+		const sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
+
+
+		const url = [
+			`https://www.reddit.com/r/${sub}.json?sort=top`,
 		];
 
 		let response;
 		try {
-			const url = urls[Math.floor(Math.random() * urls.length)];
-			response = await fetch(url).then(res => res.json());
+			response = await fetch(url)
+				.then(res => res.json())
+				.then(json => json.data.children.map(v => v.data))
+				.then(post => Randomimage(post));
 
 		}
 		catch (e) {
@@ -35,10 +41,16 @@ module.exports = {
 				'<:vError:725270799124004934> An error occured, please try again!',
 			);
 		}
-		const embed = new MessageEmbed()
-			.setColor('BLUE')
-			.setImage(response.url);
+		function Randomimage(post) {
+			const random = post[Math.floor(Math.random() * post.length) + 1];
+			const embed = new MessageEmbed()
+				.setColor('BLUE')
+				.setURL(`https://www.reddit.com/r/${random.subreddit}/comments/${random.id}`)
+				.setTitle(random.title)
+				.setImage(random.url)
+				.setFooter(`👍 ${random.ups} | 💬 ${random.num_comments}`);
 
-		message.channel.send(embed);
+			message.channel.send(embed);
+		}
 	},
 };

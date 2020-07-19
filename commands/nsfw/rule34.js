@@ -3,24 +3,30 @@ const { MessageEmbed } = require('discord.js');
 const fetch = require('node-fetch');
 
 module.exports = {
-	name: 'meme',
-	category: 'Image',
-	description: 'Get a random meme from the internet.',
-	aliases: ['memes'],
-	usage: 'meme',
-	guildOnly: true,
+	name: 'rule34',
+	category: 'NSFW',
+	description: 'Sends rule34 images, what do you expect?',
+	aliases: [],
+	usage: 'rule34',
 	run: async (client, message, args) => {
+		if(!message.channel.nsfw) {
+			return message.channel.send(
+				'<:vError:725270799124004934> This command can only be used in a nsfw channel.',
+			);
+		}
 		const subreddits = [
-			'memes',
-			'dankmemes',
-			'meme',
+			'rule34',
+			'Overwatch_Porn',
+			'Rule34LoL',
+			'TeenTitansPorn',
+			'PokePorn',
 		];
 
 		const sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
 
 
 		const url = [
-			`https://www.reddit.com/r/${sub}/hot.json`,
+			`https://www.reddit.com/r/${sub}.json?sort=top`,
 		];
 
 		let response;

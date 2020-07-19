@@ -19,9 +19,8 @@ module.exports = {
 			'porn',
 			'BonerMaterial',
 			'adorableporn',
-			'nsfw2',
 			'Sexy',
-			'NSFW_nospam',
+			'camwhores',
 		];
 
 		const sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
@@ -48,6 +47,7 @@ module.exports = {
 			const random = post[Math.floor(Math.random() * post.length) + 1];
 			const embed = new MessageEmbed()
 				.setColor('BLUE')
+				.setURL(`https://www.reddit.com/r/${random.subreddit}/comments/${random.id}`)
 				.setTitle(random.title)
 				.setImage(random.url)
 				.setFooter(`👍 ${random.ups} | 💬 ${random.num_comments}`);
