@@ -37,7 +37,7 @@ module.exports = {
 
 	// channelinfo.js
 	parseDur: function(ms) {
-		let seconds = ms / 1,
+		let seconds = ms / 1000,
 			days = parseInt(seconds / 86400);
 		seconds = seconds % 86400;
 
@@ -62,30 +62,6 @@ module.exports = {
 	// aliases.js & help.js
 	capitalizeFirstLetter: function(string) {
 		return string.charAt(0).toUpperCase() + string.slice(1);
-	},
-
-	// uptime.js & botinfo.js
-	parseDurs: function(ms) {
-		let seconds = ms / 1000,
-			days = parseInt(seconds / 86400);
-		seconds = seconds % 86400;
-
-		const hours = parseInt(seconds / 3600);
-		seconds = seconds % 3600;
-
-		const minutes = parseInt(seconds / 60);
-		seconds = parseInt(seconds % 60);
-
-		if (days) {
-			return `${days} day, ${hours} hours, ${minutes} minutes`;
-		}
-		else if (hours) {
-			return `${hours} hours, ${minutes} minutes, ${seconds} seconds`;
-		}
-		else if (minutes) {
-			return `${minutes} minutes, ${seconds} seconds`;
-		}
-		return `${seconds} second(s)`;
 	},
 
 	// eval,js
@@ -126,7 +102,6 @@ module.exports = {
 
 			caps = !caps;
 		}
-
 		return out;
 	},
 
@@ -153,23 +128,5 @@ module.exports = {
 			colour += ('00' + value.toString(16)).substr(-2);
 		}
 		return colour;
-	},
-
-	// memercount.js
-	checkBots: function(guild) {
-		let botCount = 0;
-		guild.members.cache.forEach(member => {
-			if (member.user.bot) botCount++;
-		});
-		return botCount;
-	},
-
-	// membercount.js
-	checkMembers: function(guild) {
-		let memberCount = 0;
-		guild.members.cache.forEach(member => {
-			if (!member.user.bot) memberCount++;
-		});
-		return memberCount;
 	},
 };

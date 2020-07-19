@@ -2,7 +2,7 @@
 const { MessageEmbed, version: djsversion } = require('discord.js');
 const { formatBytes } = require('../../functions.js');
 const moment = require('moment');
-const { parseDurs } = require('../../functions');
+const { parseDur } = require('../../functions');
 const os = require('os');
 const cpuStat = require('cpu-stat');
 const { ownerid } = process.env;
@@ -34,7 +34,7 @@ module.exports = {
 					`**❯ Channels:** ${client.channels.cache.size.toLocaleString()}`,
 					`**❯ Commands:** ${client.commands.size}`,
 					`**❯ Creation Date:** ${moment(client.user.createdTimestamp).format('Do MMMM YYYY HH:mm')}`,
-					`**❯ Uptime:** ${parseDurs(client.uptime)}`,
+					`**❯ Uptime:** ${parseDur(client.uptime)}`,
 					'\u200b',
 				])
 				.addField('System Statistics:', [

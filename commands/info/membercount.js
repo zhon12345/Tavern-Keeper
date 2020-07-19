@@ -1,7 +1,5 @@
 /* eslint-disable no-unused-vars */
 const { MessageEmbed } = require('discord.js');
-const { checkMembers } = require('../../functions');
-const { checkBots } = require('../../functions');
 
 module.exports = {
 	name: 'membercount',
@@ -10,6 +8,7 @@ module.exports = {
 	aliases: ['usercount'],
 	usage: 'membercount',
 	run: async (client, message, args) => {
+		const members = message.guild.members.cache;
 		const bans = await message.guild.fetchBans();
 		let embed;
 		if(message.member.hasPermission('BAN_MEMBERS')) {
@@ -20,8 +19,8 @@ module.exports = {
 				.setTimestamp()
 				.setDescription([
 					`**❯ Total Members:** ${message.guild.memberCount}`,
-					`**❯ Humans:** ${checkMembers(message.guild)}`,
-					`**❯ Bots:** ${checkBots(message.guild)}`,
+					`**❯ Humans:** ${members.filter(member => !member.user.bot).size}`,
+					`**❯ Bots:** ${members.filter(member => member.user.bot).size}`,
 					`**❯ Bans:** ${bans.size}`,
 				]);
 		}
@@ -31,8 +30,8 @@ module.exports = {
 				.setColor('BLUE')
 				.setDescription([
 					`**❯ Total Members:** ${message.guild.memberCount}`,
-					`**❯ Humans:** ${checkMembers(message.guild)}`,
-					`**❯ Bots:** ${checkBots(message.guild)}`,
+					`**❯ Humans:** ${members.filter(member => !member.user.bot).size}`,
+					`**❯ Bots:** ${members.filter(member => member.user.bot).size}`,
 				]);
 		}
 		message.channel.send(embed);

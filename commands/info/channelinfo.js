@@ -31,6 +31,8 @@ module.exports = {
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 
+		const ms = channel.rateLimitPerUser * 1000;
+
 		let topic;
 		if(!channel.topic || channel.topic === null) {
 			topic = 'None';
@@ -61,7 +63,7 @@ module.exports = {
 			.addField('Server', [
 				`**❯ NSFW:** ${option[channel.nsfw]}`,
 				`**❯ Type:** ${types[channel.type]}`,
-				`**❯ Slowmode:** ${parseDur(channel.rateLimitPerUser)}`,
+				`**❯ Slowmode:** ${parseDur(ms)}`,
 				`**❯ Parent:** ${parent}`,
 				'\u200b',
 			])
