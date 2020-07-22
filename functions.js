@@ -129,4 +129,17 @@ module.exports = {
 		}
 		return colour;
 	},
+
+	// pokedex.js
+	undeci: function(string) {
+		return string / 10;
+	},
+
+	// country.js
+	formatNumber: function(number, minimumFractionDigits = 0) {
+		return Number.parseFloat(number).toLocaleString(undefined, {
+			minimumFractionDigits,
+			maximumFractionDigits: 2,
+		});
+	},
 };
