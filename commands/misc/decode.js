@@ -10,7 +10,7 @@ module.exports = {
 	run: async (client, message, args) => {
 		const embed = new MessageEmbed();
 		const text = args.slice().join(' ');
-		let url = `http://some-random-api.ml/binary?text=${text}`;
+		let url;
 		if (!text) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide valid text',

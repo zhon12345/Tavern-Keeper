@@ -142,4 +142,9 @@ module.exports = {
 			maximumFractionDigits: 2,
 		});
 	},
+
+	// tableflip.js
+	delay: function(ms) {
+		return new Promise(resolve => setTimeout(resolve, ms));
+	},
 };

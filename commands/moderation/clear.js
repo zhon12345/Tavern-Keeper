@@ -16,7 +16,7 @@ module.exports = {
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 
-		const amount = parseInt(args[0]) + 1;
+		const amount = parseInt(args[0]);
 
 		if (isNaN(amount)) {
 			return message.channel.send(
@@ -37,7 +37,7 @@ module.exports = {
 			Reason = args.slice().join(' ');
 		}
 
-		message.channel.bulkDelete(amount, true);
+		message.channel.bulkDelete(amount + 1, true);
 		const logs = db.fetch(`modlog_${message.guild.id}`);
 		const channel = message.guild.channels.cache.get(logs);
 		if(!channel) return;

@@ -2,9 +2,12 @@ const moment = require('moment');
 const db = require('quick.db');
 
 module.exports = async (client, member) => {
+	const welcome = db.get(`joinchannel_${member.guild.id}`);
 	const goodbye = db.get(`leavechannel_${member.guild.id}`);
-	const channel = member.guild.channels.cache.get(goodbye);
-	if (!channel || channel === null) return;
+	let channel = member.guild.channels.cache.get(goodbye);
+	if (!channel || channel === null) {
+		channel = member.guild.channels.cache.get(welcome);
+	}
 	const msg = db.get(`leavetext_${member.guild.id}`);
 	if (!msg || msg === null) return;
 	const message = msg
