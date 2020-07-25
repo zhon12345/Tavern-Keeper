@@ -3,7 +3,7 @@ const { VultrexHaste } = require('vultrex.haste');
 const { MessageEmbed } = require('discord.js');
 const { clean } = require('../../functions');
 const haste = new VultrexHaste({ url: 'https://hasteb.in' });
-const { ownerid } = process.env;
+const { BOT_OWNER } = process.env;
 
 module.exports = {
 	name: 'eval',
@@ -12,13 +12,13 @@ module.exports = {
 	description: 'Evaluate a specified JavaScript code.',
 	usage: '[p]eval <code>',
 	run: async (bot, message, args) => {
-		if(message.author.id !== ownerid) {
+		if(message.author.id !== BOT_OWNER) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You must have the following permissions to use that: Bot Owner.',
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
 
-		if(message.author.id === ownerid) {
+		if(message.author.id === BOT_OWNER) {
 			const embed = new MessageEmbed()
 				.addField('Input', '```js\n' + args.join(' ') + '```');
 

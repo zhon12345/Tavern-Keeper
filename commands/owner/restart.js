@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-const { ownerid, token, prefix } = process.env;
+const { BOT_OWNER, BOT_TOKEN, BOT_PREFIX } = process.env;
 
 module.exports = {
 	name: 'restart',
@@ -8,7 +8,7 @@ module.exports = {
 	aliases: ['reload'],
 	usage: 'restart',
 	run: async (client, message, args) => {
-		if(message.author.id !== ownerid) {
+		if(message.author.id !== BOT_OWNER) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You must have the following permissions to use that: Bot Owner.',
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
@@ -17,8 +17,8 @@ module.exports = {
 			try {
 				message.channel.send('Restarting...').then(msg => msg.delete({ timeout: 300 }))
 					.then(() => client.destroy())
-					.then(() => client.login(token))
-					.then(() => client.user.setActivity(`${prefix}help | ${client.commands.size} Commands`, { type: 'PLAYING' }))
+					.then(() => client.login(BOT_TOKEN))
+					.then(() => client.user.setActivity(`${BOT_PREFIX}help | ${client.commands.size} Commands`, { type: 'PLAYING' }))
 					.then(() => message.channel.send('Restart Successful'));
 			}
 			catch(e) {

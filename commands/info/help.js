@@ -1,7 +1,7 @@
 /* eslint-disable no-inner-declarations */
 const { MessageEmbed } = require('discord.js');
 const { capitalizeFirstLetter } = require('../../functions');
-const { ownerid } = process.env;
+const { BOT_OWNER } = process.env;
 const db = require('quick.db');
 
 module.exports = {
@@ -24,7 +24,7 @@ function getAll(client, message) {
 	let prefix;
 	const prefixes = db.fetch(`prefix_${message.guild.id}`);
 	if(prefixes == null) {
-		prefix = 'm!';
+		prefix = process.env.BOT_PREFIX;
 	}
 	else {
 		prefix = prefixes;
@@ -41,7 +41,7 @@ function getAll(client, message) {
 		`]);
 
 	let categories;
-	if(message.author.id !== ownerid) {
+	if(message.author.id !== BOT_OWNER) {
 		categories = [...new Set(client.commands.filter(cmd => cmd.category !== 'Owner').map(cmd =>cmd.category))];
 	}
 	else if(!message.channel.nsfw) {

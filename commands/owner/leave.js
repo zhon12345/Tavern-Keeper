@@ -1,4 +1,4 @@
-const { ownerid } = process.env;
+const { BOT_OWNER } = process.env;
 
 module.exports = {
 	name: 'leave',
@@ -7,7 +7,7 @@ module.exports = {
 	aliases: ['abandon'],
 	usage: 'leave [guild]',
 	run: async (client, message, args) => {
-		if(message.author.id !== ownerid) {
+		if(message.author.id !== BOT_OWNER) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You must have the following permissions to use that: Bot Owner.',
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});

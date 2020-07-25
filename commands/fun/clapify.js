@@ -10,7 +10,7 @@ module.exports = {
 		let prefix;
 		const prefixes = db.fetch(`prefix_${message.guild.id}`);
 		if(prefixes == null) {
-			prefix = 'm!';
+			prefix = process.env.BOT_PREFIX;
 		}
 		else {
 			prefix = prefixes;

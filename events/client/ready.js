@@ -1,8 +1,8 @@
-const { prefix, version } = process.env;
+const { BOT_PREFIX, BOT_VERSION } = process.env;
 
 module.exports = (client) =>{
-	client.user.setActivity(`${prefix}help | ${client.commands.size} Commands`, { type: 'PLAYING' });
+	client.user.setActivity(`${BOT_PREFIX}help | ${client.commands.size} Commands`, { type: 'PLAYING' });
 	console.log(`Logged in as ${client.user.tag}`);
-	console.log('Version:', version);
-	console.log('Prefix:', prefix);
+	console.log('Version:', BOT_VERSION);
+	console.log('Prefix:', BOT_PREFIX);
 };

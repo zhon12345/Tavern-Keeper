@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 const { MessageEmbed } = require('discord.js');
-const API_KEY = 'dc6zaTOxFJmzC';
+const API_KEY = process.env.GIPHY_API_TOKEN;
 
 module.exports = {
 	name: 'gif',

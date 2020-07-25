@@ -1,29 +1,29 @@
 /* eslint-disable no-unused-vars */
 const fetch = require('node-fetch');
 const { MessageEmbed } = require('discord.js');
+const token = process.env.AMETHYSTE_API_TOKEN;
 
 module.exports = {
 	name: 'wallpaper',
 	category: 'Misc',
-	description: 'Get the wallpaper of the day from bing.',
+	description: 'Get a ramdom wallpaper.',
 	aliases: [],
 	usage: 'walpaper',
 	run: async (client, message, args) => {
-		const url = 'https://bing.biturl.top/?mkt=en-US';
+		const url = 'https://v1.api.amethyste.moe/image/wallpaper';
 
 		let response;
 		try {
-			response = await fetch(url).then(res => res.json());
+			response = await fetch(url, { headers: { Authorization: `Bearer ${token}` } }).then(res => res.json());
 		}
 		catch (e) {
 			return message.channel.send(
-				'<:vError:725270799124004934> An error occured, please try again!',
+				':vError: An error occured, please try again!',
 			);
 		}
 		const embed = new MessageEmbed()
 			.setColor('BLUE')
-			.setImage(response.url)
-			.setTitle(response.copyright);
+			.setImage(response.url);
 
 		message.channel.send(embed);
 	},

@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const { MessageEmbed } = require('discord.js');
-const { ownerid } = process.env;
+const { BOT_OWNER } = process.env;
 const db = require('quick.db');
 
 module.exports = {
@@ -13,7 +13,7 @@ module.exports = {
 		let prefix;
 		const prefixes = db.fetch(`prefix_${message.guild.id}`);
 		if(prefixes == null) {
-			prefix = 'm!';
+			prefix = process.env.BOT_PREFIX;
 		}
 		else {
 			prefix = prefixes;
@@ -21,7 +21,7 @@ module.exports = {
 		const embed = new MessageEmbed()
 			.setDescription([
 				`Hello! I'm **${client.user.username}**, A featureful multi-purpouse Discord bot!`,
-				`Created and maintained by \`${client.users.cache.get(ownerid).tag}\`.`,
+				`Created and maintained by \`${client.users.cache.get(BOT_OWNER).tag}\`.`,
 				'Built using [Node.js](https://nodejs.org/en/) and [Discord.js](https://discord.js.org/#/)',
 			])
 			.addFields(
