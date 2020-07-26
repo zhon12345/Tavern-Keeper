@@ -3,11 +3,11 @@ const token = process.env.AMETHYSTE_API_TOKEN;
 const { MessageAttachment } = require('discord.js');
 
 module.exports = {
-	name: 'pixelate',
+	name: 'triggered',
 	category: 'Image',
-	description: 'Pixelate the avatar of yourself or a specified user.',
-	aliases: [],
-	usage: 'pixelate [user]',
+	description: 'Make yourself or a specified user triggered.',
+	aliases: ['trigger'],
+	usage: 'triggered [user]',
 	run: async (client, message, args) => {
 		let user;
 		if(message.mentions.users.first()) {
@@ -20,9 +20,8 @@ module.exports = {
 			user = message.author.displayAvatarURL({ format: 'png' });
 		}
 
-		const url = 'https://v1.api.amethyste.moe/generate/pixelize';
+		const url = 'https://v1.api.amethyste.moe/generate/triggered';
 		const data = {
-			'pixelize': 15,
 			'url': user,
 		};
 
@@ -41,7 +40,7 @@ module.exports = {
 			console.log(e);
 			return message.channel.send('<:vError:725270799124004934> An error occured, please try again!');
 		}
-		const attachment = new MessageAttachment(response, 'pixelize.png');
+		const attachment = new MessageAttachment(response, 'blurpify.gif');
 		return message.channel.send(attachment);
 	},
 };

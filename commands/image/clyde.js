@@ -1,6 +1,5 @@
-const Canvacord = require('canvacord');
-const canvas = new Canvacord();
 const { MessageAttachment } = require('discord.js');
+const fetch = require('node-fetch');
 
 module.exports = {
 	name: 'clyde',
@@ -15,8 +14,17 @@ module.exports = {
 				'<:vError:725270799124004934> Please provide valid text.',
 			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
 		}
-		const image = await canvas.clyde(text);
-		const attachment = new MessageAttachment(image, 'clyde.png');
+
+		const url = `https://nekobot.xyz/api/imagegen?type=clyde&text=${text}`;
+
+		let response;
+		try {
+			response = await fetch(url).then(res => res.json());
+		}
+		catch (e) {
+			return message.channel.send('<:vError:725270799124004934> An error occured, please try again!');
+		}
+		const attachment = new MessageAttachment(response.message, 'clyde.png');
 		return message.channel.send(attachment);
 	},
 };

@@ -1,13 +1,13 @@
 const fetch = require('node-fetch');
-const token = process.env.AMETHYSTE_API_TOKEN;
 const { MessageAttachment } = require('discord.js');
+const token = process.env.AMETHYSTE_API_TOKEN;
 
 module.exports = {
-	name: 'pixelate',
+	name: 'blurpify',
 	category: 'Image',
-	description: 'Pixelate the avatar of yourself or a specified user.',
+	description: 'Blurpify a avatar of yourself or a specifed user.',
 	aliases: [],
-	usage: 'pixelate [user]',
+	usage: 'blurpify [user]',
 	run: async (client, message, args) => {
 		let user;
 		if(message.mentions.users.first()) {
@@ -20,9 +20,8 @@ module.exports = {
 			user = message.author.displayAvatarURL({ format: 'png' });
 		}
 
-		const url = 'https://v1.api.amethyste.moe/generate/pixelize';
+		const url = 'https://v1.api.amethyste.moe/generate/blurple';
 		const data = {
-			'pixelize': 15,
 			'url': user,
 		};
 
@@ -41,7 +40,7 @@ module.exports = {
 			console.log(e);
 			return message.channel.send('<:vError:725270799124004934> An error occured, please try again!');
 		}
-		const attachment = new MessageAttachment(response, 'pixelize.png');
+		const attachment = new MessageAttachment(response, 'blurpify.png');
 		return message.channel.send(attachment);
 	},
 };
