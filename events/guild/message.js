@@ -1,6 +1,6 @@
 const db = require('quick.db');
 const moment = require('moment');
-const { is_url } = require('../../functions');
+const { is_url, is_invite } = require('../../functions');
 
 module.exports = async (client, message) => {
 	let prefix;
@@ -23,7 +23,7 @@ module.exports = async (client, message) => {
 		return message.channel.send(`My current prefix for this guild is \`${prefix}\``);
 	}
 
-	if(is_url(message.content) === true) {
+	if(is_url(message.content) || is_invite(message.content) === true) {
 		if(message.member.hasPermission('KICK_MEMBERS')) {
 			return;
 		}

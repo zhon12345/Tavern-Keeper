@@ -11,6 +11,17 @@ module.exports = {
 		}
 	},
 
+	// message.js
+	is_invite: function(string) {
+		const regexp = /(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|club)|discordapp\.com\/invite|discord\.com\/invite)\/.+[a-z]/gi;
+		if(regexp.test(string)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	},
+
 	// rps.js
 	promptMessage: async function(message, author, time, validReactions) {
 		time *= 1000;
@@ -141,5 +152,14 @@ module.exports = {
 	// tableflip.js
 	delay: function(ms) {
 		return new Promise(resolve => setTimeout(resolve, ms));
+	},
+
+	// hack.js
+	sleep: function(milliseconds) {
+		const date = Date.now();
+		let currentDate = null;
+		do {
+			currentDate = Date.now();
+		} while (currentDate - date < milliseconds);
 	},
 };

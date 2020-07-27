@@ -7,7 +7,7 @@ module.exports = {
 	name: 'shorten',
 	category: 'Misc',
 	description: 'Shortens a provided link using bit.ly',
-	aliases: [],
+	aliases: ['short'],
 	usage: 'shortel <url>',
 	run: async (client, message, args) => {
 		const link = args.slice().join(' ');
@@ -25,14 +25,15 @@ module.exports = {
 		const url = 'https://api-ssl.bitly.com/v4/shorten';
 
 		const data = {
-			domain: 'bit.ly',
-			long_url: link,
+			'long_url': link,
 		};
 
 		let response;
 		try {
-			response = await fetch(url, { method: 'POST', headers: { Authorization: `Bearer ${API_KEY}`, 'Content-Type': 'application/x-www-form-urlencoded' }, body: JSON.stringify(data) }).then(res => res.json());
-			console.log(response);
+			response = await fetch(url, { method: 'POST', headers: {
+				'Content-Type': 'application/json',
+				'authorization': `Bearer ${API_KEY}`,
+			}, body: JSON.stringify(data) }).then(res => res.json());
 		}
 		catch (e) {
 			return message.channel.send('<:vError:725270799124004934> An error occured, please try again!');
