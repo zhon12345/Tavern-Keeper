@@ -6,7 +6,7 @@ module.exports = {
 	category: 'Misc',
 	description: 'Converts encoded Binary & Base 64 text back to normal.',
 	aliases: [],
-	usage: 'binary <text>',
+	usage: 'decode <text>',
 	run: async (client, message, args) => {
 		const embed = new MessageEmbed();
 		const text = args.slice().join(' ');

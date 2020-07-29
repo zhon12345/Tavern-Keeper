@@ -4,7 +4,7 @@ module.exports = {
 	name: 'spongebob',
 	category: 'Fun',
 	description: 'Generate a spongebob mocking text.',
-	aliases: [],
+	aliases: ['mocking'],
 	usage: 'clapify <text>',
 	run: async (client, message, args) => {
 		const text = args.slice().join(' ');

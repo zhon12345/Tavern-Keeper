@@ -8,7 +8,7 @@ module.exports = {
 	category: 'Misc',
 	description: 'Get a ramdom wallpaper.',
 	aliases: [],
-	usage: 'walpaper',
+	usage: 'wallpaper',
 	run: async (client, message, args) => {
 		const url = 'https://v1.api.amethyste.moe/image/wallpaper';
 

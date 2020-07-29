@@ -1,8 +1,7 @@
 /* eslint-disable no-unused-vars */
 const { MessageEmbed, version: djsversion } = require('discord.js');
-const { formatBytes } = require('../../functions.js');
+const { formatBytes, parseDur } = require('../../functions.js');
 const moment = require('moment');
-const { parseDur } = require('../../functions');
 const os = require('os');
 const cpuStat = require('cpu-stat');
 const { BOT_OWNER } = process.env;

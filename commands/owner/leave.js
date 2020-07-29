@@ -5,7 +5,7 @@ module.exports = {
 	category: 'Owner',
 	description: 'Make the bot leave a specified server.',
 	aliases: ['abandon'],
-	usage: 'leave [guild]',
+	usage: 'leave <guild>',
 	run: async (client, message, args) => {
 		if(message.author.id !== BOT_OWNER) {
 			return message.channel.send(

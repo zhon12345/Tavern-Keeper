@@ -2,11 +2,11 @@
 const { MessageEmbed } = require('discord.js');
 
 module.exports = {
-	name: 'invite',
+	name: 'links',
 	category: 'Info',
-	description: 'Returns the bot\'s invite links.',
-	aliases: ['latency'],
-	usage: 'ping',
+	description: 'Returns the bot\'s links.',
+	aliases: ['link'],
+	usage: 'links',
 	run: async (client, message, args) => {
 		const pEmbed = new MessageEmbed()
 			.setTitle(`${client.user.username}'s Links`)

@@ -1,5 +1,4 @@
-const { isHex } = require('../../functions');
-const { stringToHex } = require('../../functions');
+const { isHex, stringToHex } = require('../../functions');
 const fetch = require('node-fetch');
 const { MessageEmbed } = require('discord.js');
 

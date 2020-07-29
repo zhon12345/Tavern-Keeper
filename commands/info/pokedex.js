@@ -6,7 +6,7 @@ module.exports = {
 	name: 'pokedex',
 	category: 'Info',
 	description: 'Searches the Pokédex for a Pokémon.',
-	aliases: ['pokemon', 'pokémon', 'pokédex'],
+	aliases: ['pokemon', 'pokémon', 'pokédex', 'pkm'],
 	usage: 'pokemon <pokemon>',
 	run: async (client, message, args) => {
 		const pokemon = args.slice().join(' ');

@@ -6,7 +6,7 @@ module.exports = {
 	category: 'Misc',
 	description: 'Helps you solve a math calculation.',
 	aliases: ['calculate'],
-	usage: 'math <value> <operator> <value>',
+	usage: 'math <equation>',
 	run: async (client, message, args) => {
 		if (!args[0]) {
 			return message.channel.send(

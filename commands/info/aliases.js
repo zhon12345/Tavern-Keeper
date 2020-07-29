@@ -5,8 +5,8 @@ module.exports = {
 	name: 'aliases',
 	category: 'Info',
 	description: 'Shows you a list of aliases of specified command.',
-	aliases: ['pfp', 'icon'],
-	usage: 'avatar [user]',
+	aliases: [],
+	usage: 'aliases <command>',
 	guildOnly: true,
 	run: async (client, message, args) => {
 		if(args[0]) {

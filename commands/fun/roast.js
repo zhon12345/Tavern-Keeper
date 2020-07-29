@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-const { MessageEmbed } = require('discord.js');
 const roasts = require('../../assets/json/roast.json');
 
 module.exports = {

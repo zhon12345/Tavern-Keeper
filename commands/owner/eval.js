@@ -10,7 +10,7 @@ module.exports = {
 	category: 'Owner',
 	aliases: ['ev'],
 	description: 'Evaluate a specified JavaScript code.',
-	usage: '[p]eval <code>',
+	usage: 'eval <code>',
 	run: async (bot, message, args) => {
 		if(message.author.id !== BOT_OWNER) {
 			return message.channel.send(
@@ -32,7 +32,7 @@ module.exports = {
 				let evaled;
 
 				if (code.includes('SECRET') || code.includes('TOKEN') || code.includes('process.env')) {
-					evaled = 'No, shut up, what will you do it with the token?';
+					evaled = 'NO.';
 				}
 				else {
 					evaled = eval(code);

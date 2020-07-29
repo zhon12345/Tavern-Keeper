@@ -7,7 +7,7 @@ module.exports = {
 	category: 'NSFW',
 	description: 'Sends images of gone wild porn, what do you expect?',
 	aliases: [],
-	usage: 'gone wild',
+	usage: 'gonewild',
 	run: async (client, message, args) => {
 		if(!message.channel.nsfw) {
 			return message.channel.send(

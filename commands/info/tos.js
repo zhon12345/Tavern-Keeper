@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 const { MessageEmbed } = require('discord.js');
+const db = require('quick.db');
 
 module.exports = {
 	name: 'tos',
@@ -8,6 +9,15 @@ module.exports = {
 	aliases: ['termsofservice'],
 	usage: 'tos',
 	run: async (client, message, args) => {
+		let prefix;
+		const prefixes = db.fetch(`prefix_${message.guild.id}`);
+		if(prefixes == null) {
+			prefix = process.env.BOT_PREFIX;
+		}
+		else {
+			prefix = prefixes;
+		}
+
 		const pEmbed = new MessageEmbed()
 			.setThumbnail('https://www.symphonyenvironmental.com/wp-content/uploads/2019/10/Terms-and-conditions-icon-V2.png')
 			.setTitle('**Terms of Service**')
@@ -23,7 +33,7 @@ module.exports = {
             Don't use this bot to spam Discord's API or any API it uses.
             
             • _Abusing Bugs:_ 
-            This bot is a beta version, and there could be bugs that crash the bot. Please report these bugs [here](https://github.com/zhon12345/Tavern_Keeper/issues/new).
+            This bot is a beta version, and there could be bugs that crash the bot. Please report these bugs [here](https://github.com/zhon12345/Tavern_Keeper/issues/new) or use the \`${prefix}report\` command.
             
             **Punishment**
             Violating the TOS could result in you or your entire guild getting blacklisted (blocked from using any commands and blocked from adding the bot to a server).

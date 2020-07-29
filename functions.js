@@ -46,7 +46,7 @@ module.exports = {
 		return parseFloat((a / Math.pow(c, f)).toFixed(d)) + ' ' + e[f];
 	},
 
-	// channelinfo.js
+	// channelinfo.js, uptime.js & botinfo.js
 	parseDur: function(ms) {
 		let seconds = ms / 1000,
 			days = parseInt(seconds / 86400);
@@ -75,7 +75,7 @@ module.exports = {
 		return string.charAt(0).toUpperCase() + string.slice(1);
 	},
 
-	// eval,js
+	// evaljs
 	clean: function(string) {
 		if (typeof text === 'string') {
 			return string.replace(/`/g, '`' + String.fromCharCode(8203))
