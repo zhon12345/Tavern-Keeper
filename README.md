@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="256" height="256" src="https://cdn.discordapp.com/avatars/722414315595890699/3c6c163131d842be0bf3771f606ac83f.webp?size=256">
+  <img width="256" height="256" src="https://cdn.discordapp.com/avatars/722054700308103200/b2cea450ca518f58879f470f01644245.webp?size=256">
 </p>
   
 <h3 align="center">Tavern Keeper</h3>
@@ -28,7 +28,7 @@
 + [License](https://github.com/zhon12345/Tavern_Keeper#-license)
 
 ## ❔ About
-Tavern Keeper is a powerful multi-purpose discord bot written in JavaScript using the Discord.js library. Tavern Keeper provides the basic features of any good bot such as Server Moderation, Server Information, Image Manipulation and much more. Tavern Keeper also has a customisable prifix, but the default prefix is `>`
+Tavern Keeper is a powerful multi-purpose discord bot written in JavaScript using the Discord.js library. Tavern Keeper provides the basic features of any good bot such as Server Moderation, Server Information, Image Manipulation and much more. Tavern Keeper also has a customisable prefix, but the default prefix is `>`
 
 ## ⚙ Self Hosting
 Self hosting Tavern Keeper is not supported and no help will be provided. I am not responsible or liable for any self hosted clones of Tavern Keeper.
