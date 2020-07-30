@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
 

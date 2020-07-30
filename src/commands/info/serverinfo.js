@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
 
@@ -38,34 +37,35 @@ module.exports = {
 	description: 'Displays information about the server.',
 	aliases: ['server', 'guild', 'guildinfo'],
 	usage: 'serverinfo',
-	run: async (cient, message, args) => {
-		const roles = message.guild.roles.cache.sort((a, b) => b.position - a.position).map(role => role.toString());
-		const members = message.guild.members.cache;
-		const channels = message.guild.channels.cache;
-		const emojis = message.guild.emojis.cache;
+	run: async (client, message, args) => {
+		const guild = client.guilds.cache.get(args[0]) || message.guild;
+		const roles = guild.roles.cache.sort((a, b) => b.position - a.position).map(role => role.toString());
+		const members = guild.members.cache;
+		const channels = guild.channels.cache;
+		const emojis = guild.emojis.cache;
 
 		const embed = new MessageEmbed()
-			.setDescription(`**Guild information for ${message.guild.name}**`)
+			.setDescription(`**Guild information for ${guild.name}**`)
 			.setColor('BLUE')
-			.setThumbnail(message.guild.iconURL({ dynamic: true }))
+			.setThumbnail(guild.iconURL({ dynamic: true }))
 			.addField('General', [
-				`**❯ Name:** ${message.guild.name}`,
-				`**❯ ID:** ${message.guild.id}`,
-				`**❯ Owner:** ${message.guild.owner.user.tag}`,
-				`**❯ Owner ID:** ${message.guild.ownerID}`,
-				`**❯ Region:** ${regions[message.guild.region]}`,
-				`**❯ Boost Tier:** ${message.guild.premiumTier ? `Tier ${message.guild.premiumTier}` : 'None'}`,
-				`**❯ Explicit Filter:** ${filterLevels[message.guild.explicitContentFilter]}`,
-				`**❯ Verification Level:** ${verificationLevels[message.guild.verificationLevel]}`,
-				`**❯ Time Created:** ${moment(message.guild.createdTimestamp).format('Do MMMM YYYY HH:mm')}`,
+				`**❯ Name:** ${guild.name}`,
+				`**❯ ID:** ${guild.id}`,
+				`**❯ Owner:** ${guild.owner.user.tag}`,
+				`**❯ Owner ID:** ${guild.ownerID}`,
+				`**❯ Region:** ${regions[guild.region]}`,
+				`**❯ Boost Tier:** ${guild.premiumTier ? `Tier ${guild.premiumTier}` : 'None'}`,
+				`**❯ Explicit Filter:** ${filterLevels[guild.explicitContentFilter]}`,
+				`**❯ Verification Level:** ${verificationLevels[guild.verificationLevel]}`,
+				`**❯ Time Created:** ${moment(guild.createdTimestamp).format('Do MMMM YYYY HH:mm')}`,
 				'\u200b',
 			])
 			.addField('Statistics', [
 				`**❯ Role Count:** ${roles.length}`,
 				`**❯ Emoji Count:** ${emojis.size} (${emojis.filter(emoji => !emoji.animated).size} **Regular** ${emojis.filter(emoji => emoji.animated).size} **Animated**)`,
-				`**❯ Member Count:** ${message.guild.memberCount} (${members.filter(member => !member.user.bot).size} **Users** ${members.filter(member => member.user.bot).size} **Bots**)`,
+				`**❯ Member Count:** ${guild.memberCount} (${members.filter(member => !member.user.bot).size} **Users** ${members.filter(member => member.user.bot).size} **Bots**)`,
 				`**❯ Channels:** ${channels.filter(channel => channel.type === 'text').size} **Text** ${channels.filter(channel => channel.type === 'voice').size} **Voice**`,
-				`**❯ Boost Count:** ${message.guild.premiumSubscriptionCount || '0'}`,
+				`**❯ Boost Count:** ${guild.premiumSubscriptionCount || '0'}`,
 				'\u200b',
 			])
 			.addField('Presence', [
@@ -79,5 +79,4 @@ module.exports = {
 			.setTimestamp();
 		message.channel.send(embed);
 	},
-
 };
