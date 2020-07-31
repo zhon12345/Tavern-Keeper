@@ -5,7 +5,7 @@ const API_KEY = process.env.GIPHY_API_TOKEN;
 module.exports = {
 	name: 'gif',
 	category: 'Misc',
-	description: 'Searches for a specified gif',
+	description: 'Searches for a specified gif.',
 	aliases: [],
 	usage: 'gif <text>',
 	run: async (client, message, args) => {

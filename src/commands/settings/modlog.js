@@ -4,7 +4,7 @@ const db = require('quick.db');
 module.exports = {
 	name: 'modlog',
 	category: 'Settings',
-	description: 'Set the modlogs channel for the server.',
+	description: 'Sets the modlogs channel for the server.',
 	aliases: [],
 	usage: 'modlog <channel>',
 	guildOnly: true,

@@ -3,7 +3,7 @@ const db = require('quick.db');
 module.exports = {
 	name: 'reverse',
 	category: 'Fun',
-	description: 'Reverse a specified text.',
+	description: 'esreveR specified text.',
 	aliases: [],
 	usage: 'reverse <message>',
 	run: async (client, message, args) => {

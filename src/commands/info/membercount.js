@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
 	name: 'membercount',
 	category: 'Info',
-	description: 'Displays the guild\'s member count.',
+	description: 'Displays the specified guild\'s member count.',
 	aliases: ['usercount'],
 	usage: 'membercount',
 	run: async (client, message, args) => {

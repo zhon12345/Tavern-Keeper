@@ -5,7 +5,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
 	name: 'joke',
 	category: 'Fun',
-	description: 'Get a random joke from the internet.',
+	description: 'Get a funny joke. Dad\'s love them!',
 	aliases: ['pun'],
 	usage: 'joke',
 	run: async (client, message, args) => {

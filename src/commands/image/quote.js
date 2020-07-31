@@ -5,7 +5,7 @@ const { MessageAttachment } = require('discord.js');
 module.exports = {
 	name: 'quote',
 	category: 'Image',
-	description: 'Quote yourself or a specified user.',
+	description: 'Get someone to say whatever you want!',
 	aliases: [],
 	usage: 'quote [user] <text>',
 	run: async (client, message, args) => {

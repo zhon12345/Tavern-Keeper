@@ -4,7 +4,7 @@ const db = require('quick.db');
 module.exports = {
 	name: 'check',
 	category: 'Moderation',
-	description: 'Get the warnings and other info for yourself or a specified person.',
+	description: 'Get the warnings and other info of the message author or a specified user.',
 	aliases: ['warnings'],
 	usage: 'check [user]',
 	guildOnly: true,

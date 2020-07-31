@@ -3,7 +3,7 @@ const texts = require('../../assets/json/kill.json');
 module.exports = {
 	name: 'kill',
 	category: 'Fun',
-	description: 'Attempt to kill a specified user.',
+	description: 'Sick of someone? Easy! Just kill them! (virtually)',
 	aliases: [],
 	usage: 'kill <user>',
 	run: async (client, message, args) => {

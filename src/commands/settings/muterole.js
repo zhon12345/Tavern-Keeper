@@ -4,7 +4,7 @@ const db = require('quick.db');
 module.exports = {
 	name: 'muterole',
 	category: 'Settings',
-	description: 'Set the muted role for the server.',
+	description: 'Sets the muted role for the server.',
 	aliases: [],
 	usage: 'muterole <role>',
 	guildOnly: true,

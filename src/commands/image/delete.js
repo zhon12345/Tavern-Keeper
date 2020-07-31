@@ -5,7 +5,7 @@ const { MessageAttachment } = require('discord.js');
 module.exports = {
 	name: 'delete',
 	category: 'Image',
-	description: 'Delete yourself or a specifid user.',
+	description: 'Delete this.',
 	aliases: [],
 	usage: 'delete [user]',
 	run: async (client, message, args) => {

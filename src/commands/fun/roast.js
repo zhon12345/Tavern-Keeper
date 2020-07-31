@@ -4,7 +4,7 @@ const roasts = require('../../assets/json/roast.json');
 module.exports = {
 	name: 'roast',
 	category: 'Fun',
-	description: 'Roasts a specified user.',
+	description: 'Sick of someone? Easy! Just roast them!',
 	aliases: ['insult'],
 	usage: 'roast [user]',
 	run: async (client, message, args) => {

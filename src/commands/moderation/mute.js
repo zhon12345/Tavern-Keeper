@@ -5,7 +5,7 @@ const ms = require('ms');
 module.exports = {
 	name: 'mute',
 	category: 'Moderation',
-	description: 'Temporarily or permanently mute a specific user.',
+	description: 'Temporarily or permanently mute a specified user.',
 	aliases: ['silent'],
 	usage: 'tempmute <user> <reason> [time]',
 	guildOnly: true,

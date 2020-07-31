@@ -4,7 +4,7 @@ const db = require('quick.db');
 module.exports = {
 	name: 'softban',
 	category: 'Moderation',
-	description: 'softban a specified user from the server.',
+	description: 'Softban a specified user from the server.',
 	aliases: [],
 	usage: 'softban <user> <reason>',
 	guildOnly: true,

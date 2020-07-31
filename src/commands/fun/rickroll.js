@@ -2,7 +2,7 @@
 module.exports = {
 	name: 'rickroll',
 	category: 'Fun',
-	description: 'Sends a link to the "Never Gonna Give You Up" music video.',
+	description: '"Never Gonna Give You Up"',
 	aliases: [],
 	usage: 'rickroll',
 	run: async (client, message, args) => {

@@ -4,7 +4,7 @@ const db = require('quick.db');
 module.exports = {
 	name: 'messagelog',
 	category: 'Settings',
-	description: 'Set the message logs channel for the server.',
+	description: 'Sets the message logs channel for the server.',
 	aliases: [],
 	usage: 'messagelog <channel>',
 	guildOnly: true,

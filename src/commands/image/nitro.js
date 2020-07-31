@@ -2,7 +2,7 @@
 module.exports = {
 	name: 'nitro',
 	category: 'Image',
-	description: 'Sends an image of a fake nitro giveaway.',
+	description: 'Ever wanted a fake nitro giveaway? Now you\'ve got one.',
 	aliases: [],
 	usage: 'nitro',
 	run: (client, message, args) => {

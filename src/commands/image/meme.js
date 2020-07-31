@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 module.exports = {
 	name: 'meme',
 	category: 'Image',
-	description: 'Get a random meme from the internet.',
+	description: 'Get some fresh new memes from reddit!',
 	aliases: ['memes'],
 	usage: 'meme',
 	guildOnly: true,

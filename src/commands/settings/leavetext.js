@@ -4,7 +4,7 @@ const db = require('quick.db');
 module.exports = {
 	name: 'leavetext',
 	category: 'Settings',
-	description: 'Set the leave message for the server.',
+	description: 'Sets the leave message for the server.',
 	aliases: [],
 	usage: 'leavetext <message>',
 	guildOnly: true,

@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 module.exports = {
 	name: 'anal',
 	category: 'NSFW',
-	description: 'Sends images of anal porn, what do you expect?',
+	description: 'When they taken from behind.',
 	aliases: [],
 	usage: 'anal',
 	run: async (client, message, args) => {

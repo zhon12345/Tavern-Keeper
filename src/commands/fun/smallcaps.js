@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 module.exports = {
 	name: 'smallcaps',
-	description: 'Converts text into small uppercase letters.',
+	description: 'Converts text into sᴍᴀʟʟᴄᴀᴘs.',
 	usage: 'smallcaps <text>',
 	category: 'Fun',
 	run: async (client, message, args) => {

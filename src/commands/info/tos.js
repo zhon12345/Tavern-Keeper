@@ -5,7 +5,7 @@ const db = require('quick.db');
 module.exports = {
 	name: 'tos',
 	category: 'Info',
-	description: 'Terms of service for the bot.',
+	description: 'Shows the terms of service of the bot.',
 	aliases: ['termsofservice'],
 	usage: 'tos',
 	run: async (client, message, args) => {

@@ -3,7 +3,7 @@ const { alternateCaps } = require('../../functions');
 module.exports = {
 	name: 'spongebob',
 	category: 'Fun',
-	description: 'Generate a spongebob mocking text.',
+	description: 'Converts text into SpOnGeBoB mOcKiNg TeXt.',
 	aliases: ['mocking'],
 	usage: 'clapify <text>',
 	run: async (client, message, args) => {

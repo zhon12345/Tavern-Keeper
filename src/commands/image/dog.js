@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 module.exports = {
 	name: 'dog',
 	category: 'Image',
-	description: 'Get a random picture of a dog.',
+	description: 'See some cute doggos!',
 	aliases: ['dogs', 'doggo', 'puppy', 'puppies'],
 	usage: 'dog',
 	guildOnly: true,

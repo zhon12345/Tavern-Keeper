@@ -5,7 +5,7 @@ const { MessageAttachment } = require('discord.js');
 module.exports = {
 	name: 'jail',
 	category: 'Image',
-	description: 'Put ​yourself or a specified user in jail.',
+	description: 'Send your friends to jail!',
 	aliases: [],
 	usage: 'jail [user]',
 	run: async (client, message, args) => {

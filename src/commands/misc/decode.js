@@ -4,7 +4,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
 	name: 'decode',
 	category: 'Misc',
-	description: 'Converts encoded Binary & Base 64 text back to normal.',
+	description: 'Converts encoded binary & base64 text back to normal.',
 	aliases: [],
 	usage: 'decode <text>',
 	run: async (client, message, args) => {

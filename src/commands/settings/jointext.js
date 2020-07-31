@@ -4,7 +4,7 @@ const db = require('quick.db');
 module.exports = {
 	name: 'jointext',
 	category: 'Settings',
-	description: 'Set the welcome message for the server.',
+	description: 'Sets the welcome message for the server.',
 	aliases: [],
 	usage: 'jointext <message>',
 	guildOnly: true,

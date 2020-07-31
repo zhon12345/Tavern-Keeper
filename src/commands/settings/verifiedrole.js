@@ -4,7 +4,7 @@ const db = require('quick.db');
 module.exports = {
 	name: 'verifiedrole',
 	category: 'Settings',
-	description: 'Set the verified role for the server.',
+	description: 'Sets the verified role for the server.',
 	aliases: [],
 	usage: 'verifiedrole <role>',
 	guildOnly: true,

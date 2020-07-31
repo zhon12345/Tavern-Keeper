@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 module.exports = {
 	name: 'porngif',
 	category: 'NSFW',
-	description: 'Sends images of porn gifs, what do you expect?',
+	description: 'Basically porn videos but with gifs.',
 	aliases: ['pgif'],
 	usage: 'porngif',
 	run: async (client, message, args) => {

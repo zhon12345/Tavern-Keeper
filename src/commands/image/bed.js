@@ -5,7 +5,7 @@ const { MessageAttachment } = require('discord.js');
 module.exports = {
 	name: 'bed',
 	category: 'Image',
-	description: 'Generate a personalised bed meme.',
+	description: 'Make your own bed meme.',
 	aliases: [],
 	usage: 'bed <user>',
 	run: async (client, message, args) => {

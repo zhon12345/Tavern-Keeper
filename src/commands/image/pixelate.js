@@ -5,7 +5,7 @@ const { MessageAttachment } = require('discord.js');
 module.exports = {
 	name: 'pixelate',
 	category: 'Image',
-	description: 'Pixelate the avatar of yourself or a specified user.',
+	description: 'Make someone\'s avatar pixelated.',
 	aliases: [],
 	usage: 'pixelate [user]',
 	run: async (client, message, args) => {

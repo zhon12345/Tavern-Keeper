@@ -5,7 +5,7 @@ const token = process.env.AMETHYSTE_API_TOKEN;
 module.exports = {
 	name: 'blurpify',
 	category: 'Image',
-	description: 'Blurpify a avatar of yourself or a specifed user.',
+	description: 'Make someone\'s avatar blurple.',
 	aliases: [],
 	usage: 'blurpify [user]',
 	run: async (client, message, args) => {

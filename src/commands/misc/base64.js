@@ -4,7 +4,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
 	name: 'base64',
 	category: 'Misc',
-	description: 'Converts normal text to Base64.',
+	description: 'Converts normal text to QmFzZTY0.',
 	aliases: [],
 	usage: 'base64 <text>',
 	run: async (client, message, args) => {

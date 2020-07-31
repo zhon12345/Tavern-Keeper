@@ -7,7 +7,7 @@ module.exports = {
 	name: 'giveaway',
 	aliases: ['start'],
 	usage: 'giveaway <winner> <time> <winners> <prize>',
-	description: 'Starts a giveaway',
+	description: 'Starts a giveaway.',
 	category:'Misc',
 	run: async (client, message, args) => {
 		try {

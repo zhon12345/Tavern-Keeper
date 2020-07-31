@@ -5,7 +5,7 @@ const { MessageAttachment } = require('discord.js');
 module.exports = {
 	name: 'rip',
 	category: 'Image',
-	description: 'Rest in peace mate.',
+	description: 'Pay your respects.',
 	aliases: [],
 	usage: 'rip [user]',
 	run: async (client, message, args) => {

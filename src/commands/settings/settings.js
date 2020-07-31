@@ -45,16 +45,6 @@ module.exports = {
 			verifiedrole = vrole;
 		}
 
-		let reports;
-		const report = db.get(`reports_${message.guild.id}`);
-		const rport = `<#${report}>`;
-		if(report === null) {
-			reports = 'None';
-		}
-		else {
-			reports = rport;
-		}
-
 		let modlogs;
 		const modlog = db.get(`modlog_${message.guild.id}`);
 		const mlog = `<#${modlog}>`;
@@ -130,7 +120,6 @@ module.exports = {
 				`**❯ Prefix:** ${prefix}`,
 				`**❯ Muted Role:** ${mutedrole}`,
 				`**❯ Verified Role:** ${verifiedrole}`,
-				`**❯ Reports:** ${reports}`,
 				`**❯ Mod Log:** ${modlogs}`,
 				`**❯ Server Log:** ${serverlogs}`,
 				`**❯ Message Log:** ${messagelogs}`,

@@ -4,7 +4,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
 	name: 'lyrics',
 	category: 'Misc',
-	description: 'Searches for lyrics of a specified song',
+	description: 'Searches for lyrics of a specified song.',
 	aliases: [],
 	usage: 'lyrics <song>',
 	run: async (client, message, args) => {

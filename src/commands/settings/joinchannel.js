@@ -4,7 +4,7 @@ const db = require('quick.db');
 module.exports = {
 	name: 'joinchannel',
 	category: 'Settings',
-	description: 'Set the welcome channel for the server.',
+	description: 'Sets the welcome channel for the server.',
 	aliases: [],
 	usage: 'joinchannel <channel>',
 	guildOnly: true,

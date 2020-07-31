@@ -6,7 +6,7 @@ const API_KEY = process.env.BITLY_API_TOKEN;
 module.exports = {
 	name: 'shorten',
 	category: 'Misc',
-	description: 'Shortens a provided link using bit.ly',
+	description: 'Shortens a provided link using bit.ly.',
 	aliases: ['short'],
 	usage: 'shortel <url>',
 	run: async (client, message, args) => {

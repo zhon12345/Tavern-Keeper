@@ -4,7 +4,7 @@ const db = require('quick.db');
 module.exports = {
 	name: 'leavechannel',
 	category: 'Settings',
-	description: 'Set the leave channel for the server.',
+	description: 'Sets the leave channel for the server.',
 	aliases: [],
 	usage: 'leavechannel <channel>',
 	guildOnly: true,

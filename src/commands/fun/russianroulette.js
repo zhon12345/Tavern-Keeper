@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 module.exports = {
-	name: 'rr',
+	name: 'russianroulette',
 	category: 'Fun',
 	description: 'Gamble with your life and play russian roulette.',
-	aliases: ['russianroulette'],
-	usage: 'rr',
+	aliases: ['rr'],
+	usage: 'russianroulette',
 	run: async (client, message, args) => {
 		const rr_bullet = Math.floor(Math.random() * 6);
 		const rr_count = 1 ;

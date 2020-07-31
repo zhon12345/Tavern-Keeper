@@ -4,7 +4,7 @@ const { capitalizeFirstLetter } = require('../../functions');
 module.exports = {
 	name: 'aliases',
 	category: 'Info',
-	description: 'Shows you a list of aliases of specified command.',
+	description: 'Shows you a list of aliases for the specified command.',
 	aliases: [],
 	usage: 'aliases <command>',
 	guildOnly: true,

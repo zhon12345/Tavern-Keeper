@@ -4,7 +4,7 @@ const { parseDur } = require('../../functions');
 
 module.exports = {
 	name: 'uptime',
-	description: 'Check the bot\'s uptime.',
+	description: 'Check how long has the bot been online.',
 	category: 'Info',
 	aliases: [ 'ontime' ],
 	usage: 'uptime',

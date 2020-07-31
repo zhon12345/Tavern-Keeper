@@ -5,7 +5,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
 	name: 'hentai',
 	category: 'NSFW',
-	description: 'Sends hentai images, what do you expect?',
+	description: 'Sends hentai, what do you expect?',
 	aliases: [],
 	usage: 'hentai',
 	run: async (client, message, args) => {
