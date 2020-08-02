@@ -13,13 +13,13 @@ module.exports = {
 		if (!message.member.hasPermission('ADMINISTRATOR')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You must have the following permissions to use that: Administrator.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 
 		if (!message.guild.me.hasPermission('MANAGE_CHANNELS')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> I must have the following permissions to use that: Manage Channel.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 
 		let Reason = args[0];

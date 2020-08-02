@@ -14,12 +14,12 @@ module.exports = {
 		if (!text) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide valid text',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 		else if(text.length >= 1024) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide text that is lesser that 1024 words.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 		else if(isNaN(text)) {
 			url = `https://some-random-api.ml/base64?decode=${text}`;

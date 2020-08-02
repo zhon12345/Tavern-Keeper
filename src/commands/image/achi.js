@@ -30,12 +30,12 @@ module.exports = {
 		if(!achi) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide valid text.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 		if (achi.length >= 24) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You have exceeded the 25 characters limit.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+				'<:vWarning:725276167346585681> You have exceeded the character limit.',
+			);
 		}
 		const image = (`https://minecraftskinstealer.com/achievement/${logo}/Achievement+Get%21/${achi}`);
 		const attachment = new MessageAttachment(image, 'achivement.png');

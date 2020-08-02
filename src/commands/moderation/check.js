@@ -13,7 +13,7 @@ module.exports = {
 		if (!member) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide a valid user.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 
 		let warnings = db.get(`warnings_${message.guild.id}_${member.id}`);

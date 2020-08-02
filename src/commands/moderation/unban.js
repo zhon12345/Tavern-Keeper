@@ -12,13 +12,13 @@ module.exports = {
 		if(!message.member.hasPermission('BAN_MEMBERS')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You must have the following permissions to use that: Ban Members.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 
 		if(!message.guild.me.hasPermission('BAN_MEMBERS')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> I must have the following permissions to use that: Ban Members.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 
 		const id = args[0];
@@ -27,14 +27,14 @@ module.exports = {
 		if (!user) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide a valid user.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 
 		const Reason = args.slice(1).join(' ');
 		if (!Reason) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide a reason.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 
 		message.guild.members.unban(user.user);

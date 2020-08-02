@@ -10,7 +10,7 @@ module.exports = {
 		if(!message.member.hasPermission('BAN_MEMBERS')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You must have the following permissions to use that: Ban Members.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 
 		let channel = message.mentions.channels.first(),

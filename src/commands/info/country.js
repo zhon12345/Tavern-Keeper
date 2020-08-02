@@ -13,7 +13,7 @@ module.exports = {
 		if(!country) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide a valid Pokémon.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 		const url = 'https://restcountries.eu/rest/v2/name/' + country;
 

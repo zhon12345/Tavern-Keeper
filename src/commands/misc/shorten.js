@@ -14,12 +14,12 @@ module.exports = {
 		if (!link) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide a valid link.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 		else if(!is_url(link)) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide a valid link.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 
 		const url = 'https://api-ssl.bitly.com/v4/shorten';

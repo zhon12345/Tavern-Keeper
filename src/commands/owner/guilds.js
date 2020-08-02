@@ -12,7 +12,7 @@ module.exports = {
 		if(message.author.id !== BOT_OWNER) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You must have the following permissions to use that: Bot Owner.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 
 		const list = client.guilds.cache.map(guild => `${guild.name} (${guild.id})`).join('\n');

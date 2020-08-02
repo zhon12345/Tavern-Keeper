@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const { MessageEmbed } = require('discord.js');
-const { promptMessage } = require('../../functions.js');
+const { promptMessage, getResult } = require('../../functions.js');
 
 const chooseArr = ['🗻', '📰', '✂'];
 
@@ -27,19 +27,5 @@ module.exports = {
 			.addField(result, `${reacted} vs ${botChoice}`);
 
 		m.edit(embed);
-
-		function getResult(me, clientChosen) {
-			if ((me === '🗻' && clientChosen === '✂') ||
-                (me === '📰' && clientChosen === '🗻') ||
-                (me === '✂' && clientChosen === '📰')) {
-				return 'You won!';
-			}
-			else if (me === clientChosen) {
-				return 'It\'s a tie!';
-			}
-			else {
-				return 'You lost!';
-			}
-		}
 	},
 };

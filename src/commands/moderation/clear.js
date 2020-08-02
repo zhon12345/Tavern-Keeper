@@ -13,7 +13,7 @@ module.exports = {
 		if(!message.member.hasPermission('MANAGE_MESSAGES')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You must have the following permissions to use that: Manage Messages.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 
 		const amount = parseInt(args[0]);
@@ -21,12 +21,12 @@ module.exports = {
 		if (isNaN(amount)) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide a valid number.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 		else if (amount <= 0 || amount > 100) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide a valid number between 1 and 99.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 
 		let Reason;
@@ -46,6 +46,6 @@ module.exports = {
 		);
 		await message.channel.send(
 			`<:vSuccess:725270799098970112> Successfully cleared \`${amount}\`messages`,
-		).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+		);
 	},
 };

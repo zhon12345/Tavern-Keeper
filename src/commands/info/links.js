@@ -19,7 +19,7 @@ module.exports = {
 				},
 				{
 					name: 'Website',
-					value: '[Website](https://tavern-keeper.weebly.com/)',
+					value: '[Website](https://tavernkeeper.ml/)',
 				},
 				{
 					name: 'Official Discord Server',

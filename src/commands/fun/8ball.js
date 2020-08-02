@@ -12,7 +12,7 @@ module.exports = {
 		if (!question) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide a valid question!',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 		const response = responses[Math.floor(Math.random() * responses.length - 1)];
 		message.channel.send(`${response}`);

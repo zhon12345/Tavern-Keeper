@@ -15,7 +15,7 @@ module.exports = {
 		if(message.author.id !== BOT_OWNER) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You must have the following permissions to use that: Bot Owner.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 
 		if(message.author.id === BOT_OWNER) {
@@ -27,7 +27,7 @@ module.exports = {
 				if (!code) {
 					return message.channel.send(
 						'<:vError:725270799124004934> Please provide a valid code.',
-					).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+					);
 				}
 				let evaled;
 

@@ -13,7 +13,7 @@ module.exports = {
 		if(!message.member.hasPermission('BAN_MEMBERS')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You must have the following permissions to use that: Ban Members.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]);
@@ -21,26 +21,26 @@ module.exports = {
 		if(!member) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide a valid user.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 
 		if(member.user.bot) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Bot are not allowed to have strikes',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 
 		if(message.author.id === member.id) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You are not allowed to reset your strikes',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 
 		const amount = args[1];
 		if (isNaN(args[1])) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide a valid number',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 
 		const Reason = args.slice(2).join(' ');
@@ -48,7 +48,7 @@ module.exports = {
 		if(!Reason) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide a reason.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 
 		const warnings = db.get(`warnings_${message.guild.id}_${member.id}`);

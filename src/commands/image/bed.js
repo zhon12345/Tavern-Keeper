@@ -20,7 +20,7 @@ module.exports = {
 		if (!user) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide a valid user.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 
 		const image = await canvas.bed(message.author.displayAvatarURL({ format: 'png' }), user.displayAvatarURL({ format: 'png' }));

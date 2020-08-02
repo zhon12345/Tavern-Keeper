@@ -13,7 +13,7 @@ module.exports = {
 		if(!message.member.hasPermission('KICK_MEMBERS')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You must have the following permissions to use that: Kick Members',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]);
@@ -21,25 +21,25 @@ module.exports = {
 		if(!member) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide a valid user.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 
 		if(member.user.bot) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Bots are not allowed to have strikes.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 
 		if(message.author.id === member.id) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You are not allowed to warn yourself.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 
 		if(member.id === message.guild.owner.id) {
 			return message.channel.send(
 				'<:vWarning:725276167346585681> Are you trying to get yourself into trouble?',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 
 		let Reason;
@@ -55,7 +55,7 @@ module.exports = {
 			if(!Reason) {
 				return message.channel.send(
 					'<:vError:725270799124004934> Please provide a reason.',
-				).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+				);
 			}
 		}
 

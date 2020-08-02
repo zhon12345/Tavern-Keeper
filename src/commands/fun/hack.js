@@ -25,8 +25,11 @@ module.exports = {
 			const jj = IP[Math.floor(Math.random() * IP.length)];
 
 			const hacked = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]);
-
-			if(!hacked) {return message.channel.send('<:vError:725270799124004934> Please provide a valid user.');}
+			if(!hacked) {
+				return message.channel.send(
+					'<:vError:725270799124004934> Please provide a valid user.',
+				);
+			}
 
 			await message.channel.send(`Hacking ${hacked.user.username} now...`).then(async msg => {
 				await sleep(1500);

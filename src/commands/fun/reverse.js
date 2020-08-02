@@ -19,7 +19,7 @@ module.exports = {
 		if(!args.slice().join(' ')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide valid text.',
-			).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+			);
 		}
 
 		message.channel.send(`${text}`);

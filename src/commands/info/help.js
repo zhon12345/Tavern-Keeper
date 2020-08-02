@@ -77,7 +77,7 @@ function getCMD(client, message, input) {
 	const info = `No information found for command ${input.toLowerCase()}`;
 
 	if (!cmd) {
-		return message.channel.send(embed.setColor('BLUE').setDescription(info)).then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});
+		return message.channel.send(embed.setColor('BLUE').setDescription(info));
 	}
 	else{
 		const hembed = new MessageEmbed()

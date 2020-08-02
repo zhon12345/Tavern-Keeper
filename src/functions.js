@@ -35,6 +35,21 @@ module.exports = {
 			.then(collected => collected.first() && collected.first().emoji.name);
 	},
 
+	// rps.js
+	getResult: function(me, clientChosen) {
+		if ((me === '🗻' && clientChosen === '✂') ||
+			(me === '📰' && clientChosen === '🗻') ||
+			(me === '✂' && clientChosen === '📰')) {
+			return 'You won!';
+		}
+		else if (me === clientChosen) {
+			return 'It\'s a tie!';
+		}
+		else {
+			return 'You lost!';
+		}
+	},
+
 	// botinfo.js
 	formatBytes: function(a, b) {
 		if (a == 0) return '0 Bytes';

@@ -10,6 +10,11 @@ module.exports = {
 	guildOnly: true,
 	run: async (client, message, args) => {
 		const text = args.slice().join(' ');
+		if(!text) {
+			return message.channel.send(
+				'<:vError:725270799124004934> Please provide valid text',
+			);
+		}
 		const channel = client.channels.cache.get('724508956981985351');
 		if (!channel) return;
 		channel.send(

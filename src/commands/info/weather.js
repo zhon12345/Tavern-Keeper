@@ -9,7 +9,7 @@ module.exports = {
 	category: 'Info',
 	aliases: ['temp'],
 	run: async (client, message, args) => {
-		if (!args[0]) {return message.channel.send('Please provide a location.').then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});}
+		if (!args[0]) {return message.channel.send('Please provide a location.');}
 
 		weather.find({
 			search: args.join(' '),
@@ -17,7 +17,7 @@ module.exports = {
 		}, function(err, result) {
 			if (err) {message.channel.send(err);}
 
-			if (result === undefined || result.length === 0) {return message.channel.send('Please enter a valid location.').then(message.delete({ timeout: 5000 })).then(msg => {msg.delete({ timeout: 5000 });});}
+			if (result === undefined || result.length === 0) {return message.channel.send('Please enter a valid location.');}
 
 			const { current, location } = result[0];
 			message.channel.send(
