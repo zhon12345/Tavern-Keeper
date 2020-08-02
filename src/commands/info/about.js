@@ -27,7 +27,7 @@ module.exports = {
 			.addFields(
 				{
 					name: 'Need some help?',
-					value: 'Join our [Discord Server](https://discord.gg/WS3GthM)',
+					value: 'Join our [Discord Server](https://discord.gg/GGMsqS9)',
 				},
 			)
 			.setFooter(`Use "${prefix}help" to list all the available commands.`)

@@ -23,7 +23,7 @@ module.exports = {
 				},
 				{
 					name: 'Official Discord Server',
-					value: '[Discord Server](https://discord.gg/WS3GthM)',
+					value: '[Discord Server](https://discord.gg/GGMsqS9)',
 				},
 			);
 		message.channel.send(pEmbed);
