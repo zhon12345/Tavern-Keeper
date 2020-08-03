@@ -1,6 +1,4 @@
 /* eslint-disable no-unused-vars */
-const { MessageAttachment } = require('discord.js');
-
 module.exports = {
 	name: 'spam',
 	category: 'Image',

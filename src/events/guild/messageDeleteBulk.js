@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
-const { VultrexHaste } = require('vultrex.haste');
+const fetch = require('node-fetch');
 const db = require('quick.db');
 const { stripIndents } = require('common-tags');
-const haste = new VultrexHaste({ url: 'https://hastebin.com' });
+const url = 'https://hasteb.in/documents';
 const { MessageEmbed } = require('discord.js');
 
 module.exports = async (client, messages) =>{
@@ -20,9 +20,17 @@ module.exports = async (client, messages) =>{
 	else{
 		const output = messages.map((m, index) => `${new Date(m.createdAt).toLocaleString('en-US')} - ${m.author.tag}: ${m.content}`).join('\n');
 
+		let response;
+		try {
+			response = await fetch(url, { method: 'POST', body: output, headers: { 'Content-Type': 'text/plain' } }).then(res => res.json());
+		}
+		catch (e) {
+			console.log(e);
+			return logsChannel.channel.send('<:vError:725270799124004934> An error occured, please try again!');
+		}
 		const embed = new MessageEmbed()
 			.setDescription(stripIndents`
-            [\`📄 View\`](${output.length > 0 ? await haste.post(`${output}`) : output})
+            [\`📄 View\`](${output.length > 0 ? 'https://hasteb.in/' + response.key + '.js' : output})
            `)
 			.setColor('RED');
 		await logsChannel.send(embed);

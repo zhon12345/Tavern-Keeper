@@ -2,11 +2,11 @@
 const moment = require('moment');
 
 module.exports = {
-	name: 'report',
+	name: 'suggest',
 	category: 'Misc',
-	description: 'Report an issue within the bot to the developers.',
+	description: 'Make suggestion for the bot\'s upcoming features.',
 	aliases: [],
-	usage: 'report <issue>',
+	usage: 'suggest <suggestion>',
 	guildOnly: true,
 	run: async (client, message, args) => {
 		const text = args.slice().join(' ');
@@ -18,10 +18,10 @@ module.exports = {
 		const channel = client.channels.cache.get('724508956981985351');
 		if (!channel) return;
 		channel.send(
-			`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` ⚠️ **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id}) has reported an issue in **${message.guild.name}** (ID: ${message.guild.id}). \n\`[Issue]\` ${text}`,
+			`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` ❗ **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id}) has made a suggestion in **${message.guild.name}** (ID: ${message.guild.id}).\n\`[Suggestion]\` ${text}`,
 		);
 		await message.channel.send(
-			'<:vSuccess:725270799098970112> Successfully reported the issue.',
+			'<:vSuccess:725270799098970112> Successfully made the suggestion.',
 		).then(message.delete());
 	},
 };

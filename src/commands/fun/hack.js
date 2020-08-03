@@ -18,7 +18,7 @@ module.exports = {
 			const dms = ['It looks small', 'Her dad walked in on us', 'I have no dad man', 'Her dog smells weird', 'I lost my job', 'My dad is gay', 'Im adopted'];
 			const possible = dms[Math.floor(Math.random() * dms.length)];
 
-			const words = ['micro', 'tiny', 'men', 'adopted', 'alabama', 'minecraft', 'bald'];
+			const words = ['micro pp', 'i\'m adopted', 'minecraft bad', 'i\'m bald'];
 			const dodo = words[Math.floor(Math.random() * words.length)];
 
 			const IP = ['205.71.201.62', '217.14.22.182', '174.229.194.82', '49.197.197.60'];
@@ -41,9 +41,9 @@ module.exports = {
 				await sleep(2000);
 				await msg.edit(`[▗] **Last DM:** "${possible}" `);
 				await sleep(1555);
-				await msg.edit('[▖] Fetching most common word');
+				await msg.edit('[▖] Fetching most common phrase');
 				await sleep(1700);
-				await msg.edit(`[▘] **Most common word:** "${dodo}"`);
+				await msg.edit(`[▘] **Most common phrase:** "${dodo}"`);
 				await sleep(2000);
 				await msg.edit('[▝] Hacking fortnite account...');
 				await sleep(1000);

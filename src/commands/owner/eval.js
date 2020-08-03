@@ -1,8 +1,8 @@
 /* eslint-disable no-useless-escape */
-const { VultrexHaste } = require('vultrex.haste');
+const fetch = require('node-fetch');
 const { MessageEmbed } = require('discord.js');
 const { clean } = require('../../functions');
-const haste = new VultrexHaste({ url: 'https://hasteb.in' });
+const url = 'https://hasteb.in/documents';
 const { BOT_OWNER } = process.env;
 
 module.exports = {
@@ -42,8 +42,15 @@ module.exports = {
 
 				const output = clean(evaled);
 				if (output.length >= 1024) {
-					const { body } = await haste.post(output);
-					embed.addField('Output', `https://hastebin.com/${body.key}.js`).setColor('GREEN');
+					let response;
+					try {
+						response = await fetch(url, { method: 'POST', body: output, headers: { 'Content-Type': 'text/plain' } }).then(res => res.json());
+					}
+					catch (e) {
+						console.log(e);
+						return message.channel.send('<:vError:725270799124004934> An error occured, please try again!');
+					}
+					embed.addField('Output', `https://hasteb.in/${response.key}.js`).setColor('GREEN');
 				}
 				else {
 					embed.addField('Output', '```js\n' + output + '```').setColor('GREEN');
@@ -55,8 +62,15 @@ module.exports = {
 			catch (error) {
 				const err = clean(error);
 				if (err.length >= 1024) {
-					const { body } = await haste.post(err);
-					embed.addField('Output', `https://hastebin.com/${body.key}.js`).setColor('RED');
+					let response;
+					try {
+						response = await fetch(url, { method: 'POST', body: err, headers: { 'Content-Type': 'text/plain' } }).then(res => res.json());
+					}
+					catch (e) {
+						console.log(e);
+						return message.channel.send('<:vError:725270799124004934> An error occured, please try again!');
+					}
+					embed.addField('Output', `https://hasteb.in/${response.key}.js`).setColor('RED');
 				}
 				else {
 					embed.addField('Output', '```js\n' + err + '```').setColor('RED');
