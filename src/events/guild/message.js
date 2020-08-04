@@ -23,34 +23,51 @@ module.exports = async (client, message) => {
 		return message.channel.send(`My current prefix for this guild is \`${prefix}\``);
 	}
 
-	if(is_url(message.content) || is_invite(message.content) === true) {
-		if(message.member.hasPermission('KICK_MEMBERS')) {
-			return;
-		}
-		else {
-			message.delete();
-			message.channel.send(
-				`${message.author}, you are not allowed to send links in this channel. Hence, you have received a warning.`,
-			);
-
-			const warnings = db.get(`warnings_${message.guild.id}_${message.author.id}`);
-
-			if(warnings <= 0) {
-				db.set(`warnings_${message.guild.id}_${message.author.id}`, 1);
-				const logs = db.fetch(`modlog_${message.guild.id}`);
-				const channel = message.guild.channels.cache.get(logs);
-				channel.send(
-					`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🚩 **${client.user.username}**#${client.user.discriminator} gave \`1\` strikes to **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id})\n\`[Reason]\` Sending Links in ${message.channel}`,
-				);
+	const antilinks = db.fetch(`antilinks_${message.guild.id}`);
+	if (antilinks === true) {
+		if(is_url(message.content) || is_invite(message.content) === true) {
+			if(message.member.hasPermission('KICK_MEMBERS')) {
+				return;
 			}
 			else {
-				db.add(`warnings_${message.guild.id}_${message.author.id}`, 1);
-				const logs = db.fetch(`modlog_${message.guild.id}`);
-				const channel = message.guild.channels.cache.get(logs);
-				if (!channel) return;
-				channel.send(
-					`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🚩 **${client.user.username}**#${client.user.discriminator} gave \`1\` strikes to **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id})\n\`[Reason]\` Sending Links in ${message.channel}`,
+				message.delete();
+				message.channel.send(
+					`${message.author}, you are not allowed to send links in this channel. Hence, you have received a warning.`,
 				);
+
+				const warnings = db.get(`warnings_${message.guild.id}_${message.author.id}`);
+
+				if(warnings <= 0) {
+					try {
+						await message.author.send(`You have been given 1 strikes in ${message.guild}\n\`[Reason]\` Sending Links in ${message.channel}`);
+					}
+					catch(err) {
+						await channel.send(`<:vError:725270799124004934> Failed to DM **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id})`);
+					}
+
+					db.set(`warnings_${message.guild.id}_${message.author.id}`, 1);
+					const logs = db.fetch(`modlog_${message.guild.id}`);
+					const channel = message.guild.channels.cache.get(logs);
+					channel.send(
+						`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🚩 **${client.user.username}**#${client.user.discriminator} gave \`1\` strikes to **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id})\n\`[Reason]\` Sending Links in ${message.channel}`,
+					);
+				}
+				else {
+					try {
+						await message.author.send(`You have been given 1 strikes in ${message.guild}\n\`[Reason]\` Sending Links in ${message.channel}`);
+					}
+					catch(err) {
+						await channel.send(`<:vError:725270799124004934> Failed to DM **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id})`);
+					}
+
+					db.add(`warnings_${message.guild.id}_${message.author.id}`, 1);
+					const logs = db.fetch(`modlog_${message.guild.id}`);
+					const channel = message.guild.channels.cache.get(logs);
+					if (!channel) return;
+					channel.send(
+						`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🚩 **${client.user.username}**#${client.user.discriminator} gave \`1\` strikes to **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id})\n\`[Reason]\` Sending Links in ${message.channel}`,
+					);
+				}
 			}
 		}
 	}

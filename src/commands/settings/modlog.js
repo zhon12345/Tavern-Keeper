@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const db = require('quick.db');
 
 module.exports = {

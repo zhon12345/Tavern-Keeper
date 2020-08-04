@@ -36,19 +36,21 @@ module.exports = {
 			);
 		}
 
-		const amount = args[1];
+		let Reason;
+		let amount = args[1];
 		if (isNaN(args[1])) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid number',
-			);
+			amount = 1;
+			Reason = args.slice(1).join(' ');
 		}
 
-		const Reason = args.slice(2).join(' ');
-
-		if(!Reason) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a reason.',
-			);
+		else {
+			amount = Number(args[1]);
+			Reason = args.slice(2).join(' ');
+			if(!Reason) {
+				return message.channel.send(
+					'<:vError:725270799124004934> Please provide a reason.',
+				);
+			}
 		}
 
 		const warnings = db.get(`warnings_${message.guild.id}_${member.id}`);
@@ -63,7 +65,7 @@ module.exports = {
 			if (!channel || channel === null) return;
 
 			try {
-				await member.send(`You have been pardoned ${amount}strikes in ${message.guild}\n\`[Reason]\` ${Reason}`);
+				await member.send(`You have been pardoned ${amount} strikes in ${message.guild}\n\`[Reason]\` ${Reason}`);
 			}
 			catch(err) {
 				await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
