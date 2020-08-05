@@ -23,7 +23,7 @@ module.exports = {
 };
 
 function aliases(client, message, input) {
-	const cmd = client.commands.get(input.toLowerCase());
+	const cmd = client.commands.get(input.toLowerCase()) || client.commands.get(client.aliases.get(input.toLowerCase()));
 	if(!cmd) {
 		return message.channel.send(
 			'<:vError:725270799124004934> Please provied a vaild command.',

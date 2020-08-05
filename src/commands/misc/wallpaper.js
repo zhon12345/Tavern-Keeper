@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 const fetch = require('node-fetch');
 const { MessageEmbed } = require('discord.js');
-const token = process.env.AMETHYSTE_API_TOKEN;
+const token = process.env.UNSPLASH_CLIENT_TOKEN;
 
 module.exports = {
 	name: 'wallpaper',
@@ -10,20 +10,23 @@ module.exports = {
 	aliases: [],
 	usage: 'wallpaper',
 	run: async (client, message, args) => {
-		const url = 'https://v1.api.amethyste.moe/image/wallpaper';
+		const url = 'https://api.unsplash.com/photos/random?client_id=' + token;
 
 		let response;
 		try {
-			response = await fetch(url, { headers: { Authorization: `Bearer ${token}` } }).then(res => res.json());
+			response = await fetch(url).then(res => res.json());
 		}
 		catch (e) {
 			return message.channel.send(
-				':vError: An error occured, please try again!',
+				'<:vError:725270799124004934> An error occured, please try again!',
 			);
 		}
 		const embed = new MessageEmbed()
 			.setColor('BLUE')
-			.setImage(response.url);
+			.setTitle(response.description ? response.description : 'Random Wallpaper')
+			.setURL(response.urls.raw)
+			.setImage(response.urls.raw)
+			.setFooter(`Photo by: ${response.user.name}`);
 
 		message.channel.send(embed);
 	},
