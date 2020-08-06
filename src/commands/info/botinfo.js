@@ -10,7 +10,7 @@ module.exports = {
 	name: 'botinfo',
 	category: 'Info',
 	description: 'Displays indept information about the bot.',
-	aliases: ['bot'],
+	aliases: ['bot', 'bi'],
 	usage: 'botinfo',
 	run: async (client, message, args) => {
 		cpuStat.usagePercent(function(error, percent, seconds) {

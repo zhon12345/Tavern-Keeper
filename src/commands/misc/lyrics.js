@@ -34,18 +34,24 @@ module.exports = {
 		if(response.lyrics.length > 4095) {
 			embed.setDescription(
 				`The lyrics are too long to be returned in a message embed. Click [here](${response.links.genius}) instead`,
+				embed.setFooter(`Requested by ${message.author.tag} `),
+				embed.setTimestamp,
 			);
 			message.channel.send(embed);
 		}
 		else if(response.lyrics.length < 2000) {
 			embed.setDescription(response.lyrics);
+			embed.setFooter(`Requested by ${message.author.tag} `);
+			embed.setTimestamp;
 			message.channel.send(embed);
 		}
 		else {
-			embed.setDescription(response.lyrics.slice(0, 2000));
+			embed.setDescription(response.lyrics.slice(0, response.lyrics.length / 2));
 			const embed2 = new MessageEmbed()
 				.setColor('BLUE')
-				.setDescription(response.lyrics.slice(2000, response.lyrics.length));
+				.setFooter(`Requested by ${message.author.tag} `)
+				.setTimestamp
+				.setDescription(response.lyrics.slice(response.lyrics.length / 2, response.lyrics.length));
 			await message.channel.send(embed).then(() => {
 				message.channel.send(embed2);
 			});

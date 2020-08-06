@@ -15,7 +15,7 @@ module.exports = {
 			.addFields(
 				{
 					name: 'Invite link',
-					value: 'Coming Soon...',
+					value: '[Invite](http://tiny.cc/TavernKeeper)',
 				},
 				{
 					name: 'Website',

@@ -35,7 +35,7 @@ module.exports = {
 	name: 'serverinfo',
 	category: 'Info',
 	description: 'Displays information about the server.',
-	aliases: ['server', 'guild', 'guildinfo'],
+	aliases: ['server', 'guild', 'guildinfo', 'si', 'gi'],
 	usage: 'serverinfo',
 	run: async (client, message, args) => {
 		const guild = client.guilds.cache.get(args[0]) || message.guild;

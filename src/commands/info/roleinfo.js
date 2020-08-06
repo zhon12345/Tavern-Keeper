@@ -10,7 +10,7 @@ module.exports = {
 	name: 'roleinfo',
 	category: 'Info',
 	description: 'Displays information about a provided role.',
-	aliases: ['role'],
+	aliases: ['role', 'ri'],
 	usage: 'roleinfo <role>',
 	run: async (client, message, args) => {
 		const role = message.mentions.roles.first() || message.guild.roles.cache.get(args[0]);

@@ -33,7 +33,7 @@ module.exports = {
 	name: 'userinfo',
 	category: 'Info',
 	description: 'Displays information about a provided user or the message author.',
-	aliases: ['user'],
+	aliases: ['user', 'uirs'],
 	usage: 'userinfo [user]',
 	run: async (client, message, args) => {
 		const member = message.mentions.members.last() || message.guild.members.cache.get(args[0]) || message.member;

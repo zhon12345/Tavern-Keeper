@@ -21,7 +21,7 @@ module.exports = {
 	name: 'channelinfo',
 	category: 'Info',
 	description: 'Displays information about a provided channel.',
-	aliases: ['channel'],
+	aliases: ['channel', 'ci'],
 	usage: 'channelinfo [channel]',
 	run: async (client, message, args) => {
 		const channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]) || message.channel;
