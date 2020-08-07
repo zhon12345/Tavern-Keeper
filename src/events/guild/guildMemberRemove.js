@@ -19,10 +19,31 @@ module.exports = async (client, member) => {
 		.split('{guild.membercount}').join(member.guild.memberCount);
 	channel.send(message);
 
+	const isKicked = await member.guild.fetchAuditLogs({
+		type: 'MEMBER_KICK',
+	});
+	const isBanned = await member.guild.fetchAuditLogs({
+		type: 'MEMBER_BAN',
+	});
+	const memberKicked = isKicked.entries.first().target;
+	const memberBanned = isBanned.entries.first().target;
+
 	const logs = db.fetch(`serverlog_${member.guild.id}`);
 	const logchannel = member.guild.channels.cache.get(logs);
-	if (!logchannel || logchannel === null) return;
-	logchannel.send(
-		`\`[${moment(Date.now()).format('HH:mm:ss')}]\` 📤 **${member.user.username}**#${member.user.discriminator} (ID: ${member.user.id}) left or kicked from the server.\n\`[Joined Date]\` ${moment(member.user.joinedAt).format('dddd, Do MMMM YYYY, h:mm:ss a')}`,
-	);
+	if (!logchannel || logchannel === null) {return;}
+	else if(memberKicked.id == member) {
+		logchannel.send(
+			`\`[${moment(Date.now()).format('HH:mm:ss')}]\` 📤 **${member.user.username}**#${member.user.discriminator} (ID: ${member.user.id}) was kicked from the server.\n\`[Joined Date]\` ${moment(member.user.joinedAt).format('dddd, Do MMMM YYYY, h:mm:ss a')}`,
+		);
+	}
+	else if(memberBanned.id == member) {
+		logchannel.send(
+			`\`[${moment(Date.now()).format('HH:mm:ss')}]\` 📤 **${member.user.username}**#${member.user.discriminator} (ID: ${member.user.id}) was banned from the server.\n\`[Joined Date]\` ${moment(member.user.joinedAt).format('dddd, Do MMMM YYYY, h:mm:ss a')}`,
+		);
+	}
+	else {
+		logchannel.send(
+			`\`[${moment(Date.now()).format('HH:mm:ss')}]\` 📤 **${member.user.username}**#${member.user.discriminator} (ID: ${member.user.id}) left the server.\n\`[Joined Date]\` ${moment(member.user.joinedAt).format('dddd, Do MMMM YYYY, h:mm:ss a')}`,
+		);
+	}
 };

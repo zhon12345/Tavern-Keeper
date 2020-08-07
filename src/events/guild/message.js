@@ -1,16 +1,33 @@
 const db = require('quick.db');
 const moment = require('moment');
 const { is_url, is_invite } = require('../../functions');
+const mongoose = require('mongoose');
+const Guild = require('../../models/guild');
 
 module.exports = async (client, message) => {
-	let prefix;
-	const prefixes = db.fetch(`prefix_${message.guild.id}`);
-	if(prefixes == null) {
-		prefix = process.env.BOT_PREFIX;
-	}
-	else {
-		prefix = prefixes;
-	}
+	const settings = await Guild.findOne({
+		guildID: message.guild.id,
+	}, (err, guild) => {
+		if (err) console.error(err);
+		if (!guild) {
+			const newGuild = new Guild({
+				_id: mongoose.Types.ObjectId(),
+				guildID: message.guild.id,
+				guildName: message.guild.name,
+				prefix: process.env.BOT_PREFIX,
+			});
+
+			newGuild.save()
+				.then(result => console.log(result))
+				.catch(err => console.error(err));
+
+			return message.channel.send(
+				'<:vError:725270799124004934> An error occured, please try again!',
+			);
+		}
+	});
+
+	const prefix = settings.prefix;
 
 	if (message.author.bot) return;
 	if (!message.guild) return;

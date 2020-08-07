@@ -1,4 +1,4 @@
-const db = require('quick.db');
+const Guild = require('../../models/guild');
 
 module.exports = {
 	name: 'spoiler',
@@ -7,14 +7,13 @@ module.exports = {
 	aliases: [],
 	usage: 'soiler <text>',
 	run: async (client, message, args) => {
-		let prefix;
-		const prefixes = db.fetch(`prefix_${message.guild.id}`);
-		if(prefixes == null) {
-			prefix = process.env.BOT_PREFIX;
-		}
-		else {
-			prefix = prefixes;
-		}
+		const settings = await Guild.findOne({
+			guildID: message.guild.id,
+		}, (err) => {
+			if (err) console.error(err);
+		});
+		const prefix = settings.prefix;
+
 		if(!args[0]) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide valid text.',

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 const { MessageEmbed } = require('discord.js');
 const { BOT_OWNER } = process.env;
-const db = require('quick.db');
+const Guild = require('../../models/guild');
 
 module.exports = {
 	name: 'about',
@@ -10,14 +10,13 @@ module.exports = {
 	aliases: [],
 	usage: 'about',
 	run: async (client, message, args) => {
-		let prefix;
-		const prefixes = db.fetch(`prefix_${message.guild.id}`);
-		if(prefixes == null) {
-			prefix = process.env.BOT_PREFIX;
-		}
-		else {
-			prefix = prefixes;
-		}
+		const settings = await Guild.findOne({
+			guildID: message.guild.id,
+		}, (err) => {
+			if (err) console.error(err);
+		});
+
+		const prefix = settings.prefix;
 		const embed = new MessageEmbed()
 			.setDescription([
 				`Hello! I'm **${client.user.username}**, A featureful multi-purpouse Discord bot!`,

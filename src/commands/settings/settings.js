@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 const { MessageEmbed } = require('discord.js');
 const db = require('quick.db');
+const Guild = require('../../models/guild');
 
 module.exports = {
 	name: 'settings',
@@ -16,14 +17,13 @@ module.exports = {
 			);
 		}
 
-		let prefix;
-		const prefixes = db.get(`prefix_${message.guild.id}`);
-		if(prefixes == null) {
-			prefix = process.env.BOT_PREFIX;
-		}
-		else {
-			prefix = prefixes;
-		}
+		const settings = await Guild.findOne({
+			guildID: message.guild.id,
+		}, (err) => {
+			if (err) console.error(err);
+		});
+
+		const prefix = settings.prefix;
 
 		let mutedrole;
 		const muterole = db.get(`muterole_${message.guild.id}`);

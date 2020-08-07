@@ -2,7 +2,7 @@
 const { MessageEmbed } = require('discord.js');
 const { capitalizeFirstLetter } = require('../../functions');
 const { BOT_OWNER } = process.env;
-const db = require('quick.db');
+const Guild = require('../../models/guild');
 
 module.exports = {
 	name: 'help',
@@ -20,15 +20,14 @@ module.exports = {
 	},
 };
 
-function getAll(client, message) {
-	let prefix;
-	const prefixes = db.fetch(`prefix_${message.guild.id}`);
-	if(prefixes == null) {
-		prefix = process.env.BOT_PREFIX;
-	}
-	else {
-		prefix = prefixes;
-	}
+async function getAll(client, message) {
+	const settings = await Guild.findOne({
+		guildID: message.guild.id,
+	}, (err) => {
+		if (err) console.error(err);
+	});
+
+	const prefix = settings.prefix;
 	const embed = new MessageEmbed()
 		.setTitle(`${client.user.username}'s Commands`)
 		.setFooter(`Requested by ${message.author.tag} `)
@@ -41,11 +40,11 @@ function getAll(client, message) {
 		`]);
 
 	let categories;
-	if(message.author.id !== BOT_OWNER) {
-		categories = [...new Set(client.commands.filter(cmd => cmd.category !== 'Owner').map(cmd =>cmd.category))];
+	if(!message.channel.nsfw) {
+		categories = [...new Set(client.commands.filter(cmd => cmd.category !== 'NSFW' && 'Owner').map(cmd =>cmd.category))];
 	}
-	else if(!message.channel.nsfw) {
-		categories = [...new Set(client.commands.filter(cmd => cmd.category !== 'NSFW').map(cmd =>cmd.category))];
+	else if(message.author.id !== BOT_OWNER) {
+		categories = [...new Set(client.commands.filter(cmd => cmd.category !== 'Owner').map(cmd =>cmd.category))];
 	}
 	else {
 		categories = [...new Set(client.commands.map(cmd => cmd.category))];
@@ -59,15 +58,14 @@ function getAll(client, message) {
 	return message.channel.send(embed);
 }
 
-function getCMD(client, message, input) {
-	let prefix;
-	const prefixes = db.fetch(`prefix_${message.guild.id}`);
-	if(prefixes == null) {
-		prefix = 'm!';
-	}
-	else {
-		prefix = prefixes;
-	}
+async function getCMD(client, message, input) {
+	const settings = await Guild.findOne({
+		guildID: message.guild.id,
+	}, (err) => {
+		if (err) console.error(err);
+	});
+
+	const prefix = settings.prefix;
 	const embed = new MessageEmbed();
 
 	const cmd =

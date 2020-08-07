@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const { MessageEmbed } = require('discord.js');
-const db = require('quick.db');
+const Guild = require('../../models/guild');
 
 module.exports = {
 	name: 'tos',
@@ -9,15 +9,13 @@ module.exports = {
 	aliases: ['termsofservice'],
 	usage: 'tos',
 	run: async (client, message, args) => {
-		let prefix;
-		const prefixes = db.fetch(`prefix_${message.guild.id}`);
-		if(prefixes == null) {
-			prefix = process.env.BOT_PREFIX;
-		}
-		else {
-			prefix = prefixes;
-		}
+		const settings = await Guild.findOne({
+			guildID: message.guild.id,
+		}, (err) => {
+			if (err) console.error(err);
+		});
 
+		const prefix = settings.prefix;
 		const pEmbed = new MessageEmbed()
 			.setThumbnail('https://www.symphonyenvironmental.com/wp-content/uploads/2019/10/Terms-and-conditions-icon-V2.png')
 			.setTitle('**Terms of Service**')
