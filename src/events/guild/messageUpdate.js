@@ -1,9 +1,13 @@
 /* eslint-disable no-empty */
 const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
-const db = require('quick.db');
+const Guild = require('../../models/guild');
 
 module.exports = async (client, oldMessage, newMessage) => {
+	const settings = await Guild.findOne({
+		guildID: newMessage.guild.id,
+	});
+
 	if(oldMessage.author.bot) {return;}
 	else {
 		const embed = new MessageEmbed()
@@ -13,7 +17,7 @@ module.exports = async (client, oldMessage, newMessage) => {
 				{ name: 'Before', value: oldMessage.content, inline: true },
 				{ name: 'After', value: newMessage.content, inline: true },
 			);
-		const logs = db.fetch(`messagelog_${oldMessage.guild.id}`);
+		const logs = settings.messagelog;
 		const channel = oldMessage.guild.channels.cache.get(logs);
 		if (!channel || channel === null) return;
 		channel.send(

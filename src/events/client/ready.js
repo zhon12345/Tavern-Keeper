@@ -7,7 +7,16 @@ module.exports = (client) =>{
 		useUnifiedTopology: true,
 	});
 
-	client.user.setActivity(`${BOT_PREFIX}help | ${client.commands.size} Commands`, { type: 'PLAYING' });
+	const botStatus = [
+		`${client.commands.size} Commands`,
+		`${client.users.cache.size} Users`,
+		`${client.guilds.cache.size} Servers`,
+	];
+
+	setInterval(function() {
+		const status = botStatus[Math.floor(Math.random() * botStatus.length)];
+		client.user.setActivity(`${BOT_PREFIX}help | ${status}`, { type: 'PLAYING' });
+	}, 7000);
 	console.log(`Connected to MongoDB as ${client.user.tag}`);
 	console.log(`Logged in as ${client.user.tag}`);
 	console.log('Version:', BOT_VERSION);

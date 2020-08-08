@@ -15,8 +15,6 @@ module.exports = {
 
 		const settings = await Guild.findOne({
 			guildID: message.guild.id,
-		}, (err) => {
-			if (err) console.error(err);
 		});
 		const prefix = settings.prefix;
 

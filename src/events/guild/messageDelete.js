@@ -1,10 +1,15 @@
 /* eslint-disable no-empty */
 const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
-const db = require('quick.db');
+const Guild = require('../../models/guild');
 
 module.exports = async (client, message) => {
 	if (message.author.bot) return;
+
+	const settings = await Guild.findOne({
+		guildID: message.guild.id,
+	});
+
 	const fetchedLogs = await message.guild.fetchAuditLogs({
 		limit: 1,
 		type: 'MESSAGE_DELETE',
@@ -12,7 +17,7 @@ module.exports = async (client, message) => {
 	const deletionLog = fetchedLogs.entries.first();
 	const { executor, target } = deletionLog;
 
-	const logs = db.fetch(`messagelog_${message.guild.id}`);
+	const logs = settings.messagelog;
 	const channel = message.guild.channels.cache.get(logs);
 	if (!channel || channel === null) {return;}
 	else if(target.id === message.author.id) {

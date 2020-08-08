@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const fetch = require('node-fetch');
-const db = require('quick.db');
+const Guild = require('../../models/guild');
 const { stripIndents } = require('common-tags');
 const url = 'https://hasteb.in/documents';
 const { MessageEmbed } = require('discord.js');
@@ -8,14 +8,20 @@ const { MessageEmbed } = require('discord.js');
 module.exports = async (client, messages) =>{
 	const guildArray = [];
 	const channelArray = [];
+
 	messages.forEach(async (mes) =>{
 		if(mes.partial) await mes.fetch();
 		guildArray.push(mes.guild);
 		channelArray.push(mes.channel);
 	});
+
+
 	const guild = guildArray[0];
-	const logsChannels = db.fetch(`modlog_${guild.id}`);
-	const logsChannel = client.channels.cache.get(logsChannels);
+	const settings = await Guild.findOne({
+		guildID: guild.id,
+	});
+	const logs = settings.modlog;
+	const logsChannel = client.channels.cache.get(logs);
 	if(!logsChannel || logsChannel === null) {return;}
 	else{
 		const output = messages.map((m, index) => `${new Date(m.createdAt).toLocaleString('en-US')} - ${m.author.tag}: ${m.content}`).join('\n');

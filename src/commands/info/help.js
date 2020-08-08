@@ -23,8 +23,6 @@ module.exports = {
 async function getAll(client, message) {
 	const settings = await Guild.findOne({
 		guildID: message.guild.id,
-	}, (err) => {
-		if (err) console.error(err);
 	});
 
 	const prefix = settings.prefix;
@@ -41,7 +39,7 @@ async function getAll(client, message) {
 
 	let categories;
 	if(!message.channel.nsfw) {
-		categories = [...new Set(client.commands.filter(cmd => cmd.category !== 'NSFW' && 'Owner').map(cmd =>cmd.category))];
+		categories = [...new Set(client.commands.filter(cmd => cmd.category !== 'NSFW', 'Owner').map(cmd =>cmd.category))];
 	}
 	else if(message.author.id !== BOT_OWNER) {
 		categories = [...new Set(client.commands.filter(cmd => cmd.category !== 'Owner').map(cmd =>cmd.category))];
@@ -61,8 +59,6 @@ async function getAll(client, message) {
 async function getCMD(client, message, input) {
 	const settings = await Guild.findOne({
 		guildID: message.guild.id,
-	}, (err) => {
-		if (err) console.error(err);
 	});
 
 	const prefix = settings.prefix;

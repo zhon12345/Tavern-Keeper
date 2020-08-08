@@ -1,5 +1,5 @@
 const moment = require('moment');
-const db = require('quick.db');
+const Guild = require('../../models/guild');
 
 const types = {
 	dm: 'DM',
@@ -13,13 +13,18 @@ const types = {
 
 module.exports = async (client, channel) => {
 	if(channel.type === 'dm') return;
+
+	const settings = await Guild.findOne({
+		guildID: channel.guild.id,
+	});
+
 	const fetchedLogs = await channel.guild.fetchAuditLogs({
 		type: 'CHANNEL_DELETE',
 	});
 	const auditLog = fetchedLogs.entries.first();
 	const { executor, target } = auditLog;
 
-	const logs = db.fetch(`serverlog_${channel.guild.id}`);
+	const logs = settings.serverlog;
 	const logchannel = channel.guild.channels.cache.get(logs);
 	if (!logchannel || logchannel === null) {return;}
 	else if(target.id == channel) {

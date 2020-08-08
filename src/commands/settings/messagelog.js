@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-const db = require('quick.db');
+const Guild = require('../../models/guild');
 
 module.exports = {
 	name: 'messagelog',
@@ -8,7 +7,7 @@ module.exports = {
 	aliases: [],
 	usage: 'messagelog <channel>',
 	guildOnly: true,
-	run: (client, message, args) => {
+	run: async (client, message, args) => {
 		if(!message.member.hasPermission('ADMINISTRATOR')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You must have the following permissions to use that: Administrator.',
@@ -16,9 +15,16 @@ module.exports = {
 		}
 
 		if (args[0] === 'off') {
-			db.set(`messagelog_${message.guild.id}`, null);
+			await Guild.updateOne(
+				{
+					guildID:message.guild.id,
+				},
+				{
+					'settings.messagelog': null,
+				},
+			);
 			message.channel.send(
-				'<:vSuccess:725270799098970112> Message logs has been turned off',
+				'<:vSuccess:725270799098970112> Mesasge logs has been turned off',
 			).then(message.delete());
 		}
 		else {
@@ -28,9 +34,16 @@ module.exports = {
 					'<:vError:725270799124004934> Please provide a valid channel.',
 				);
 			}
-			db.set(`messagelog_${message.guild.id}`, args[0].id);
+			await Guild.updateOne(
+				{
+					guildID: message.guild.id,
+				},
+				{
+					$set: { 'settings.messagelog': args[0].id },
+				},
+			);
 			message.channel.send(
-				`<:vSuccess:725270799098970112> Message logs will now be sent to ${args[0]}`,
+				`<:vSuccess:725270799098970112> Mesasge logs will now be sent to ${args[0]}`,
 			).then(message.delete());
 		}
 	},

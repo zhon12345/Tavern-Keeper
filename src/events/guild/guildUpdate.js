@@ -1,16 +1,20 @@
 const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
-const db = require('quick.db');
+const Guild = require('../../models/guild');
 
 
 module.exports = async (client, oldGuild, newGuild) => {
+	const settings = await Guild.findOne({
+		guildID: newGuild.guild.id,
+	});
+
 	const fetchedLogs = await newGuild.fetchAuditLogs({
 		type: 'GUILD_UPDATE',
 	});
 	const auditLog = fetchedLogs.entries.first();
 	const { executor, target } = auditLog;
 
-	const logs = db.fetch(`serverlog_${oldGuild.id}`);
+	const logs = settings.serverlog;
 	const logchannel = oldGuild.channels.cache.get(logs);
 	if (!logchannel || logchannel === null) {return;}
 	else if(target.id == oldGuild) {

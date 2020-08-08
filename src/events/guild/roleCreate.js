@@ -1,15 +1,18 @@
 const moment = require('moment');
-const db = require('quick.db');
-
+const Guild = require('../../models/guild');
 
 module.exports = async (client, role) => {
+	const settings = await Guild.findOne({
+		guildID: role.guild.id,
+	});
+
 	const fetchedLogs = await role.guild.fetchAuditLogs({
 		type: 'ROLE_CREATE',
 	});
 	const auditLog = fetchedLogs.entries.first();
 	const { executor, target } = auditLog;
 
-	const logs = db.fetch(`serverlog_${role.guild.id}`);
+	const logs = settings.serverlog;
 	const logchannel = role.guild.channels.cache.get(logs);
 	if (!logchannel || logchannel === null) {return;}
 	else if(target.id == role) {

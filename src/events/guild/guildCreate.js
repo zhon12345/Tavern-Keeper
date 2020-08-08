@@ -8,11 +8,13 @@ module.exports = async (client, guild) => {
 		guildID: guild.id,
 		guildName: guild.name,
 		prefix: process.env.BOT_PREFIX,
+		modlog: null,
+		serverlog: null,
+		messagelog: null,
+		antilinks: false,
 	});
 
-	guild.save()
-		.then(item => console.log(item))
-		.catch(err => console.log(err));
+	guild.save();
 
 	if(db.has('blacklist', guild.id)) {
 		guild.leave(guild.id);

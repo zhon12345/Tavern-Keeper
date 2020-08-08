@@ -1,14 +1,18 @@
 const moment = require('moment');
-const db = require('quick.db');
+const Guild = require('../../models/guild');
 
 module.exports = async (client, emoji) => {
+	const settings = await Guild.findOne({
+		guildID: emoji.guild.id,
+	});
+
 	const fetchedLogs = await emoji.guild.fetchAuditLogs({
 		type: 'EMOJI_CREATE',
 	});
 	const auditLog = fetchedLogs.entries.first();
 	const { executor, target } = auditLog;
 
-	const logs = db.fetch(`serverlog_${emoji.guild.id}`);
+	const logs = settings.serverlog;
 	const logchannel = emoji.guild.channels.cache.get(logs);
 	if (!logchannel || logchannel === null) {return;}
 	else if(target.id == emoji) {

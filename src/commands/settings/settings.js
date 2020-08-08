@@ -10,7 +10,6 @@ module.exports = {
 	aliases: ['setting'],
 	usage: 'settings',
 	run: async (client, message, args) => {
-
 		if(!message.member.hasPermission('ADMINISTRATOR')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You must have the following permissions to use that: Ban Members.',
@@ -19,8 +18,6 @@ module.exports = {
 
 		const settings = await Guild.findOne({
 			guildID: message.guild.id,
-		}, (err) => {
-			if (err) console.error(err);
 		});
 
 		const prefix = settings.prefix;
@@ -46,7 +43,7 @@ module.exports = {
 		}
 
 		let modlogs;
-		const modlog = db.get(`modlog_${message.guild.id}`);
+		const modlog = settings.modlog;
 		const mlog = `<#${modlog}>`;
 		if(modlog == null) {
 			modlogs = 'None';
@@ -56,7 +53,7 @@ module.exports = {
 		}
 
 		let serverlogs;
-		const serverlog = db.get(`serverlog_${message.guild.id}`);
+		const serverlog = settings.serverlog;
 		const slog = `<#${serverlog}>`;
 		if(serverlog == null) {
 			serverlogs = 'None';
@@ -66,7 +63,7 @@ module.exports = {
 		}
 
 		let messagelogs;
-		const messagelog = db.get(`messagelog_${message.guild.id}`);
+		const messagelog = settings.messagelog;
 		const msglog = `<#${messagelog}>`;
 		if(messagelog == null) {
 			messagelogs = 'None';

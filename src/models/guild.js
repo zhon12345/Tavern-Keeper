@@ -5,6 +5,12 @@ const guildSchema = mongoose.Schema({
 	guildID: String,
 	guildName: String,
 	prefix: String,
+	settings: {
+		modlog: String,
+		serverlog: String,
+		messagelog: String,
+		antilinks: Boolean,
+	},
 });
 
 module.exports = mongoose.model('Guild', guildSchema, 'guilds');

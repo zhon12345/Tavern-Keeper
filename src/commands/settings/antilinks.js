@@ -1,4 +1,4 @@
-const db = require('quick.db');
+const Guild = require('../../models/guild');
 
 module.exports = {
 	name: 'antilinks',
@@ -7,21 +7,29 @@ module.exports = {
 	aliases: [],
 	usage: 'antilinks <on/off>',
 	guildOnly: true,
-	run: (client, message, args) => {
+	run: async (client, message, args) => {
 		if(!message.member.hasPermission('ADMINISTRATOR')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You must have the following permissions to use that: Administrator.',
 			);
 		}
 
+		const settings = await Guild.findOne({
+			guildID: message.guild.id,
+		});
+
 		if (args[0] === 'off') {
-			db.set(`antilinks_${message.guild.id}`, false);
+			await settings.updateOne({
+				antilinks: false,
+			});
 			message.channel.send(
 				'<:vSuccess:725270799098970112> Anti Links has been turned off',
 			).then(message.delete());
 		}
 		else if (args[0] === 'on') {
-			db.set(`antilinks_${message.guild.id}`, true);
+			await settings.updateOne({
+				antilinks: true,
+			});
 			message.channel.send(
 				'<:vSuccess:725270799098970112> Anti Links has been turned on',
 			).then(message.delete());

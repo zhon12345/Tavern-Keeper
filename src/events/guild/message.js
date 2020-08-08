@@ -15,11 +15,15 @@ module.exports = async (client, message) => {
 				guildID: message.guild.id,
 				guildName: message.guild.name,
 				prefix: process.env.BOT_PREFIX,
+				settings:{
+					modlog: null,
+					serverlog: null,
+					messagelog: null,
+					antilinks: false,
+				},
 			});
 
-			newGuild.save()
-				.then(result => console.log(result))
-				.catch(err => console.error(err));
+			newGuild.save();
 
 			return message.channel.send(
 				'<:vError:725270799124004934> An error occured, please try again!',
@@ -27,7 +31,13 @@ module.exports = async (client, message) => {
 		}
 	});
 
-	const prefix = settings.prefix;
+	let prefix;
+	if(!settings.prefix) {
+		prefix = 'm!';
+	}
+	else {
+		prefix = settings.prefix;
+	}
 
 	if (message.author.bot) return;
 	if (!message.guild) return;
@@ -40,10 +50,10 @@ module.exports = async (client, message) => {
 		return message.channel.send(`My current prefix for this guild is \`${prefix}\``);
 	}
 
-	const antilinks = db.fetch(`antilinks_${message.guild.id}`);
+	const antilinks = settings.antilinks;
 	if (antilinks === true) {
 		if(is_url(message.content) || is_invite(message.content) === true) {
-			if(message.member.hasPermission('KICK_MEMBERS')) {
+			if(message.member.hasPermission('MANAGE_MESSAGES')) {
 				return;
 			}
 			else {

@@ -1,15 +1,19 @@
 const moment = require('moment');
-const db = require('quick.db');
+const Guild = require('../../models/guild');
 
 
 module.exports = async (client, oldMember, newMember) => {
+	const settings = await Guild.findOne({
+		guildID: newMember.guild.id,
+	});
+
 	const fetchedLogs = await newMember.guild.fetchAuditLogs({
 		type: 'MEMBER_UPDATE',
 	});
 	const auditLog = fetchedLogs.entries.first();
 	const { executor, target } = auditLog;
 
-	const logs = db.fetch(`serverlog_${oldMember.guild.id}`);
+	const logs = settings.serverlog;
 	const logchannel = oldMember.guild.channels.cache.get(logs);
 	if (!logchannel || logchannel === null) {return;}
 	else if(target.id == oldMember) {

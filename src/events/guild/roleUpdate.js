@@ -1,15 +1,19 @@
 const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
-const db = require('quick.db');
+const Guild = require('../../models/guild');
 
 module.exports = async (client, oldRole, newRole) => {
+	const settings = await Guild.findOne({
+		guildID: newRole.guild.id,
+	});
+
 	const fetchedLogs = await newRole.guild.fetchAuditLogs({
 		type: 'ROLE_UPDATE',
 	});
 	const auditLog = fetchedLogs.entries.first();
 	const { executor, target } = auditLog;
 
-	const logs = db.fetch(`serverlog_${oldRole.guild.id}`);
+	const logs = settings.serverlog;
 	const logchannel = oldRole.guild.channels.cache.get(logs);
 	if (!logchannel || logchannel === null) {return;}
 	else if(target.id == oldRole) {
