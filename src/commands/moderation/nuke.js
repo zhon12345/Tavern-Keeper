@@ -1,7 +1,6 @@
-/* eslint-disable no-unused-vars */
 const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
-const db = require('quick.db');
+const Guild = require('../../models/guild');
 
 module.exports = {
 	name: 'nuke',
@@ -10,6 +9,13 @@ module.exports = {
 	aliases: [],
 	usage: 'nuke',
 	run: async (client, message, args) => {
+		const settings = await Guild.findOne({
+			guildID: message.guild.id,
+		});
+		const logs = settings.settings.modlog;
+		const channel = message.guild.channels.cache.get(logs);
+		if (!channel || channel === null) return;
+
 		if (!message.member.hasPermission('ADMINISTRATOR')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You must have the following permissions to use that: Administrator.',
@@ -39,9 +45,6 @@ module.exports = {
 			ch.send(embed);
 		}); message.channel.delete();
 
-		const logs = db.fetch(`modlog_${message.guild.id}`);
-		const channel = message.guild.channels.cache.get(logs);
-		if (!channel) return;
 		channel.send(
 			`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` ☢ ${message.channel.name} has been nuked by **${message.author.username}**#${message.author.discriminator}\n\`[Reason]\` ${Reason}`,
 		);

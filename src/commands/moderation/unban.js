@@ -1,5 +1,5 @@
 const moment = require('moment');
-const db = require('quick.db');
+const Guild = require('../../models/guild');
 
 module.exports = {
 	name: 'unban',
@@ -9,6 +9,13 @@ module.exports = {
 	usage: 'unban <user> <reason>',
 	guildOnly: true,
 	run: async (client, message, args) => {
+		const settings = await Guild.findOne({
+			guildID: message.guild.id,
+		});
+		const logs = settings.settings.modlog;
+		const channel = message.guild.channels.cache.get(logs);
+		if (!channel || channel === null) return;
+
 		if(!message.member.hasPermission('BAN_MEMBERS')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You must have the following permissions to use that: Ban Members.',
@@ -38,9 +45,6 @@ module.exports = {
 		}
 
 		message.guild.members.unban(user.user);
-		const logs = db.fetch(`modlog_${message.guild.id}`);
-		const channel = message.guild.channels.cache.get(logs);
-		if (!channel) return;
 		channel.send(
 			`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🔧 **${message.author.username}**#${message.author.discriminator} unbanned **${user.user.username}**#${user.user.discriminator} (ID: ${user.user.id})\n\`[Reason]\` ${Reason}`,
 		);

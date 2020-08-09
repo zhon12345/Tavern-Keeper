@@ -2,7 +2,7 @@
 const Guild = require('../../models/guild');
 
 module.exports = async (client, guild) => {
-	Guild.deleteOne({
+	await Guild.deleteOne({
 		guildID: guild.id,
 	});
 };

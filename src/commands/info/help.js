@@ -38,11 +38,11 @@ async function getAll(client, message) {
 		`]);
 
 	let categories;
-	if(!message.channel.nsfw) {
-		categories = [...new Set(client.commands.filter(cmd => cmd.category !== 'NSFW', 'Owner').map(cmd =>cmd.category))];
-	}
-	else if(message.author.id !== BOT_OWNER) {
+	if(message.author.id !== BOT_OWNER) {
 		categories = [...new Set(client.commands.filter(cmd => cmd.category !== 'Owner').map(cmd =>cmd.category))];
+	}
+	else if(!message.channel.nsfw) {
+		categories = [...new Set(client.commands.filter(cmd => cmd.category !== 'NSFW').map(cmd =>cmd.category))];
 	}
 	else {
 		categories = [...new Set(client.commands.map(cmd => cmd.category))];

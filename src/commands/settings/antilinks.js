@@ -14,22 +14,28 @@ module.exports = {
 			);
 		}
 
-		const settings = await Guild.findOne({
-			guildID: message.guild.id,
-		});
-
 		if (args[0] === 'off') {
-			await settings.updateOne({
-				antilinks: false,
-			});
+			await Guild.updateOne(
+				{
+					guildID: message.guild.id,
+				},
+				{
+					'settings.antilinks': false,
+				},
+			);
 			message.channel.send(
 				'<:vSuccess:725270799098970112> Anti Links has been turned off',
 			).then(message.delete());
 		}
 		else if (args[0] === 'on') {
-			await settings.updateOne({
-				antilinks: true,
-			});
+			await Guild.updateOne(
+				{
+					guildID: message.guild.id,
+				},
+				{
+					'settings.antilinks': true,
+				},
+			);
 			message.channel.send(
 				'<:vSuccess:725270799098970112> Anti Links has been turned on',
 			).then(message.delete());

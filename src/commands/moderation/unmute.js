@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 const moment = require('moment');
 const db = require('quick.db');
+const Guild = require('../../models/guild');
 
 module.exports = {
 	name: 'unmute',
@@ -10,6 +11,13 @@ module.exports = {
 	usage: 'unmute <user> <reason>',
 	guildOnly: true,
 	run: async (client, message, args) => {
+		const settings = await Guild.findOne({
+			guildID: message.guild.id,
+		});
+		const logs = settings.settings.modlog;
+		const channel = message.guild.channels.cache.get(logs);
+		if (!channel || channel === null) return;
+
 		if(!message.member.hasPermission('KICK_MEMBERS')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You must have the following permissions to use that: Kick Members.',
@@ -56,10 +64,6 @@ module.exports = {
 			);
 		}
 		if(member.roles.cache.has(muteRole)) {
-			const logs = db.fetch(`modlog_${message.guild.id}`);
-			const channel = message.guild.channels.cache.get(logs);
-			if (!channel || channel === null) return;
-
 			try {
 				await member.send(`You have been unmuted in ${message.guild}\n\`[Reason]\` ${Reason}`);
 			}

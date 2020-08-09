@@ -6,6 +6,7 @@ const guildSchema = mongoose.Schema({
 	guildName: String,
 	prefix: String,
 	settings: {
+		id: mongoose.Schema.Types.ObjectId,
 		modlog: String,
 		serverlog: String,
 		messagelog: String,

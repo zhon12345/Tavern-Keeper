@@ -1,6 +1,7 @@
 const db = require('quick.db');
 const moment = require('moment');
 const ms = require('ms');
+const Guild = require('../../models/guild');
 
 module.exports = {
 	name: 'mute',
@@ -10,6 +11,13 @@ module.exports = {
 	usage: 'tempmute <user> <reason> [time]',
 	guildOnly: true,
 	run: async (client, message, args) => {
+		const settings = await Guild.findOne({
+			guildID: message.guild.id,
+		});
+		const logs = settings.settings.modlog;
+		const channel = message.guild.channels.cache.get(logs);
+		if (!channel || channel === null) return;
+
 		if(!message.member.hasPermission('KICK_MEMBERS')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You must have the following permissions to use that: Kick Members.',
@@ -71,11 +79,6 @@ module.exports = {
 					'<:vError:725270799124004934> Please provide a reason.',
 				);
 			}
-
-			const logs = db.fetch(`modlog_${message.guild.id}`);
-			const channel = message.guild.channels.cache.get(logs);
-			if (!channel || channel === null) return;
-
 			try {
 				await member.send(`You have been muted in ${message.guild}\n\`[Reason]\` ${Reason}`);
 			}
@@ -100,11 +103,6 @@ module.exports = {
 					'<:vError:725270799124004934> Please provide a reason.',
 				);
 			}
-
-			const logs = db.fetch(`modlog_${message.guild.id}`);
-			const channel = message.guild.channels.cache.get(logs);
-			if (!channel || channel === null) return;
-
 			try {
 				await member.send(`You have been tempmuted for ${time} in ${message.guild}\n\`[Reason]\` ${Reason}`);
 			}
@@ -123,10 +121,6 @@ module.exports = {
 		}
 
 		setTimeout(function() {
-			const logs = db.fetch(`modlog_${message.guild.id}`);
-			const channel = message.guild.channels.cache.get(logs);
-			if (!channel || channel === null) return;
-
 			try {
 				member.send(`You have been unmuted in ${message.guild}\n\`[Reason]\` Temporary mute completed`);
 			}

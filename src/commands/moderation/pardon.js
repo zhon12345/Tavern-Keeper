@@ -1,5 +1,6 @@
 const db = require('quick.db');
 const moment = require('moment');
+const Guild = require('../../models/guild');
 
 module.exports = {
 	name: 'pardon',
@@ -8,7 +9,12 @@ module.exports = {
 	usage: 'pardon <user> <amount> <reason>',
 	description: 'Remove strikes from a specified person.',
 	run: async (client, message, args) => {
-
+		const settings = await Guild.findOne({
+			guildID: message.guild.id,
+		});
+		const logs = settings.settings.modlog;
+		const channel = message.guild.channels.cache.get(logs);
+		if (!channel || channel === null) return;
 
 		if(!message.member.hasPermission('BAN_MEMBERS')) {
 			return message.channel.send(
@@ -60,10 +66,6 @@ module.exports = {
 			).then(message.delete({ timeout: 5000 })).then(embed => {embed.delete({ timeout: 5000 });});
 		}
 		else {
-			const logs = db.fetch(`modlog_${message.guild.id}`);
-			const channel = message.guild.channels.cache.get(logs);
-			if (!channel || channel === null) return;
-
 			try {
 				await member.send(`You have been pardoned ${amount} strikes in ${message.guild}\n\`[Reason]\` ${Reason}`);
 			}

@@ -21,6 +21,14 @@ module.exports = {
 		});
 
 		const prefix = settings.prefix;
+		let antilinks;
+		const alinks = settings.settings.antilinks;
+		if(alinks === false) {
+			antilinks = 'Off';
+		}
+		else {
+			antilinks = 'On';
+		}
 
 		let mutedrole;
 		const muterole = db.get(`muterole_${message.guild.id}`);
@@ -43,7 +51,7 @@ module.exports = {
 		}
 
 		let modlogs;
-		const modlog = settings.modlog;
+		const modlog = settings.settings.modlog;
 		const mlog = `<#${modlog}>`;
 		if(modlog == null) {
 			modlogs = 'None';
@@ -53,7 +61,7 @@ module.exports = {
 		}
 
 		let serverlogs;
-		const serverlog = settings.serverlog;
+		const serverlog = settings.settings.serverlog;
 		const slog = `<#${serverlog}>`;
 		if(serverlog == null) {
 			serverlogs = 'None';
@@ -63,7 +71,7 @@ module.exports = {
 		}
 
 		let messagelogs;
-		const messagelog = settings.messagelog;
+		const messagelog = settings.settings.messagelog;
 		const msglog = `<#${messagelog}>`;
 		if(messagelog == null) {
 			messagelogs = 'None';
@@ -115,6 +123,7 @@ module.exports = {
 			.setColor('BLUE')
 			.addField('Server Settings', [
 				`**❯ Prefix:** ${prefix}`,
+				`**❯ Anti Links:** ${antilinks}`,
 				`**❯ Muted Role:** ${mutedrole}`,
 				`**❯ Verified Role:** ${verifiedrole}`,
 				`**❯ Mod Log:** ${modlogs}`,

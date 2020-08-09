@@ -14,14 +14,15 @@ module.exports = {
 			);
 		}
 
-		const settings = await Guild.findOne({
-			guildID: message.guild.id,
-		});
-
 		if (args[0] === 'off') {
-			await settings.updateOne({
-				modlog: null,
-			});
+			await Guild.updateOne(
+				{
+					guildID: message.guild.id,
+				},
+				{
+					'settings.modlog': null,
+				},
+			);
 			message.channel.send(
 				'<:vSuccess:725270799098970112> Mod logs has been turned off',
 			).then(message.delete());
@@ -33,9 +34,14 @@ module.exports = {
 					'<:vError:725270799124004934> Please provide a valid channel.',
 				);
 			}
-			await settings.updateOne({
-				modlog: args[0].id,
-			});
+			await Guild.updateOne(
+				{
+					guildID: message.guild.id,
+				},
+				{
+					'settings.modlog': args[0].id,
+				},
+			);
 			message.channel.send(
 				`<:vSuccess:725270799098970112> Mod logs will now be sent to ${args[0]}`,
 			).then(message.delete());

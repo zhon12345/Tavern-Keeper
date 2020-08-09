@@ -17,7 +17,7 @@ module.exports = async (client, oldMessage, newMessage) => {
 				{ name: 'Before', value: oldMessage.content, inline: true },
 				{ name: 'After', value: newMessage.content, inline: true },
 			);
-		const logs = settings.messagelog;
+		const logs = settings.settings.messagelog;
 		const channel = oldMessage.guild.channels.cache.get(logs);
 		if (!channel || channel === null) return;
 		channel.send(

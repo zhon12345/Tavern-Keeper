@@ -1,5 +1,5 @@
 const moment = require('moment');
-const db = require('quick.db');
+const Guild = require('../../models/guild');
 
 module.exports = {
 	name: 'ban',
@@ -9,7 +9,10 @@ module.exports = {
 	usage: 'ban <user> <reason>',
 	guildOnly: true,
 	run: async (client, message, args) => {
-		const logs = db.fetch(`modlog_${message.guild.id}`);
+		const settings = await Guild.findOne({
+			guildID: message.guild.id,
+		});
+		const logs = settings.settings.modlog;
 		const channel = message.guild.channels.cache.get(logs);
 		if (!channel || channel === null) return;
 

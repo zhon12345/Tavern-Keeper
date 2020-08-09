@@ -20,7 +20,7 @@ module.exports = async (client, messages) =>{
 	const settings = await Guild.findOne({
 		guildID: guild.id,
 	});
-	const logs = settings.modlog;
+	const logs = settings.settings.modlog;
 	const logsChannel = client.channels.cache.get(logs);
 	if(!logsChannel || logsChannel === null) {return;}
 	else{

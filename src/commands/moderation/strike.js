@@ -1,5 +1,6 @@
 const db = require('quick.db');
 const moment = require('moment');
+const Guild = require('../../models/guild');
 
 module.exports = {
 	name: 'strike',
@@ -9,6 +10,12 @@ module.exports = {
 	usage: 'strike <user> [amount] <reason>',
 	guildOnly: true,
 	run: async (client, message, args) => {
+		const settings = await Guild.findOne({
+			guildID: message.guild.id,
+		});
+		const logs = settings.settings.modlog;
+		const channel = message.guild.channels.cache.get(logs);
+		if (!channel || channel === null) return;
 
 		if(!message.member.hasPermission('KICK_MEMBERS')) {
 			return message.channel.send(
@@ -62,10 +69,6 @@ module.exports = {
 		const warnings = db.get(`warnings_${message.guild.id}_${member.id}`);
 
 		if(warnings <= 0) {
-			const logs = db.fetch(`modlog_${message.guild.id}`);
-			const channel = message.guild.channels.cache.get(logs);
-			if(!channel || channel === null) return;
-
 			try {
 				await member.send(`You have been given ${amount}strikes in ${message.guild}\n\`[Reason]\` ${Reason}`);
 			}
@@ -82,10 +85,6 @@ module.exports = {
 			).then(message.delete());
 		}
 		else {
-			const logs = db.fetch(`modlog_${message.guild.id}`);
-			const channel = message.guild.channels.cache.get(logs);
-			if(!channel || channel === null) return;
-
 			try {
 				await member.send(`You have been given ${amount} strikes in ${message.guild}\n\`[Reason]\` ${Reason}`);
 			}

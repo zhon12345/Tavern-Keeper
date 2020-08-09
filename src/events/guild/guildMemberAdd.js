@@ -1,7 +1,12 @@
 const moment = require('moment');
 const db = require('quick.db');
+const Guild = require('../../models/guild');
 
 module.exports = async (client, member) => {
+	const settings = await Guild.findOne({
+		guildID: member.guild.id,
+	});
+
 	const welcome = db.get(`joinchannel_${member.guild.id}`);
 	const channel = member.guild.channels.cache.get(welcome);
 	if (!channel || channel === null) return;
@@ -16,7 +21,7 @@ module.exports = async (client, member) => {
 		.split('{guild.membercount}').join(member.guild.memberCount);
 	channel.send(message);
 
-	const logs = db.fetch(`serverlog_${member.guild.id}`);
+	const logs = settings.settings.serverlog;
 	const logchannel = member.guild.channels.cache.get(logs);
 	if (!logchannel || logchannel === null) return;
 	logchannel.send(

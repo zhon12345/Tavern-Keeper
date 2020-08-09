@@ -1,6 +1,6 @@
-const db = require('quick.db');
-const { MessageEmbed } = require('discord.js');
 const { BOT_OWNER } = process.env;
+const Blacklist = require('../../models/blacklist');
+const mongoose = require('mongoose');
 
 module.exports = {
 	name: 'blacklist',
@@ -9,7 +9,7 @@ module.exports = {
 	aliases: [],
 	usage: 'blacklist [add/remove] [guild]',
 	guildOnly: true,
-	run: (client, message, args) => {
+	run: async (client, message, args) => {
 		if(message.author.id !== BOT_OWNER) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You must have the following permissions to use that: Bot Owner.',
@@ -23,43 +23,51 @@ module.exports = {
 					'<:vError:725270799124004934> Please provide a valid guild id.',
 				);
 			}
-			else {guild = args[1];}
-		}
-
-
-		if (args[0] === 'add') {
-			if (db.has('blacklist', guild)) {
-				return message.channel.send(
-					'<:vError:725270799124004934> The specified guild is already blacklisted.',
-				).then(message.delete());
-			}
 			else {
-				db.push('blacklist', guild);
-				message.channel.send(
-					`<:vSuccess:725270799098970112> Sucessfully added ${guild} to blacklist.`,
-				).then(() => client.guilds.cache.get(guild).leave()).then(message.delete());
+				guild = args[1];
 			}
+		}
+		if (args[0] === 'add') {
+			Blacklist.findOne(
+				{ guildID: guild },
+				(err, blist) => {
+					if (err) console.error(err);
+					if (!blist) {
+						const newList = new Blacklist({
+							_id: mongoose.Types.ObjectId(),
+							guildID: guild,
+							guildName: client.guilds.cache.get(guild).name,
+						});
+
+						newList.save();
+						client.guilds.cache.get(guild).leave();
+						message.channel.send(
+							`<:vSuccess:725270799098970112> Sucessfully added ${client.guilds.cache.get(guild)} to blacklist.`,
+						);
+					}
+					else {
+						return message.channel.send(
+							'<:vError:725270799124004934> The specified guild is already blacklisted.',
+						);
+					}
+				});
 		}
 		else if (args[0] === 'remove') {
-			if (!db.has('blacklist', guild)) {
-				return message.channel.send(
-					'<:vError:725270799124004934> The specified guild is not blacklisted.',
-				).then(message.delete());
-			}
-			else {
-				db.delete('blacklist', guild);
-				message.channel.send(
-					`<:vSuccess:725270799098970112> Sucessfully removed ${guild} from blacklist.`,
-				).then(message.delete());
-			}
-		}
-		else {
-			const blacklist = db.get('blacklist');
-			const embed = new MessageEmbed()
-				.setTitle('Blacklisted guilds')
-				.setDescription(blacklist ? blacklist : 'None')
-				.setColor('BLUE');
-			return message.channel.send(embed);
+			Blacklist.findOneAndDelete(
+				{ guildID: guild },
+				(err, blist) => {
+					if (err) console.error(err);
+					if (!blist) {
+						return message.channel.send(
+							'<:vError:725270799124004934> The specified guild is not blacklisted.',
+						);
+					}
+					else {
+						message.channel.send(
+							`<:vSuccess:725270799098970112> Sucessfully removed ${blist.guildName} from blacklist.`,
+						);
+					}
+				});
 		}
 	},
 };

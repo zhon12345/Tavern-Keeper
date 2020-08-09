@@ -1,9 +1,9 @@
-/* eslint-disable no-useless-escape */
+/* eslint-disable no-unused-vars */
 const fetch = require('node-fetch');
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed, Client } = require('discord.js');
 const { clean } = require('../../functions');
-const url = 'https://hasteb.in/documents';
 const { BOT_OWNER } = process.env;
+const client = new Client();
 
 module.exports = {
 	name: 'eval',
@@ -12,6 +12,8 @@ module.exports = {
 	description: 'Evaluate a specified JavaScript code.',
 	usage: 'eval <code>',
 	run: async (bot, message, args) => {
+		const url = 'https://hasteb.in/documents';
+
 		if(message.author.id !== BOT_OWNER) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You must have the following permissions to use that: Bot Owner.',
@@ -53,7 +55,7 @@ module.exports = {
 					embed.addField('Output', `https://hasteb.in/${response.key}.js`).setColor('GREEN');
 				}
 				else {
-					embed.addField('Output', '```js\n' + output + '```').setColor('GREEN');
+					embed.addField('Output', '```js\n' + output	 + '```').setColor('GREEN');
 				}
 
 				message.channel.send(embed);

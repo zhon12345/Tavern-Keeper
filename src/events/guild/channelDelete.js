@@ -23,8 +23,9 @@ module.exports = async (client, channel) => {
 	});
 	const auditLog = fetchedLogs.entries.first();
 	const { executor, target } = auditLog;
+	if(!executor) return;
 
-	const logs = settings.serverlog;
+	const logs = settings.settings.serverlog;
 	const logchannel = channel.guild.channels.cache.get(logs);
 	if (!logchannel || logchannel === null) {return;}
 	else if(target.id == channel) {

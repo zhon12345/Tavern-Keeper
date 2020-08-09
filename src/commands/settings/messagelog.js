@@ -39,7 +39,7 @@ module.exports = {
 					guildID: message.guild.id,
 				},
 				{
-					$set: { 'settings.messagelog': args[0].id },
+					'settings.messagelog': args[0].id,
 				},
 			);
 			message.channel.send(

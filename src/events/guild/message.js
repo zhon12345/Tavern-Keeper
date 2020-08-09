@@ -3,8 +3,20 @@ const moment = require('moment');
 const { is_url, is_invite } = require('../../functions');
 const mongoose = require('mongoose');
 const Guild = require('../../models/guild');
+const Blacklist = require('../../models/blacklist');
 
 module.exports = async (client, message) => {
+	await Blacklist.findOne({
+		guildID: message.guild.id,
+	}, (err, guild) => {
+		if (err) console.error(err);
+		if (guild.guildID === message.guild.id) {
+			return;
+		}
+	});
+	if (message.author.bot) return;
+	if (!message.guild) return;
+
 	const settings = await Guild.findOne({
 		guildID: message.guild.id,
 	}, (err, guild) => {
@@ -16,6 +28,7 @@ module.exports = async (client, message) => {
 				guildName: message.guild.name,
 				prefix: process.env.BOT_PREFIX,
 				settings:{
+					id: mongoose.Types.ObjectId(),
 					modlog: null,
 					serverlog: null,
 					messagelog: null,
@@ -38,9 +51,6 @@ module.exports = async (client, message) => {
 	else {
 		prefix = settings.prefix;
 	}
-
-	if (message.author.bot) return;
-	if (!message.guild) return;
 
 	if(message.content === `<@${client.user.id}>`) {
 		return message.channel.send(`My current prefix for this guild is \`${prefix}\``);
@@ -73,7 +83,7 @@ module.exports = async (client, message) => {
 					}
 
 					db.set(`warnings_${message.guild.id}_${message.author.id}`, 1);
-					const logs = db.fetch(`modlog_${message.guild.id}`);
+					const logs = settings.settings.modlog;
 					const channel = message.guild.channels.cache.get(logs);
 					channel.send(
 						`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🚩 **${client.user.username}**#${client.user.discriminator} gave \`1\` strikes to **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id})\n\`[Reason]\` Sending Links in ${message.channel}`,
@@ -88,7 +98,7 @@ module.exports = async (client, message) => {
 					}
 
 					db.add(`warnings_${message.guild.id}_${message.author.id}`, 1);
-					const logs = db.fetch(`modlog_${message.guild.id}`);
+					const logs = settings.settings.modlog;
 					const channel = message.guild.channels.cache.get(logs);
 					if (!channel) return;
 					channel.send(

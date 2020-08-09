@@ -1,7 +1,12 @@
 const moment = require('moment');
 const db = require('quick.db');
+const Guild = require('../../models/guild');
 
 module.exports = async (client, member) => {
+	const settings = await Guild.findOne({
+		guildID: member.guild.id,
+	});
+
 	const welcome = db.get(`joinchannel_${member.guild.id}`);
 	const goodbye = db.get(`leavechannel_${member.guild.id}`);
 	let channel = member.guild.channels.cache.get(goodbye);
@@ -28,7 +33,7 @@ module.exports = async (client, member) => {
 	const memberKicked = isKicked.entries.first().target;
 	const memberBanned = isBanned.entries.first().target;
 
-	const logs = db.fetch(`serverlog_${member.guild.id}`);
+	const logs = settings.settings.serverlog;
 	const logchannel = member.guild.channels.cache.get(logs);
 	if (!logchannel || logchannel === null) {return;}
 	else if(memberKicked.id == member) {
