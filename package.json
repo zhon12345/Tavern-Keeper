@@ -30,7 +30,7 @@
     "humanize-duration": "^3.23.1",
     "mathjs": "^7.1.0",
     "moment": "^2.27.0",
-    "mongoose": "^5.9.27",
+    "mongoose": "^5.9.28",
     "ms": "^2.1.2",
     "node-fetch": "^2.6.0",
     "nodemon": "^2.0.4",
