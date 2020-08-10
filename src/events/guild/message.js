@@ -3,17 +3,8 @@ const moment = require('moment');
 const { is_url, is_invite } = require('../../functions');
 const mongoose = require('mongoose');
 const Guild = require('../../models/guild');
-const Blacklist = require('../../models/blacklist');
 
 module.exports = async (client, message) => {
-	await Blacklist.findOne({
-		guildID: message.guild.id,
-	}, (err, guild) => {
-		if (err) console.error(err);
-		if (guild.guildID === message.guild.id) {
-			return;
-		}
-	});
 	if (message.author.bot) return;
 	if (!message.guild) return;
 

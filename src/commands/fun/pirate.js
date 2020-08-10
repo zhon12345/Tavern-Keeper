@@ -1,5 +1,4 @@
-const { wordTrans } = require('custom-translate');
-const dictionary = require('../../assets/json/pirate');
+const fetch = require('node-fetch');
 
 module.exports = {
 	name: 'pirate',
@@ -14,8 +13,17 @@ module.exports = {
 				'<:vError:725270799124004934> Please provide valid text.',
 			);
 		}
-		else {
-			message.channel.send(wordTrans(text, dictionary));
+		const url = `https://api.funtranslations.com/translate/pirate.json?text=${text}`;
+
+		let response;
+		try {
+			response = await fetch(url).then(res => res.json());
 		}
+		catch (e) {
+			return message.channel.send(
+				'<:vError:725270799124004934> An error occured, please try again!',
+			);
+		}
+		message.channel.send(response.contents.translated);
 	},
 };
