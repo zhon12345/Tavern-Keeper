@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-
 module.exports = {
 	name: 'lenny',
 	category: 'Fun',

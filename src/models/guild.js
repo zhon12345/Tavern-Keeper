@@ -5,6 +5,7 @@ const guildSchema = mongoose.Schema({
 	guildID: String,
 	guildName: String,
 	prefix: String,
+	blacklisted: Boolean,
 	settings: {
 		id: mongoose.Schema.Types.ObjectId,
 		modlog: String,

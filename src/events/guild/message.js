@@ -18,6 +18,7 @@ module.exports = async (client, message) => {
 				guildID: message.guild.id,
 				guildName: message.guild.name,
 				prefix: process.env.BOT_PREFIX,
+				blacklisted: false,
 				settings:{
 					id: mongoose.Types.ObjectId(),
 					modlog: null,
@@ -43,16 +44,13 @@ module.exports = async (client, message) => {
 		prefix = settings.prefix;
 	}
 
-	if(message.content === `<@${client.user.id}>`) {
+	if(message.content === `<@${client.user.id}>` || message.content === `<@!${client.user.id}>`) {
 		return message.channel.send(`My current prefix for this guild is \`${prefix}\``);
 	}
 
-	if(message.content === `<@!${client.user.id}>`) {
-		return message.channel.send(`My current prefix for this guild is \`${prefix}\``);
-	}
+	if (settings.blacklisted === true) return;
 
-	const antilinks = settings.antilinks;
-	if (antilinks === true) {
+	if (settings.settings.antilinks === true) {
 		if(is_url(message.content) || is_invite(message.content) === true) {
 			if(message.member.hasPermission('MANAGE_MESSAGES')) {
 				return;
@@ -101,7 +99,6 @@ module.exports = async (client, message) => {
 	}
 
 	if (!message.content.startsWith(prefix)) return;
-
 	if (!message.member) message.member = await message.guild.fetchMember(message);
 
 	const args = message.content.slice(prefix.length).trim().split(/ +/g);

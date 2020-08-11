@@ -1,6 +1,5 @@
 const { BOT_OWNER } = process.env;
-const Blacklist = require('../../models/blacklist');
-const mongoose = require('mongoose');
+const Guild = require('../../models/guild');
 
 module.exports = {
 	name: 'blacklist',
@@ -27,47 +26,48 @@ module.exports = {
 				guild = args[1];
 			}
 		}
-		if (args[0] === 'add') {
-			Blacklist.findOne(
-				{ guildID: guild },
-				(err, blist) => {
-					if (err) console.error(err);
-					if (!blist) {
-						const newList = new Blacklist({
-							_id: mongoose.Types.ObjectId(),
-							guildID: guild,
-							guildName: client.guilds.cache.get(guild).name,
-						});
 
-						newList.save();
-						client.guilds.cache.get(guild).leave();
-						message.channel.send(
-							`<:vSuccess:725270799098970112> Sucessfully added ${client.guilds.cache.get(guild)} to blacklist.`,
-						);
-					}
-					else {
-						return message.channel.send(
-							'<:vError:725270799124004934> The specified guild is already blacklisted.',
-						);
-					}
-				});
+		const settings = await Guild.findOne({
+			guildID: guild,
+		});
+
+		if (args[0] === 'add') {
+			if(settings.blacklisted === true) {
+				return message.channel.send(
+					'<:vError:725270799124004934> The specified guild is already blacklisted.',
+				);
+			}
+			else {
+				await Guild.updateOne(
+					{
+						guildID: guild,
+					},
+					{
+						blacklisted: true,
+					});
+				message.channel.send(
+					`<:vSuccess:725270799098970112> Sucessfully added ${client.guilds.cache.get(guild)} to blacklist.`,
+				);
+			}
 		}
 		else if (args[0] === 'remove') {
-			Blacklist.findOneAndDelete(
-				{ guildID: guild },
-				(err, blist) => {
-					if (err) console.error(err);
-					if (!blist) {
-						return message.channel.send(
-							'<:vError:725270799124004934> The specified guild is not blacklisted.',
-						);
-					}
-					else {
-						message.channel.send(
-							`<:vSuccess:725270799098970112> Sucessfully removed ${blist.guildName} from blacklist.`,
-						);
-					}
-				});
+			if(settings.blacklisted === false) {
+				return message.channel.send(
+					'<:vError:725270799124004934> The specified guild is not blacklisted.',
+				);
+			}
+			else {
+				await Guild.updateOne(
+					{
+						guildID: guild,
+					},
+					{
+						blacklisted: false,
+					});
+				message.channel.send(
+					`<:vSuccess:725270799098970112> Sucessfully removed ${settings.guildName} to blacklist.`,
+				);
+			}
 		}
 	},
 };
