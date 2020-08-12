@@ -47,7 +47,7 @@ module.exports = {
 					});
 				message.channel.send(
 					`<:vSuccess:725270799098970112> Sucessfully added ${client.guilds.cache.get(guild)} to blacklist.`,
-				);
+				).then(message.delete());
 			}
 		}
 		else if (args[0] === 'remove') {
@@ -66,7 +66,7 @@ module.exports = {
 					});
 				message.channel.send(
 					`<:vSuccess:725270799098970112> Sucessfully removed ${settings.guildName} to blacklist.`,
-				);
+				).then(message.delete());
 			}
 		}
 	},

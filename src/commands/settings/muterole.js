@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-const db = require('quick.db');
+const Guild = require('../../models/guild');
 
 module.exports = {
 	name: 'muterole',
@@ -8,17 +7,23 @@ module.exports = {
 	aliases: [],
 	usage: 'muterole <role>',
 	guildOnly: true,
-	run: (client, message, args) => {
+	run: async (client, message, args) => {
 		if(!message.member.hasPermission('ADMINISTRATOR')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You must have the following permissions to use that: Administrator.',
 			);
 		}
-
 		if (args[0] === 'off') {
-			db.set(`muterole_${message.guild.id}`, null);
+			await Guild.updateOne(
+				{
+					guildID: message.guild.id,
+				},
+				{
+					'settings.muterole': null,
+				},
+			);
 			message.channel.send(
-				'<:vSuccess:725270799098970112> Muted role has been turned off',
+				'<:vSuccess:725270799098970112> Muted role has been set to `None`.',
 			).then(message.delete());
 		}
 		else {
@@ -28,9 +33,16 @@ module.exports = {
 					'<:vError:725270799124004934> Please provide a valid role.',
 				);
 			}
-			db.set(`muterole_${message.guild.id}`, args[0].id);
+			await Guild.updateOne(
+				{
+					guildID: message.guild.id,
+				},
+				{
+					'settings.muterole': args[0].id,
+				},
+			);
 			message.channel.send(
-				`<:vSuccess:725270799098970112> Muted role has been set to ${args[0]}`,
+				`<:vSuccess:725270799098970112> Muted role has been set to \`@${args[0].name}\``,
 			).then(message.delete());
 		}
 	},

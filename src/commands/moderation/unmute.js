@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
 const moment = require('moment');
-const db = require('quick.db');
 const Guild = require('../../models/guild');
 
 module.exports = {
@@ -50,34 +48,45 @@ module.exports = {
 			);
 		}
 
-		const verifiedRole = db.fetch(`verifiedrole_${message.guild.id}`);
-		if(!verifiedRole) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Verified role not found.',
-			);
-		}
-
-		const muteRole = db.fetch(`muterole_${message.guild.id}`);
+		const verifiedRole = settings.settings.verifyrole;
+		const muteRole = settings.settings.muterole;
 		if (!muteRole) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Mute role not found.',
 			);
 		}
 		if(member.roles.cache.has(muteRole)) {
-			try {
-				await member.send(`You have been unmuted in ${message.guild}\n\`[Reason]\` ${Reason}`);
+			if(!verifiedRole || verifiedRole === null) {
+				try {
+					await member.send(`You have been unmuted in ${message.guild}\n\`[Reason]\` ${Reason}`);
+				}
+				catch(err) {
+					await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+				}
+				member.roles.remove(muteRole);
+				channel.send(
+					`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🔊 **${message.author.username}**#${message.author.discriminator} unmuted **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` ${Reason}`,
+				);
+				await message.channel.send(
+					`<:vSuccess:725270799098970112> Successfully unmuted **${member.user.username}**#${member.user.discriminator}`,
+				).then(message.delete());
 			}
-			catch(err) {
-				await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+			else {
+				try {
+					await member.send(`You have been unmuted in ${message.guild}\n\`[Reason]\` ${Reason}`);
+				}
+				catch(err) {
+					await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+				}
+				member.roles.remove(muteRole);
+				member.roles.add(verifiedRole);
+				channel.send(
+					`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🔊 **${message.author.username}**#${message.author.discriminator} unmuted **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` ${Reason}`,
+				);
+				await message.channel.send(
+					`<:vSuccess:725270799098970112> Successfully unmuted **${member.user.username}**#${member.user.discriminator}`,
+				).then(message.delete());
 			}
-			member.roles.remove(muteRole);
-			member.roles.add(verifiedRole);
-			channel.send(
-				`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🔊 **${message.author.username}**#${message.author.discriminator} unmuted **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` ${Reason}`,
-			);
-			await message.channel.send(
-				`<:vSuccess:725270799098970112> Successfully unmuted **${member.user.username}**#${member.user.discriminator}`,
-			).then(message.delete());
 		}
 		else {
 			message.channel.send(

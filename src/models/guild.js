@@ -8,10 +8,19 @@ const guildSchema = mongoose.Schema({
 	blacklisted: Boolean,
 	settings: {
 		id: mongoose.Schema.Types.ObjectId,
+		antilinks: Boolean,
+		muterole: String,
+		verifyrole: String,
 		modlog: String,
 		serverlog: String,
 		messagelog: String,
-		antilinks: Boolean,
+	},
+	welcomer: {
+		id: mongoose.Schema.Types.ObjectId,
+		joinchannel: String,
+		leavechannel: String,
+		jointext: String,
+		leavetext: String,
 	},
 });
 

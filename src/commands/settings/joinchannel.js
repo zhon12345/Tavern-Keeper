@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-const db = require('quick.db');
+const Guild = require('../../models/guild');
 
 module.exports = {
 	name: 'joinchannel',
@@ -8,7 +8,7 @@ module.exports = {
 	aliases: [],
 	usage: 'joinchannel <channel>',
 	guildOnly: true,
-	run: (client, message, args) => {
+	run: async (client, message, args) => {
 		if(!message.member.hasPermission('ADMINISTRATOR')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You must have the following permissions to use that: Administrator.',
@@ -16,9 +16,16 @@ module.exports = {
 		}
 
 		if (args[0] === 'off') {
-			db.set(`joinchannel_${message.guild.id}`, null);
+			await Guild.updateOne(
+				{
+					guildID: message.guild.id,
+				},
+				{
+					'welcomer.joinchannel': null,
+				},
+			);
 			message.channel.send(
-				'<:vSuccess:725270799098970112> Welcome messages will not be sent',
+				'<:vSuccess:725270799098970112> Welcome messages will not be sent.',
 			).then(message.delete());
 		}
 		else {
@@ -28,7 +35,14 @@ module.exports = {
 					'<:vError:725270799124004934> Please provide a valid channel.',
 				);
 			}
-			db.set(`joinchannel_${message.guild.id}`, args[0].id);
+			await Guild.updateOne(
+				{
+					guildID: message.guild.id,
+				},
+				{
+					'welcomer.joinchannel': args[0].id,
+				},
+			);
 			message.channel.send(
 				`<:vSuccess:725270799098970112> Welcome messages will now be sent to ${args[0]}`,
 			).then(message.delete());

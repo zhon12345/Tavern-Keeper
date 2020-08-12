@@ -1,4 +1,3 @@
-const db = require('quick.db');
 const moment = require('moment');
 const ms = require('ms');
 const Guild = require('../../models/guild');
@@ -55,14 +54,8 @@ module.exports = {
 			);
 		}
 
-		const verifiedRole = db.fetch(`verifiedrole_${message.guild.id}`);
-		if(!verifiedRole) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Verified role not found.',
-			);
-		}
-
-		const mutedRole = db.fetch(`muterole_${message.guild.id}`);
+		const verifiedRole = settings.settings.verifyrole;
+		const mutedRole = settings.settings.muterole;
 		if(!mutedRole) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Mute role not found.',
@@ -71,68 +64,130 @@ module.exports = {
 
 		let Reason;
 		let time = args[1];
-		if(!time.match(/[0-9][s|m|h|d]/)) {
-			time = null,
-			Reason = args.slice(1).join(' ');
-			if (!Reason) {
-				return message.channel.send(
-					'<:vError:725270799124004934> Please provide a reason.',
+		if(!verifiedRole || verifiedRole === null) {
+			if(!time.match(/[0-9][s|m|h|d]/)) {
+				time = null,
+				Reason = args.slice(1).join(' ');
+				if (!Reason) {
+					return message.channel.send(
+						'<:vError:725270799124004934> Please provide a reason.',
+					);
+				}
+				try {
+					await member.send(`You have been muted in ${message.guild}\n\`[Reason]\` ${Reason}`);
+				}
+				catch(err) {
+					await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+				}
+				member.roles.add(mutedRole);
+				channel.send(
+					`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🔇 **${message.author.username}**#${message.author.discriminator} muted **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` ${Reason}`,
 				);
+				await message.channel.send(
+					`<:vSuccess:725270799098970112> Successfully muted **${member.user.username}**#${member.user.discriminator}`,
+				).then(message.delete());
+
 			}
-			try {
-				await member.send(`You have been muted in ${message.guild}\n\`[Reason]\` ${Reason}`);
-			}
-			catch(err) {
-				await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+			else {
+				Reason = args[2];
+				if (!Reason) {
+					return message.channel.send(
+						'<:vError:725270799124004934> Please provide a reason.',
+					);
+				}
+				try {
+					await member.send(`You have been tempmuted for ${time} in ${message.guild}\n\`[Reason]\` ${Reason}`);
+				}
+				catch(err) {
+					await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+				}
+				member.roles.add(mutedRole);
+				channel.send(
+					`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🤐 **${message.author.username}**#${message.author.discriminator} tempmuted **${member.user.username}**#${member.user.discriminator} (ID: ${member.id}) for ${ms(ms(time))}\n\`[Reason]\` ${Reason}`,
+				);
+				await message.channel.send(
+					`<:vSuccess:725270799098970112> Successfully tempmuted **${member.user.username}**#${member.user.discriminator} for ${ms(ms(time))}`,
+				).then(message.delete());
 			}
 
-			member.roles.remove(verifiedRole);
-			member.roles.add(mutedRole);
-			channel.send(
-				`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🔇 **${message.author.username}**#${message.author.discriminator} muted **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` ${Reason}`,
-			);
-			await message.channel.send(
-				`<:vSuccess:725270799098970112> Successfully muted **${member.user.username}**#${member.user.discriminator}`,
-			).then(message.delete());
-
+			setTimeout(function() {
+				try {
+					member.send(`You have been unmuted in ${message.guild}\n\`[Reason]\` Temporary mute completed`);
+				}
+				catch(err) {
+					channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+				}
+				member.roles.remove(mutedRole);
+				channel.send(
+					`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🔊 **${client.user.username}**#${client.user.discriminator} unmuted **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` Temporary mute completed`,
+				);
+			}, ms(time));
 		}
 		else {
-			Reason = args[2];
-			if (!Reason) {
-				return message.channel.send(
-					'<:vError:725270799124004934> Please provide a reason.',
+			if(!time.match(/[0-9][s|m|h|d]/)) {
+				time = null,
+				Reason = args.slice(1).join(' ');
+				if (!Reason) {
+					return message.channel.send(
+						'<:vError:725270799124004934> Please provide a reason.',
+					);
+				}
+				try {
+					await member.send(`You have been muted in ${message.guild}\n\`[Reason]\` ${Reason}`);
+				}
+				catch(err) {
+					await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+				}
+
+				member.roles.remove(verifiedRole);
+				member.roles.add(mutedRole);
+				channel.send(
+					`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🔇 **${message.author.username}**#${message.author.discriminator} muted **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` ${Reason}`,
 				);
+				await message.channel.send(
+					`<:vSuccess:725270799098970112> Successfully muted **${member.user.username}**#${member.user.discriminator}`,
+				).then(message.delete());
+
 			}
-			try {
-				await member.send(`You have been tempmuted for ${time} in ${message.guild}\n\`[Reason]\` ${Reason}`);
-			}
-			catch(err) {
-				await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+			else {
+				Reason = args[2];
+				if (!Reason) {
+					return message.channel.send(
+						'<:vError:725270799124004934> Please provide a reason.',
+					);
+				}
+				try {
+					await member.send(`You have been tempmuted for ${time} in ${message.guild}\n\`[Reason]\` ${Reason}`);
+				}
+				catch(err) {
+					await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+				}
+
+				member.roles.remove(verifiedRole);
+				member.roles.add(mutedRole);
+				channel.send(
+					`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🤐 **${message.author.username}**#${message.author.discriminator} tempmuted **${member.user.username}**#${member.user.discriminator} (ID: ${member.id}) for ${ms(ms(time))}\n\`[Reason]\` ${Reason}`,
+				);
+				await message.channel.send(
+					`<:vSuccess:725270799098970112> Successfully tempmuted **${member.user.username}**#${member.user.discriminator} for ${ms(ms(time))}`,
+				).then(message.delete());
 			}
 
-			member.roles.remove(verifiedRole);
-			member.roles.add(mutedRole);
-			channel.send(
-				`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🤐 **${message.author.username}**#${message.author.discriminator} tempmuted **${member.user.username}**#${member.user.discriminator} (ID: ${member.id}) for ${ms(ms(time))}\n\`[Reason]\` ${Reason}`,
-			);
-			await message.channel.send(
-				`<:vSuccess:725270799098970112> Successfully tempmuted **${member.user.username}**#${member.user.discriminator} for ${ms(ms(time))}`,
-			).then(message.delete());
+			setTimeout(function() {
+				try {
+					member.send(`You have been unmuted in ${message.guild}\n\`[Reason]\` Temporary mute completed`);
+				}
+				catch(err) {
+					channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+				}
+
+				member.roles.add(verifiedRole);
+				member.roles.remove(mutedRole);
+				channel.send(
+					`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🔊 **${client.user.username}**#${client.user.discriminator} unmuted **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` Temporary mute completed`,
+				);
+			}, ms(time));
 		}
 
-		setTimeout(function() {
-			try {
-				member.send(`You have been unmuted in ${message.guild}\n\`[Reason]\` Temporary mute completed`);
-			}
-			catch(err) {
-				channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
-			}
-
-			member.roles.add(verifiedRole);
-			member.roles.remove(mutedRole);
-			channel.send(
-				`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🔊 **${client.user.username}**#${client.user.discriminator} unmuted **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` Temporary mute completed`,
-			);
-		}, ms(time));
 	},
 };

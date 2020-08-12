@@ -12,7 +12,6 @@ module.exports = async (client, oldMember, newMember) => {
 	});
 	const auditLog = fetchedLogs.entries.first();
 	const { executor, target } = auditLog;
-	if(!executor) return;
 
 	const logs = settings.settings.serverlog;
 	const logchannel = oldMember.guild.channels.cache.get(logs);
@@ -26,9 +25,6 @@ module.exports = async (client, oldMember, newMember) => {
 				logchannel.send(
 					`\`[${moment(newMember.createdTimestamp).format('HH:mm:ss')}]\` ✏️ **${oldMember.user.username}**#${oldMember.user.discriminator} (ID: ${oldMember.user.id}) was given the \`${p}\` role by **${executor.username}**#${executor.discriminator}.\n\`[Time]\` ${moment(newMember.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`,
 				);
-			}
-			else{
-				return;
 			}
 		});
 

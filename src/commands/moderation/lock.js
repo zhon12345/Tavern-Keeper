@@ -1,4 +1,4 @@
-const db = require('quick.db');
+const Guild = require('../../models/guild');
 
 module.exports = {
 	name: 'lock',
@@ -14,11 +14,15 @@ module.exports = {
 			);
 		}
 
+		const settings = await Guild.findOne({
+			guildID: message.guild.id,
+		});
+
 		let channel;
-		const verifiedRole = db.fetch(`verifiedrole_${message.guild.id}`);
+		const role = settings.settings.verifyrole || message.guild.roles.everyone;
 		if (args[0] === 'on') {
 			channel = message.channel,
-			channel.updateOverwrite(verifiedRole, {
+			channel.updateOverwrite(role, {
 				SEND_MESSAGES: false,
 			});
 			return message.channel.send(
@@ -27,7 +31,7 @@ module.exports = {
 		}
 		else if (args[0] === 'off') {
 			channel = message.channel,
-			channel.updateOverwrite(verifiedRole, {
+			channel.updateOverwrite(role, {
 				SEND_MESSAGES: true,
 			});
 			return message.channel.send(
@@ -36,7 +40,7 @@ module.exports = {
 		}
 		else if (args[1] === 'on') {
 			channel = message.mentions.channels.first();
-			channel.updateOverwrite(verifiedRole, {
+			channel.updateOverwrite(role, {
 				SEND_MESSAGES: false,
 			});
 			return message.channel.send(
@@ -45,7 +49,7 @@ module.exports = {
 		}
 		else if (args[1] === 'off') {
 			channel = message.mentions.channels.first();
-			channel.updateOverwrite(verifiedRole, {
+			channel.updateOverwrite(role, {
 				SEND_MESSAGES: true,
 			});
 			return message.channel.send(

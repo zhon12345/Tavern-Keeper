@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 const { MessageEmbed } = require('discord.js');
-const db = require('quick.db');
 const Guild = require('../../models/guild');
 
 module.exports = {
@@ -31,7 +30,7 @@ module.exports = {
 		}
 
 		let mutedrole;
-		const muterole = db.get(`muterole_${message.guild.id}`);
+		const muterole = settings.settings.muterole;
 		const mrole = `<@&${muterole}>`;
 		if(muterole == null) {
 			mutedrole = 'None';
@@ -41,7 +40,7 @@ module.exports = {
 		}
 
 		let verifiedrole;
-		const verifyrole = db.get(`verifiedrole_${message.guild.id}`);
+		const verifyrole = settings.settings.verifyrole;
 		const vrole = `<@&${verifyrole}>`;
 		if(verifyrole == null) {
 			verifiedrole = 'None';
@@ -81,7 +80,7 @@ module.exports = {
 		}
 
 		let joinchnl;
-		const joinchannel = db.get(`joinchannel_${message.guild.id}`);
+		const joinchannel = settings.welcomer.joinchannel;
 		const jchannel = `<#${joinchannel}>`;
 		if(joinchannel == null) {
 			joinchnl = 'None';
@@ -91,7 +90,7 @@ module.exports = {
 		}
 
 		let leavechnl;
-		const leavechannel = db.get(`leavechannel_${message.guild.id}`);
+		const leavechannel = settings.welcomer.leavechannel;
 		const lchannel = `<#${leavechannel}>`;
 		if(leavechannel == null) {
 			leavechnl = 'None';
@@ -101,7 +100,7 @@ module.exports = {
 		}
 
 		let joinmsg;
-		const joinmessage = db.get(`jointext_${message.guild.id}`);
+		const joinmessage = settings.welcomer.jointext;
 		if(joinmessage == null) {
 			joinmsg = 'None';
 		}
@@ -110,7 +109,7 @@ module.exports = {
 		}
 
 		let leavemsg;
-		const leavemessage = db.get(`leavetext_${message.guild.id}`);
+		const leavemessage = settings.welcomer.leavetext;
 		if(leavemessage == null) {
 			leavemsg = 'None';
 		}
