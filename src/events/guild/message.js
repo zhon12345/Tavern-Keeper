@@ -1,8 +1,8 @@
-const db = require('quick.db');
 const moment = require('moment');
-const { is_url, is_invite } = require('../../functions');
 const mongoose = require('mongoose');
+const { is_url, is_invite } = require('../../functions');
 const Guild = require('../../models/guild');
+const User = require('../../models/user');
 
 module.exports = async (client, message) => {
 	if (message.author.bot) return;
@@ -45,6 +45,10 @@ module.exports = async (client, message) => {
 		}
 	});
 
+	const logs = settings.settings.modlog;
+	const channel = message.guild.channels.cache.get(logs);
+	if (!channel || channel === null) return;
+
 	let prefix;
 	if(!settings.prefix) {
 		prefix = 'm!';
@@ -70,39 +74,47 @@ module.exports = async (client, message) => {
 					`${message.author}, you are not allowed to send links in this channel. Hence, you have received a warning.`,
 				);
 
-				const warnings = db.get(`warnings_${message.guild.id}_${message.author.id}`);
+				User.findOne({
+					guildID: message.guild.id,
+					userID: message.author.id,
+				}, async (err, data) => {
+					if (err) console.error(err);
+					if (!data) {
+						const newUser = new User({
+							_id: mongoose.Types.ObjectId(),
+							guildID: message.guild.id,
+							userID: message.author.id,
+							warnings: 1,
+						});
 
-				if(warnings <= 0) {
-					try {
-						await message.author.send(`You have been given 1 strikes in ${message.guild}\n\`[Reason]\` Sending Links in ${message.channel}`);
-					}
-					catch(err) {
-						await channel.send(`<:vError:725270799124004934> Failed to DM **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id})`);
-					}
+						newUser.save();
 
-					db.set(`warnings_${message.guild.id}_${message.author.id}`, 1);
-					const logs = settings.settings.modlog;
-					const channel = message.guild.channels.cache.get(logs);
-					channel.send(
-						`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🚩 **${client.user.username}**#${client.user.discriminator} gave \`1\` strikes to **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id})\n\`[Reason]\` Sending Links in ${message.channel}`,
-					);
-				}
-				else {
-					try {
-						await message.author.send(`You have been given 1 strikes in ${message.guild}\n\`[Reason]\` Sending Links in ${message.channel}`);
-					}
-					catch(err) {
-						await channel.send(`<:vError:725270799124004934> Failed to DM **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id})`);
-					}
+						try {
+							await message.author.send(`You have been given 1 strikes in ${message.guild}\n\`[Reason]\` Sending Links in ${message.channel}`);
+						}
+						catch(err) {
+							await channel.send(`<:vError:725270799124004934> Failed to DM **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id})`);
+						}
 
-					db.add(`warnings_${message.guild.id}_${message.author.id}`, 1);
-					const logs = settings.settings.modlog;
-					const channel = message.guild.channels.cache.get(logs);
-					if (!channel) return;
-					channel.send(
-						`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🚩 **${client.user.username}**#${client.user.discriminator} gave \`1\` strikes to **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id})\n\`[Reason]\` Sending Links in ${message.channel}`,
-					);
-				}
+						channel.send(
+							`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🚩 **${client.user.username}**#${client.user.discriminator} gave \`1\` strikes to **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id})\n\`[Reason]\` Sending Links in ${message.channel}`,
+						);
+					}
+					else {
+						data.warnings += 1;
+						data.save();
+						try {
+							await message.author.send(`You have been given 1 strikes in ${message.guild}\n\`[Reason]\` Sending Links in ${message.channel}`);
+						}
+						catch(err) {
+							await channel.send(`<:vError:725270799124004934> Failed to DM **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id})`);
+						}
+
+						channel.send(
+							`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🚩 **${client.user.username}**#${client.user.discriminator} gave \`1\` strikes to **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id})\n\`[Reason]\` Sending Links in ${message.channel}`,
+						);
+					}
+				});
 			}
 		}
 	}

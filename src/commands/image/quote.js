@@ -9,39 +9,17 @@ module.exports = {
 	aliases: [],
 	usage: 'quote [user] <text>',
 	run: async (client, message, args) => {
-		let user;
-		let text;
-
-		if(message.mentions.users.first()) {
-			user = message.mentions.users.first();
-			text = args.slice(1).join(' ');
-			if(!text) {
-				return message.channel.send(
-					'<:vError:725270799124004934> Please provide valid text.',
-				);
-			}
-		}
-		else if(Number(args[0])) {
-			user = message.guild.members.cache.get(args[0]).user;
-			text = args.slice(1).join(' ');
-			if(!text) {
-				return message.channel.send(
-					'<:vError:725270799124004934> Please provide valid text.',
-				);
-			}
-		}
-		else {
-			user = message.author;
-			text = args.slice().join(' ');
-			if(!text) {
-				return message.channel.send(
-					'<:vError:725270799124004934> Please provide valid text.',
-				);
-			}
+		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]);
+		if (!member) {
+			return message.channel.send(
+				'<:vError:725270799124004934> Please provide a valid user.',
+			);
 		}
 
-		const image = await canvas.quote({ image: user.displayAvatarURL({ format: 'png' }), message: text, username: user.username });
+		const text = args.slice(1).join(' ');
+
+		const image = await canvas.quote({ image: member.user.displayAvatarURL({ format: 'png' }), message: text, username: member.user.username });
 		const attachment = new MessageAttachment(image, 'quote.png');
-		return message.channel.send(attachment);
+		return message.channel.send(attachment).then(message.delete());
 	},
 };

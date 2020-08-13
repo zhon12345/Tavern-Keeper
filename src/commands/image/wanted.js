@@ -9,20 +9,16 @@ module.exports = {
 	aliases: [],
 	usage: 'wanted [user]',
 	run: async (client, message, args) => {
-		let user;
-		if(message.mentions.users.first()) {
-			user = message.mentions.users.first().displayAvatarURL({ format: 'png' });
-		}
-		else if(!isNaN(args[0])) {
-			user = message.guild.members.cache.get(args[0]).user.displayAvatarURL({ format: 'png' });
-		}
-		else {
-			user = message.author.displayAvatarURL({ format: 'png' });
+		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]);
+		if (!member) {
+			return message.channel.send(
+				'<:vError:725270799124004934> Please provide a valid user.',
+			);
 		}
 
 		const url = 'https://v1.api.amethyste.moe/generate/wanted';
 		const data = {
-			'url': user,
+			'url': member.user.displayAvatarURL({ format: 'png' }),
 		};
 
 		const searchParams = Object.keys(data).map((key) => {

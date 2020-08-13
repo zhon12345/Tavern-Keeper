@@ -1,6 +1,7 @@
-const db = require('quick.db');
+const mongoose = require('mongoose');
 const moment = require('moment');
 const Guild = require('../../models/guild');
+const User = require('../../models/user');
 
 module.exports = {
 	name: 'strike',
@@ -54,6 +55,11 @@ module.exports = {
 		if (isNaN(args[1])) {
 			amount = 1;
 			Reason = args.slice(1).join(' ');
+			if(!Reason) {
+				return message.channel.send(
+					'<:vError:725270799124004934> Please provide a reason.',
+				);
+			}
 		}
 
 		else {
@@ -66,41 +72,52 @@ module.exports = {
 			}
 		}
 
-		const warnings = db.get(`warnings_${message.guild.id}_${member.id}`);
+		await User.findOne({
+			guildID: message.guild.id,
+			userID: member.id,
+		}, async (err, data) => {
+			if (err) console.error(err);
+			if (!data) {
+				const newUser = new User({
+					_id: mongoose.Types.ObjectId(),
+					guildID: message.guild.id,
+					userID: member.id,
+					warnings: amount,
+				});
 
-		if(warnings <= 0) {
-			try {
-				await member.send(`You have been given ${amount}strikes in ${message.guild}\n\`[Reason]\` ${Reason}`);
+				newUser.save();
+
+				try {
+					await member.send(`You have been given ${amount}strikes in ${message.guild}\n\`[Reason]\` ${Reason}`);
+				}
+				catch(err) {
+					await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+				}
+
+				channel.send(
+					`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🚩 **${message.author.username}**#${message.author.discriminator} gave \`${amount}\` strikes to **${member.user.username}**#${member.user.discriminator} (ID: ${member.id}).**${message.author.username}** has ${data.warnings} strikes now.\n\`[Reason]\` ${Reason}`,
+				);
+				await message.channel.send(
+					`<:vSuccess:725270799098970112> Successfully gave \`${amount}\` strikes to **${member.user.username}**#${member.user.discriminator}`,
+				).then(message.delete());
 			}
-			catch(err) {
-				await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+			else {
+				data.warnings += amount;
+				data.save();
+				try {
+					await member.send(`You have been given ${amount} strikes in ${message.guild}\n\`[Reason]\` ${Reason}`);
+				}
+				catch(err) {
+					await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+				}
+
+				channel.send(
+					`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🚩 **${message.author.username}**#${message.author.discriminator} gave \`${amount}\` strikes to **${member.user.username}**#${member.user.discriminator} (ID: ${member.id}).**${message.author.username}** has ${data.warnings} strikes now.\n\`[Reason]\` ${Reason}`,
+				);
+				await message.channel.send(
+					`<:vSuccess:725270799098970112> Successfully gave \`${amount}\` strikes to **${member.user.username}**#${member.user.discriminator}`,
+				).then(message.delete());
 			}
-
-			db.set(`warnings_${message.guild.id}_${member.id}`, amount);
-			channel.send(
-				`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🚩 **${message.author.username}**#${message.author.discriminator} gave \`${amount}\` strikes to **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` ${Reason}`,
-			);
-			await message.channel.send(
-				`<:vSuccess:725270799098970112> Successfully gave \`${amount}\` strikes to **${member.user.username}**#${member.user.discriminator}`,
-			).then(message.delete());
-		}
-		else {
-			try {
-				await member.send(`You have been given ${amount} strikes in ${message.guild}\n\`[Reason]\` ${Reason}`);
-			}
-			catch(err) {
-				await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
-			}
-
-			db.add(`warnings_${message.guild.id}_${member.id}`, amount);
-			channel.send(
-				`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🚩 **${message.author.username}**#${message.author.discriminator} gave \`${amount}\` strikes to **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` ${Reason}`,
-			);
-			await message.channel.send(
-				`<:vSuccess:725270799098970112> Successfully gave \`${amount}\` strikes to **${member.user.username}**#${member.user.discriminator}`,
-			).then(message.delete());
-		}
-
-
+		});
 	},
 };

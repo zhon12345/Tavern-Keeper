@@ -9,27 +9,20 @@ module.exports = {
 	aliases: [],
 	usage: 'spank <user>',
 	run: async (client, message, args) => {
-		let user;
-		if(message.mentions.users.first()) {
-			user = message.mentions.users.first();
-		}
-		else if(args[0]) {
-			user = message.guild.members.cache.get(args[0]).user;
-		}
-
-		if (!user) {
+		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]);
+		if (!member) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide a valid user.',
 			);
 		}
 
-		if(user === message.author.id) {
+		if(member.id === message.author.id) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You are not allowed to spank yourself.',
 			);
 		}
 
-		const image = await canvas.spank(message.author.displayAvatarURL({ format: 'png' }), user.displayAvatarURL({ format: 'png' }));
+		const image = await canvas.spank(message.author.displayAvatarURL({ format: 'png' }), member.user.displayAvatarURL({ format: 'png' }));
 		const attachment = new MessageAttachment(image, 'wanted.png');
 		return message.channel.send(attachment);
 	},

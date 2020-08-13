@@ -9,15 +9,8 @@ module.exports = {
 	aliases: ['slap'],
 	usage: 'batslap <user>',
 	run: async (client, message, args) => {
-		let user;
-		if(message.mentions.users.first()) {
-			user = message.mentions.users.first();
-		}
-		else if(args[0]) {
-			user = message.guild.members.cache.get(args[0]).user;
-		}
-
-		if (!user) {
+		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]);
+		if (!member) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide a valid user.',
 			);
@@ -26,7 +19,7 @@ module.exports = {
 		const url = 'https://v1.api.amethyste.moe/generate/batslap';
 		const data = {
 			'avatar': message.author.displayAvatarURL({ format: 'png' }),
-			'url': user.displayAvatarURL({ format: 'png' }),
+			'url': member.user.displayAvatarURL({ format: 'png' }),
 		};
 
 		const searchParams = Object.keys(data).map((key) => {

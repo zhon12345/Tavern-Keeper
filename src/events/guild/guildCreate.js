@@ -7,12 +7,22 @@ module.exports = async (client, guild) => {
 		guildID: guild.id,
 		guildName: guild.name,
 		prefix: process.env.BOT_PREFIX,
+		blacklisted: false,
 		settings:{
 			id: mongoose.Types.ObjectId(),
+			antilinks: false,
+			muterole: null,
+			verifyrole: null,
 			modlog: null,
 			serverlog: null,
 			messagelog: null,
-			antilinks: false,
+		},
+		welcomer: {
+			id: mongoose.Schema.Types.ObjectId(),
+			joinchannel: null,
+			leavechannel: null,
+			jointext: null,
+			leavetext: null,
 		},
 	});
 
