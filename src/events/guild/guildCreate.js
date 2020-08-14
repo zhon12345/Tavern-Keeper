@@ -18,7 +18,7 @@ module.exports = async (client, guild) => {
 			messagelog: null,
 		},
 		welcomer: {
-			id: mongoose.Schema.Types.ObjectId(),
+			id: mongoose.Types.ObjectId(),
 			joinchannel: null,
 			leavechannel: null,
 			jointext: null,

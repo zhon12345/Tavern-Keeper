@@ -29,7 +29,7 @@ module.exports = async (client, message) => {
 					messagelog: null,
 				},
 				welcomer: {
-					id: mongoose.Schema.Types.ObjectId(),
+					id: mongoose.Types.ObjectId(),
 					joinchannel: null,
 					leavechannel: null,
 					jointext: null,
@@ -38,16 +38,8 @@ module.exports = async (client, message) => {
 			});
 
 			newGuild.save();
-
-			return message.channel.send(
-				'<:vError:725270799124004934> An error occured, please try again!',
-			);
 		}
 	});
-
-	const logs = settings.settings.modlog;
-	const channel = message.guild.channels.cache.get(logs);
-	if (!channel || channel === null) return;
 
 	let prefix;
 	if(!settings.prefix) {
@@ -58,13 +50,17 @@ module.exports = async (client, message) => {
 	}
 
 	if(message.content === `<@${client.user.id}>` || message.content === `<@!${client.user.id}>`) {
-		return message.channel.send(`My current prefix for this guild is \`${prefix}\``);
+		message.channel.send(`My current prefix for this guild is \`${prefix}\``);
 	}
 
 	if (settings.blacklisted === true) return;
 
 	if (settings.settings.antilinks === true) {
 		if(is_url(message.content) || is_invite(message.content) === true) {
+			const logs = settings.settings.modlog;
+			const channel = message.guild.channels.cache.get(logs);
+			if (!channel || channel === null) return;
+
 			if(message.member.hasPermission('MANAGE_MESSAGES')) {
 				return;
 			}
