@@ -1,4 +1,4 @@
-const { sleep } = require('../../functions');
+const { delay } = require('../../functions');
 
 module.exports = {
 	name: 'hack',
@@ -32,39 +32,39 @@ module.exports = {
 			}
 
 			await message.channel.send(`Hacking ${hacked.user.username} now...`).then(async msg => {
-				await sleep(1500);
+				await delay(1500);
 				await msg.edit('[▖] Fiding discord login... (2fa bypassed)');
-				await sleep(2000);
+				await delay(2000);
 				await msg.edit(`[▘] Found:\n**Email:** \`${hacked.user.username}${genemail}${genending}\`\n**Password:** ${genpass}`);
-				await sleep(2500);
+				await delay(2500);
 				await msg.edit('[▝] Fetching DM\'s with closest friends (They have no friends)');
-				await sleep(2000);
+				await delay(2000);
 				await msg.edit(`[▗] **Last DM:** "${possible}" `);
-				await sleep(1555);
+				await delay(1555);
 				await msg.edit('[▖] Fetching most common phrase');
-				await sleep(1700);
+				await delay(1700);
 				await msg.edit(`[▘] **Most common phrase:** "${dodo}"`);
-				await sleep(2000);
+				await delay(2000);
 				await msg.edit('[▝] Hacking fortnite account...');
-				await sleep(1000);
+				await delay(1000);
 				await msg.edit('[▗] Hacking fortnite account... (this game sucks)');
-				await sleep(1700);
+				await delay(1700);
 				await msg.edit('[▖] *succesfully* stole all their vbucks');
-				await sleep(1000);
+				await delay(1000);
 				await msg.edit(`[▘] Injecting pepe virus into discriminator \`#${hacked.user.discriminator}\``);
-				await sleep(1000);
+				await delay(1000);
 				await msg.edit('[▝] Virus injected');
-				await sleep(1000);
+				await delay(1000);
 				await msg.edit('[▗] Finding IP');
-				await sleep(2500);
+				await delay(2500);
 				await msg.edit(`[▖] **IP:** ${jj}`);
-				await sleep(1000);
+				await delay(1000);
 				await msg.edit('[▘] Spamming email...');
-				await sleep(1400);
+				await delay(1400);
 				await msg.edit('[▝] Reporting user for breaking Discord ToS...');
-				await sleep(1400);
+				await delay(1400);
 				await msg.edit('[▗] Selling all data to the government...');
-				await sleep(1400);
+				await delay(1400);
 				await msg.edit(`Finished hacking ${hacked.user.username}`);
 			});
 			setTimeout(() => {

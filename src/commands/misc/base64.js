@@ -30,7 +30,9 @@ module.exports = {
 			.setColor('BLUE')
 			.setTitle('Base64 Encoder')
 			.addField('Input', `\`\`\`\n${text}\`\`\``)
-			.addField('Output', `\`\`\`\n${data.base64}\`\`\``);
+			.addField('Output', `\`\`\`\n${data.base64}\`\`\``)
+			.setFooter(`Requested by ${message.author.tag}`)
+			.setTimestamp();
 
 		message.channel.send(embed);
 	},

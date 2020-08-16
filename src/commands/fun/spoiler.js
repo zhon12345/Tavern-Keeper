@@ -1,5 +1,3 @@
-const Guild = require('../../models/guild');
-
 module.exports = {
 	name: 'spoiler',
 	category: 'Fun',
@@ -7,18 +5,13 @@ module.exports = {
 	aliases: [],
 	usage: 'soiler <text>',
 	run: async (client, message, args) => {
-		const settings = await Guild.findOne({
-			guildID: message.guild.id,
-		});
-		const prefix = settings.prefix;
-
 		if(!args[0]) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide valid text.',
 			);
 		}
 		else {
-			message.channel.send(`||${message.content.substring(prefix.length + 8).split('').join('||||')}||`);
+			message.channel.send(`||${args.join(' ').split('').join('||||')}||`);
 		}
 	},
 };

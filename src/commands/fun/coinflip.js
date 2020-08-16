@@ -18,7 +18,9 @@ module.exports = {
 				.setColor('BLUE')
 				.setDescription(
 					`${response}!`,
-				);
+				)
+				.setFooter(`Requested by ${message.author.tag}`)
+				.setTimestamp();
 			msg.edit(Embed);
 		});
 	},

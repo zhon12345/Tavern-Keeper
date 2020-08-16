@@ -44,6 +44,8 @@ module.exports = {
 		embed.setColor('BLUE');
 		embed.addField('Input', `\`\`\`\n${text}\`\`\``);
 		embed.addField('Output', `\`\`\`\n${data}\`\`\``);
+		embed.setFooter(`Requested by ${message.author.tag}`);
+		embed.setTimestamp();
 
 		message.channel.send(embed);
 	},

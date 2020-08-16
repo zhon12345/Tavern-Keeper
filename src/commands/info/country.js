@@ -31,6 +31,8 @@ module.exports = {
 			.setColor('BLUE')
 			.setTitle(data.name)
 			.setThumbnail(`https://www.countryflags.io/${data.alpha2Code}/flat/64.png`)
+			.setFooter(`Requested by ${message.author.tag}`)
+			.setTimestamp()
 			.addFields(
 				{ name: 'Population', value: formatNumber(data.population), inline: true },
 				{ name: 'Capital', value: data.capital ? data.capital : 'None', inline: true },

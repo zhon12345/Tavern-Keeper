@@ -23,7 +23,9 @@ module.exports = {
 		const embed = new MessageEmbed()
 			.setColor('BLUE')
 			.setDescription(response.data)
-			.setTitle('Random Fact');
+			.setTitle('Random Fact')
+			.setFooter(`Requested by ${message.author.tag}`)
+			.setTimestamp();
 
 		message.channel.send(embed);
 	},

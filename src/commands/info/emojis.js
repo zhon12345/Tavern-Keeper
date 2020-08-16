@@ -27,7 +27,6 @@ module.exports = {
 			}
 		});
 		const Embed = new MessageEmbed()
-			.setTitle(`Emojis in ${guild.name}.`)
 			.setDescription(
 				`**Animated [${Animated}]**:\n${EmojisAnimated}\n\n**Standard [${EmojiCount}]**:\n${Emojis}\n\n**Total: [${OverallEmojis}]**`,
 			)

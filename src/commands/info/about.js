@@ -27,7 +27,8 @@ module.exports = {
 					value: 'Join our [Discord Server](https://discord.gg/GGMsqS9)',
 				},
 			)
-			.setFooter(`Use "${prefix}help" to list all the available commands.`)
+			.setFooter(`Requested by ${message.author.tag}`)
+			.setTimestamp()
 			.setColor('BLUE');
 		message.channel.send(embed);
 	},

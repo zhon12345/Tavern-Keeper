@@ -164,17 +164,8 @@ module.exports = {
 		});
 	},
 
-	// tableflip.js
+	// tableflip.js, hack.js, russianroulette.js & fight.js
 	delay: function(ms) {
 		return new Promise(resolve => setTimeout(resolve, ms));
-	},
-
-	// hack.js
-	sleep: function(milliseconds) {
-		const date = Date.now();
-		let currentDate = null;
-		do {
-			currentDate = Date.now();
-		} while (currentDate - date < milliseconds);
 	},
 };

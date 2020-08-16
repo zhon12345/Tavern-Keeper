@@ -52,6 +52,8 @@ module.exports = {
 		const embed = new MessageEmbed()
 			.setTitle(`Original Names: ${firstName}, ${secondName}`)
 			.setColor('BLUE')
+			.setFooter(`Requested by ${message.author.tag}`)
+			.setTimestamp()
 			.setDescription(`Ship Name: **${shipName}**\nCompatibility: **${rating}%**\n**[**${meter.join('')}**]**`);
 		message.channel.send(embed);
 	},

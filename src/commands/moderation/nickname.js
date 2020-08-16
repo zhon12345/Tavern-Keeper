@@ -27,7 +27,7 @@ module.exports = {
 
 		member.setNickname(nickname);
 		message.channel.send(
-			`<:vSuccess:725270799098970112> Successfully set **${member.user.tag}'s nickname to ${nickname}**`,
+			`<:vSuccess:725270799098970112> Successfully set **${member.user.tag}**'s nickname to **${nickname}**`,
 		);
 	},
 };

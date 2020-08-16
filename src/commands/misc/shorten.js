@@ -43,7 +43,9 @@ module.exports = {
 			.setColor('BLUE')
 			.setTitle('Link Shortener')
 			.addField('Input', `\`\`\`\n${link}\`\`\``)
-			.addField('Output', `\`\`\`\n${response.link}\`\`\``);
+			.addField('Output', `\`\`\`\n${response.link}\`\`\``)
+			.setFooter(`Requested by ${message.author.tag}`)
+			.setTimestamp();
 
 		message.channel.send(embed);
 	},

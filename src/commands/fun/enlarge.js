@@ -22,6 +22,8 @@ module.exports = {
 			const embed = new Discord.MessageEmbed()
 				.setTitle(`Enlarged version of: ${emoji}`)
 				.setColor('#FFFF00')
+				.setFooter(`Requested by ${message.author.tag}`)
+				.setTimestamp()
 				.setImage(`https://cdn.discordapp.com/emojis/${custom.id}.${custom.animated ? 'gif' : 'png'}`);
 			return message.channel.send(embed);
 		}
@@ -35,6 +37,8 @@ module.exports = {
 			const embed = new Discord.MessageEmbed()
 				.setTitle(`Enlarged version of ${emoji}`)
 				.setColor('#FFFF00')
+				.setFooter(`Requested by ${message.author.tag}`)
+				.setTimestamp()
 				.setImage(parsed[0].url);
 			return message.channel.send(embed);
 		}

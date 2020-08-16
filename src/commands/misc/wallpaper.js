@@ -26,7 +26,8 @@ module.exports = {
 			.setTitle(response.description ? response.description : 'Random Wallpaper')
 			.setURL(response.urls.raw)
 			.setImage(response.urls.raw)
-			.setFooter(`Photo by: ${response.user.name}`);
+			.setFooter(`Requested by ${message.author.tag}`)
+			.setTimestamp();
 
 		message.channel.send(embed);
 	},

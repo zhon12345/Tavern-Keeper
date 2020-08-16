@@ -40,7 +40,9 @@ function aliases(client, message, input) {
 		const embed = new MessageEmbed()
 			.setTitle(`Aliases for ${capitalizeFirstLetter(cmd.name.toString().toLowerCase())}`)
 			.setDescription(alias)
-			.setColor('BLUE');
+			.setColor('BLUE')
+			.setFooter(`Requested by ${message.author.tag}`)
+			.setTimestamp();
 		return message.channel.send(embed);
 	}
 }

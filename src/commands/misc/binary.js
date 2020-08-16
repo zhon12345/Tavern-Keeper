@@ -30,7 +30,9 @@ module.exports = {
 			.setColor('BLUE')
 			.setTitle('Binary Encoder')
 			.addField('Input', `\`\`\`\n${text}\`\`\``)
-			.addField('Output', `\`\`\`\n${data.binary}\`\`\``);
+			.addField('Output', `\`\`\`\n${data.binary}\`\`\``)
+			.setFooter(`Requested by ${message.author.tag}`)
+			.setTimestamp();
 
 		message.channel.send(embed);
 	},

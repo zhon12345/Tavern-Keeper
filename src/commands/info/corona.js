@@ -27,6 +27,8 @@ module.exports = {
 			.setDescription('[Find out more info from the WHO here](https://www.who.int/emergencies/diseases/novel-coronavirus-2019)')
 			.setColor('#fb644c')
 			.setThumbnail(args[0] ? corona.countryInfo.flag : 'https://i.giphy.com/YPbrUhP9Ryhgi2psz3.gif')
+			.setFooter(`Requested by ${message.author.tag}`)
+			.setTimestamp()
 			.addFields(
 				{
 					name: 'Confirmed Cases:',

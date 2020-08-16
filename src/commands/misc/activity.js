@@ -25,7 +25,9 @@ module.exports = {
 			.setTitle('You should...')
 			.setDescription(response.activity)
 			.addField('Category', capitalizeFirstLetter(response.type), true)
-			.addField('Participants', response.participants, true);
+			.addField('Participants', response.participants, true)
+			.setFooter(`Requested by ${message.author.tag}`)
+			.setTimestamp();
 
 		message.channel.send(embed);
 	},

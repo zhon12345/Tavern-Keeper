@@ -15,7 +15,7 @@ module.exports = {
 				'<:vError:725270799124004934> Please provide a valid color.',
 			);
 		}
-		else if(isHex(args.join(' ')) != true) {
+		else if(isHex(args.join(' ')) !== true) {
 			colour = stringToHex(args.join(' '));
 		}
 		else {
@@ -41,7 +41,9 @@ module.exports = {
 			.addFields(
 				{ name: 'RGB Value', value: `${response.rgb}` },
 				{ name: 'Hex Value', value: `#${colour}` },
-			);
+			)
+			.setFooter(`Requested by ${message.author.tag}`)
+			.setTimestamp();
 		message.channel.send(embed);
 	},
 };

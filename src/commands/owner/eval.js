@@ -33,7 +33,7 @@ module.exports = {
 				}
 				let evaled;
 
-				if (code.includes('SECRET') || code.includes('TOKEN') || code.includes('process.env')) {
+				if (code.includes('SECRET') || code.includes('TOKEN') || code.includes('process.env') || code.includes('config.json')) {
 					evaled = 'NO.';
 				}
 				else {

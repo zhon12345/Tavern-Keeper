@@ -27,7 +27,9 @@ module.exports = {
 			.setColor('BLUE')
 			.setTitle('Math Calculation')
 			.addField('Input', `\`\`\`js\n${args.join(' ')}\`\`\``)
-			.addField('Output', `\`\`\`js\n${resp}\`\`\``);
+			.addField('Output', `\`\`\`js\n${resp}\`\`\``)
+			.setFooter(`Requested by ${message.author.tag}`)
+			.setTimestamp();
 
 		message.channel.send(embed);
 	},

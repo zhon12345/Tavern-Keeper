@@ -1,5 +1,3 @@
-const Guild = require('../../models/guild');
-
 module.exports = {
 	name: 'clapify',
 	category: 'Fun',
@@ -7,11 +5,6 @@ module.exports = {
 	aliases: [],
 	usage: 'clapify <text>',
 	run: async (client, message, args) => {
-		const settings = await Guild.findOne({
-			guildID: message.guild.id,
-		});
-		const prefix = settings.prefix;
-
 		if(!args[0]) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide valid text.',
@@ -24,7 +17,7 @@ module.exports = {
 			text = args.join(' 👏 ');
 		}
 		else {
-			text = message.content.substring(prefix.length + 8).split('').join(' 👏 ');
+			text = args.join(' ').split('').join(' 👏 ');
 		}
 		message.channel.send(`${text} 👏`);
 	},

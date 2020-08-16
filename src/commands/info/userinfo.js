@@ -24,11 +24,6 @@ const Presence = {
 	dnd: 'Do Not Disturb',
 };
 
-const Kickable = {
-	true: 'Yes',
-	false: 'No',
-};
-
 module.exports = {
 	name: 'userinfo',
 	category: 'Info',
@@ -36,7 +31,7 @@ module.exports = {
 	aliases: ['user', 'uirs'],
 	usage: 'userinfo [user]',
 	run: async (client, message, args) => {
-		const member = message.mentions.members.last() || message.guild.members.cache.get(args[0]) || message.member;
+		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]) || message.member;
 		const roles = member.roles.cache
 			.sort((a, b) => b.position - a.position)
 			.map(role => role.toString())
@@ -55,17 +50,17 @@ module.exports = {
 				`**❯ Avatar:** [Link to avatar](${member.user.displayAvatarURL({ dynamic: true })})`,
 				`**❯ Time Created:** ${moment(member.user.createdTimestamp).format('Do MMMM YYYY HH:mm')}`,
 				`**❯ Status:** ${Presence[member.user.presence.status]}`,
-				`**❯ Voice Channel:** ${member.voice.channel ? member.voice.channel.name + `(${member.voice.channel.id})` : 'None' }`,
 				'\u200b',
 			])
 			.addField('Server', [
 				`**❯ Server Join Date:** ${moment(member.joinedAt).format('Do MMMM YYYY HH:mm')}`,
 				`**❯ Highest Role:** ${member.roles.highest.id === message.guild.id ? 'None' : member.roles.highest.name}`,
 				`**❯ Hoist Role:** ${member.roles.hoist ? member.roles.hoist.name : 'None'}`,
-				`**❯ Kickable:** ${Kickable[member.kickable]}`,
-				`**❯ Roles [${roles.length}]:** ${roles.join(', ') || 'None'}`,
+				`**❯ Kickable:** ${member.kickable ? 'Yes' : 'No'}`,
+				`**❯ Voice Channel:** ${member.voice.channel ? member.voice.channel.name + `(${member.voice.channel.id})` : 'None' }`,
 				'\u200b',
-			]);
+			])
+			.addField(`Roles [${roles.length}]`, roles ? roles.join(', ') : 'None');
 		return message.channel.send(embed);
 	},
 };

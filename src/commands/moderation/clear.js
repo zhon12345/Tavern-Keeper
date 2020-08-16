@@ -50,6 +50,6 @@ module.exports = {
 		);
 		await message.channel.send(
 			`<:vSuccess:725270799098970112> Successfully cleared \`${amount}\`messages`,
-		);
+		).then(msg => msg.delete({ timeout: 5000 }));
 	},
 };

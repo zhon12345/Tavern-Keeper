@@ -17,7 +17,9 @@ module.exports = {
 				.setColor('BLUE')
 				.setDescription(
 					`${love}!`,
-				);
+				)
+				.setFooter(`Requested by ${message.author.tag}`)
+				.setTimestamp();
 			msg.edit(Embed);
 		});
 	},

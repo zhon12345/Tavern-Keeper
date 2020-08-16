@@ -2,11 +2,6 @@ const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
 const { parseDur } = require('../../functions');
 
-const option = {
-	true: 'Yes',
-	false: 'No',
-};
-
 const types = {
 	dm: 'DM',
 	text: 'Text',
@@ -61,7 +56,7 @@ module.exports = {
 				'\u200b',
 			])
 			.addField('Server', [
-				`**❯ NSFW:** ${option[channel.nsfw]}`,
+				`**❯ NSFW:** ${channel.nsfw ? 'Yes' : 'No'}`,
 				`**❯ Type:** ${types[channel.type]}`,
 				`**❯ Slowmode:** ${parseDur(ms)}`,
 				`**❯ Parent:** ${parent}`,

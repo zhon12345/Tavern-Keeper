@@ -28,7 +28,9 @@ module.exports = {
 			.setColor('BLUE')
 			.setTitle(string)
 			.setURL(url)
-			.setImage(url);
+			.setImage(url)
+			.setFooter(`Requested by ${message.author.tag}`)
+			.setTimestamp();
 
 		message.channel.send(embed);
 	},

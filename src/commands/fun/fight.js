@@ -1,5 +1,5 @@
 const { BOT_OWNER } = process.env;
-const { sleep } = require('../../functions');
+const { delay } = require('../../functions');
 const responses = require('../../assets/json/fight.json');
 
 module.exports = {
@@ -40,13 +40,13 @@ module.exports = {
 					if (turn1 === true) {
 						hp2 -= x;
 						await msg.edit(`**${player2.user.username}** ${responses[i]} **${player1.username}**! *[-${x} hp] [${hp2} HP remaining]*`);
-						await sleep(2000);
+						await delay(2000);
 						turn1 = false;
 					}
 					else {
 						hp1 -= x;
 						await msg.edit(`**${player1.username}** ${responses[i]} **${player2.user.username}**! *[-${x} hp] [${hp1} HP remaining]*`);
-						await sleep(2000);
+						await delay(2000);
 						turn1 = true;
 					}
 					if (hp1 <= 0) {

@@ -22,7 +22,9 @@ module.exports = {
 		const embed = new MessageEmbed()
 			.setColor('BLUE')
 			.setTitle(response.setup)
-			.setDescription(response.punchline);
+			.setDescription(response.punchline)
+			.setFooter(`Requested by ${message.author.tag}`)
+			.setTimestamp();
 
 		message.channel.send(embed);
 	},

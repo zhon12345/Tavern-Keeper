@@ -35,6 +35,8 @@ module.exports = {
 			.setAuthor(`${capitalizeFirstLetter(data.name)} #${data.id}`)
 			.setDescription(data.description)
 			.setThumbnail(resp.sprites.front_default)
+			.setFooter(`Requested by ${message.author.tag}`)
+			.setTimestamp()
 			.addFields(
 				{ name: 'Height', value: data.height, inline: true },
 				{ name: 'Weight', value: data.weight, inline: true },

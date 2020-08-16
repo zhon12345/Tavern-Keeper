@@ -6,11 +6,11 @@
 
 <div align="center">
 
-  [![Run on Repl.it](https://repl.it/badge/github/zhon12345/Tavern_Keeper)](https://repl.it/github/zhon12345/Tavern_Keeper)
-  [![Discord](https://img.shields.io/discord/450846546867519503.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/GGMsqS9)
-  [![library](https://img.shields.io/badge/library-discord.js-blue)](https://discord.js.org/#/)
-  [![Dependancies](https://img.shields.io/depfu/zhon12345/Tavern_Keeper)](https://github.com/zhon12345/Tavern_Keeper)
-  [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
+[![Run on Repl.it](https://repl.it/badge/github/zhon12345/Tavern_Keeper)](https://repl.it/github/zhon12345/Tavern_Keeper)
+[![Discord](https://img.shields.io/discord/450846546867519503.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/GGMsqS9)
+[![library](https://img.shields.io/badge/library-discord.js-blue)](https://discord.js.org/#/)
+[![Dependancies](https://img.shields.io/depfu/zhon12345/Tavern_Keeper)](https://github.com/zhon12345/Tavern_Keeper)
+[![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
 
 </div>
 

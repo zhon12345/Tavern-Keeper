@@ -29,7 +29,9 @@ module.exports = {
 		const embed = new MessageEmbed()
 			.setColor('BLUE')
 			.setAuthor(pkg.author.name, pkg.author.icon_url)
-			.setDescription(pkg.description);
+			.setDescription(pkg.description)
+			.setFooter(`Requested by ${message.author.tag}`)
+			.setTimestamp();
 		if(pkg.fields) {embed.addFields(pkg.fields);}
 		if(pkg.title) {embed.setTitle(pkg.title);}
 

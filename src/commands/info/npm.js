@@ -39,7 +39,9 @@ module.exports = {
 				{ name: 'Maintainers', value: pkg.maintainers ? pkg.maintainers.map(e => e.username).join(', ') : 'None' },
 				{ name: 'Keywords', value: pkg.keywords ? pkg.keywords.join(', ') : 'None' },
 			)
-			.setColor('BLUE');
+			.setColor('BLUE')
+			.setFooter(`Requested by ${message.author.tag}`)
+			.setTimestamp();
 
 		message.channel.send(embed);
 	},
