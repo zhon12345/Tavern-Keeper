@@ -168,4 +168,14 @@ module.exports = {
 	delay: function(ms) {
 		return new Promise(resolve => setTimeout(resolve, ms));
 	},
+
+	// scramble.js
+	shuffle: function(word) {
+		let shuffledWord = '';
+		word = word.split('');
+		while (word.length > 0) {
+			shuffledWord += word.splice(word.length * Math.random() << 0, 1);
+		}
+		return shuffledWord;
+	},
 };
