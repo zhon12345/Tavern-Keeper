@@ -11,7 +11,7 @@ module.exports = {
 	usage: 'scramble',
 	run: async (client, message, args) => {
 		const filter = m => m.author.id === message.author.id;
-		const word = words[Math.floor(Math.random() * words.length - 1)];
+		const word = words[Math.floor(Math.random() * words.length)];
 		const scrambled = shuffle(word);
 		const embed = new MessageEmbed()
 			.setColor('BLUE')
