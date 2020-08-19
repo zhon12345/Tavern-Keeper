@@ -1,10 +1,11 @@
 const { BOT_OWNER } = process.env;
 const Guild = require('../../models/guild');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = {
 	name: 'blacklist',
 	category: 'Owner',
-	description: 'Blacklist/Unblacklist a specified guild.',
+	description: 'Add or Remove a specified guild from the blacklist.',
 	aliases: [],
 	usage: 'blacklist [add/remove] [guild]',
 	guildOnly: true,
@@ -68,6 +69,21 @@ module.exports = {
 					`<:vSuccess:725270799098970112> Sucessfully removed ${settings.guildName} to blacklist.`,
 				).then(message.delete());
 			}
+		}
+		else {
+			const isBlacklisted = await Guild.find(
+				{
+					blacklisted: true,
+				},
+			);
+
+			const blacklisted = isBlacklisted.map(guilds => `${guilds.guildName} (${guilds.guildID})`.toString());
+
+			const embed = new MessageEmbed()
+				.setTitle('Blacklisted guilds')
+				.setDescription(blacklisted.length !== 0 ? blacklisted : 'None')
+				.setColor('BLUE');
+			return message.channel.send(embed);
 		}
 	},
 };
