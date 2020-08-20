@@ -1,11 +1,7 @@
-/* eslint-disable no-undef */
 require('dotenv').config();
 const { Client, Collection } = require('discord.js');
+const client = new Client({ disableEveryone: true });
 const { Player } = require('discord-player');
-const client = new Client({
-	disableEveryone: true,
-});
-
 const player = new Player(client);
 
 client.commands = new Collection();
