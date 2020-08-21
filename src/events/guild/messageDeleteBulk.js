@@ -22,7 +22,7 @@ module.exports = async (client, messages) =>{
 	});
 	const logs = settings.settings.modlog;
 	const logsChannel = client.channels.cache.get(logs);
-	if(!logsChannel || logsChannel === null) {return;}
+	if(!logsChannel) {return;}
 	else{
 		const output = messages.map((m, index) => `${new Date(m.createdAt).toLocaleString('en-US')} - ${m.author.tag}: ${m.content}`).join('\n');
 
