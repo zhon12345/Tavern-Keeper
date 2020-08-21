@@ -15,7 +15,7 @@ module.exports = async (client, oldMember, newMember) => {
 
 	const logs = settings.settings.serverlog;
 	const logchannel = oldMember.guild.channels.cache.get(logs);
-	if (!logchannel || logchannel === null) {return;}
+	if (!logchannel) {return;}
 	else if(target.id == oldMember) {
 		const newMemberRoles = newMember.roles.cache.map(role => role.name.toString());
 		const oldMemberRoles = oldMember.roles.cache.map(role => role.name.toString());

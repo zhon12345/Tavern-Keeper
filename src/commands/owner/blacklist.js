@@ -32,7 +32,7 @@ module.exports = {
 			guildID: guild,
 		});
 
-		if (args[0] === 'add') {
+		if (args[0].toLowerCase() === 'add') {
 			if(settings.blacklisted === true) {
 				return message.channel.send(
 					'<:vError:725270799124004934> The specified guild is already blacklisted.',
@@ -51,7 +51,7 @@ module.exports = {
 				).then(message.delete());
 			}
 		}
-		else if (args[0] === 'remove') {
+		else if (args[0].toLowerCase() === 'remove') {
 			if(settings.blacklisted === false) {
 				return message.channel.send(
 					'<:vError:725270799124004934> The specified guild is not blacklisted.',

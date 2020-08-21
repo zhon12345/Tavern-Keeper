@@ -23,7 +23,7 @@ module.exports = {
 			return message.channel.send('<:vError:725270799124004934> There is nothing playing.');
 		}
 
-		if(args[0] === 'on') {
+		if(args[0].toLowerCase() === 'on') {
 			client.player.setFilters(message.guild.id, {
 				bassboost: true,
 			});
@@ -31,7 +31,7 @@ module.exports = {
 				'<:vSuccess:725270799098970112> Successfully enabled Bass Boost.',
 			);
 		}
-		else if (args[0] === 'off') {
+		else if (args[0].toLowerCase() === 'off') {
 			client.player.setFilters(message.guild.id, {
 				bassboost: false,
 			});

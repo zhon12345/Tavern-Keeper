@@ -29,7 +29,7 @@ module.exports = {
 		const ms = channel.rateLimitPerUser * 1000;
 
 		let topic;
-		if(!channel.topic || channel.topic === null) {
+		if(!channel.topic) {
 			topic = 'None';
 		}
 		else {
@@ -37,7 +37,7 @@ module.exports = {
 		}
 
 		let parent;
-		if(!channel.parent || channel.parent === null) {
+		if(!channel.parent) {
 			parent = 'None';
 		}
 		else {

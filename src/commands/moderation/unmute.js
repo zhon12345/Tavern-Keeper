@@ -14,7 +14,7 @@ module.exports = {
 		});
 		const logs = settings.settings.modlog;
 		const channel = message.guild.channels.cache.get(logs);
-		if (!channel || channel === null) return;
+		if (!channel) return;
 
 		if(!message.member.hasPermission('KICK_MEMBERS')) {
 			return message.channel.send(
@@ -56,7 +56,7 @@ module.exports = {
 			);
 		}
 		if(member.roles.cache.has(muteRole)) {
-			if(!verifiedRole || verifiedRole === null) {
+			if(!verifiedRole) {
 				try {
 					await member.send(`You have been unmuted in ${message.guild}\n\`[Reason]\` ${Reason}`);
 				}

@@ -15,7 +15,7 @@ module.exports = {
 		});
 		const logs = settings.settings.modlog;
 		const channel = message.guild.channels.cache.get(logs);
-		if (!channel || channel === null) return;
+		if (!channel) return;
 
 		if(!message.member.hasPermission('MANAGE_MESSAGES')) {
 			return message.channel.send(
@@ -37,11 +37,11 @@ module.exports = {
 		}
 
 		let Reason;
-		if(!Reason) {
+		if(!args[1]) {
 			Reason = 'No reason specified';
 		}
 		else {
-			Reason = args.slice().join(' ');
+			Reason = args.slice(1).join(' ');
 		}
 
 		message.channel.bulkDelete(amount + 1, true);

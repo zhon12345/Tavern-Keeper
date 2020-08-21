@@ -14,7 +14,7 @@ module.exports = {
 			);
 		}
 
-		if (args[0] === 'off') {
+		if (args[0].toLowerCase() === 'off') {
 			await Guild.updateOne(
 				{
 					guildID:message.guild.id,

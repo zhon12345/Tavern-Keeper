@@ -19,7 +19,7 @@ module.exports = async (client, message) => {
 
 	const logs = settings.settings.messagelog;
 	const channel = message.guild.channels.cache.get(logs);
-	if (!channel || channel === null) {return;}
+	if (!channel) {return;}
 	else if(target.id === message.author.id) {
 		const embed = new MessageEmbed()
 			.setColor('RED')

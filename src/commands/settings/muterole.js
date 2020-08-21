@@ -13,7 +13,7 @@ module.exports = {
 				'<:vError:725270799124004934> You must have the following permissions to use that: Administrator.',
 			);
 		}
-		if (args[0] === 'off') {
+		if (args[0].toLowerCase() === 'off') {
 			await Guild.updateOne(
 				{
 					guildID: message.guild.id,

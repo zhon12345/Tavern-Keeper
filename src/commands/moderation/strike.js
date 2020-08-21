@@ -16,7 +16,7 @@ module.exports = {
 		});
 		const logs = settings.settings.modlog;
 		const channel = message.guild.channels.cache.get(logs);
-		if (!channel || channel === null) return;
+		if (!channel) return;
 
 		if(!message.member.hasPermission('KICK_MEMBERS')) {
 			return message.channel.send(
@@ -51,7 +51,7 @@ module.exports = {
 		}
 
 		let Reason;
-		let amount = args[1];
+		let amount;
 		if (isNaN(args[1])) {
 			amount = 1;
 			Reason = args.slice(1).join(' ');
@@ -61,7 +61,6 @@ module.exports = {
 				);
 			}
 		}
-
 		else {
 			amount = Number(args[1]);
 			Reason = args.slice(2).join(' ');
@@ -95,7 +94,7 @@ module.exports = {
 				}
 
 				channel.send(
-					`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🚩 **${message.author.username}**#${message.author.discriminator} gave \`${amount}\` strikes to **${member.user.username}**#${member.user.discriminator} (ID: ${member.id}).**${message.author.username}** has ${data.warnings} strikes now.\n\`[Reason]\` ${Reason}`,
+					`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🚩 **${message.author.username}**#${message.author.discriminator} gave \`${amount}\` strikes to **${member.user.username}**#${member.user.discriminator} (ID: ${member.id}).**${message.author.username}** has ${amount} strikes now.\n\`[Reason]\` ${Reason}`,
 				);
 				await message.channel.send(
 					`<:vSuccess:725270799098970112> Successfully gave \`${amount}\` strikes to **${member.user.username}**#${member.user.discriminator}`,

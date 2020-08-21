@@ -18,7 +18,7 @@ module.exports = {
 			guildID: message.guild.id,
 		});
 
-		if (args[0] === 'off') {
+		if (args[0].toLowerCase() === 'off') {
 			if(settings.settings.antilinks === false) {
 				return message.channel.send(
 					'<:vError:725270799124004934> Anti Links is already off.',
@@ -38,7 +38,7 @@ module.exports = {
 				).then(message.delete());
 			}
 		}
-		else if (args[0] === 'on') {
+		else if (args[0].toLowerCase() === 'on') {
 			if(settings.settings.antilinks === true) {
 				return message.channel.send(
 					'<:vError:725270799124004934> Anti Links is already on.',

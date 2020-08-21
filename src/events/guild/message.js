@@ -59,7 +59,7 @@ module.exports = async (client, message) => {
 		if(is_url(message.content) || is_invite(message.content) === true) {
 			const logs = settings.settings.modlog;
 			const channel = message.guild.channels.cache.get(logs);
-			if (!channel || channel === null) return;
+			if (!channel) return;
 
 			if(message.member.hasPermission('MANAGE_MESSAGES')) {
 				return;

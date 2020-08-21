@@ -8,9 +8,9 @@ module.exports = async (client, member) => {
 
 	const welcome = settings.welcomer.joinchannel;
 	const channel = member.guild.channels.cache.get(welcome);
-	if (!channel || channel === null) return;
+	if (!channel) return;
 	const msg = settings.welcomer.jointext;
-	if (!msg || msg === null) return;
+	if (!msg) return;
 	const message = msg
 		.split('{user.name}').join(member.user.username)
 		.split('{user.discriminator}').join(member.user.discriminator)
@@ -22,7 +22,7 @@ module.exports = async (client, member) => {
 
 	const logs = settings.settings.serverlog;
 	const logchannel = member.guild.channels.cache.get(logs);
-	if (!logchannel || logchannel === null) return;
+	if (!logchannel) return;
 	logchannel.send(
 		`\`[${moment(member.joinedTimestamp).format('HH:mm:ss')}]\` 📥 **${member.user.username}**#${member.user.discriminator} (ID: ${member.user.id}) joined the server.\n\`[Creation Date]\` ${moment(member.user.createdTimestamp).format('dddd, Do MMMM YYYY, h:mm:ss a')}`,
 	);

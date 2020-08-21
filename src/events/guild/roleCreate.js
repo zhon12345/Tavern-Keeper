@@ -15,7 +15,7 @@ module.exports = async (client, role) => {
 
 	const logs = settings.settings.serverlog;
 	const logchannel = role.guild.channels.cache.get(logs);
-	if (!logchannel || logchannel === null) {return;}
+	if (!logchannel) {return;}
 	else if(target.id == role) {
 		logchannel.send(
 			`\`[${moment(role.createdTimestamp).format('HH:mm:ss')}]\` ⚒ ${role.name} (ID: ${role.id}) has been created by **${executor.username}**#${executor.discriminator}.\n\`[Permissions]\` ${role.permissions.toArray().map(p => p[0] + p.slice(1).toLowerCase()).join(', ').replace(/_/g, ' ')}`,

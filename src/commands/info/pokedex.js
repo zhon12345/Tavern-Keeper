@@ -44,7 +44,7 @@ module.exports = {
 				{ name: 'Type', value: data.type.join(', ') },
 			);
 		resp.stats.forEach(stat => embed.addField(capitalizeFirstLetter(stat.stat.name).split('Special-attack').join('Sp. Attack').split('Special-defense').join('Sp. Defense'), stat.base_stat, true));
-		embed.addField('Evolutions', data.family.evolutionLine ? 'None' : data.family.evolutionLine.join(' -> '));
+		embed.addField('Evolutions', data.family.evolutionLine ? data.family.evolutionLine.join(' -> ') : 'None');
 		message.channel.send(embed);
 	},
 };

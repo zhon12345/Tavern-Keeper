@@ -18,7 +18,7 @@ module.exports = {
 
 		if (!channel) time = args.join(' '), channel = message.channel;
 
-		if (args[0] === 'off') {
+		if (args[0].toLowerCase() === 'off') {
 			channel.setRateLimitPerUser(0);
 			return message.channel.send(`<:vSuccess:725270799098970112> Slowmode for <#${channel.id}> has been deactivated.`);
 		}

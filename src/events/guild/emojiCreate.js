@@ -15,7 +15,7 @@ module.exports = async (client, emoji) => {
 
 	const logs = settings.settings.serverlog;
 	const logchannel = emoji.guild.channels.cache.get(logs);
-	if (!logchannel || logchannel === null) {return;}
+	if (!logchannel) {return;}
 	else if(target.id == emoji) {
 		logchannel.send(
 			`\`[${moment(emoji.createdTimestamp).format('HH:mm:ss')}]\` ⚒ ${emoji.name} (ID: ${emoji.id}) has been created by **${executor.username}**#${executor.discriminator}.\n\`[Emoji]\` <:${emoji.name}:${emoji.id}>`,

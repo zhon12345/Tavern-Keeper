@@ -1,5 +1,5 @@
 node_modules
 .env
 .eslintrc.json
-src/json.sqlite
 FFmpeg
+.vscode/settings.json

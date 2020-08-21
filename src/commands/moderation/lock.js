@@ -20,7 +20,7 @@ module.exports = {
 
 		let channel;
 		const role = settings.settings.verifyrole || message.guild.roles.everyone;
-		if (args[0] === 'on') {
+		if (args[0].toLowerCase() === 'on') {
 			channel = message.channel,
 			channel.updateOverwrite(role, {
 				SEND_MESSAGES: false,
@@ -29,7 +29,7 @@ module.exports = {
 				`<:vSuccess:725270799098970112> Successfully locked ${channel}`,
 			).then(message.delete());
 		}
-		else if (args[0] === 'off') {
+		else if (args[0].toLowerCase() === 'off') {
 			channel = message.channel,
 			channel.updateOverwrite(role, {
 				SEND_MESSAGES: true,

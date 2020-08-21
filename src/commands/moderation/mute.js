@@ -15,7 +15,7 @@ module.exports = {
 		});
 		const logs = settings.settings.modlog;
 		const channel = message.guild.channels.cache.get(logs);
-		if (!channel || channel === null) return;
+		if (!channel) return;
 
 		if(!message.member.hasPermission('KICK_MEMBERS')) {
 			return message.channel.send(
@@ -64,8 +64,8 @@ module.exports = {
 
 		let Reason;
 		let time = args[1];
-		if(!verifiedRole || verifiedRole === null) {
-			if(!time.match(/[0-9][s|m|h|d]/)) {
+		if(!verifiedRole) {
+			if(!time.match(/[0-9][dhms]/)) {
 				time = null,
 				Reason = args.slice(1).join(' ');
 				if (!Reason) {
@@ -124,7 +124,7 @@ module.exports = {
 			}, ms(time));
 		}
 		else {
-			if(!time.match(/[0-9][s|m|h|d]/)) {
+			if(!time.match(/[0-9][dhms]/)) {
 				time = null,
 				Reason = args.slice(1).join(' ');
 				if (!Reason) {

@@ -15,7 +15,7 @@ module.exports = async (client, emoji) => {
 
 	const logs = settings.settings.serverlog;
 	const logchannel = emoji.guild.channels.cache.get(logs);
-	if (!logchannel || logchannel === null) {return;}
+	if (!logchannel) {return;}
 	else if(target.id == emoji) {
 		logchannel.send(
 			`\`[${moment(Date.now()).format('HH:mm:ss')}]\` ❌ ${emoji.name} (ID: ${emoji.id}) has been deleted by **${executor.username}**#${executor.discriminator}.\n\`[Emoji]\` <:${emoji.name}:${emoji.id}>`,

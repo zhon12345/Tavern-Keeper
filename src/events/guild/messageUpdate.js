@@ -19,7 +19,7 @@ module.exports = async (client, oldMessage, newMessage) => {
 			);
 		const logs = settings.settings.messagelog;
 		const channel = oldMessage.guild.channels.cache.get(logs);
-		if (!channel || channel === null) return;
+		if (!channel) return;
 		channel.send(
 			`\`[${moment(newMessage.createdTimestamp).format('HH:mm:ss')}]\` ✏️ **${oldMessage.author.username}**#${oldMessage.author.discriminator} (ID: ${oldMessage.author.id}) edited a message.`, embed,
 		);

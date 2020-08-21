@@ -17,7 +17,7 @@ module.exports = async (client, oldGuild, newGuild) => {
 
 	const logs = settings.settings.serverlog;
 	const logchannel = oldGuild.channels.cache.get(logs);
-	if (!logchannel || logchannel === null) {return;}
+	if (!logchannel) {return;}
 	else if(target.id == oldGuild) {
 		if(newGuild.name !== oldGuild.name) {
 			const embed = new MessageEmbed()

@@ -14,7 +14,7 @@ module.exports = {
 		});
 		const logs = settings.settings.modlog;
 		const channel = message.guild.channels.cache.get(logs);
-		if (!channel || channel === null) return;
+		if (!channel) return;
 
 		if(!message.member.hasPermission('BAN_MEMBERS')) {
 			return message.channel.send(

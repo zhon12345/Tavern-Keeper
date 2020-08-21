@@ -37,7 +37,7 @@ module.exports = async (client, member) => {
 
 	const logs = settings.settings.serverlog;
 	const logchannel = member.guild.channels.cache.get(logs);
-	if (!logchannel || logchannel === null) {return;}
+	if (!logchannel) {return;}
 	else if(memberKicked.id == member) {
 		logchannel.send(
 			`\`[${moment(Date.now()).format('HH:mm:ss')}]\` 📤 **${member.user.username}**#${member.user.discriminator} (ID: ${member.user.id}) was kicked from the server.\n\`[Joined Date]\` ${moment(member.user.joinedAt).format('dddd, Do MMMM YYYY, h:mm:ss a')}`,
