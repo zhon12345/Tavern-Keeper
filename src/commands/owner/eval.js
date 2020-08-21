@@ -49,7 +49,6 @@ module.exports = {
 						response = await fetch(url, { method: 'POST', body: output, headers: { 'Content-Type': 'text/plain' } }).then(res => res.json());
 					}
 					catch (e) {
-						
 						return message.channel.send('<:vError:725270799124004934> An error occured, please try again!');
 					}
 					embed.addField('Output', `https://hasteb.in/${response.key}.js`).setColor('GREEN');
@@ -69,7 +68,6 @@ module.exports = {
 						response = await fetch(url, { method: 'POST', body: err, headers: { 'Content-Type': 'text/plain' } }).then(res => res.json());
 					}
 					catch (e) {
-						
 						return message.channel.send('<:vError:725270799124004934> An error occured, please try again!');
 					}
 					embed.addField('Output', `https://hasteb.in/${response.key}.js`).setColor('RED');

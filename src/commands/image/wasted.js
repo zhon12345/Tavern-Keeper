@@ -28,7 +28,6 @@ module.exports = {
 			} }).then(res => res.buffer());
 		}
 		catch (e) {
-			
 			return message.channel.send('<:vError:725270799124004934> An error occured, please try again!');
 		}
 		const attachment = new MessageAttachment(response, 'wasted.png');
