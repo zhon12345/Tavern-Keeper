@@ -6,7 +6,7 @@
 
 <div align="center">
 
-[![Run on Repl.it](https://repl.it/badge/github/zhon12345/Tavern_Keeper)](https://repl.it/github/zhon12345/Tavern_Keeper)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/4b64ec182228492fbddc3c91d181203c)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=zhon12345/Tavern_Keeper_Beta&amp;utm_campaign=Badge_Grade)
 [![Discord](https://img.shields.io/discord/450846546867519503.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/GGMsqS9)
 [![library](https://img.shields.io/badge/library-discord.js-blue)](https://discord.js.org/#/)
 [![Dependancies](https://img.shields.io/depfu/zhon12345/Tavern_Keeper)](https://github.com/zhon12345/Tavern_Keeper)
