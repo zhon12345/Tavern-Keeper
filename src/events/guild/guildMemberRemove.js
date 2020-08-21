@@ -9,14 +9,14 @@ module.exports = async (client, member) => {
 	const welcome = settings.welcomer.joinchannel;
 	const goodbye = settings.welcomer.leavechannel;
 	let channel = member.guild.channels.cache.get(goodbye);
-	if (!goodbye || goodbye === null) {
+	if (!goodbye) {
 		channel = member.guild.channels.cache.get(welcome);
 	}
-	else if (!welcome || welcome === null) {
+	else if (!welcome) {
 		return;
 	}
 	const msg = settings.welcomer.leavetext;
-	if (!msg || msg === null) return;
+	if (!msg) return;
 	const message = msg
 		.split('{user.name}').join(member.user.username)
 		.split('{user.discriminator}').join(member.user.discriminator)
