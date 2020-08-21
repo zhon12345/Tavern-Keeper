@@ -10,8 +10,7 @@ module.exports = {
 				'<:vError:725270799124004934> Please provide valid text.',
 			);
 		}
-		else {
-			message.channel.send(`||${args.join(' ').split('').join('||||')}||`);
-		}
+
+		message.channel.send(`||${args.join(' ').split('').join('||||')}||`);
 	},
 };

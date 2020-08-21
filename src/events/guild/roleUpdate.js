@@ -54,12 +54,12 @@ module.exports = async (client, oldRole, newRole) => {
 				`\`[${moment(newRole.createdTimestamp).format('HH:mm:ss')}]\` ✏️ ${oldRole.name} (ID: ${oldRole.id})'s color has been changed by **${executor.username}**#${executor.discriminator}.\n\`[Time]\` ${moment(newRole.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`, embed,
 			);
 		}
-		else if(newRole.hoist == true && oldRole.hoist == false) {
+		else if(newRole.hoist === true && oldRole.hoist === false) {
 			logchannel.send(
 				`\`[${moment(newRole.createdTimestamp).format('HH:mm:ss')}]\` ✏️ ${oldRole.name} (ID: ${oldRole.id}) has been hoisted by **${executor.username}**#${executor.discriminator}.\n\`[Time]\` ${moment(newRole.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`,
 			);
 		}
-		else if(newRole.hoist == false && oldRole.hoist == true) {
+		else if(newRole.hoist === false && oldRole.hoist === true) {
 			logchannel.send(
 				`\`[${moment(newRole.createdTimestamp).format('HH:mm:ss')}]\` ✏️ ${oldRole.name} (ID: ${oldRole.id}) has been unhoisted by **${executor.username}**#${executor.discriminator}.\n\`[Time]\` ${moment(newRole.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`,
 			);

@@ -48,7 +48,6 @@ module.exports = {
 				});
 		}
 		catch(err) {
-			console.log(err);
 			return message.channel.send(
 				'<:vError:725270799124004934> An error occured, please try again!',
 			);

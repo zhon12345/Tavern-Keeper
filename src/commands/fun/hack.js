@@ -73,7 +73,6 @@ module.exports = {
 		}
 		catch(err) {
 			message.channel.send('<:vError:725270799124004934> An error occured, please try again!');
-			console.log(err);
 		}
 	},
 };
