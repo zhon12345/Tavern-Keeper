@@ -23,19 +23,6 @@ module.exports = {
 	},
 
 	// rps.js
-	promptMessage: async function(message, author, time, validReactions) {
-		time *= 1000;
-
-		for (const reaction of validReactions) await message.react(reaction);
-
-		const filter = (reaction, user) => validReactions.includes(reaction.emoji.name) && user.id === author.id;
-
-		return message
-			.awaitReactions(filter, { max: 1, time: time })
-			.then(collected => collected.first() && collected.first().emoji.name);
-	},
-
-	// rps.js
 	getResult: function(me, clientChosen) {
 		if ((me === '🗻' && clientChosen === '✂') ||
 			(me === '📰' && clientChosen === '🗻') ||
@@ -177,5 +164,11 @@ module.exports = {
 			shuffledWord += word.splice(word.length * Math.random() << 0, 1);
 		}
 		return shuffledWord;
+	},
+
+	// trivia.js
+	strip: function(string) {
+		string = string.replace(/&quot;/g, '"');
+		return string;
 	},
 };

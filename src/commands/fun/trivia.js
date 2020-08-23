@@ -1,8 +1,7 @@
 /* eslint-disable no-unused-vars */
 const fetch = require('node-fetch');
 const { MessageEmbed } = require('discord.js');
-const h2p = require('html2plaintext');
-const { capitalizeFirstLetter } = require('../../functions');
+const { capitalizeFirstLetter, strip } = require('../../functions');
 
 module.exports = {
 	name: 'trivia',
@@ -11,7 +10,7 @@ module.exports = {
 	aliases: ['quiz'],
 	usage: 'trivia',
 	run: async (client, message, args) => {
-		const filter = m => m.author.id === message.author.id;
+		const filter = (m) => m.author.id === message.author.id;
 		const url = 'https://opentdb.com/api.php?amount=1&type=boolean';
 		let response;
 		try {
@@ -27,7 +26,7 @@ module.exports = {
 			.setFooter(`Requested by ${message.author.tag} `)
 			.setTimestamp()
 			.addFields(
-				{ name: h2p(response.results[0].question), value: ['*You have 15 seconds to find the correct answer.\n\n True or False?*'] },
+				{ name: strip(response.results[0].question), value: ['*You have 15 seconds to find the correct answer.\n\n True or False?*'] },
 				{ name: 'Difficulty', value: `\`${capitalizeFirstLetter(response.results[0].difficulty)}\``, inline:true },
 				{ name: 'Category', value: `\`${response.results[0].category}\``, inline: true },
 			);
