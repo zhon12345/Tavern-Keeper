@@ -1,4 +1,3 @@
-/* eslint-disable prefer-const */
 module.exports = {
 	// message.js
 	is_url: function(string) {
@@ -50,8 +49,9 @@ module.exports = {
 
 	// channelinfo.js, uptime.js & botinfo.js
 	parseDur: function(ms) {
-		let seconds = ms / 1000,
-			days = parseInt(seconds / 86400);
+		let seconds = ms / 1000;
+
+		const days = parseInt(seconds / 86400);
 		seconds = seconds % 86400;
 
 		const hours = parseInt(seconds / 3600);
@@ -99,8 +99,8 @@ module.exports = {
 
 	// spongebob.js
 	alternateCaps: function(text) {
-		let array = text.split('');
-		let n = text.length;
+		const array = text.split('');
+		const n = text.length;
 		let out = '';
 		let caps = false;
 
