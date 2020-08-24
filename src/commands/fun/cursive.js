@@ -1,4 +1,3 @@
-const { letterTrans } = require('custom-translate');
 const dictionary = require('../../assets/json/cursive.json');
 
 module.exports = {
@@ -14,8 +13,15 @@ module.exports = {
 				'<:vError:725270799124004934> Please provide valid text.',
 			);
 		}
-		else {
-			message.channel.send(letterTrans(text, dictionary));
+
+		if(text.length > 2000) {
+			return message.channel.send('<:vError:725270799124004934> The emojified message exceeds 2000 characters.');
 		}
+
+		const cursified = text.toLowerCase().split('').map(letter => {
+			return `${dictionary[letter]}`;
+		}).join('');
+
+		message.channel.send(cursified);
 	},
 };

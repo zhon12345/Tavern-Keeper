@@ -3,31 +3,15 @@ const { MessageEmbed } = require('discord.js');
 const fetch = require('node-fetch');
 
 module.exports = {
-	name: 'nsfw',
-	category: 'NSFW',
-	description: 'Sends a post from r/nsfw.',
+	name: 'hamsters',
+	category: 'Animals',
+	description: 'hamsters! Do you like em?',
 	aliases: [],
-	usage: 'nsfw',
+	usage: 'hamsters',
+	guildOnly: true,
 	run: async (client, message, args) => {
-		if(!message.channel.nsfw) {
-			return message.channel.send(
-				'<:vError:725270799124004934> This command can only be used in a nsfw channel.',
-			);
-		}
-		const subreddits = [
-			'nsfw',
-			'porn',
-			'BonerMaterial',
-			'adorableporn',
-			'Sexy',
-			'camwhores',
-		];
-
-		const sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
-
-
 		const url = [
-			`https://www.reddit.com/r/${sub}.json?sort=top`,
+			'https://www.reddit.com/r/hamsters/hot.json',
 		];
 
 		let response;

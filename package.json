@@ -21,7 +21,6 @@
     "canvacord": "^3.0.9",
     "common-tags": "^1.8.0",
     "cpu-stat": "^2.0.1",
-    "custom-translate": "^2.2.8",
     "discord-player": "^2.3.1",
     "discord.js": "^12.3.1",
     "dotenv": "^8.2.0",

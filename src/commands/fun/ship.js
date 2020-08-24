@@ -17,20 +17,22 @@ module.exports = {
 			4: '💙',
 			5: '💜',
 		};
-		if (!args[0]) {
+		const member1 = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]);
+		if (!member1) {
 			return message.channel.send('<:vError:725270799124004934> Please provide valid users');
 		}
 
-		if (!args[1]) {
+		const member2 = message.mentions.members.last() || message.guild.members.cache.get(args[1]) || message.guild.members.cache.find(x => x.user.username === args.slice(1).join(' ') || x.user.username === args[1]);
+		if (!member2) {
 			return message.channel.send('<:vError:725270799124004934> Please provide valid users');
 		}
 
-		const firstName = args[0];
-		const secondName = args[1];
+		const firstName = member1.user.username;
+		const secondName = member2.user.username;
 
 		const shipName = firstName.substr(0, firstName.length * 0.5) + secondName.substr(secondName.length * 0.5);
 
-		if (shipName.toLowerCase() === 'teily' || shipName.toLowerCase() === 'emrra') {
+		if (shipName.toLowerCase() === 'gayshit' || shipName.toLowerCase() === 'fuckoff') {
 			rating = '100';
 		}
 

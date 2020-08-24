@@ -3,20 +3,20 @@ const { MessageEmbed } = require('discord.js');
 const fetch = require('node-fetch');
 
 module.exports = {
-	name: 'cat',
-	category: 'Image',
-	description: 'Lets see some pretty kitties!',
-	aliases: ['cats', 'kitty', 'meow'],
-	usage: 'cat',
+	name: 'snake',
+	category: 'Animals',
+	description: 'Are they really that scary?',
+	aliases: ['snakes', 'snek'],
+	usage: 'snake',
 	guildOnly: true,
 	run: async (client, message, args) => {
 		const subreddits = [
-			'cats',
-			'kittens',
+			'Snek',
+			'ballpython',
+			'Pythons',
 		];
 
 		const sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
-
 
 		const url = [
 			`https://www.reddit.com/r/${sub}/hot.json`,

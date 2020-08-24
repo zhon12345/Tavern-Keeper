@@ -10,7 +10,28 @@ module.exports = {
 	guildOnly: true,
 	run: async (client, message, args) => {
 		if(args[0]) {
-			return aliases(client, message, args[0]);
+			const cmd = client.commands.get(args[0].toLowerCase()) || client.commands.get(client.aliases.get(args[0].toLowerCase()));
+			if(!cmd) {
+				return message.channel.send(
+					'<:vError:725270799124004934> Please provied a vaild command.',
+				);
+			}
+			else {
+				let alias;
+				if(cmd.aliases.length === 0) {
+					alias = '`None`';
+				}
+				else {
+					alias = cmd.aliases.map((a) => `\`${a}\``).join(', ');
+				}
+				const embed = new MessageEmbed()
+					.setTitle(`Aliases for ${capitalizeFirstLetter(cmd.name.toString().toLowerCase())}`)
+					.setDescription(alias)
+					.setColor('BLUE')
+					.setFooter(`Requested by ${message.author.tag}`)
+					.setTimestamp();
+				return message.channel.send(embed);
+			}
 		}
 		else{
 			return message.channel.send(
@@ -19,30 +40,4 @@ module.exports = {
 		}
 
 	},
-
 };
-
-function aliases(client, message, input) {
-	const cmd = client.commands.get(input.toLowerCase()) || client.commands.get(client.aliases.get(input.toLowerCase()));
-	if(!cmd) {
-		return message.channel.send(
-			'<:vError:725270799124004934> Please provied a vaild command.',
-		);
-	}
-	else {
-		let alias;
-		if(cmd.aliases.length === 0) {
-			alias = '`None`';
-		}
-		else {
-			alias = cmd.aliases.map((a) => `\`${a}\``).join(', ');
-		}
-		const embed = new MessageEmbed()
-			.setTitle(`Aliases for ${capitalizeFirstLetter(cmd.name.toString().toLowerCase())}`)
-			.setDescription(alias)
-			.setColor('BLUE')
-			.setFooter(`Requested by ${message.author.tag}`)
-			.setTimestamp();
-		return message.channel.send(embed);
-	}
-}

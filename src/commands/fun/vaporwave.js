@@ -1,4 +1,5 @@
-/* eslint-disable no-undef */
+const dictionary = require('../../assets/json/vaporwave.json');
+
 module.exports = {
 	name: 'vaporwave',
 	aliases: ['aesthetic'],
@@ -6,21 +7,21 @@ module.exports = {
 	usage: 'vapourwave <text>',
 	category: 'Fun',
 	run: async (client, message, args) => {
+		const text = args.slice().join(' ');
 		if(!args[0]) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide valid text.',
 			);
 		}
 
-		let letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789.?!,:;"\'-_+%=$*(){}[]<>|/~\\@&%£#';
-		letters = letters.split('');
-		let wp = 'ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ　０１２３４５６７８９．？！，：；＂＇－＿＋％＝＄＊（）｛｝［］＜＞｜／～＼＠＆％￡＃';
-		wp = wp.split('');
-		let text = args.join(' ');
-		text = text.split('');
-		for (i = 0; i < text.length; i++) {
-			text[i] = wp[letters.indexOf(text[i])];
+		if(text.length > 2000) {
+			return message.channel.send('<:vError:725270799124004934> The emojified message exceeds 2000 characters.');
 		}
-		message.channel.send(text.join(''));
+
+		const vapour = text.split('').map(letter => {
+			return `${dictionary[letter]}`;
+		}).join('');
+
+		message.channel.send(vapour);
 	},
 };

@@ -3,7 +3,7 @@ module.exports = {
 	name: 'stop',
 	category: 'Music',
 	description: 'Disconnect the bot from the voice channel it is in.',
-	aliases: [],
+	aliases: ['disconnect', 'fuckoff'],
 	usage: 'stop',
 	guildOnly: true,
 	run: async (client, message, args) => {
@@ -20,7 +20,7 @@ module.exports = {
 		}
 
 		if(!client.player.isPlaying(message.guild.id)) {
-			return message.channel.send('<:vError:725270799124004934> There is nothing playing.');
+			return message.guild.me.voice.channel.leave();
 		}
 
 		await client.player.stop(message.guild.id);

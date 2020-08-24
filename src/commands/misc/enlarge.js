@@ -21,7 +21,7 @@ module.exports = {
 		if (custom.id) {
 			const embed = new Discord.MessageEmbed()
 				.setTitle(`Enlarged version of: ${emoji}`)
-				.setColor('#FFFF00')
+				.setColor('BLUE')
 				.setFooter(`Requested by ${message.author.tag}`)
 				.setTimestamp()
 				.setImage(`https://cdn.discordapp.com/emojis/${custom.id}.${custom.animated ? 'gif' : 'png'}`);

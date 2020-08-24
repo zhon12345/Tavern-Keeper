@@ -25,8 +25,7 @@ module.exports = {
 			);
 		}
 
-		const searchTracks = await client.player.searchTracks(query).catch(e => {
-			
+		const searchTracks = await client.player.searchTracks(query).catch(() => {
 			return message.channel.send(
 				'<:vError:725270799124004934> No results found.',
 			);

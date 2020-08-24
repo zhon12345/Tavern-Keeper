@@ -13,8 +13,7 @@ module.exports = {
 				'<:vError:725270799124004934> Please provide valid text.',
 			);
 		}
-		else {
-			message.channel.send(owoify(text));
-		}
+
+		message.channel.send(owoify(text));
 	},
 };

@@ -5,6 +5,7 @@ const { Player } = require('discord-player');
 const player = new Player(client);
 
 client.commands = new Collection();
+client.category = new Collection();
 client.aliases = new Collection();
 client.player = player;
 

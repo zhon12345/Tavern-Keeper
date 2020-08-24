@@ -1,4 +1,3 @@
-const { letterTrans } = require('custom-translate');
 const dictionary = require('../../assets/json/emojify.json');
 
 module.exports = {
@@ -19,6 +18,10 @@ module.exports = {
 			return message.channel.send('<:vError:725270799124004934> The emojified message exceeds 2000 characters.');
 		}
 
-		message.channel.send(letterTrans(text.toLowerCase(), dictionary, ' '));
+		const emojified = text.toLowerCase().split('').map(letter => {
+			return `${dictionary[letter]} `;
+		}).join('');
+
+		message.channel.send(emojified);
 	},
 };

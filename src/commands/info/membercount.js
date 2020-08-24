@@ -4,7 +4,7 @@ module.exports = {
 	name: 'membercount',
 	category: 'Info',
 	description: 'Displays the specified guild\'s member count.',
-	aliases: ['usercount'],
+	aliases: ['usercount', 'uc', 'mc'],
 	usage: 'membercount',
 	run: async (client, message, args) => {
 		const guild = client.guilds.cache.get(args[0]) || message.guild;
