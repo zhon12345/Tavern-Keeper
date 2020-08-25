@@ -32,7 +32,7 @@ module.exports = {
 					`**❯ Users:** ${client.users.cache.size.toLocaleString()}`,
 					`**❯ Channels:** ${client.channels.cache.size.toLocaleString()}`,
 					`**❯ Commands:** ${client.commands.size}`,
-					`**❯ Creation Date:** ${moment(client.user.createdTimestamp).format('Do MMMM YYYY HH:mm')}`,
+					`**❯ Creation Date:** ${moment(client.user.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`,
 					`**❯ Uptime:** ${parseDur(client.uptime)}`,
 					'\u200b',
 				])

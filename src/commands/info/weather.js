@@ -9,7 +9,11 @@ module.exports = {
 	category: 'Info',
 	aliases: ['temp'],
 	run: async (client, message, args) => {
-		if (!args[0]) {return message.channel.send('Please provide a location.');}
+		if(!args[0]) {
+			return message.channel.send(
+				'<:vError:725270799124004934> Please provide a valid location',
+			);
+		}
 
 		weather.find({
 			search: args.join(' '),
@@ -20,7 +24,9 @@ module.exports = {
 			}
 
 			if (result === undefined || result.length === 0) {
-				return message.channel.send('Please enter a valid location.');
+				return message.channel.send(
+					'<:vError:725270799124004934> Please provide a valid location',
+				);
 			}
 
 			const { current, location } = result[0];

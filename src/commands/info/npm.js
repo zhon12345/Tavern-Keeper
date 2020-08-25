@@ -25,24 +25,32 @@ module.exports = {
 				'<:vError:725270799124004934> An error occured, please try again!',
 			);
 		}
-		const pkg = response.results[0].package;
-		const embed = new MessageEmbed()
-			.setTitle('NPM Package')
-			.setThumbnail('https://images-ext-2.discordapp.net/external/ouvh4fn7V9pphARfI-8nQdcfnYgjHZdXWlEg2sNowyw/https/cdn.auth0.com/blog/npm-package-development/logo.png')
-			.setURL(pkg.links.npm)
-			.addFields(
-				{ name: 'Name', value: pkg.name },
-				{ name: 'Description', value: pkg.description },
-				{ name: 'Author', value: pkg.author ? pkg.author.name : 'None' },
-				{ name: 'Version', value: pkg.version },
-				{ name: 'Repository', value: pkg.links.repository ? pkg.links.repository : 'None' },
-				{ name: 'Maintainers', value: pkg.maintainers ? pkg.maintainers.map(e => e.username).join(', ') : 'None' },
-				{ name: 'Keywords', value: pkg.keywords ? pkg.keywords.join(', ') : 'None' },
-			)
-			.setColor('BLUE')
-			.setFooter(`Requested by ${message.author.tag}`)
-			.setTimestamp();
 
-		message.channel.send(embed);
+		try{
+			const pkg = response.results[0].package;
+			const embed = new MessageEmbed()
+				.setTitle('NPM Package')
+				.setThumbnail('https://images-ext-2.discordapp.net/external/ouvh4fn7V9pphARfI-8nQdcfnYgjHZdXWlEg2sNowyw/https/cdn.auth0.com/blog/npm-package-development/logo.png')
+				.setURL(pkg.links.npm)
+				.addFields(
+					{ name: 'Name', value: pkg.name },
+					{ name: 'Description', value: pkg.description },
+					{ name: 'Author', value: pkg.author ? pkg.author.name : 'None' },
+					{ name: 'Version', value: pkg.version },
+					{ name: 'Repository', value: pkg.links.repository ? pkg.links.repository : 'None' },
+					{ name: 'Maintainers', value: pkg.maintainers ? pkg.maintainers.map(e => e.username).join(', ') : 'None' },
+					{ name: 'Keywords', value: pkg.keywords ? pkg.keywords.join(', ') : 'None' },
+				)
+				.setColor('BLUE')
+				.setFooter(`Requested by ${message.author.tag}`)
+				.setTimestamp();
+
+			message.channel.send(embed);
+		}
+		catch (e) {
+			return message.channel.send(
+				'<:vError:725270799124004934> Please provide a valid package.',
+			);
+		}
 	},
 };

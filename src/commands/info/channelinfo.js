@@ -1,6 +1,5 @@
 const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
-const { parseDur } = require('../../functions');
 
 const types = {
 	dm: 'DM',
@@ -26,8 +25,6 @@ module.exports = {
 			);
 		}
 
-		const ms = channel.rateLimitPerUser * 1000;
-
 		let topic;
 		if(!channel.topic) {
 			topic = 'None';
@@ -36,36 +33,19 @@ module.exports = {
 			topic = channel.topic;
 		}
 
-		let parent;
-		if(!channel.parent) {
-			parent = 'None';
-		}
-		else {
-			parent = channel.parent;
-		}
-
 		const embed = new MessageEmbed()
-			.setDescription(`**Role information for ${channel.name}**`)
 			.setFooter(`Requested by ${message.author.tag} `)
 			.setTimestamp()
 			.setColor('BLUE')
-			.addField('General', [
-				`**❯ Name:** ${channel.name}`,
-				`**❯ ID:** ${channel.id}`,
-				`**❯ Created on:** ${moment(channel.createdTimestamp).format('Do MMMM YYYY HH:mm')}`,
-				'\u200b',
-			])
-			.addField('Server', [
-				`**❯ NSFW:** ${channel.nsfw ? 'Yes' : 'No'}`,
-				`**❯ Type:** ${types[channel.type]}`,
-				`**❯ Slowmode:** ${parseDur(ms)}`,
-				`**❯ Parent:** ${parent}`,
-				'\u200b',
-			])
-
-			.addField('Topic', [
-				`${topic}`,
-			]);
+			.setTitle('Channel Information')
+			.addFields(
+				{ name: 'Channel Name', value: `\`\`\`${channel.name}\`\`\``, inline:true },
+				{ name: 'Channel ID', value: `\`\`\`${channel.id}\`\`\``, inline:true },
+				{ name: 'Channel Topic', value: `\`\`\`${topic}\`\`\`` },
+				{ name: 'Channel Type', value: `\`\`\`${types[channel.type]}\`\`\``, inline:true },
+				{ name: 'NSFW', value: `\`\`\`${channel.nsfw ? 'Yes' : 'No'}\`\`\``, inline:true },
+				{ name: 'Created', value: `\`\`\`${moment(channel.createdTimestamp).format('MMMM Do YYYY, h:mm:ss')} | ${Math.floor((Date.now() - channel.createdTimestamp) / 86400000)} day(s) ago\`\`\`` },
+			);
 
 		return message.channel.send(embed);
 	},

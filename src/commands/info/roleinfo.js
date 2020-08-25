@@ -36,7 +36,7 @@ module.exports = {
 				`**❯ Name:** ${role.name}`,
 				`**❯ ID:** ${role.id}`,
 				`**❯ Hex Color:** ${role.hexColor.toUpperCase()}`,
-				`**❯ Created on:** ${moment(role.createdTimestamp).format('Do MMMM YYYY HH:mm')}`,
+				`**❯ Created on:** ${moment(role.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`,
 				'\u200b',
 			])
 			.addField('Server', [
