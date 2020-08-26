@@ -5,7 +5,6 @@ const Guild = require('../../models/guild');
 
 module.exports = async (client, message) => {
 	if (message.author.bot) return;
-
 	const settings = await Guild.findOne({
 		guildID: message.guild.id,
 	});
@@ -25,7 +24,7 @@ module.exports = async (client, message) => {
 			.setColor('RED')
 			.addFields(
 				{ name: 'Channel:', value:`${message.channel}` },
-				{ name: 'Content:', value:`${message.content}` },
+				{ name: 'Content:', value:`${message.attachments.size > 0 ? message.attachments.first().proxyURL : message.content}` },
 			);
 		channel.send(
 			`\`[${moment(Date.now()).format('HH:mm:ss')}]\` ❌ **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id})'s message has been deleted by **${executor.username}**#${executor.discriminator}.`, embed,
@@ -36,7 +35,7 @@ module.exports = async (client, message) => {
 			.setColor('RED')
 			.addFields(
 				{ name: 'Channel:', value:`${message.channel}` },
-				{ name: 'Content:', value:`${message.content}` },
+				{ name: 'Content:', value:`${message.attachments.size > 0 ? message.attachments.first().proxyURL : message.content}` },
 			);
 		channel.send(
 			`\`[${moment(Date.now()).format('HH:mm:ss')}]\` ❌ **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id}) deleted a message.`, embed,

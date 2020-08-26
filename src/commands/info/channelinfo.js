@@ -1,5 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
+const { parseDur } = require('../../functions');
 
 const types = {
 	dm: 'DM',
@@ -43,6 +44,7 @@ module.exports = {
 				{ name: 'Channel ID', value: `\`\`\`${channel.id}\`\`\``, inline:true },
 				{ name: 'Channel Topic', value: `\`\`\`${topic}\`\`\`` },
 				{ name: 'Channel Type', value: `\`\`\`${types[channel.type]}\`\`\``, inline:true },
+				{ name: 'Slowmode', value: `\`\`\`${parseDur(channel.rateLimitPerUser * 1000)}\`\`\``, inline:true },
 				{ name: 'NSFW', value: `\`\`\`${channel.nsfw ? 'Yes' : 'No'}\`\`\``, inline:true },
 				{ name: 'Created', value: `\`\`\`${moment(channel.createdTimestamp).format('MMMM Do YYYY, h:mm:ss')} | ${Math.floor((Date.now() - channel.createdTimestamp) / 86400000)} day(s) ago\`\`\`` },
 			);

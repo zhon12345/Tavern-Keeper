@@ -50,7 +50,7 @@ module.exports = {
 				{ name: `Member Count [${guild.memberCount}]`, value: `\`\`\`${members.filter(member => !member.user.bot).size} Users | ${members.filter(member => member.user.bot).size} Bots\`\`\`` },
 				{ name: `Channels [${channels.filter(ch => ch.type === 'text').size + channels.filter(channel => channel.type === 'voice').size}]`, value: `\`\`\`${channels.filter(channel => channel.type === 'text').size} Text ${channels.filter(channel => channel.type === 'voice').size} Voice\`\`\`` },
 				{ name: 'Guild Boost Tier', value: `\`\`\`Tier ${guild.premiumTier}\`\`\``, inline:true },
-				{ name: 'Guild Boost Count', value: `\`\`\`${guild.premiumSubscriptionCount}\`\`\`` },
+				{ name: 'Guild Boost Count', value: `\`\`\`${guild.premiumSubscriptionCount}\`\`\``, inline:true },
 				{ name: `Emoji Count [${emojis.size}]`, value: `\`\`\`${emojis.filter(emoji => !emoji.animated).size} Regular ${emojis.filter(emoji => emoji.animated).size} Animated\`\`\`` },
 				{ name: 'Created', value: `\`\`\`${moment(guild.createdTimestamp).format('MMMM Do YYYY, h:mm:ss')} | ${Math.floor((Date.now() - guild.createdTimestamp) / 86400000)} day(s) ago\`\`\`` },
 			)

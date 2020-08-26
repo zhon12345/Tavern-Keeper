@@ -24,7 +24,7 @@ module.exports = async (client, messages) =>{
 	const logsChannel = client.channels.cache.get(logs);
 	if(!logsChannel) {return;}
 	else{
-		const output = messages.map((m, index) => `${new Date(m.createdAt).toLocaleString('en-US')} - ${m.author.tag}: ${m.content}`).join('\n');
+		const output = messages.map((m, index) => `${new Date(m.createdAt).toLocaleString('en-US')} - ${m.author.tag}: ${m.attachments.size > 0 ? m.attachments.first().proxyURL : m.content}`).join('\n');
 
 		let response;
 		try {

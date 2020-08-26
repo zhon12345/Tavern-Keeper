@@ -14,8 +14,8 @@ module.exports = async (client, oldMessage, newMessage) => {
 			.setColor('YELLOW')
 			.addFields(
 				{ name: 'Channel:', value: oldMessage.channel },
-				{ name: 'Before', value: oldMessage.content, inline: true },
-				{ name: 'After', value: newMessage.content, inline: true },
+				{ name: 'Before', value: oldMessage.attachments.size > 0 ? oldMessage.attachments.first().proxyURL : oldMessage.content, inline: true },
+				{ name: 'After', value: newMessage.attachments.size > 0 ? newMessage.attachments.first().proxyURL : newMessage.content, inline: true },
 			);
 		const logs = settings.settings.messagelog;
 		const channel = oldMessage.guild.channels.cache.get(logs);

@@ -1,11 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
 
-const option = {
-	true: 'Yes',
-	false: 'No',
-};
-
 module.exports = {
 	name: 'roleinfo',
 	category: 'Info',
@@ -28,26 +23,21 @@ module.exports = {
 			permissions = 'None';
 		}
 		const embed = new MessageEmbed()
-			.setDescription(`**Role information for ${role.name}**`)
 			.setColor(role.hexColor)
 			.setFooter(`Requested by ${message.author.tag} `)
 			.setTimestamp()
-			.addField('General', [
-				`**❯ Name:** ${role.name}`,
-				`**❯ ID:** ${role.id}`,
-				`**❯ Hex Color:** ${role.hexColor.toUpperCase()}`,
-				`**❯ Created on:** ${moment(role.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`,
-				'\u200b',
-			])
-			.addField('Server', [
-				`**❯ Position:** ${role.position}`,
-				`**❯ Hoisted:** ${option[role.hoist]}`,
-				`**❯ Mentionable:** ${option[role.mentionable]}`,
-				`**❯ Members:** ${role.members.size}`,
-				'\u200b',
-			])
+			.setTitle('Role Information')
+			.addFields(
+				{ name: 'Role Name', value: `\`\`\`${role.name}\`\`\``, inline:true },
+				{ name: 'Role ID', value: `\`\`\`${role.id}\`\`\``, inline:true },
+				{ name: 'Hex Color', value: `\`\`\`${role.hexColor.toUpperCase()}\`\`\`` },
+				{ name: 'Members', value: `\`\`\`${role.members.size}\`\`\``, inline:true },
+				{ name: 'Hoisted', value: `\`\`\`${role.hoist ? 'Yes' : 'No'}\`\`\``, inline:true },
+				{ name: 'Mentionable', value: `\`\`\`${role.mentionable ? 'Yes' : 'No'}\`\`\``, inline:true },
+				{ name: 'Created', value: `\`\`\`${moment(role.createdTimestamp).format('MMMM Do YYYY, h:mm:ss')} | ${Math.floor((Date.now() - role.createdTimestamp) / 86400000)} day(s) ago\`\`\`` },
+			)
 			.addField('Permissions', [
-				`${permissions}`,
+				`\`\`\`${permissions}\`\`\``,
 			]);
 
 		return message.channel.send(embed);
