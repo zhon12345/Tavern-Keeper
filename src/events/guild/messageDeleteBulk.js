@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 const fetch = require('node-fetch');
 const Guild = require('../../models/guild');
-const { stripIndents } = require('common-tags');
 const url = 'https://hasteb.in/documents';
 const { MessageEmbed } = require('discord.js');
 
@@ -34,9 +33,9 @@ module.exports = async (client, messages) =>{
 			return logsChannel.channel.send('<:vError:725270799124004934> An error occured, please try again!');
 		}
 		const embed = new MessageEmbed()
-			.setDescription(stripIndents`
+			.setDescription([`
             [\`📄 View\`](${output.length > 0 ? 'https://hasteb.in/' + response.key + '.js' : output})
-           `)
+           `])
 			.setColor('RED');
 		await logsChannel.send(embed);
 	}
