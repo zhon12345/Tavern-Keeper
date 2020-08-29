@@ -33,12 +33,12 @@ module.exports = {
 				.setTitle(`${response.login} (${response.id})`)
 				.setDescription(response.bio ? response.bio : 'None')
 				.addFields(
-					{ name: 'Email', value: response.email ? response.email : 'None', inline: true },
-					{ name: 'Company', value: response.company ? response.company : 'None', inline: true },
-					{ name: 'Location', value: response.location ? response.location : 'None', inline: true },
-					{ name: 'Followers', value: response.followers.toLocaleString(), inline: true },
-					{ name: 'Following', value: response.following.toLocaleString(), inline: true },
-					{ name: 'Repositories', value: response.public_repos.toLocaleString(), inline: true },
+					{ name: 'Followers', value: `\`\`\`${response.followers.toLocaleString()}\`\`\``, inline: true },
+					{ name: 'Following', value: `\`\`\`${response.following.toLocaleString()}\`\`\``, inline: true },
+					{ name: 'Repositories', value: `\`\`\`${response.public_repos.toLocaleString()}\`\`\``, inline: true },
+					{ name: 'Email', value: `\`\`\`${response.email ? response.email : 'None'}\`\`\`` },
+					{ name: 'Company', value: `\`\`\`${response.company ? response.company : 'None'}\`\`\`` },
+					{ name: 'Location', value: `\`\`\`${response.location ? response.location : 'None'}\`\`\`` },
 				)
 				.setURL(response.html_url)
 				.setThumbnail(response.avatar_url)

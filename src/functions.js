@@ -143,14 +143,6 @@ module.exports = {
 		return colour;
 	},
 
-	// country.js
-	formatNumber: function(number, minimumFractionDigits = 0) {
-		return Number.parseFloat(number).toLocaleString(undefined, {
-			minimumFractionDigits,
-			maximumFractionDigits: 2,
-		});
-	},
-
 	// tableflip.js, hack.js, russianroulette.js & fight.js
 	delay: function(ms) {
 		return new Promise(resolve => setTimeout(resolve, ms));

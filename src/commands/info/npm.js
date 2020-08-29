@@ -29,12 +29,11 @@ module.exports = {
 		try{
 			const pkg = response.results[0].package;
 			const embed = new MessageEmbed()
-				.setTitle('NPM Package')
+				.setTitle(pkg.name)
 				.setThumbnail('https://images-ext-2.discordapp.net/external/ouvh4fn7V9pphARfI-8nQdcfnYgjHZdXWlEg2sNowyw/https/cdn.auth0.com/blog/npm-package-development/logo.png')
 				.setURL(pkg.links.npm)
+				.setDescription(pkg.description)
 				.addFields(
-					{ name: 'Name', value: pkg.name },
-					{ name: 'Description', value: pkg.description },
 					{ name: 'Author', value: pkg.author ? pkg.author.name : 'None' },
 					{ name: 'Version', value: pkg.version },
 					{ name: 'Repository', value: pkg.links.repository ? pkg.links.repository : 'None' },

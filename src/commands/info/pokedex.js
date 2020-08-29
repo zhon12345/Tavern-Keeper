@@ -31,19 +31,19 @@ module.exports = {
 		const data = response[0];
 		const embed = new MessageEmbed()
 			.setColor('BLUE')
-			.setAuthor(`${capitalizeFirstLetter(data.name)} #${data.id}`)
+			.setTitle(`${capitalizeFirstLetter(data.name)} #${data.id}`)
 			.setDescription(data.description)
 			.setThumbnail(resp.sprites.front_default)
 			.setFooter(`Requested by ${message.author.tag}`)
 			.setTimestamp()
 			.addFields(
-				{ name: 'Height', value: data.height, inline: true },
-				{ name: 'Weight', value: data.weight, inline: true },
-				{ name: 'Generation', value: data.generation, inline: true },
-				{ name: 'Type', value: data.type.join(', ') },
+				{ name: 'Height', value: `\`\`\`${data.height}\`\`\``, inline: true },
+				{ name: 'Weight', value: `\`\`\`${data.weight}\`\`\``, inline: true },
+				{ name: 'Generation', value: `\`\`\`${data.generation}\`\`\``, inline: true },
+				{ name: 'Type', value: `\`\`\`${data.type.join(', ')}\`\`\`` },
 			);
-		resp.stats.forEach(stat => embed.addField(capitalizeFirstLetter(stat.stat.name).split('Special-attack').join('Sp. Attack').split('Special-defense').join('Sp. Defense'), stat.base_stat, true));
-		embed.addField('Evolutions', data.family.evolutionLine ? data.family.evolutionLine.join(' -> ') : 'None');
+		resp.stats.forEach(stat => embed.addField(capitalizeFirstLetter(stat.stat.name).split('Special-attack').join('Sp. Attack').split('Special-defense').join('Sp. Defense'), `\`\`\`${stat.base_stat}\`\`\``, true));
+		embed.addField('Evolutions', `\`\`\`${data.family.evolutionLine ? data.family.evolutionLine.join(' -> ') : 'None'}\`\`\``);
 		message.channel.send(embed);
 	},
 };

@@ -31,18 +31,18 @@ module.exports = {
 		try{
 			const embed = new MessageEmbed()
 				.setColor('BLUE')
-				.setTitle(response.profile.username)
+				.setTitle(`${response.profile.username} ${response.id.steamid3}`)
 				.setURL(response.profile.url)
 				.setThumbnail(response.avatars.avatarfull)
 				.setDescription(h2p(response.profile.summary))
 				.setFooter(`Requested by ${message.author.tag}`)
 				.setTimestamp()
 				.addFields(
-					{ name: 'Private', value: response.profile.privacy, inline: true },
-					{ name: 'VAC banned', value: response.profile.vacbanned ? 'Yes' : 'No', inline: true },
-					{ name: 'Status', value: response.profile.state, inline: true },
-					{ name: 'Location', value: response.profile.location ? response.profile.location : 'Unknown' },
-					{ name: 'Created', value: response.profile.timecreated ? response.profile.timecreated : 'Unknown' },
+					{ name: 'Private', value: `\`\`\`${response.profile.privacy}\`\`\``, inline: true },
+					{ name: 'VAC banned', value: `\`\`\`${response.profile.vacbanned ? 'Yes' : 'No'}\`\`\``, inline: true },
+					{ name: 'Status', value: `\`\`\`${response.profile.state}\`\`\``, inline: true },
+					{ name: 'Location', value: `\`\`\`${response.profile.location ? response.profile.location : 'Unknown'}\`\`\`` },
+					{ name: 'Created', value: `\`\`\`${response.profile.timecreated ? response.profile.timecreated : 'Unknown'}\`\`\`` },
 				);
 			message.channel.send(embed);
 		}

@@ -38,11 +38,10 @@ module.exports = {
 				.setTitle(meaning.word)
 				.setURL(meaning.permalink)
 				.setDescription(meaning.definition)
+				.setFooter(`👍 ${meaning.thumbs_up} | 👎 ${meaning.thumbs_down}`)
 				.addFields(
 					{ name: 'Example', value: meaning.example.length > 1000 ? definition.list[1].example : meaning.example },
 					{ name: 'Author', value: meaning.author, inline: true },
-					{ name: ':thumbsup:', value: meaning.thumbs_up, inline: true },
-					{ name: ':thumbsdown:', value: meaning.thumbs_down, inline: true },
 				);
 
 			message.channel.send(embed);
