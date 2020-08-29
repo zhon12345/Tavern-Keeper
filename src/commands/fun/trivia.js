@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 const fetch = require('node-fetch');
+const h2p = require('html2plaintext');
 const { MessageEmbed } = require('discord.js');
-const { capitalizeFirstLetter, strip } = require('../../functions');
+const { capitalizeFirstLetter } = require('../../functions');
 
 module.exports = {
 	name: 'trivia',
@@ -26,7 +27,7 @@ module.exports = {
 			.setFooter(`Requested by ${message.author.tag} `)
 			.setTimestamp()
 			.addFields(
-				{ name: strip(response.results[0].question), value: ['*You have 15 seconds to find the correct answer.\n\n True or False?*'] },
+				{ name: h2p(response.results[0].question), value: ['*You have 15 seconds to find the correct answer.\n\n True or False?*'] },
 				{ name: 'Difficulty', value: `\`${capitalizeFirstLetter(response.results[0].difficulty)}\``, inline:true },
 				{ name: 'Category', value: `\`${response.results[0].category}\``, inline: true },
 			);

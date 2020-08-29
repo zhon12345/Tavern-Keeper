@@ -47,7 +47,7 @@ module.exports = {
 		return parseFloat((a / Math.pow(c, f)).toFixed(d)) + ' ' + e[f];
 	},
 
-	// channelinfo.js & botinfo.js
+	// channelinfo.js, uptime.js & botinfo.js
 	parseDur: function(ms) {
 		let seconds = ms / 1000;
 
@@ -164,11 +164,5 @@ module.exports = {
 			shuffledWord += word.splice(word.length * Math.random() << 0, 1);
 		}
 		return shuffledWord;
-	},
-
-	// trivia.js
-	strip: function(string) {
-		string = string.replace(/&quot;/g, '"');
-		return string;
 	},
 };

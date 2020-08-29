@@ -22,7 +22,7 @@ module.exports = {
 
 
 		const min = 1;
-		const max = 39;
+		const max = 35;
 
 		const logo = Math.floor(Math.random() * (+max - +min)) + +min;
 
@@ -37,7 +37,7 @@ module.exports = {
 				'<:vWarning:725276167346585681> You have exceeded the character limit.',
 			);
 		}
-		const image = (`https://minecraftskinstealer.com/achievement/${logo}/Achievement+Get%21/${achi}`);
+		const image = (`https://api.alexflipnote.dev/achievement?text=${achi}&icon=${logo}`);
 		const attachment = new MessageAttachment(image, 'achivement.png');
 		message.channel.send(tip, attachment);
 	},

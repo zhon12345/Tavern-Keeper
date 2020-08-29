@@ -36,7 +36,7 @@ module.exports = {
 			}
 			const embed = new Discord.MessageEmbed()
 				.setTitle(`Enlarged version of ${emoji}`)
-				.setColor('#FFFF00')
+				.setColor('BLUE')
 				.setFooter(`Requested by ${message.author.tag}`)
 				.setTimestamp()
 				.setImage(parsed[0].url);
