@@ -1,4 +1,6 @@
 /* eslint-disable no-unused-vars */
+const { MessageEmbed } = require('discord.js');
+
 module.exports = {
 	name: 'np',
 	category: 'Music',
@@ -11,7 +13,22 @@ module.exports = {
 			return message.channel.send('<:vError:725270799124004934> There is nothing playing.');
 		}
 
-		const song = await client.player.nowPlaying(message.guild.id);
-		message.channel.send(`Now Playing:\n\`${song.name}\` requested by \`${song.requestedBy}\`\n${client.player.createProgressBar(message.guild.id)}`);
+		try{
+			const song = await client.player.nowPlaying(message.guild.id);
+			const embed = new MessageEmbed()
+				.setColor('BLUE')
+				.setFooter(`Requested by ${message.author.tag} `)
+				.setTimestamp()
+				.addFields(
+					{ name: '__Now Playing__', value: `\`${song.name}\` | \`${song.requestedBy}\`` },
+					{ name: '__Pogression__', value: `[${client.player.createProgressBar(message.guild.id)}]` },
+				);
+			message.channel.send(embed);
+		}
+		catch{
+			return message.channel.send(
+				'<:vError:725270799124004934> Please provide a valid country.',
+			);
+		}
 	},
 };

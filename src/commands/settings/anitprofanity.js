@@ -1,11 +1,11 @@
 const Guild = require('../../models/guild');
 
 module.exports = {
-	name: 'antilinks',
+	name: 'antiprofanity',
 	category: 'Settings',
-	description: 'Toggle the antilinks feature on/off.',
-	aliases: ['antilink'],
-	usage: 'antilinks <on/off>',
+	description: 'Toggle the antiprofanity feature on/off.',
+	aliases: [],
+	usage: 'antiprofanity <on/off>',
 	guildOnly: true,
 	run: async (client, message, args) => {
 		if(!message.member.hasPermission('ADMINISTRATOR')) {
@@ -19,9 +19,9 @@ module.exports = {
 		});
 
 		if (args[0].toLowerCase() === 'off') {
-			if(settings.settings.antilinks === false) {
+			if(settings.settings.antiprofanity === false) {
 				return message.channel.send(
-					'<:vError:725270799124004934> Anti Links is already off.',
+					'<:vError:725270799124004934> Anti Profanity is already off.',
 				);
 			}
 			else {
@@ -30,18 +30,18 @@ module.exports = {
 						guildID: message.guild.id,
 					},
 					{
-						'settings.antilinks': false,
+						'settings.antiprofanity': false,
 					},
 				);
 				message.channel.send(
-					'<:vSuccess:725270799098970112> Anti Links has been turned off',
+					'<:vSuccess:725270799098970112> Anti Profanity has been turned off',
 				).then(message.delete());
 			}
 		}
 		else if (args[0].toLowerCase() === 'on') {
-			if(settings.settings.antilinks === true) {
+			if(settings.settings.antiprofanity === true) {
 				return message.channel.send(
-					'<:vError:725270799124004934> Anti Links is already on.',
+					'<:vError:725270799124004934> Anti Profanity is already on.',
 				);
 			}
 			else {
@@ -50,11 +50,11 @@ module.exports = {
 						guildID: message.guild.id,
 					},
 					{
-						'settings.antilinks': true,
+						'settings.antiprofanity': true,
 					},
 				);
 				message.channel.send(
-					'<:vSuccess:725270799098970112> Anti Links has been turned on',
+					'<:vSuccess:725270799098970112> Anti Profanity has been turned on',
 				).then(message.delete());
 			}
 		}

@@ -87,7 +87,7 @@ module.exports = {
 				newUser.save();
 
 				try {
-					await member.send(`You have been given ${amount}strikes in ${message.guild}\n\`[Reason]\` ${Reason}`);
+					await member.send(`You have been given \`${amount}\` strikes in ${message.guild}\n\`[Reason]\` ${Reason}`);
 				}
 				catch(err) {
 					await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
@@ -104,7 +104,7 @@ module.exports = {
 				data.warnings += amount;
 				data.save();
 				try {
-					await member.send(`You have been given ${amount} strikes in ${message.guild}\n\`[Reason]\` ${Reason}`);
+					await member.send(`You have been given \`${amount}\` strikes in ${message.guild}\n\`[Reason]\` ${Reason}`);
 				}
 				catch(err) {
 					await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);

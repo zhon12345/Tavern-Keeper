@@ -19,12 +19,22 @@ module.exports = {
 			);
 		}
 
-		if(!client.player.isPlaying(message.guild.id)) {
+		const queue = client.player.getQueue(message.guild.id);
+		if(!queue) {
 			return message.channel.send('<:vError:725270799124004934> There is nothing playing.');
 		}
 
-		await client.player.shuffle(message.guild.id);
+		try{
+			await client.player.shuffle(message.guild.id);
 
-		return message.react('🔀');
+			return message.channel.send(
+				`<:vSuccess:725270799098970112> Successfully shuffled \`${queue.tracks.length}\` songs.`,
+			);
+		}
+		catch{
+			return message.channel.send(
+				'<:vError:725270799124004934> Please provide a valid country.',
+			);
+		}
 	},
 };

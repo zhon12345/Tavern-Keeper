@@ -10,6 +10,7 @@ module.exports = async (client, guild) => {
 		blacklisted: false,
 		settings:{
 			id: mongoose.Types.ObjectId(),
+			antiprofanity: false,
 			antilinks: false,
 			muterole: null,
 			verifyrole: null,

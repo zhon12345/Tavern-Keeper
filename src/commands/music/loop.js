@@ -23,12 +23,20 @@ module.exports = {
 			return message.channel.send('<:vError:725270799124004934> There is nothing playing.');
 		}
 
-		client.player.setRepeatMode(message.guild.id, true);
+		try{
+			client.player.setRepeatMode(message.guild.id, true);
 
-		const song = await client.player.nowPlaying(message.guild.id);
+			const song = await client.player.nowPlaying(message.guild.id);
 
-		message.channel.send(
-			`Repeating \`${song.name}\`.`,
-		);
+			message.channel.send(
+				`Repeating \`${song.name}\`.`,
+			);
+		}
+		catch{
+			return message.channel.send(
+				'<:vError:725270799124004934> Please provide a valid country.',
+			);
+		}
+
 	},
 };

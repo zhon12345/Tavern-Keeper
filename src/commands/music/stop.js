@@ -23,8 +23,18 @@ module.exports = {
 			return message.guild.me.voice.channel.leave();
 		}
 
-		await client.player.stop(message.guild.id);
+		try{
+			await client.player.stop(message.guild.id);
 
-		return message.react('⏹');
+			const song = await client.player.nowPlaying(message.guild.id);
+			return message.channel.send(
+				`<:vSuccess:725270799098970112> Successfully stopped \`${song.name}\`.`,
+			);
+		}
+		catch{
+			return message.channel.send(
+				'<:vError:725270799124004934> Please provide a valid country.',
+			);
+		}
 	},
 };

@@ -1,8 +1,7 @@
-const moment = require('moment');
 const mongoose = require('mongoose');
 const { is_url, is_invite } = require('../../functions');
 const Guild = require('../../models/guild');
-const User = require('../../models/user');
+const { warn } = require('../../util/warn');
 
 module.exports = async (client, message) => {
 	if (message.author.bot) return;
@@ -21,6 +20,7 @@ module.exports = async (client, message) => {
 				blacklisted: false,
 				settings:{
 					id: mongoose.Types.ObjectId(),
+					antiprofanity: false,
 					antilinks: false,
 					muterole: null,
 					verifyrole: null,
@@ -55,62 +55,39 @@ module.exports = async (client, message) => {
 
 	if (settings.blacklisted === true) return;
 
-	if (settings.settings.antilinks === true) {
-		if(is_url(message.content) || is_invite(message.content) === true) {
+	if (settings.settings.antiprofanity === true) {
+		const profanity = [	'fuck', 'shit', 'fucker', 'nigger', 'nigga', 'asshole'];
+		if(profanity.filter(word => message.content.toLowerCase().includes(word)).length > 0) {
+			const reason = 'Swearing';
 			const logs = settings.settings.modlog;
 			const channel = message.guild.channels.cache.get(logs);
 			if (!channel) return;
 
-			if(message.member.hasPermission('MANAGE_MESSAGES')) {
-				return;
+			if(!message.member.hasPermission('MANAGE_MESSAGES')) {
+				message.delete();
+				message.channel.send(
+					`${message.author}, you are not allowed to swear in this channel. Hence, you have received a warning.`,
+				);
+
+				warn(client, message, channel, reason);
 			}
-			else {
+		}
+	}
+
+	if (settings.settings.antilinks === true) {
+		if(is_url(message.content) || is_invite(message.content) === true) {
+			const reason = 'Sending Links';
+			const logs = settings.settings.modlog;
+			const channel = message.guild.channels.cache.get(logs);
+			if (!channel) return;
+
+			if(!message.member.hasPermission('MANAGE_MESSAGES')) {
 				message.delete();
 				message.channel.send(
 					`${message.author}, you are not allowed to send links in this channel. Hence, you have received a warning.`,
 				);
 
-				User.findOne({
-					guildID: message.guild.id,
-					userID: message.author.id,
-				}, async (err, data) => {
-					if (err) console.error(err);
-					if (!data) {
-						const newUser = new User({
-							_id: mongoose.Types.ObjectId(),
-							guildID: message.guild.id,
-							userID: message.author.id,
-							warnings: 1,
-						});
-
-						newUser.save();
-
-						try {
-							await message.author.send(`You have been given 1 strikes in ${message.guild}\n\`[Reason]\` Sending Links in ${message.channel}`);
-						}
-						catch(err) {
-							await channel.send(`<:vError:725270799124004934> Failed to DM **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id})`);
-						}
-
-						channel.send(
-							`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🚩 **${client.user.username}**#${client.user.discriminator} gave \`1\` strikes to **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id})\n\`[Reason]\` Sending Links in ${message.channel}`,
-						);
-					}
-					else {
-						data.warnings += 1;
-						data.save();
-						try {
-							await message.author.send(`You have been given 1 strikes in ${message.guild}\n\`[Reason]\` Sending Links in ${message.channel}`);
-						}
-						catch(err) {
-							await channel.send(`<:vError:725270799124004934> Failed to DM **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id})`);
-						}
-
-						channel.send(
-							`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🚩 **${client.user.username}**#${client.user.discriminator} gave \`1\` strikes to **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id})\n\`[Reason]\` Sending Links in ${message.channel}`,
-						);
-					}
-				});
+				warn(client, message, channel, reason);
 			}
 		}
 	}

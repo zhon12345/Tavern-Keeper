@@ -8,6 +8,7 @@ const guildSchema = mongoose.Schema({
 	blacklisted: Boolean,
 	settings: {
 		id: mongoose.Schema.Types.ObjectId,
+		antiprofanity: Boolean,
 		antilinks: Boolean,
 		muterole: String,
 		verifyrole: String,

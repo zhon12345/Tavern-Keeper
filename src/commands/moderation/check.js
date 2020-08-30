@@ -1,11 +1,12 @@
 const User = require('../../models/user');
 const Guild = require('../../models/guild');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = {
 	name: 'check',
 	category: 'Moderation',
 	description: 'Get the warnings and other info of the message author or a specified user.',
-	aliases: ['warnings'],
+	aliases: ['warnings', 'warns'],
 	usage: 'check [user]',
 	guildOnly: true,
 	run: async (client, message, args) => {
@@ -27,21 +28,18 @@ module.exports = {
 		let warnings = warns.warnings;
 		if(!warnings) warnings = 0;
 
-		let muted;
 		const mute = settings.settings.muterole;
-		if(member.roles.cache.has(mute)) {
-			muted = 'Yes';
-		}
-		else {
-			muted = 'No';
-		}
-
-		message.channel.send([
-			`<:vSuccess:725270799098970112> Moderation information for **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`,
-			`❯ 🚩 Strikes: **${warnings}**`,
-			`❯ 🔇 Muted: **${muted}**`,
-		]);
-
-
+		const embed = new MessageEmbed()
+			.setTitle('Moderation information')
+			.setColor('BLUE')
+			.setFooter(`Requested by ${message.author.tag} `)
+			.setTimestamp()
+			.addFields(
+				{ name: 'Username', value: `\`\`\`${member.user.tag}\`\`\``, inline:true },
+				{ name: 'ID', value: `\`\`\`${member.id}\`\`\``, inline:true },
+				{ name: 'Strikes', value: `\`\`\`${warnings}\`\`\`` },
+				{ name: 'Muted', value: `\`\`\`${member.roles.cache.has(mute) ? 'Yes' : 'No'}\`\`\`` },
+			);
+		message.channel.send(embed);
 	},
 };

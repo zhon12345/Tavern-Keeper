@@ -23,8 +23,18 @@ module.exports = {
 			return message.channel.send('<:vError:725270799124004934> There is nothing playing.');
 		}
 
-		await client.player.skip(message.guild.id);
+		try{
+			await client.player.skip(message.guild.id);
 
-		return message.react('⏯');
+			const song = await client.player.nowPlaying(message.guild.id);
+			return message.channel.send(
+				`<:vSuccess:725270799098970112> Successfully skipped \`${song.name}\`.`,
+			);
+		}
+		catch{
+			return message.channel.send(
+				'<:vError:725270799124004934> Please provide a valid country.',
+			);
+		}
 	},
 };

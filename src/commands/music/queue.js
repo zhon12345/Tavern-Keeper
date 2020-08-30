@@ -1,4 +1,6 @@
 /* eslint-disable no-unused-vars */
+const { MessageEmbed } = require('discord.js');
+
 module.exports = {
 	name: 'queue',
 	category: 'Music',
@@ -19,12 +21,27 @@ module.exports = {
 			);
 		}
 
-		const queue = client.player.getQueue(message.guild.id);
-		if(!queue) {
-			return message.channel.send('<:vError:725270799124004934> There is nothing playing.');
-		}
+		try{
+			const queue = client.player.getQueue(message.guild.id);
+			if(!queue) {
+				return message.channel.send('<:vError:725270799124004934> There is nothing playing.');
+			}
 
-		message.channel.send(`**Server queue**\n__Current__\n\`${queue.playing.name}\` | \`${queue.playing.requestedBy}\`\n\n__Up Next__\n` +
-        (queue.tracks.length >= 1 ? queue.tacks.map((track, i) => { return `${i + 1}) \`${track.name}\` | \`${track.requestedBy}\``; }) : 'None'));
+			const embed = new MessageEmbed()
+				.setTitle('Server queue')
+				.setColor('BLUE')
+				.setFooter(`Requested by ${message.author.tag} `)
+				.setTimestamp()
+				.addFields(
+					{ name: '__Now Playing__', value: `\`${queue.playing.name}\` | \`${queue.playing.requestedBy}\`` },
+					{ name: '__Up Next__', value: `${queue.tracks.length >= 1 ? queue.tracks.map((track, i) => { return `${i + 1}) \`${track.name}\` | \`${track.requestedBy}\``; }).join('\n') : 'None'}` },
+				);
+			message.channel.send(embed);
+		}
+		catch{
+			return message.channel.send(
+				'<:vError:725270799124004934> Please provide a valid country.',
+			);
+		}
 	},
 };
