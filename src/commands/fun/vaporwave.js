@@ -15,7 +15,7 @@ module.exports = {
 		}
 
 		if(text.length > 2000) {
-			return message.channel.send('<:vError:725270799124004934> The emojified message exceeds 2000 characters.');
+			return message.channel.send('<:vError:725270799124004934> The provided message exceeds 2000 characters.');
 		}
 
 		const vapour = text.split('').map(letter => {

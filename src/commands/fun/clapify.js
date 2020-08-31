@@ -10,6 +10,9 @@ module.exports = {
 				'<:vError:725270799124004934> Please provide valid text.',
 			);
 		}
+		if(args[0].length > 2000) {
+			return message.channel.send('<:vError:725270799124004934> The provided message exceeds 2000 characters.');
+		}
 
 		let text;
 		const txt = args.join(' ');

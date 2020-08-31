@@ -9,7 +9,9 @@ module.exports = {
 			client.user.setUsername(name);
 		}
 		catch (e) {
-			return message.channel.send(`\`\`\`xl \n${e}\`\`\``);
+			return message.channel.send(
+				'<:vError:725270799124004934> An error occured, please try again!',
+			);
 		}
 		message.channel.send(
 			`<:vSuccess:725270799098970112> Successfully changed my username to **${name}**`,
