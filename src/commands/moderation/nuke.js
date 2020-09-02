@@ -46,7 +46,7 @@ module.exports = {
 		}); message.channel.delete();
 
 		channel.send(
-			`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` ☢ ${message.channel.name} has been nuked by **${message.author.username}**#${message.author.discriminator}\n\`[Reason]\` ${Reason}`,
+			`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` ☢ \`${message.channel.name}\` has been nuked by **${message.author.username}**#${message.author.discriminator}\n\`[Reason]\` ${Reason}`,
 		);
 	},
 };

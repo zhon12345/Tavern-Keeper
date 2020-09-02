@@ -42,9 +42,9 @@ module.exports = {
 			);
 		}
 
-		if(member.user.bot) {
+		if(member.id === client.user.id) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You are not allowed to mute bots.',
+				'<:vError:725270799124004934> You are not allowed to mute me.',
 			);
 		}
 

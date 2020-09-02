@@ -56,7 +56,7 @@ module.exports = async (client, message) => {
 	if (settings.blacklisted === true) return;
 
 	if (settings.settings.antiprofanity === true) {
-		const profanity = [	'fuck', 'shit', 'fucker', 'nigger', 'nigga', 'asshole'];
+		const profanity = [	'fuck', 'shit', 'fucker', 'nigger', 'nigga', 'asshole', 'bitch'];
 		if(profanity.filter(word => message.content.toLowerCase().includes(word)).length > 0) {
 			const reason = 'Swearing';
 			const logs = settings.settings.modlog;

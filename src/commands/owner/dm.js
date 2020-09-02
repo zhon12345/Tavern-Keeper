@@ -13,12 +13,6 @@ module.exports = {
 				'<:vError:725270799124004934> You must have the following permissions to use that: Bot Owner.',
 			);
 		}
-		const text = args.slice(1).join(' ');
-		if(!text) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Please provide valid text.',
-			);
-		}
 
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]);
 		if (!member) {
@@ -26,6 +20,24 @@ module.exports = {
 				'<:vError:725270799124004934> Please provide a valid user.',
 			);
 		}
-		member.send(text);
+
+		const text = args.slice(1).join(' ');
+		if(!text) {
+			return message.channel.send(
+				'<:vError:725270799124004934> Please provide valid text.',
+			);
+		}
+
+		try{
+			member.send(text);
+			await message.channel.send(
+				`<:vSuccess:725270799098970112> Successfully DMed ${member.user.tag}.`,
+			);
+		}
+		catch (e) {
+			return message.channel.send(
+				'<:vError:725270799124004934> An error occured, please try again!',
+			);
+		}
 	},
 };

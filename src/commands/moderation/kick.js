@@ -41,6 +41,12 @@ module.exports = {
 			);
 		}
 
+		if(member.id === client.user.id) {
+			return message.channel.send(
+				'<:vError:725270799124004934> You are not allowed to kick me.',
+			);
+		}
+
 		if(member.id === message.guild.owner.id) {
 			return message.channel.send(
 				'<:vWarning:725276167346585681> Are you trying to get yourself into trouble?',

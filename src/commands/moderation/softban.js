@@ -37,7 +37,13 @@ module.exports = {
 
 		if(member.id === message.author.id) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You are not allowed to ban yourself.',
+				'<:vError:725270799124004934> You are not allowed to softban yourself.',
+			);
+		}
+
+		if(member.id === client.user.id) {
+			return message.channel.send(
+				'<:vError:725270799124004934> You are not allowed to softban me.',
 			);
 		}
 

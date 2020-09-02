@@ -7,7 +7,7 @@ module.exports = {
 	description: 'Set the slowmode for a specific channel.',
 	usage: 'slowmode [channel] <time>',
 	run: async (bot, message, args) => {
-		if(!message.member.hasPermission('BAN_MEMBERS')) {
+		if(!message.member.hasPermission('MANAGE_CHANNELS')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> You must have the following permissions to use that: Ban Members.',
 			);

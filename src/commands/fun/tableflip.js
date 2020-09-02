@@ -17,7 +17,7 @@ module.exports = {
 	run: async (client, message, args) => {
 		const msg = await message.channel.send('(\\\\°□°)\\\\  ┬─┬');
 		for (const frame of frames) {
-			await delay(100);
+			await delay(1000);
 			await msg.edit(frame);
 		}
 		return msg;
