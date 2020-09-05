@@ -15,7 +15,7 @@ module.exports = {
 				'<:vError:725270799124004934> Please provide valid text',
 			);
 		}
-		const channel = client.channels.cache.get('724508956981985351');
+		const channel = client.channels.cache.get('720955196494053376');
 		if (!channel) return;
 		channel.send(
 			`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` ❗ **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id}) has made a suggestion in **${message.guild.name}** (ID: ${message.guild.id}).\n\`[Suggestion]\` ${text}`,

@@ -97,6 +97,17 @@ module.exports = {
 		return text;
 	},
 
+	// leetify.js
+	leetify: function(text) {
+		text = text.replace(/a/ig, '4');
+		text = text.replace(/e/ig, '3');
+		text = text.replace(/l/ig, '1');
+		text = text.replace(/o/ig, '0');
+		text = text.replace(/s/ig, '5');
+		text = text.replace(/t/ig, '7');
+		return text;
+	},
+
 	// spongebob.js
 	alternateCaps: function(text) {
 		const array = text.split('');

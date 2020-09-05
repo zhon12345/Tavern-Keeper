@@ -13,7 +13,6 @@ module.exports = async (client, oldMessage, newMessage) => {
 		const embed = new MessageEmbed()
 			.setColor('YELLOW')
 			.addFields(
-				{ name: 'Channel:', value: oldMessage.channel },
 				{ name: 'Before', value: oldMessage.attachments.size > 0 ? oldMessage.attachments.first().proxyURL : oldMessage.content, inline: true },
 				{ name: 'After', value: newMessage.attachments.size > 0 ? newMessage.attachments.first().proxyURL : newMessage.content, inline: true },
 			);
@@ -21,7 +20,7 @@ module.exports = async (client, oldMessage, newMessage) => {
 		const channel = oldMessage.guild.channels.cache.get(logs);
 		if (!channel) return;
 		channel.send(
-			`\`[${moment(newMessage.createdTimestamp).format('HH:mm:ss')}]\` ✏️ **${oldMessage.author.username}**#${oldMessage.author.discriminator} (ID: ${oldMessage.author.id}) edited a message.`, embed,
+			`\`[${moment(newMessage.createdTimestamp).format('HH:mm:ss')}]\` ✏️ **${oldMessage.author.username}**#${oldMessage.author.discriminator} (ID: ${oldMessage.author.id}) edited a message in ${oldMessage.channel}.`, embed,
 		);
 	}
 };
