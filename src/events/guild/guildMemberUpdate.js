@@ -37,7 +37,7 @@ module.exports = async (client, oldMember, newMember) => {
 		});
 		if(newMember.nickname !== oldMember.nickname) {
 			logchannel.send(
-				`\`[${moment(newMember.createdTimestamp).format('HH:mm:ss')}]\` ✏️ **${oldMember.nickname ? oldMember.nickname : oldMember.user.username}**#${oldMember.user.discriminator} (ID: ${oldMember.user.id})'s nickname has been changed to **${newMember.nickname ? newMember.nickname : newMember.user.username}**#${newMember.user.discriminator} by **${executor.username}**#${executor.discriminator}.\n\`[Time]\` ${moment(newMember.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`,
+				`\`[${moment(newMember.createdTimestamp).format('HH:mm:ss')}]\` ✏️ **${oldMember.nickname ? oldMember.nickname : oldMember.user.username}**#${oldMember.user.discriminator} (ID: ${oldMember.user.id})'s nickname has been changed to **${newMember.nickname ? newMember.nickname : newMember.user.username}** by **${executor.username}**#${executor.discriminator}.\n\`[Time]\` ${moment(newMember.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`,
 			);
 		}
 	}
