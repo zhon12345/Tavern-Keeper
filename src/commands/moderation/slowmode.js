@@ -13,12 +13,20 @@ module.exports = {
 			);
 		}
 
-		let channel = message.mentions.channels.first(),
-			time = args.slice(1).join(' ');
+		let channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]),
+			time = args[1];
 
-		if (!channel) time = args.join(' '), channel = message.channel;
+		if (!channel) {
+			time = args[0];
+			channel = message.channel;
+		}
 
-		if (args[0].toLowerCase() === 'off') {
+		if (!args[0]) {
+			return message.channel.send(
+				'<:vError:725270799124004934> Please include a valid time format or a valid channel.',
+			);
+		}
+		else if (args[0].toLowerCase() === 'off') {
 			channel.setRateLimitPerUser(0);
 			return message.channel.send(`<:vSuccess:725270799098970112> Slowmode for <#${channel.id}> has been deactivated.`);
 		}
