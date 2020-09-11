@@ -1,4 +1,5 @@
 const { MessageEmbed } = require('discord.js');
+const { BOT_OWNER } = process.env;
 
 module.exports = {
 	name: 'ship',
@@ -32,7 +33,7 @@ module.exports = {
 
 		const shipName = firstName.substr(0, firstName.length * 0.5) + secondName.substr(secondName.length * 0.5);
 
-		if (shipName.toLowerCase() === 'gayshit' || shipName.toLowerCase() === 'fuckoff') {
+		if (shipName === client.users.cache.get(BOT_OWNER).username) {
 			rating = '100';
 		}
 

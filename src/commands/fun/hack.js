@@ -1,4 +1,5 @@
 const { delay } = require('../../functions');
+const { BOT_OWNER } = process.env;
 
 module.exports = {
 	name: 'hack',
@@ -28,6 +29,11 @@ module.exports = {
 			if(!hacked) {
 				return message.channel.send(
 					'<:vError:725270799124004934> Please provide a valid user.',
+				);
+			}
+			else if(hacked.id === BOT_OWNER) {
+				return message.channel.send(
+					'<:vError:725270799124004934> An error occured, please try again!',
 				);
 			}
 
@@ -65,11 +71,8 @@ module.exports = {
 				await delay(1400);
 				await msg.edit('[▗] Selling all data to the government...');
 				await delay(1400);
-				await msg.edit(`Finished hacking ${hacked.user.username}`);
+				await msg.edit(`<:vSuccess:725270799098970112> Successfully hacked ${hacked.user.username}`);
 			});
-			setTimeout(() => {
-				message.channel.send('The *totally* real hack is complete');
-			}, 1000);
 		}
 		catch(err) {
 			message.channel.send('<:vError:725270799124004934> An error occured, please try again!');
