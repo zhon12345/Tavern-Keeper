@@ -24,7 +24,7 @@ module.exports = {
 			.setTimestamp()
 			.setTitle('User Information')
 			.addFields(
-				{ name: 'Username', value: `\`\`\`${member.user.username}#${member.user.discriminator}\`\`\``, inline:true },
+				{ name: 'Username', value: `\`\`\`${member.user.tag}\`\`\``, inline:true },
 				{ name: 'ID', value: `\`\`\`${member.id}\`\`\``, inline:true },
 				{ name: `Roles [${roles.length}]`, value: `\`\`\`${roles ? roles.join('\n') : 'None'}\`\`\`` },
 				{ name: 'Status', value: `\`\`\`${Presence[member.user.presence.status]}\`\`\``, inline:true },

@@ -10,7 +10,7 @@ module.exports = {
 	run: async (client, message, args) => {
 		const pEmbed = new MessageEmbed()
 			.setTitle(`${client.user.username}'s Links`)
-			.setDescription(`Here are all the related links to${client.user.username}!`)
+			.setDescription(`Here are all the related links to ${client.user.username}!`)
 			.setColor('BLUE')
 			.addFields(
 				{ name: 'Invite link', value: '[Invite](https://discord.com/oauth2/authorize?client_id=722414315595890699&scope=bot&permissions=805314622)', inline: true },
