@@ -6,7 +6,6 @@ module.exports = {
 	description: 'Toggle the antiprofanity feature on/off.',
 	aliases: [],
 	usage: 'antiprofanity <on/off>',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		if(!message.member.hasPermission('ADMINISTRATOR')) {
 			return message.channel.send(

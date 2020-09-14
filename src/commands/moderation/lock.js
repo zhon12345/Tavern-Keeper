@@ -6,7 +6,6 @@ module.exports = {
 	description: 'Locks the specified channel to prevent raids.',
 	aliases: ['lockdown'],
 	usage: 'lock [channel] <on/off>',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		if(!message.member.hasPermission('BAN_MEMBERS')) {
 			return message.channel.send(

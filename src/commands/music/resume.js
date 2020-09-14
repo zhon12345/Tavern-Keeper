@@ -5,7 +5,6 @@ module.exports = {
 	description: 'Resume paused music.',
 	aliases: [],
 	usage: 'resume',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		if(!message.member.voice.channel) {
 			return message.channel.send(

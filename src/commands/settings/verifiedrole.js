@@ -6,7 +6,6 @@ module.exports = {
 	description: 'Sets the verified role for the server.',
 	aliases: [],
 	usage: 'verifiedrole <role>',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		if(!message.member.hasPermission('ADMINISTRATOR')) {
 			return message.channel.send(

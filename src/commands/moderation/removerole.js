@@ -4,7 +4,6 @@ module.exports = {
 	description: 'Removes a specified role from a specified user.',
 	aliases: [],
 	usage: 'removerole <user> <role>',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		if(!message.member.hasPermission('MANAGE_ROLES')) {
 			return message.channel.send(
@@ -31,6 +30,19 @@ module.exports = {
 				'<:vError:725270799124004934> Please provide a valid user.',
 			);
 		}
+
+		if(role.position >= message.guild.me.roles.highest.position) {
+			return await message.channel.send(
+				'<:vError:725270799124004934> The specified role may be the same or higher than me.',
+			);
+		}
+
+		if(member.roles.highest.position >= message.guild.me.roles.highest.position) {
+			return await message.channel.send(
+				'<:vError:725270799124004934> The specified member may have the same or higher role than me.',
+			);
+		}
+
 
 		if(member.id === message.author.id) {
 			return message.channel.send(

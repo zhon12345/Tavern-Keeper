@@ -6,7 +6,6 @@ module.exports = {
 	description: 'Toggle the antilinks feature on/off.',
 	aliases: ['antilink'],
 	usage: 'antilinks <on/off>',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		if(!message.member.hasPermission('ADMINISTRATOR')) {
 			return message.channel.send(

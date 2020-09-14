@@ -9,7 +9,6 @@ module.exports = {
 	description: 'What do you prefer? Red pandas or Pandas.',
 	aliases: ['pandas'],
 	usage: 'panda',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		const subreddits = [
 			'panda',

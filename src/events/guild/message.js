@@ -49,7 +49,7 @@ module.exports = async (client, message) => {
 		prefix = settings.prefix;
 	}
 
-	if(message.content === `<@${client.user.id}>` || message.content === `<@!${client.user.id}>`) {
+	if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
 		message.channel.send(`My current prefix for this guild is \`${prefix}\``);
 	}
 

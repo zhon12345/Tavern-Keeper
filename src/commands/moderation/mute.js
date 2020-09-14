@@ -8,7 +8,6 @@ module.exports = {
 	description: 'Temporarily or permanently mute a specified user.',
 	aliases: ['silent'],
 	usage: 'tempmute <user> <reason> [time]',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		const settings = await Guild.findOne({
 			guildID: message.guild.id,

@@ -7,7 +7,6 @@ module.exports = {
 	description: 'Shows you a list of aliases for the specified command.',
 	aliases: [],
 	usage: 'aliases <command>',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		if(args[0]) {
 			const cmd = client.commands.get(args[0].toLowerCase()) || client.commands.get(client.aliases.get(args[0].toLowerCase()));

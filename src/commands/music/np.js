@@ -7,7 +7,6 @@ module.exports = {
 	description: 'Shows what song the bot is currently playing.',
 	aliases: ['nowplaying'],
 	usage: 'np',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		if(!client.player.isPlaying(message.guild.id)) {
 			return message.channel.send('<:vError:725270799124004934> There is nothing playing.');

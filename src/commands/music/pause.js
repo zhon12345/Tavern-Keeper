@@ -5,7 +5,6 @@ module.exports = {
 	description: 'Pauses the currently playing track.',
 	aliases: [],
 	usage: 'pause',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		if(!message.member.voice.channel) {
 			return message.channel.send(

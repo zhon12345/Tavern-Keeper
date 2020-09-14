@@ -7,7 +7,6 @@ module.exports = {
 	description: 'Unmute a muted user.',
 	aliases: ['unsilent'],
 	usage: 'unmute <user> <reason>',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		const settings = await Guild.findOne({
 			guildID: message.guild.id,

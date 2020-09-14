@@ -6,7 +6,6 @@ module.exports = {
 	description: 'Get the avatar of the message author or a specified user.',
 	aliases: ['pfp', 'icon'],
 	usage: 'avatar [user]',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]) || message.member;
 		const avatar = member.user.displayAvatarURL({ size: 256, dynamic: true });

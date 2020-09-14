@@ -8,7 +8,6 @@ module.exports = {
 	description: 'Clear up to 99 messages in a specified channel.',
 	aliases: ['purge', ' prune'],
 	usage: 'clear <amount> [reason]',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		const settings = await Guild.findOne({
 			guildID: message.guild.id,

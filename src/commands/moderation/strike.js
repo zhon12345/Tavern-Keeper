@@ -9,7 +9,6 @@ module.exports = {
 	description: 'Warn a specified user for breaking the rules.',
 	aliases: ['warn'],
 	usage: 'strike <user> [amount] <reason>',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		const settings = await Guild.findOne({
 			guildID: message.guild.id,

@@ -5,7 +5,6 @@ module.exports = {
 	description: 'Disconnect the bot from the voice channel it is in.',
 	aliases: ['disconnect', 'fuckoff'],
 	usage: 'stop',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		if(!message.member.voice.channel) {
 			return message.channel.send(

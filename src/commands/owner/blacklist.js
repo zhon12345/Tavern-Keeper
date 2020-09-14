@@ -8,7 +8,6 @@ module.exports = {
 	description: 'Add or Remove a specified guild from the blacklist.',
 	aliases: [],
 	usage: 'blacklist [add/remove] [guild]',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		if(message.author.id !== BOT_OWNER) {
 			return message.channel.send(

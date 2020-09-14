@@ -5,7 +5,6 @@ module.exports = {
 	description: 'Shuffles the queue.',
 	aliases: [],
 	usage: 'shuffle',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		if(!message.member.voice.channel) {
 			return message.channel.send(

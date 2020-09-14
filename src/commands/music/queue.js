@@ -7,7 +7,6 @@ module.exports = {
 	description: 'View the music queue',
 	aliases: [],
 	usage: 'pause',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		if(!message.member.voice.channel) {
 			return message.channel.send(

@@ -6,7 +6,6 @@ module.exports = {
 	description: 'Ask the magic 8-ball for an answer.',
 	aliases: ['ask'],
 	usage: '8ball <question>',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		const question = args[0];
 		if (!question) {

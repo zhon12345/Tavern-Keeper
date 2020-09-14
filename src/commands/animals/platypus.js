@@ -9,7 +9,6 @@ module.exports = {
 	description: 'How do you describe them again?',
 	aliases: ['otters'],
 	usage: 'platypus',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		const url = [
 			'https://www.reddit.com/r/Platypus/hot.json',

@@ -18,6 +18,12 @@ module.exports = {
 			);
 		}
 
+		if(member.roles.highest.position >= message.guild.me.roles.highest.position) {
+			return await message.channel.send(
+				'<:vError:725270799124004934> The specified member may have the same or higher role than me.',
+			);
+		}
+
 		const nickname = args.slice(1).join(' ');
 		if (!nickname) {
 			return message.channel.send(

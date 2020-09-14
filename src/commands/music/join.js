@@ -5,7 +5,6 @@ module.exports = {
 	description: 'Shows what song the bot is currently playing.',
 	aliases: ['nowplaying'],
 	usage: 'np',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		if(!message.member.voice.channel) {
 			return message.channel.send(

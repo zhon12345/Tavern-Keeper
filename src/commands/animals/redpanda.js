@@ -9,7 +9,6 @@ module.exports = {
 	description: 'What do you prefer? Red pandas or Pandas.',
 	aliases: ['redpanda'],
 	usage: 'redpandas',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		const url = [
 			'https://www.reddit.com/r/redpandas/hot.json',

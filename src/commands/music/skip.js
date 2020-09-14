@@ -5,7 +5,6 @@ module.exports = {
 	description: 'Skips the song that is currently playing.',
 	aliases: [],
 	usage: 'skip',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		if(!message.member.voice.channel) {
 			return message.channel.send(

@@ -9,7 +9,6 @@ module.exports = {
 	description: 'See some cute doggos!',
 	aliases: ['dogs', 'doggo', 'puppy', 'puppies'],
 	usage: 'dog',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		const subreddits = [
 			'corgi',

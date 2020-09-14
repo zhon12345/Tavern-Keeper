@@ -4,7 +4,6 @@ module.exports = {
 	description: 'Plays a song with the specified name.',
 	aliases: [],
 	usage: 'play <song>',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		if(!message.member.voice.channel) {
 			return message.channel.send(

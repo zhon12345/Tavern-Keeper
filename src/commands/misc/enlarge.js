@@ -7,7 +7,6 @@ module.exports = {
 	description: 'Enlarge a specified emoji.',
 	aliases: [],
 	usage: 'enlarge <emoji>',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		const emoji = args[0];
 		if (!emoji) {

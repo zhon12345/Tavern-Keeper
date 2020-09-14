@@ -6,7 +6,6 @@ module.exports = {
 	description: 'Sets the modlogs channel for the server.',
 	aliases: [],
 	usage: 'modlog <channel>',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		if(!message.member.hasPermission('ADMINISTRATOR')) {
 			return message.channel.send(

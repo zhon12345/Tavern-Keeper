@@ -9,7 +9,6 @@ module.exports = {
 	description: 'Aren\'t squirrel cute when they are eating?',
 	aliases: ['otters'],
 	usage: 'squirrel',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		const url = [
 			'https://www.reddit.com/r/SEUT/hot.json',

@@ -9,7 +9,6 @@ module.exports = {
 	description: 'If you want some ferrets? Say no more!',
 	aliases: [],
 	usage: 'ferrets',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		const url = [
 			'https://www.reddit.com/r/ferrets/hot.json',

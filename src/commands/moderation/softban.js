@@ -7,7 +7,6 @@ module.exports = {
 	description: 'Softban a specified user from the server.',
 	aliases: [],
 	usage: 'softban <user> <reason>',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		const settings = await Guild.findOne({
 			guildID: message.guild.id,

@@ -9,7 +9,6 @@ module.exports = {
 	description: 'Otters are SO cute',
 	aliases: ['otters'],
 	usage: 'otter',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		const url = [
 			'https://www.reddit.com/r/Otter/hot.json',

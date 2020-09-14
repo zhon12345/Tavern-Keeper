@@ -4,7 +4,6 @@ module.exports = {
 	description: 'Adds a role to a specified user.',
 	aliases: [],
 	usage: 'addrole <user> <role>',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		if(!message.member.hasPermission('MANAGE_ROLES')) {
 			return message.channel.send(
@@ -29,6 +28,18 @@ module.exports = {
 		if (!member) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide a valid user.',
+			);
+		}
+
+		if(role.position >= message.guild.me.roles.highest.position) {
+			return await message.channel.send(
+				'<:vError:725270799124004934> The specified role may be the same or higher than me.',
+			);
+		}
+
+		if(member.roles.highest.position >= message.guild.me.roles.highest.position) {
+			return await message.channel.send(
+				'<:vError:725270799124004934> The specified member may have the same or higher role than me.',
 			);
 		}
 

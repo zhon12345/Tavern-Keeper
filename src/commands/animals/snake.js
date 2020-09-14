@@ -9,7 +9,6 @@ module.exports = {
 	description: 'Are they really that scary?',
 	aliases: ['snakes', 'snek'],
 	usage: 'snake',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		const subreddits = [
 			'Snek',

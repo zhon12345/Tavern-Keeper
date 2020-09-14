@@ -9,7 +9,6 @@ module.exports = {
 	description: 'hamsters! Do you like em?',
 	aliases: [],
 	usage: 'hamsters',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		const url = [
 			'https://www.reddit.com/r/hamsters/hot.json',

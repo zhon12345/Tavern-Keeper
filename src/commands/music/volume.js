@@ -5,7 +5,6 @@ module.exports = {
 	description: 'Change the current volume.',
 	aliases: [],
 	usage: 'volume <number>',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		if(!message.member.voice.channel) {
 			return message.channel.send(

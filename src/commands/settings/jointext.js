@@ -6,7 +6,6 @@ module.exports = {
 	description: 'Sets the welcome message for the server.',
 	aliases: [],
 	usage: 'jointext <message>',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		if(!message.member.hasPermission('ADMINISTRATOR')) {
 			return message.channel.send(

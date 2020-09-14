@@ -5,7 +5,6 @@ module.exports = {
 	description: 'Enables the Bass Boost filter.',
 	aliases: [],
 	usage: 'bassboost',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		if(!message.member.voice.channel) {
 			return message.channel.send(

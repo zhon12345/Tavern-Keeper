@@ -6,7 +6,6 @@ module.exports = {
 	description: 'Sets the leave channel for the server.',
 	aliases: [],
 	usage: 'leavechannel <channel>',
-	guildOnly: true,
 	run: async (client, message, args) => {
 		if(!message.member.hasPermission('ADMINISTRATOR')) {
 			return message.channel.send(
