@@ -49,8 +49,8 @@ module.exports = async (client, message) => {
 		prefix = settings.prefix;
 	}
 
-	if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
-		message.channel.send(`My current prefix for this guild is \`${prefix}\``);
+	if (message.content.match(`^<@!?${client.user.id}>( |)$`)) {
+		message.channel.send(`${message.guild.name}'s prefix is \`${prefix}\``);
 	}
 
 	if (settings.blacklisted === true) return;
