@@ -18,10 +18,9 @@ module.exports = {
 		const list = client.guilds.cache.map(guild => `${guild.name} (${guild.id})`).join('\n');
 
 		const botembed = new MessageEmbed()
-			.setTitle(`${client.user.username}'s Server List`)
-			.setDescription(list)
-			.setFooter(`Total Servers: ${client.guilds.cache.size}`)
-			.setColor('BLUE');
+			.setDescription(`**${client.user.username}** is currently in **${message.client.guilds.cache.size}** servers.`)
+			.setColor('BLUE')
+			.addField('Servers', list);
 		message.channel.send(botembed);
 	},
 };

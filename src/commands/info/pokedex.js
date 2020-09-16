@@ -28,22 +28,21 @@ module.exports = {
 				'<:vError:725270799124004934> An error occured, please try again!',
 			);
 		}
-		const data = response[0];
 		const embed = new MessageEmbed()
 			.setColor('BLUE')
-			.setTitle(`${capitalizeFirstLetter(data.name)} #${data.id}`)
-			.setDescription(data.description)
+			.setTitle(`${capitalizeFirstLetter(response.name)} #${response.id}`)
+			.setDescription(response.description)
 			.setThumbnail(resp.sprites.front_default)
 			.setFooter(`Requested by ${message.author.tag}`)
 			.setTimestamp()
 			.addFields(
-				{ name: 'Height', value: `\`\`\`${data.height}\`\`\``, inline: true },
-				{ name: 'Weight', value: `\`\`\`${data.weight}\`\`\``, inline: true },
-				{ name: 'Generation', value: `\`\`\`${data.generation}\`\`\``, inline: true },
-				{ name: 'Type', value: `\`\`\`${data.type.join(', ')}\`\`\`` },
+				{ name: 'Height', value: `\`\`\`${response.height}\`\`\``, inline: true },
+				{ name: 'Weight', value: `\`\`\`${response.weight}\`\`\``, inline: true },
+				{ name: 'Generation', value: `\`\`\`${response.generation}\`\`\``, inline: true },
+				{ name: 'Type', value: `\`\`\`${response.type.join(', ')}\`\`\`` },
 			);
 		resp.stats.forEach(stat => embed.addField(capitalizeFirstLetter(stat.stat.name).split('Special-attack').join('Sp. Attack').split('Special-defense').join('Sp. Defense'), `\`\`\`${stat.base_stat}\`\`\``, true));
-		embed.addField('Evolutions', `\`\`\`${data.family.evolutionLine ? data.family.evolutionLine.join(' -> ') : 'None'}\`\`\``);
+		embed.addField('Evolutions', `\`\`\`${response.family.evolutionLine ? response.family.evolutionLine.join(' -> ') : 'None'}\`\`\``);
 		message.channel.send(embed);
 	},
 };

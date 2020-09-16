@@ -24,7 +24,7 @@ module.exports = async (client, oldRole, newRole) => {
 		newRolePerms.forEach(async (p) =>{
 			if(!oldRolePerms.includes(p)) {
 				logchannel.send(
-					`\`[${moment(newRole.createdTimestamp).format('HH:mm:ss')}]\` ✏️ ${oldRole.name} (ID: ${oldRole.id})'s permissions has been changed by **${executor.username}**#${executor.discriminator}.\n\`[Added]\` ${p[0] + p.slice(1).toLowerCase().replace(/_/g, ' ')}`,
+					`\`[${moment(newRole.createdTimestamp).format('HH:mm:ss')}]\` ✏️ \`${oldRole.name}\` (ID: ${oldRole.id})'s permissions has been changed by **${executor.username}**#${executor.discriminator}.\n\`[Added]\` ${p[0] + p.slice(1).toLowerCase().replace(/_/g, ' ')}`,
 				);
 			}
 			else{
@@ -34,13 +34,13 @@ module.exports = async (client, oldRole, newRole) => {
 		oldRolePerms.forEach(async (p)=>{
 			if(!newRolePerms.includes(p)) {
 				logchannel.send(
-					`\`[${moment(newRole.createdTimestamp).format('HH:mm:ss')}]\` ✏️ ${oldRole.name} (ID: ${oldRole.id})'s permissions has been changed by **${executor.username}**#${executor.discriminator}.\n\`[Removed]\` ${p[0] + p.slice(1).toLowerCase().replace(/_/g, ' ')}`,
+					`\`[${moment(newRole.createdTimestamp).format('HH:mm:ss')}]\` ✏️ \`${oldRole.name}\` (ID: ${oldRole.id})'s permissions has been changed by **${executor.username}**#${executor.discriminator}.\n\`[Removed]\` ${p[0] + p.slice(1).toLowerCase().replace(/_/g, ' ')}`,
 				);
 			}
 		});
 		if(newRole.name !== oldRole.name) {
 			logchannel.send(
-				`\`[${moment(newRole.createdTimestamp).format('HH:mm:ss')}]\` ✏️ ${oldRole.name} (ID: ${oldRole.id})'s name has been changed to ${newRole.name} by **${executor.username}**#${executor.discriminator}.\n\`[Time]\` ${moment(newRole.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`,
+				`\`[${moment(newRole.createdTimestamp).format('HH:mm:ss')}]\` ✏️ \`${oldRole.name}\` (ID: ${oldRole.id})'s name has been changed to ${newRole.name} by **${executor.username}**#${executor.discriminator}.\n\`[Time]\` ${moment(newRole.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`,
 			);
 		}
 		else if(newRole.hexColor !== oldRole.hexColor) {
@@ -51,17 +51,17 @@ module.exports = async (client, oldRole, newRole) => {
 					{ name: 'After', value: newRole.hexColor.toUpperCase(), inline: true },
 				);
 			logchannel.send(
-				`\`[${moment(newRole.createdTimestamp).format('HH:mm:ss')}]\` ✏️ ${oldRole.name} (ID: ${oldRole.id})'s color has been changed by **${executor.username}**#${executor.discriminator}.\n\`[Time]\` ${moment(newRole.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`, embed,
+				`\`[${moment(newRole.createdTimestamp).format('HH:mm:ss')}]\` ✏️ \`${oldRole.name}\` (ID: ${oldRole.id})'s color has been changed by **${executor.username}**#${executor.discriminator}.\n\`[Time]\` ${moment(newRole.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`, embed,
 			);
 		}
 		else if(newRole.hoist === true && oldRole.hoist === false) {
 			logchannel.send(
-				`\`[${moment(newRole.createdTimestamp).format('HH:mm:ss')}]\` ✏️ ${oldRole.name} (ID: ${oldRole.id}) has been hoisted by **${executor.username}**#${executor.discriminator}.\n\`[Time]\` ${moment(newRole.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`,
+				`\`[${moment(newRole.createdTimestamp).format('HH:mm:ss')}]\` ✏️ \`${oldRole.name}\` (ID: ${oldRole.id}) has been hoisted by **${executor.username}**#${executor.discriminator}.\n\`[Time]\` ${moment(newRole.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`,
 			);
 		}
 		else if(newRole.hoist === false && oldRole.hoist === true) {
 			logchannel.send(
-				`\`[${moment(newRole.createdTimestamp).format('HH:mm:ss')}]\` ✏️ ${oldRole.name} (ID: ${oldRole.id}) has been unhoisted by **${executor.username}**#${executor.discriminator}.\n\`[Time]\` ${moment(newRole.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`,
+				`\`[${moment(newRole.createdTimestamp).format('HH:mm:ss')}]\` ✏️ \`${oldRole.name}\` (ID: ${oldRole.id}) has been unhoisted by **${executor.username}**#${executor.discriminator}.\n\`[Time]\` ${moment(newRole.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`,
 			);
 		}
 	}
