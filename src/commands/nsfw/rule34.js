@@ -17,10 +17,8 @@ module.exports = {
 		}
 		const subreddits = [
 			'rule34',
-			'Overwatch_Porn',
-			'Rule34LoL',
-			'TeenTitansPorn',
 			'PokePorn',
+			'Rule34LoL',
 		];
 
 		const sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
@@ -44,10 +42,7 @@ module.exports = {
 					}
 					const embed = new MessageEmbed()
 						.setColor('BLUE')
-						.setURL(`https://www.reddit.com/r/${random.subreddit}/comments/${random.id}`)
-						.setTitle(h2p(random.title))
-						.setImage(random.url)
-						.setFooter(`👍 ${random.ups} | 💬 ${random.num_comments}`);
+						.setImage(random.url);
 
 					message.channel.send(embed);
 				});

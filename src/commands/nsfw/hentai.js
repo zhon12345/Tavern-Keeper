@@ -18,8 +18,7 @@ module.exports = {
 		const subreddits = [
 			'hentai',
 			'ecchi',
-			'HENTAI_GIF',
-			'MonsterGirl',
+			'PublicHentai',
 		];
 
 		const sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];

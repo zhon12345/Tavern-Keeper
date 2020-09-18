@@ -4,18 +4,18 @@ const h2p = require('html2plaintext');
 const fetch = require('node-fetch');
 
 module.exports = {
-	name: 'asian',
+	name: 'bdsm',
 	category: 'NSFW',
-	description: 'Sends images of asian girls, what do you expect?',
-	aliases: ['asians'],
-	usage: 'asian',
+	description: 'Bondage & Discipline, Dominance & Submission, Sadism & Masochism.',
+	aliases: [],
+	usage: 'bdsm',
 	run: async (client, message, args) => {
 		if(!message.channel.nsfw) {
 			return message.channel.send(
 				'<:vError:725270799124004934> This command can only be used in a nsfw channel.',
 			);
 		}
-		const url = 'https://love-you.xyz/api/v2/asian';
+		const url = 'https://love-you.xyz/api/v2/bdsm';
 
 		let response;
 		try {
