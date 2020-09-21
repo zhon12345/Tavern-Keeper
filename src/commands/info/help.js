@@ -1,6 +1,5 @@
 /* eslint-disable no-inner-declarations */
 const { MessageEmbed } = require('discord.js');
-const { capitalizeFirstLetter } = require('../../functions');
 const { BOT_OWNER } = process.env;
 const Guild = require('../../models/guild');
 
@@ -42,7 +41,7 @@ module.exports = {
 					.setFooter('Syntax: <> = required, [] = optional', `${client.user.avatarURL()}`)
 					.setDescription([
 						`**❯ Name:** ${cmd.name}`,
-						`**❯ Category:** ${capitalizeFirstLetter(cmd.category.toString().toLowerCase())}`,
+						`**❯ Category:** ${cmd.category.toString()}`,
 						`**❯ Description:** ${cmd.description}`,
 						`**❯ Usage:** ${prefix}${cmd.usage}`,
 						`**❯ Aliases:** ${cmd.aliases ? cmd.aliases.map((a) => `\`${a}\``).join(', ') : '`None`'}`,
