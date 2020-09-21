@@ -57,19 +57,21 @@ module.exports = async (client, message) => {
 
 	if (settings.settings.antiprofanity === true) {
 		const profanity = [	'fuck', 'shit', 'fucker', 'nigger', 'nigga', 'asshole', 'bitch'];
-		if(profanity.filter(word => message.content.toLowerCase().includes(word)).length > 0) {
-			const reason = 'Swearing';
-			const logs = settings.settings.modlog;
-			const channel = message.guild.channels.cache.get(logs);
-			if (!channel) return;
+		for(const word of profanity) {
+			if (message.content.includes(word)) {
+				const reason = 'Swearing';
+				const logs = settings.settings.modlog;
+				const channel = message.guild.channels.cache.get(logs);
+				if (!channel) return;
 
-			if(!message.member.hasPermission('MANAGE_MESSAGES')) {
-				message.delete();
-				message.channel.send(
-					`${message.author}, you are not allowed to swear in this channel. Hence, you have received a warning.`,
-				);
+				if(!message.member.hasPermission('MANAGE_MESSAGES')) {
+					message.delete();
+					message.channel.send(
+						`${message.author}, you are not allowed to swear in this channel. Hence, you have received a warning.`,
+					);
 
-				warn(client, message, channel, reason);
+					warn(client, message, channel, reason);
+				}
 			}
 		}
 	}
