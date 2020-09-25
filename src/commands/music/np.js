@@ -18,8 +18,9 @@ module.exports = {
 				.setColor('BLUE')
 				.setFooter(`Requested by ${message.author.tag} `)
 				.setTimestamp()
+				.setThumbnail(song.thumbnail)
 				.addFields(
-					{ name: '__Now Playing__', value: `\`${song.name}\` | \`${song.requestedBy}\`` },
+					{ name: '__Now Playing__', value: `[${song.name}](${song.url}) | \`${song.duration}\` \n \`Requested by: ${song.requestedBy}\`` },
 					{ name: '__Pogression__', value: `[${client.player.createProgressBar(message.guild.id)}]` },
 				);
 			message.channel.send(embed);

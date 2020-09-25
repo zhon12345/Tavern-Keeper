@@ -21,23 +21,22 @@ module.exports = async (client, oldRole, newRole) => {
 		const newRolePerms = newRole.permissions.toArray();
 		const oldRolePerms = oldRole.permissions.toArray();
 
-		newRolePerms.forEach(async (p) =>{
+		newRolePerms.forEach(p =>{
 			if(!oldRolePerms.includes(p)) {
 				logchannel.send(
 					`\`[${moment(newRole.createdTimestamp).format('HH:mm:ss')}]\` ✏️ \`${oldRole.name}\` (ID: ${oldRole.id})'s permissions has been changed by **${executor.username}**#${executor.discriminator}.\n\`[Added]\` ${p[0] + p.slice(1).toLowerCase().replace(/_/g, ' ')}`,
 				);
 			}
-			else{
-				return;
-			}
 		});
-		oldRolePerms.forEach(async (p)=>{
+
+		oldRolePerms.forEach(p =>{
 			if(!newRolePerms.includes(p)) {
 				logchannel.send(
 					`\`[${moment(newRole.createdTimestamp).format('HH:mm:ss')}]\` ✏️ \`${oldRole.name}\` (ID: ${oldRole.id})'s permissions has been changed by **${executor.username}**#${executor.discriminator}.\n\`[Removed]\` ${p[0] + p.slice(1).toLowerCase().replace(/_/g, ' ')}`,
 				);
 			}
 		});
+
 		if(newRole.name !== oldRole.name) {
 			logchannel.send(
 				`\`[${moment(newRole.createdTimestamp).format('HH:mm:ss')}]\` ✏️ \`${oldRole.name}\` (ID: ${oldRole.id})'s name has been changed to ${newRole.name} by **${executor.username}**#${executor.discriminator}.\n\`[Time]\` ${moment(newRole.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`,

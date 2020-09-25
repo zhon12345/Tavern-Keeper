@@ -44,7 +44,7 @@ module.exports = {
 		}
 		else {
 			const song = await client.player.play(message.member.voice.channel, track, message.member.user.tag);
-			message.channel.send(`Now playing \`${song.name}\``);
+			message.channel.send(`<:vSuccess:725270799098970112> Now playing \`${song.name}\``);
 
 			client.player.getQueue(message.guild.id).on('end', () => {
 				message.channel.send('Queue completed, add some more songs to play!');
@@ -52,7 +52,7 @@ module.exports = {
 
 			client.player.getQueue(message.guild.id).on('trackChanged', (oldSong, newSong, skipped, repeatMode) => {
 				if(repeatMode) {
-					message.channel.send(`Reapeating \`${oldSong.name}\``);
+					message.channel.send(`Repeating \`${oldSong.name}\``);
 				}
 				else {
 					message.channel.send(`Now playing \`${newSong.name}\``);

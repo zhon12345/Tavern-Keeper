@@ -23,6 +23,7 @@ const regions = {
 	'us-east': 'US East',
 	'us-west': 'US West',
 	'us-south': 'US South',
+	'eu-west': 'EU West',
 };
 
 module.exports = {

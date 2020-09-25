@@ -31,16 +31,15 @@ module.exports = {
 				.setColor('BLUE')
 				.setFooter(`Requested by ${message.author.tag} `)
 				.setTimestamp()
+				.setThumbnail(queue.playing.thumbnail)
 				.addFields(
-					{ name: '__Now Playing__', value: `\`${queue.playing.name}\` | \`${queue.playing.requestedBy}\`` },
-					{ name: '__Up Next__', value: `${queue.tracks.length >= 1 ? queue.tracks.map((track, i) => { return `${i + 1}) \`${track.name}\` | \`${track.requestedBy}\``; }).join('\n') : 'None'}` },
+					{ name: '__Now Playing__', value: `[${queue.playing.name}](${queue.playing.url}) | \`${queue.playing.duration}\` \n \`Requested by: ${queue.playing.requestedBy}\`` },
+					{ name: '__Up Next__', value: `${queue.tracks.length >= 1 ? queue.tracks.map((track, i) => { return `${i + 1}) [${track.name}](${track.url}) | \`${track.duration}\` \n \`Requested by: ${track.requestedBy}\``; }).join('\n') : 'None'}` },
 				);
 			message.channel.send(embed);
 		}
-		catch{
-			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid country.',
-			);
+		catch(e) {
+			return message.channel.send('<:vError:725270799124004934> An error occured, please try again!');
 		}
 	},
 };

@@ -26,7 +26,7 @@ module.exports = {
 			.addFields(
 				{ name: 'Username', value: `\`\`\`${member.user.tag}\`\`\``, inline:true },
 				{ name: 'ID', value: `\`\`\`${member.id}\`\`\``, inline:true },
-				{ name: `Roles [${roles.length}]`, value: `\`\`\`${roles ? roles.join('\n') : 'None'}\`\`\`` },
+				{ name: `Roles [${roles.length}]`, value: `\`\`\`${roles ? roles.join('\n').split('@everyone').join('') : 'None'}\`\`\`` },
 				{ name: 'Status', value: `\`\`\`${Presence[member.user.presence.status]}\`\`\``, inline:true },
 				{ name: 'Highest Role', value: `\`\`\`${member.roles.highest.id === message.guild.id ? 'None' : member.roles.highest.name}\`\`\``, inline:true },
 				{ name: 'Created', value: `\`\`\`${moment(member.user.createdTimestamp).format('MMMM Do YYYY, h:mm:ss')} | ${Math.floor((Date.now() - member.user.createdTimestamp) / 86400000)} day(s) ago\`\`\`` },

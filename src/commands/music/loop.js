@@ -28,13 +28,11 @@ module.exports = {
 			const song = await client.player.nowPlaying(message.guild.id);
 
 			message.channel.send(
-				`Repeating \`${song.name}\`.`,
+				`<:vSuccess:725270799098970112> Now Repeating \`${song.name}\`.`,
 			);
 		}
-		catch{
-			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid country.',
-			);
+		catch(e) {
+			return message.channel.send('<:vError:725270799124004934> An error occured, please try again!');
 		}
 
 	},

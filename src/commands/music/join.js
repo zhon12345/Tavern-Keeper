@@ -18,7 +18,13 @@ module.exports = {
 			);
 		}
 
-		message.member.voice.channel.join();
+		try{
+			message.member.voice.channel.join();
+			return message.channel.send(`<:vSuccess:725270799098970112> Successfully joined \`${message.member.voice.channel.name}\``);
+		}
+		catch(e) {
+			return message.channel.send('<:vError:725270799124004934> An error occured, please try again!');
+		}
 	},
 
 };
