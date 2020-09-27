@@ -1,10 +1,9 @@
-/* eslint-disable no-unused-vars */
 module.exports = {
-	name: 'loop',
+	name: 'remove',
 	category: 'Music',
-	description: 'Pauses the currently playing track.',
+	description: 'Remove a track from the queue.',
 	aliases: [],
-	usage: 'loop',
+	usage: 'remove <number>',
 	run: async (client, message, args) => {
 		if(!message.member.voice.channel) {
 			return message.channel.send(
@@ -18,32 +17,33 @@ module.exports = {
 			);
 		}
 
-		if(!client.player.isPlaying(message.guild.id)) {
+		const queue = client.player.getQueue(message.guild.id);
+		if(!queue) {
 			return message.channel.send('<:vError:725270799124004934> There is nothing playing.');
 		}
 
 		try{
-			const repeatMode = client.player.getQueue(message.guild.id).repeatMode;
-
-			if(repeatMode) {
-				const song = await client.player.nowPlaying(message.guild.id);
-				client.player.setRepeatMode(message.guild.id, false);
-
+			const number = args[0];
+			if(isNaN(number)) {
 				return message.channel.send(
-					`<:vSuccess:725270799098970112> Successfully disabled loop for \`${song.name}\`.`,
+					'<:vError:725270799124004934> Please provide a valid number.',
 				);
 			}
-			else {
-				const song = await client.player.nowPlaying(message.guild.id);
-				client.player.setRepeatMode(message.guild.id, true);
 
+			if(number > queue.tracks.length) {
 				return message.channel.send(
-					`<:vSuccess:725270799098970112> Successfully enabled loop for \`${song.name}\`.`,
+					'<:vError:725270799124004934> Please provide a valid number.',
 				);
 			}
+
+			client.player.remove(message.guild.id, number);
+			return message.channel.send(
+				`<:vSuccess:725270799098970112> Successfully removed \`${number}\``,
+			);
 		}
 		catch(e) {
 			return message.channel.send('<:vError:725270799124004934> An error occured, please try again!');
 		}
+
 	},
 };

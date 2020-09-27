@@ -18,7 +18,7 @@ module.exports = async (client, role) => {
 	if (!logchannel) {return;}
 	else if(target.id == role) {
 		logchannel.send(
-			`\`[${moment(role.createdTimestamp).format('HH:mm:ss')}]\` ⚒ ${role.name} (ID: ${role.id}) has been created by **${executor.username}**#${executor.discriminator}.\n\`[Permissions]\` ${role.permissions.toArray().map(p => p[0] + p.slice(1).toLowerCase()).join(', ').replace(/_/g, ' ')}`,
+			`\`[${moment(role.createdTimestamp).format('HH:mm:ss')}]\` ⚒ \`${role.name}\` (ID: ${role.id}) has been created by **${executor.username}**#${executor.discriminator}.\n\`[Permissions]\` ${role.permissions.toArray().map(p => p[0] + p.slice(1).toLowerCase()).join(', ').replace(/_/g, ' ')}`,
 		);
 	}
 };

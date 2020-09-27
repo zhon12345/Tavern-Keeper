@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 module.exports = {
-	name: 'loop',
+	name: 'clear',
 	category: 'Music',
-	description: 'Pauses the currently playing track.',
+	description: 'Clears the queue.',
 	aliases: [],
-	usage: 'loop',
+	usage: 'clear',
 	run: async (client, message, args) => {
 		if(!message.member.voice.channel) {
 			return message.channel.send(
@@ -18,32 +18,22 @@ module.exports = {
 			);
 		}
 
-		if(!client.player.isPlaying(message.guild.id)) {
+		const queue = client.player.getQueue(message.guild.id);
+		if(!queue) {
 			return message.channel.send('<:vError:725270799124004934> There is nothing playing.');
 		}
 
 		try{
-			const repeatMode = client.player.getQueue(message.guild.id).repeatMode;
+			return message.channel.send(
+				`<:vSuccess:725270799098970112> Successfully cleared \`${queue.tracks.length}\` songs.`,
+			).then(() => {
+				client.player.clearQueue(message.guild.id);
+			});
 
-			if(repeatMode) {
-				const song = await client.player.nowPlaying(message.guild.id);
-				client.player.setRepeatMode(message.guild.id, false);
-
-				return message.channel.send(
-					`<:vSuccess:725270799098970112> Successfully disabled loop for \`${song.name}\`.`,
-				);
-			}
-			else {
-				const song = await client.player.nowPlaying(message.guild.id);
-				client.player.setRepeatMode(message.guild.id, true);
-
-				return message.channel.send(
-					`<:vSuccess:725270799098970112> Successfully enabled loop for \`${song.name}\`.`,
-				);
-			}
 		}
 		catch(e) {
 			return message.channel.send('<:vError:725270799124004934> An error occured, please try again!');
 		}
+
 	},
 };
