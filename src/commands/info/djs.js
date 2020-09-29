@@ -14,7 +14,7 @@ module.exports = {
 				'<:vError:725270799124004934> Please provide a valid query.',
 			);
 		}
-		const url = 'https://djsdocs.sorta.moe/v1/main/stable/embed?q=' + query;
+		const url = 'https://djsdocs.sorta.moe/v2/embed?src=stable&q=' + query;
 
 		let response;
 		try {
