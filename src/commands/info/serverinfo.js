@@ -1,4 +1,5 @@
 const { MessageEmbed } = require('discord.js');
+const { BOT_OWNER } = process.env;
 const moment = require('moment');
 
 const verificationLevels = {
@@ -57,6 +58,10 @@ module.exports = {
 			)
 			.setFooter(`Requested by ${message.author.tag} `)
 			.setTimestamp();
+
+		if(message.author.id === BOT_OWNER) {
+			embed.addField('Joined', `\`\`\`${moment(message.guild.members.cache.get(client.user.id).joinedAt).format('MMMM Do YYYY, h:mm:ss')} | ${Math.floor((Date.now() - message.guild.members.cache.get(client.user.id).joinedAt) / 86400000)} day(s) ago\`\`\``);
+		}
 		message.channel.send(embed);
 	},
 };

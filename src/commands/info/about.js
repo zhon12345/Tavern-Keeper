@@ -18,7 +18,7 @@ module.exports = {
 			.addFields(
 				{
 					name: 'Need some help?',
-					value: 'Join our [Discord Server](https://discord.gg/GGMsqS9)',
+					value: 'Join our [Discord Server](https://discord.gg/jMpw3jw)',
 				},
 			)
 			.setFooter(`Requested by ${message.author.tag}`)

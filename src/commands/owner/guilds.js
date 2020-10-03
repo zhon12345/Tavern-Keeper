@@ -15,7 +15,7 @@ module.exports = {
 			);
 		}
 
-		const list = client.guilds.cache.map(guild => `${guild.name} (${guild.id})`).join('\n');
+		const list = client.guilds.cache.sort((a, b) => a.joinedAt - b.joinedAt).map(guild => `${guild.name} (${guild.id})`).join('\n');
 
 		const botembed = new MessageEmbed()
 			.setDescription(`**${client.user.username}** is currently in **${message.client.guilds.cache.size}** servers.`)
