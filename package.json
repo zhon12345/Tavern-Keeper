@@ -28,7 +28,7 @@
     "ffmpeg-static": "^4.2.7",
     "figlet": "^1.5.0",
     "html2plaintext": "^2.1.2",
-    "humanize-duration": "^3.23.1",
+    "humanize-duration": "^3.24.0",
     "mathjs": "^7.3.0",
     "moment": "^2.29.0",
     "mongoose": "^5.10.7",
