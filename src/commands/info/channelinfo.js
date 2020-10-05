@@ -1,6 +1,6 @@
+const { parseDur } = require('../../functions');
 const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
-const { parseDur } = require('../../functions');
 
 const types = {
 	dm: 'DM',

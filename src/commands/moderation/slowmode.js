@@ -1,3 +1,4 @@
+const { parseDur } = require('../../functions');
 const ms = require('ms');
 
 module.exports = {
@@ -23,7 +24,7 @@ module.exports = {
 
 		if (!args[0]) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please include a valid time format or a valid channel.',
+				`The current slowmode for ${message.channel} is ${parseDur(channel.rateLimitPerUser * 1000)}`,
 			);
 		}
 		else if (args[0].toLowerCase() === 'off') {
