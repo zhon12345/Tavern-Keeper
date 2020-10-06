@@ -11,6 +11,12 @@ module.exports = {
 			);
 		}
 
+		if(!message.guild.me.hasPermission('MANAGE_MESSAGES')) {
+			return message.channel.send(
+				'<:vError:725270799124004934> I must have the following permissions to use that: Manage Messages.',
+			);
+		}
+
 		const msg = args[0];
 		if(!msg || isNaN(msg)) {
 			return message.channel.send(

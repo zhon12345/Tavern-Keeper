@@ -21,7 +21,7 @@ module.exports = {
 			);
 		}
 
-		if(!message.guild.me.hasPermission('KICK_MEMBERS')) {
+		if(!message.guild.me.hasPermission('MANAGE_ROLES')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> I must have the following permissions to use that: Kick Members.',
 			);

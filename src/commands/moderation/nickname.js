@@ -11,6 +11,12 @@ module.exports = {
 			);
 		}
 
+		if(!message.guild.me.hasPermission('MANAGE_NICKNAMES')) {
+			return message.channel.send(
+				'<:vError:725270799124004934> I must have the following permissions to use that: Manage Nicknames.',
+			);
+		}
+
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]);
 		if (!member) {
 			return message.channel.send(

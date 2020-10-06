@@ -8,7 +8,7 @@ module.exports = {
 	aliases: [],
 	usage: 'kaomoji',
 	run: async (client, message, args) => {
-		const face = kaomoji[Math.floor(Math.random() * kaomoji.length)];
+		const face = kaomoji[Math.floor(Math.random() * kaomoji.length) + 1];
 		message.channel.send(face);
 	},
 };
