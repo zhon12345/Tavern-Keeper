@@ -3,13 +3,13 @@ const { MessageEmbed } = require('discord.js');
 const fetch = require('node-fetch');
 
 module.exports = {
-	name: 'dog',
+	name: 'koala',
 	category: 'Animals',
-	description: 'See some cute doggos!',
-	aliases: ['dogs', 'doggo', 'puppy', 'puppies'],
-	usage: 'dog',
+	description: 'Only available in Australia!',
+	aliases: ['koalas'],
+	usage: 'koala',
 	run: async (client, message, args) => {
-		const url = 'https://no-api-key.com/api/v1/animals/dog';
+		const url = 'https://some-random-api.ml/img/koala';
 
 		let response;
 		try {
@@ -24,7 +24,7 @@ module.exports = {
 
 		const embed = new MessageEmbed()
 			.setColor('BLUE')
-			.setImage(response.image);
+			.setImage(response.link);
 		message.channel.send(embed);
 	},
 };

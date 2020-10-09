@@ -7,7 +7,6 @@ module.exports = {
 	usage: 'guess',
 	run: async (client, message, args) => {
 		const random = Math.floor(Math.random() * 10) + 1;
-		console.log(random);
 		const filter = mi => mi.author.id === message.author.id;
 		let attempts = 3;
 		let hints = Math.floor(attempts / 2);

@@ -3,13 +3,13 @@ const { MessageEmbed } = require('discord.js');
 const fetch = require('node-fetch');
 
 module.exports = {
-	name: 'dog',
+	name: 'fox',
 	category: 'Animals',
-	description: 'See some cute doggos!',
-	aliases: ['dogs', 'doggo', 'puppy', 'puppies'],
-	usage: 'dog',
+	description: 'You want some cute animals? Here you go!',
+	aliases: ['animal'],
+	usage: 'aww',
 	run: async (client, message, args) => {
-		const url = 'https://no-api-key.com/api/v1/animals/dog';
+		const url = 'https://randomfox.ca/floof/';
 
 		let response;
 		try {
