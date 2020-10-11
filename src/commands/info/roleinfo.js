@@ -1,3 +1,4 @@
+const { formatPerms } = require('../../functions');
 const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
 
@@ -17,7 +18,7 @@ module.exports = {
 
 		let permissions;
 		if(role.permissions.toArray().length !== 0) {
-			permissions = role.permissions.toArray().map(x => x.split('_').map(y => y[0] + y.slice(1).toLowerCase()).join(' ')).join(', ');
+			permissions = role.permissions.toArray().map(formatPerms).join(', ');
 		}
 		else {
 			permissions = 'None';

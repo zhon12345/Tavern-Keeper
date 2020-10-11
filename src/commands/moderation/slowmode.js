@@ -10,13 +10,13 @@ module.exports = {
 	run: async (client, message, args) => {
 		if(!message.member.hasPermission('MANAGE_CHANNELS')) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You must have the following permissions to use that: Manage Channels.',
+				'<:vError:725270799124004934> Insufficient Permission! `MANAGE_CHANNELS` required.',
 			);
 		}
 
 		if(!message.guild.me.hasPermission('MANAGE_CHANNELS')) {
 			return message.channel.send(
-				'<:vError:725270799124004934> I must have the following permissions to use that: Manage Channels.',
+				'<:vError:725270799124004934> Insufficient Permission! `MANAGE_CHANNELS` required.',
 			);
 		}
 

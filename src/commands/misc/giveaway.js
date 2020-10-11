@@ -12,9 +12,16 @@ module.exports = {
 	run: async (client, message, args) => {
 		if(!message.member.hasPermission('MANAGE_MESSAGES')) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You must have the following permissions to use that: Manage Messages.',
+				'<:vError:725270799124004934> Insufficient Permission! `MANAGE_MESSAGES` required.',
 			);
 		}
+
+		if(!message.guild.me.hasPermission('ADD_REACTIONS')) {
+			return message.channel.send(
+				'<:vError:725270799124004934> Insufficient Permission! `ADD_REACTIONS` required.',
+			);
+		}
+
 		try {
 			if (!args[0].match('[dhms]')) return message.channel.send('<:vError:725270799124004934> Please provide a valid time format.');
 

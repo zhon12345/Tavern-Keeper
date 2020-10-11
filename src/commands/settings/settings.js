@@ -9,9 +9,9 @@ module.exports = {
 	aliases: ['setting'],
 	usage: 'settings',
 	run: async (client, message, args) => {
-		if(!message.member.hasPermission('ADMINISTRATOR')) {
+		if (!message.member.hasPermission('ADMINISTRATOR')) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You must have the following permissions to use that: Ban Members.',
+				'<:vError:725270799124004934> Insufficient Permission! `ADMINISTRATOR` required.',
 			);
 		}
 

@@ -7,13 +7,13 @@ module.exports = {
 	run: async (client, message, args) => {
 		if(!message.member.hasPermission('MANAGE_NICKNAMES')) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You must have the following permissions to use that: Manage Nickname.',
+				'<:vError:725270799124004934> Insufficient Permission! `MANAGE_NICKNAMES` required.',
 			);
 		}
 
 		if(!message.guild.me.hasPermission('MANAGE_NICKNAMES')) {
 			return message.channel.send(
-				'<:vError:725270799124004934> I must have the following permissions to use that: Manage Nicknames.',
+				'<:vError:725270799124004934> Insufficient Permission! `MANAGE_NICKNAMES` required.',
 			);
 		}
 

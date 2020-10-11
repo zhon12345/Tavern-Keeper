@@ -168,4 +168,14 @@ module.exports = {
 		}
 		return shuffledWord;
 	},
+
+	// roleinfo.js
+	formatPerms: function(perm) {
+		return perm
+			.toLowerCase()
+			.replace(/(^|"|_)(\S)/g, (s) => s.toUpperCase())
+			.replace(/_/g, ' ')
+			.replace(/Use Vad/g, 'Use Voice Acitvity')
+			.replace(/Send Tts Messages/g, 'Send text-to-speech Messages');
+	},
 };

@@ -7,13 +7,29 @@ module.exports = {
 	aliases: [],
 	usage: 'leavechannel <channel>',
 	run: async (client, message, args) => {
-		if(!message.member.hasPermission('ADMINISTRATOR')) {
+		if (!message.member.hasPermission('ADMINISTRATOR')) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You must have the following permissions to use that: Administrator.',
+				'<:vError:725270799124004934> Insufficient Permission! `ADMINISTRATOR` required.',
 			);
 		}
 
-		if (args[0].toLowerCase() === 'off') {
+		const settings = await Guild.findOne({
+			guildID: message.guild.id,
+		});
+
+		if(!args[0]) {
+			if(settings.welcomer.leavechannel === null) {
+				return message.channel.send(
+					`Goodbye channel for **${message.guild}** has been \`disabled\`.`,
+				);
+			}
+			else {
+				return message.channel.send(
+					`Goodbye channel for **${message.guild}** has been set to <#${settings.welcomer.leavechannel}>.`,
+				);
+			}
+		}
+		else if (args[0].toLowerCase() === 'off') {
 			await Guild.updateOne(
 				{
 					guildID: message.guild.id,

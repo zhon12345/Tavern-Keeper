@@ -7,29 +7,31 @@ module.exports = {
 	aliases: ['prefix'],
 	usage: 'setprefix <prefix>',
 	run: async (client, message, args) => {
-		if(!message.member.hasPermission('ADMINISTRATOR')) {
+		if (!message.member.hasPermission('ADMINISTRATOR')) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You must have the following permissions to use that: Administrator.',
+				'<:vError:725270799124004934> Insufficient Permission! `ADMINISTRATOR` required.',
 			);
 		}
 
 		const settings = await Guild.findOne({
 			guildID: message.guild.id,
 		});
-		const prefix = settings.prefix;
 
 		if(!args[0]) {
-			return message.channel.send('<:vError:725270799124004934> Please provide a valid prefix.');
+			return message.channel.send(
+				`The prefix for **${message.guild}** has been set to \`${settings.prefix}\`.`,
+			);
 		}
-
-		if(args[0] === prefix) {
-			return message.channel.send('<:vWarning:725276167346585681> That prefix is already in use.');
+		else if(args[0] === settings.prefix) {
+			return message.channel.send(
+				'<:vWarning:725276167346585681> That prefix is already in use.',
+			);
 		}
-
-		if(args[0].length > 3) {
-			return message.channel.send('<:vError:725270799124004934> Prefixes are not allowed to be more than 3 characters');
+		else if(args[0].length > 3) {
+			return message.channel.send(
+				'<:vError:725270799124004934> Prefixes are not allowed to be more than 3 characters',
+			);
 		}
-
 		await settings.updateOne({
 			prefix: args[0],
 		});

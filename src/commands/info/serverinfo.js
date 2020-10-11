@@ -60,7 +60,7 @@ module.exports = {
 			.setTimestamp();
 
 		if(message.author.id === BOT_OWNER) {
-			embed.addField('Joined', `\`\`\`${moment(message.guild.members.cache.get(client.user.id).joinedAt).format('MMMM Do YYYY, h:mm:ss')} | ${Math.floor((Date.now() - message.guild.members.cache.get(client.user.id).joinedAt) / 86400000)} day(s) ago\`\`\``);
+			embed.addField('Joined', `\`\`\`${moment(guild.joinedAt).format('MMMM Do YYYY, h:mm:ss')} | ${Math.floor((Date.now() - guild.joinedAt) / 86400000)} day(s) ago\`\`\``);
 		}
 		message.channel.send(embed);
 	},

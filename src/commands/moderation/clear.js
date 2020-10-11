@@ -22,6 +22,12 @@ module.exports = {
 			);
 		}
 
+		if(!message.guild.me.hasPermission('MANAGE_MESSAGES')) {
+			return message.channel.send(
+				'<:vError:725270799124004934> Insufficient Permission! `MANAGE_MESSAGES` required.',
+			);
+		}
+
 		const amount = parseInt(args[0]);
 
 		if (isNaN(amount)) {

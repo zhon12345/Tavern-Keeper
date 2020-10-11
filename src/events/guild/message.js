@@ -1,7 +1,8 @@
-const mongoose = require('mongoose');
 const { is_url, is_invite } = require('../../functions');
 const Guild = require('../../models/guild');
 const { warn } = require('../../util/warn');
+const mongoose = require('mongoose');
+const { BOT_PREFIX } = process.env;
 
 module.exports = async (client, message) => {
 	if (message.author.bot) return;
@@ -16,7 +17,7 @@ module.exports = async (client, message) => {
 				_id: mongoose.Types.ObjectId(),
 				guildID: message.guild.id,
 				guildName: message.guild.name,
-				prefix: process.env.BOT_PREFIX,
+				prefix: BOT_PREFIX,
 				blacklisted: false,
 				settings:{
 					id: mongoose.Types.ObjectId(),
@@ -106,6 +107,16 @@ module.exports = async (client, message) => {
 	if (!command) command = client.commands.get(client.aliases.get(cmd));
 
 	if (command) {
+		if(!message.guild.me.hasPermission('USE_EXTERNAL_EMOJIS')) {
+			return message.channel.send(
+				'<:vError:725270799124004934> Insufficient Permission! `Use External Emojis` required.',
+			);
+		}
+		if(!message.guild.me.hasPermission('EMBED_LINKS')) {
+			return message.channel.send(
+				'<:vError:725270799124004934> Insufficient Permission! `Embed Links` required.',
+			);
+		}
 		command.run(client, message, args);
 	}
 };

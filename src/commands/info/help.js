@@ -14,9 +14,27 @@ module.exports = {
 			guildID: message.guild.id,
 		});
 
-		const prefix = settings.prefix;
+		if (message.author.id === BOT_OWNER && args[0] === 'all') {
+			const categories = [...new Set(client.commands.map(cmd => cmd.category))];
+			const embed = new MessageEmbed()
+				.setTitle(`${client.user.username}'s Commands`)
+				.setFooter(`Requested by ${message.author.tag} `)
+				.setTimestamp()
+				.setColor('BLUE')
+				.setDescription([`
+			This server's prefix is \`${settings.prefix}\`.
+			For more info on a specific command, type \`${settings.prefix}help <command>\`.
+			Visit the bot's website [here](https://tavern-keeper.weebly.com/) for more info on certain features.
+			`]);
 
-		if (args[0]) {
+			for (const id of categories) {
+				const category = client.commands.filter(cmd => cmd.category === id);
+
+				embed.addField(`${id} (${category.size})`, category.map(cmd => `\`${cmd.name}\``).join(' '));
+			}
+			return message.channel.send(embed);
+		}
+		else if (args[0]) {
 			const category = client.category.get(args[0].toLowerCase());
 			const cmd = client.commands.get(args[0].toLowerCase()) || client.commands.get(client.aliases.get(args[0].toLowerCase()));
 
@@ -43,7 +61,7 @@ module.exports = {
 						`**❯ Name:** ${cmd.name}`,
 						`**❯ Category:** ${cmd.category.toString()}`,
 						`**❯ Description:** ${cmd.description}`,
-						`**❯ Usage:** ${prefix}${cmd.usage}`,
+						`**❯ Usage:** ${settings.prefix}${cmd.usage}`,
 						`**❯ Aliases:** ${cmd.aliases ? cmd.aliases.map((a) => `\`${a}\``).join(', ') : '`None`'}`,
 					]);
 				return message.channel.send(hembed);
@@ -56,8 +74,8 @@ module.exports = {
 				.setTimestamp()
 				.setColor('BLUE')
 				.setDescription([`
-				This server's prefix is \`${prefix}\`.
-				For more info on a specific command, type \`${prefix}help <command>\`.
+				This server's prefix is \`${settings.prefix}\`.
+				For more info on a specific command, type \`${settings.prefix}help <command>\`.
 				Visit the bot's website [here](https://tavern-keeper.weebly.com/) for more info on certain features.
 				`]);
 
@@ -72,7 +90,7 @@ module.exports = {
 			for (const id of categories) {
 				const category = client.commands.filter(cmd => cmd.category === id);
 
-				embed.addField(`${id} (${category.size})`, `\`${prefix}help ${id.toLowerCase()}\``, true);
+				embed.addField(`${id} (${category.size})`, `\`${settings.prefix}help ${id.toLowerCase()}\``, true);
 			}
 			message.channel.send(embed);
 		}

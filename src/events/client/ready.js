@@ -1,4 +1,4 @@
-const { BOT_PREFIX, BOT_VERSION, BOT_DB } = process.env;
+const { BOT_PREFIX, BOT_DB } = process.env;
 const mongoose = require('mongoose');
 
 module.exports = async (client) =>{
@@ -19,6 +19,5 @@ module.exports = async (client) =>{
 	}, 30000);
 	console.log('Connected to MongoDB');
 	console.log(`Logged in as ${client.user.tag}`);
-	console.log('Version:', BOT_VERSION);
 	console.log('Prefix:', BOT_PREFIX);
 };

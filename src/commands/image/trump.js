@@ -8,6 +8,12 @@ module.exports = {
 	aliases: [],
 	usage: 'trump <text>',
 	run: async (client, message, args) => {
+		if(!message.guild.me.hasPermission('ATTACH_FILES')) {
+			return message.channel.send(
+				'<:vError:725270799124004934> Insufficient Permission! `ATTACH_FILES` required.',
+			);
+		}
+
 		const text = args.slice().join(' ');
 		if (!text) {
 			return message.channel.send(

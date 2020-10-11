@@ -7,9 +7,9 @@ module.exports = {
 	aliases: [],
 	usage: 'antiprofanity <on/off>',
 	run: async (client, message, args) => {
-		if(!message.member.hasPermission('ADMINISTRATOR')) {
+		if (!message.member.hasPermission('ADMINISTRATOR')) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You must have the following permissions to use that: Administrator.',
+				'<:vError:725270799124004934> Insufficient Permission! `ADMINISTRATOR` required.',
 			);
 		}
 
@@ -17,7 +17,19 @@ module.exports = {
 			guildID: message.guild.id,
 		});
 
-		if (args[0].toLowerCase() === 'off') {
+		if(!args[0]) {
+			if(settings.settings.antiprofanity === true) {
+				return message.channel.send(
+					`Anti Profanity for **${message.guild}** has been \`enabled\`.`,
+				);
+			}
+			else if(settings.settings.antiprofanity === false) {
+				return message.channel.send(
+					`Anti Profanity for **${message.guild}** has been \`disabled\`.`,
+				);
+			}
+		}
+		else if (args[0].toLowerCase() === 'off') {
 			if(settings.settings.antiprofanity === false) {
 				return message.channel.send(
 					'<:vError:725270799124004934> Anti Profanity is already off.',

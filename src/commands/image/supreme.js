@@ -7,6 +7,12 @@ module.exports = {
 	aliases: [],
 	usage: 'supreme <text>',
 	run: async (client, message, args) => {
+		if(!message.guild.me.hasPermission('ATTACH_FILES')) {
+			return message.channel.send(
+				'<:vError:725270799124004934> Insufficient Permission! `ATTACH_FILES` required.',
+			);
+		}
+
 		if (!args[0]) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide valid text.',

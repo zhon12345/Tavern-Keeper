@@ -7,6 +7,11 @@ module.exports = {
 	aliases: ['achivement'],
 	usage: 'achi <text>',
 	run: (client, message, args) => {
+		if(!message.guild.me.hasPermission('ATTACH_FILES')) {
+			return message.channel.send(
+				'<:vError:725270799124004934> Insufficient Permission! `ATTACH_FILES` required.',
+			);
+		}
 
 		const tips = [
 			'Dont forget milk good for you!',

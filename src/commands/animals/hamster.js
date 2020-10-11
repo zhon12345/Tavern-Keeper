@@ -28,10 +28,7 @@ module.exports = {
 					}
 					const embed = new MessageEmbed()
 						.setColor('BLUE')
-						.setURL(`https://www.reddit.com/r/${random.subreddit}/comments/${random.id}`)
-						.setTitle(h2p(random.title))
-						.setImage(random.url)
-						.setFooter(`👍 ${random.ups} | 💬 ${random.num_comments}`);
+						.setImage(random.url);
 
 					message.channel.send(embed);
 				});

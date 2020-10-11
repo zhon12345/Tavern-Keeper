@@ -18,17 +18,17 @@ module.exports = {
 
 		if (!message.member.hasPermission('ADMINISTRATOR')) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You must have the following permissions to use that: Administrator.',
+				'<:vError:725270799124004934> Insufficient Permission! `ADMINISTRATOR` required.',
 			);
 		}
 
 		if (!message.guild.me.hasPermission('MANAGE_CHANNELS')) {
 			return message.channel.send(
-				'<:vError:725270799124004934> I must have the following permissions to use that: Manage Channel.',
+				'<:vError:725270799124004934> Insufficient Permission! `MANAGE_CHANNELS` required.',
 			);
 		}
 
-		let Reason = args[0];
+		let Reason;
 		if(!Reason) {
 			Reason = 'No reason specified';
 		}

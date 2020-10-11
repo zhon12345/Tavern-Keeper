@@ -6,6 +6,12 @@ module.exports = {
 	aliases: [],
 	usage: 'nitro',
 	run: (client, message, args) => {
+		if(!message.guild.me.hasPermission('ATTACH_FILES')) {
+			return message.channel.send(
+				'<:vError:725270799124004934> Insufficient Permission! `ATTACH_FILES` required.',
+			);
+		}
+
 		message.channel.send({ files: ['./assets/image/nitro.png'] }).then(message.delete());
 	},
 };

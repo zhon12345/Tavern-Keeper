@@ -11,6 +11,12 @@ module.exports = {
 	aliases: [],
 	usage: 'rps',
 	run: async (client, message, args) => {
+		if(!message.guild.me.hasPermission('ADD_REACTIONS')) {
+			return message.channel.send(
+				'<:vError:725270799124004934> Insufficient Permission! `ADD_REACTIONS` required.',
+			);
+		}
+
 		const filter = (reaction, user) => chooseArr.includes(reaction.emoji.name) && user.id === message.author.id;
 		const embed = new MessageEmbed()
 			.setColor('BLUE')
