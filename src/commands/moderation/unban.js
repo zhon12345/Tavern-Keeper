@@ -36,11 +36,12 @@ module.exports = {
 			);
 		}
 
-		const Reason = args.slice(1).join(' ');
+		let Reason = args.slice(1).join(' ');
 		if (!Reason) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a reason.',
-			);
+			Reason = 'No reason provided';
+		}
+		else {
+			Reason = args.slice(1).join(' ');
 		}
 
 		message.guild.members.unban(user.user);

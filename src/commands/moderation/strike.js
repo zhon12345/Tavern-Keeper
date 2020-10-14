@@ -54,19 +54,21 @@ module.exports = {
 		if (isNaN(args[1])) {
 			amount = 1;
 			Reason = args.slice(1).join(' ');
-			if(!Reason) {
-				return message.channel.send(
-					'<:vError:725270799124004934> Please provide a reason.',
-				);
+			if (!Reason) {
+				Reason = 'No reason provided';
+			}
+			else {
+				Reason = args.slice(1).join(' ');
 			}
 		}
 		else {
 			amount = Number(args[1]);
 			Reason = args.slice(2).join(' ');
-			if(!Reason) {
-				return message.channel.send(
-					'<:vError:725270799124004934> Please provide a reason.',
-				);
+			if (!Reason) {
+				Reason = 'No reason provided';
+			}
+			else {
+				Reason = args.slice(2).join(' ');
 			}
 		}
 

@@ -3,11 +3,11 @@ const Guild = require('../../models/guild');
 const { MessageEmbed } = require('discord.js');
 
 module.exports = {
-	name: 'check',
+	name: 'warnings',
 	category: 'Moderation',
 	description: 'Get the warnings and other info of the message author or a specified user.',
-	aliases: ['warns'],
-	usage: 'check [user]',
+	aliases: ['warns', 'strikes'],
+	usage: 'warnings [user]',
 	run: async (client, message, args) => {
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]) || message.member;
 		if (!member) {
@@ -24,8 +24,13 @@ module.exports = {
 			userID: member.id,
 		});
 
-		let warnings = warns.warnings;
-		if(!warnings) warnings = 0;
+		let warnings;
+		if (!warns || warns.warnings === 0) {
+			warnings = 0;
+		}
+		else {
+			warnings = warns.warnings;
+		}
 
 		const mute = settings.settings.muterole;
 		const embed = new MessageEmbed()

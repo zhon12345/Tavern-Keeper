@@ -41,9 +41,9 @@ module.exports = {
 			);
 		}
 
-		let Reason;
-		if(!args[1]) {
-			Reason = 'No reason specified';
+		let Reason = args.slice(1).join(' ');
+		if (!Reason) {
+			Reason = 'No reason provided';
 		}
 		else {
 			Reason = args.slice(1).join(' ');

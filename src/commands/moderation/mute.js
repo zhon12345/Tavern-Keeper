@@ -68,9 +68,10 @@ module.exports = {
 				time = null,
 				Reason = args.slice(1).join(' ');
 				if (!Reason) {
-					return message.channel.send(
-						'<:vError:725270799124004934> Please provide a reason.',
-					);
+					Reason = 'No reason provided';
+				}
+				else {
+					Reason = args.slice(1).join(' ');
 				}
 				try {
 					await member.send(`You have been muted in ${message.guild}\n\`[Reason]\` ${Reason}`);
@@ -90,9 +91,10 @@ module.exports = {
 			else {
 				Reason = args[2];
 				if (!Reason) {
-					return message.channel.send(
-						'<:vError:725270799124004934> Please provide a reason.',
-					);
+					Reason = 'No reason provided';
+				}
+				else {
+					Reason = args.slice(2).join(' ');
 				}
 				try {
 					await member.send(`You have been tempmuted for ${time} in ${message.guild}\n\`[Reason]\` ${Reason}`);

@@ -28,12 +28,12 @@ module.exports = {
 			);
 		}
 
-		let Reason;
-		if(!Reason) {
-			Reason = 'No reason specified';
+		let Reason = args.slice(1).join(' ');
+		if (!Reason) {
+			Reason = 'No reason provided';
 		}
 		else {
-			Reason = args.slice().join(' ');
+			Reason = args.slice(1).join(' ');
 		}
 
 		await message.channel.clone().then((ch) =>{
