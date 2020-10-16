@@ -3,7 +3,6 @@ const { BOT_OWNER } = process.env;
 
 module.exports = {
 	name: 'hack',
-	aliases: [],
 	usage: 'hack',
 	description: '*Fake* Hacks a user',
 	category:'Fun',

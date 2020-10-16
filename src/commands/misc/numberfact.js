@@ -6,7 +6,6 @@ module.exports = {
 	name: 'numberfact',
 	category: 'Misc',
 	description: 'Get a number fact from the internet.',
-	aliases: [],
 	usage: 'numberfact <number>',
 	run: async (client, message, args) => {
 		const number = args[0];

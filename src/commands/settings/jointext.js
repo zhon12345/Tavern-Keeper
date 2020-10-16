@@ -4,7 +4,6 @@ module.exports = {
 	name: 'jointext',
 	category: 'Settings',
 	description: 'Sets the welcome message for the server.',
-	aliases: [],
 	usage: 'jointext <message>',
 	run: async (client, message, args) => {
 		if (!message.member.hasPermission('ADMINISTRATOR')) {

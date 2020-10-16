@@ -103,8 +103,7 @@ module.exports = async (client, message) => {
 
 	if (cmd.length === 0) return;
 
-	let command = client.commands.get(cmd);
-	if (!command) command = client.commands.get(client.aliases.get(cmd));
+	const command = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
 
 	if (command) {
 		if(!message.guild.me.hasPermission('USE_EXTERNAL_EMOJIS')) {

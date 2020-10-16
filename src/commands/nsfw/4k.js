@@ -7,7 +7,6 @@ module.exports = {
 	name: '4k',
 	category: 'NSFW',
 	description: 'See some 4k nudes!',
-	aliases: [],
 	usage: '4k',
 	run: async (client, message, args) => {
 		if(!message.channel.nsfw) {

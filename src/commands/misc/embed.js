@@ -5,7 +5,6 @@ module.exports = {
 	name: 'embed',
 	category: 'Misc',
 	description: 'Get a example embed or embed specified text.',
-	aliases: [],
 	usage: 'embed [text]',
 	run: async (client, message, args) => {
 		const exampleEmbed = new MessageEmbed()

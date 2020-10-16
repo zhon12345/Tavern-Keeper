@@ -6,7 +6,6 @@ module.exports = {
 	name: 'oldest',
 	category: 'Info',
 	description: 'Get the oldest account in the guild.',
-	aliases: [],
 	usage: 'oldest',
 	run: async (client, message, args) => {
 		const member = message.guild.members.cache

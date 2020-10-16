@@ -6,7 +6,6 @@ module.exports = {
 	name: 'rip',
 	category: 'Image',
 	description: 'Pay your respects.',
-	aliases: [],
 	usage: 'rip [user]',
 	run: async (client, message, args) => {
 		if(!message.guild.me.hasPermission('ATTACH_FILES')) {

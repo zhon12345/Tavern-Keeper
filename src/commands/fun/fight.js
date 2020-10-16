@@ -6,7 +6,6 @@ module.exports = {
 	name: 'fight',
 	category: 'Fun',
 	usage: 'fight <user>',
-	aliases: [],
 	dexcription: 'Simulates a fight against another user.',
 	run: async (client, message, args) => {
 		const player1 = message.author;

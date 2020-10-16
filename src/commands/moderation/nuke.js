@@ -6,7 +6,6 @@ module.exports = {
 	name: 'nuke',
 	category: 'Moderation',
 	description: 'Clones the current channel and deletes the old one.',
-	aliases: [],
 	usage: 'nuke',
 	run: async (client, message, args) => {
 		const settings = await Guild.findOne({

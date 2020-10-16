@@ -4,7 +4,6 @@ module.exports = {
 	name: 'pirate',
 	category: 'Fun',
 	description: 'Converts a specified text into pirate text.',
-	aliases: [],
 	usage: 'pirate <message>',
 	run: async (client, message, args) => {
 		const text = args.slice().join(' ');

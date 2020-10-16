@@ -3,7 +3,6 @@ module.exports = {
 	name: 'shuffle',
 	category: 'Music',
 	description: 'Shuffles the queue.',
-	aliases: [],
 	usage: 'shuffle',
 	run: async (client, message, args) => {
 		if(!message.member.voice.channel) {

@@ -79,14 +79,7 @@ module.exports = {
 				Visit the bot's website [here](https://tavern-keeper.weebly.com/) for more info on certain features.
 				`]);
 
-			let categories;
-			if(message.author.id !== BOT_OWNER) {
-				categories = [...new Set(client.commands.filter(cmd => cmd.category !== 'Owner').map(cmd => cmd.category))];
-			}
-			else {
-				categories = [...new Set(client.commands.map(cmd => cmd.category))];
-			}
-
+			const categories = [...new Set(client.commands.filter(cmd => cmd.category !== 'Owner').map(cmd => cmd.category))];
 			for (const id of categories) {
 				const category = client.commands.filter(cmd => cmd.category === id);
 

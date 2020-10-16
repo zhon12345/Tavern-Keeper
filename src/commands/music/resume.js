@@ -3,7 +3,6 @@ module.exports = {
 	name: 'resume',
 	category: 'Music',
 	description: 'Resume paused music.',
-	aliases: [],
 	usage: 'resume',
 	run: async (client, message, args) => {
 		if(!message.member.voice.channel) {

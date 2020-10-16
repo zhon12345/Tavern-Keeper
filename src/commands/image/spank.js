@@ -6,7 +6,6 @@ module.exports = {
 	name: 'spank',
 	category: 'Image',
 	description: 'Spank those naughty users.',
-	aliases: [],
 	usage: 'spank <user>',
 	run: async (client, message, args) => {
 		if(!message.guild.me.hasPermission('ATTACH_FILES')) {

@@ -5,7 +5,6 @@ module.exports = {
 	name: 'tts',
 	category: 'Misc',
 	description: 'The power of text-to-speech!',
-	aliases: [],
 	usage: 'tts',
 	run: async (client, message, args) => {
 		const text = args.slice().join(' ');

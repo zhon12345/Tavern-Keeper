@@ -7,7 +7,6 @@ module.exports = {
 	name: 'bdsm',
 	category: 'NSFW',
 	description: 'Bondage & Discipline, Dominance & Submission, Sadism & Masochism.',
-	aliases: [],
 	usage: 'bdsm',
 	run: async (client, message, args) => {
 		if(!message.channel.nsfw) {

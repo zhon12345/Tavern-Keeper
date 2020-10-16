@@ -4,7 +4,6 @@ module.exports = {
 	name: 'leavechannel',
 	category: 'Settings',
 	description: 'Sets the leave channel for the server.',
-	aliases: [],
 	usage: 'leavechannel <channel>',
 	run: async (client, message, args) => {
 		if (!message.member.hasPermission('ADMINISTRATOR')) {

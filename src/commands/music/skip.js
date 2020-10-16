@@ -3,7 +3,6 @@ module.exports = {
 	name: 'skip',
 	category: 'Music',
 	description: 'Skips the song that is currently playing.',
-	aliases: [],
 	usage: 'skip',
 	run: async (client, message, args) => {
 		if(!message.member.voice.channel) {

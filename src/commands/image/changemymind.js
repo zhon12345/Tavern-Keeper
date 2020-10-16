@@ -5,7 +5,6 @@ module.exports = {
 	name: 'changemymind',
 	category: 'Image',
 	description: 'Make your own changemymind meme',
-	aliases: [],
 	usage: 'changemymind <text>',
 	run: async (client, message, args) => {
 		if(!message.guild.me.hasPermission('ATTACH_FILES')) {

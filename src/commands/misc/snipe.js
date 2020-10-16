@@ -5,7 +5,6 @@ module.exports = {
 	description: 'Shows the last deleted message from a specified channel',
 	usage: 'snipe',
 	category: 'Misc',
-	aliases: [],
 	run: async (client, message, args) => {
 		const channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]) || message.channel;
 		const msg = client.snipes.get(channel.id);

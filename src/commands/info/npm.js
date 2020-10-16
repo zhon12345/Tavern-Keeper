@@ -5,7 +5,6 @@ module.exports = {
 	name: 'npm',
 	category: 'Info',
 	description: 'Get info about a specified npm package.',
-	aliases: [],
 	usage: 'npm <package>',
 	run: async (client, message, args) => {
 		const package = args[0];

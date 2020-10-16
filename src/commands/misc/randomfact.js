@@ -6,7 +6,6 @@ module.exports = {
 	name: 'randomfact',
 	category: 'Misc',
 	description: 'Get a random fact from the internet.',
-	aliases: [],
 	usage: 'randomfact',
 	run: async (client, message, args) => {
 		const url = 'https://useless-facts.sameerkumar.website/api';

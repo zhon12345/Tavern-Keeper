@@ -5,7 +5,6 @@ module.exports = {
 	name: 'trump',
 	category: 'Image',
 	description: 'Make trump tweet something.',
-	aliases: [],
 	usage: 'trump <text>',
 	run: async (client, message, args) => {
 		if(!message.guild.me.hasPermission('ATTACH_FILES')) {

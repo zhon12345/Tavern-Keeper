@@ -4,7 +4,6 @@ module.exports = {
 	name: 'emojify',
 	category: 'Fun',
 	description: 'Changes text into emojis',
-	aliases: [],
 	usage: 'emojify <text>',
 	run: async (client, message, args) => {
 		const text = args.slice().join(' ');

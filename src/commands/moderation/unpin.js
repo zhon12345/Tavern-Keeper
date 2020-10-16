@@ -1,6 +1,5 @@
 module.exports = {
 	name: 'unpin',
-	aliases: [],
 	category: 'Moderation',
 	description: 'Unpin a specific messaged to the channel.',
 	usage: 'unpin <message>',

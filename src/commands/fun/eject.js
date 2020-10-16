@@ -3,7 +3,6 @@ module.exports = {
 	name: 'eject',
 	category: 'Fun',
 	description: 'Are they a imposter? They seem kinda sus.',
-	aliases: [],
 	usage: 'eject <user>',
 	run: async (client, message, args) => {
 		const isimpostor = Math.floor(Math.random() * 2) + 1;

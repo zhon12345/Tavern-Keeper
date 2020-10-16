@@ -5,7 +5,6 @@ module.exports = {
 	name: 'iq',
 	category: 'Fun',
 	description: ' ̶ R̶a̶n̶d̶o̶m̶i̶s̶e̶  Calculate your IQ..',
-	aliases: [],
 	usage: 'iq',
 	run: async (client, message, args) => {
 		const love = Math.floor(Math.random() * 130) + 1;

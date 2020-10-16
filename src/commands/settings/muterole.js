@@ -4,7 +4,6 @@ module.exports = {
 	name: 'muterole',
 	category: 'Settings',
 	description: 'Sets the muted role for the server.',
-	aliases: [],
 	usage: 'muterole <role>',
 	run: async (client, message, args) => {
 		if (!message.member.hasPermission('ADMINISTRATOR')) {

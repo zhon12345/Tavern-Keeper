@@ -11,7 +11,6 @@ const frames = [
 module.exports = {
 	name: 'tableflip',
 	category: 'Fun',
-	aliases: [],
 	description: 'Flips a table... with animation!',
 	usage: 'tableflip',
 	run: async (client, message, args) => {

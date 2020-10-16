@@ -6,7 +6,6 @@ module.exports = {
 	name: 'pixelate',
 	category: 'Image',
 	description: 'Make someone\'s avatar pixelated.',
-	aliases: [],
 	usage: 'pixelate [user]',
 	run: async (client, message, args) => {
 		if(!message.guild.me.hasPermission('ATTACH_FILES')) {

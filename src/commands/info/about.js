@@ -6,7 +6,6 @@ module.exports = {
 	name: 'about',
 	category: 'Info',
 	description: 'Returns the bot\'s about page.',
-	aliases: [],
 	usage: 'about',
 	run: async (client, message, args) => {
 		const embed = new MessageEmbed()

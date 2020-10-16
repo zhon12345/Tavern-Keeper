@@ -5,7 +5,6 @@ module.exports = {
 	name: 'aliases',
 	category: 'Info',
 	description: 'Shows you a list of aliases for the specified command.',
-	aliases: [],
 	usage: 'aliases <command>',
 	run: async (client, message, args) => {
 		if(args[0]) {

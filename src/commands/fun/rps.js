@@ -8,7 +8,6 @@ module.exports = {
 	name: 'rps',
 	category: 'Fun',
 	description: 'Play a game of Rock Paper Scissors.',
-	aliases: [],
 	usage: 'rps',
 	run: async (client, message, args) => {
 		if(!message.guild.me.hasPermission('ADD_REACTIONS')) {

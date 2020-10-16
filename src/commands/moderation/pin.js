@@ -1,6 +1,5 @@
 module.exports = {
 	name: 'pin',
-	aliases: [],
 	category: 'Moderation',
 	description: 'Pin a specific messaged to the channel.',
 	usage: 'pin <message>',

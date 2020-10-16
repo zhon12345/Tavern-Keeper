@@ -5,7 +5,6 @@ module.exports = {
 	name: 'unban',
 	category: 'Moderation',
 	description: 'Unban a specified user from the server.',
-	aliases: [],
 	usage: 'unban <user> <reason>',
 	run: async (client, message, args) => {
 		const settings = await Guild.findOne({

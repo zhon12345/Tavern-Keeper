@@ -5,7 +5,6 @@ module.exports = {
 	name: 'djs',
 	category: 'Info',
 	description: 'Searches the Discord.JS documentation for the specified query.',
-	aliases: [],
 	usage: 'djs <query>',
 	run: async (client, message, args) => {
 		const query = args.slice().join(' ');

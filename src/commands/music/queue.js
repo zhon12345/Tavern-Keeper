@@ -5,7 +5,6 @@ module.exports = {
 	name: 'queue',
 	category: 'Music',
 	description: 'View the music queue',
-	aliases: [],
 	usage: 'pause',
 	run: async (client, message, args) => {
 		if(!message.member.voice.channel) {

@@ -6,7 +6,6 @@ module.exports = {
 	name: 'blurpify',
 	category: 'Image',
 	description: 'Make someone\'s avatar blurple.',
-	aliases: [],
 	usage: 'blurpify [user]',
 	run: async (client, message, args) => {
 		if(!message.guild.me.hasPermission('ATTACH_FILES')) {

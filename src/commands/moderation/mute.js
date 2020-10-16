@@ -153,9 +153,7 @@ module.exports = {
 			else {
 				Reason = args[2];
 				if (!Reason) {
-					return message.channel.send(
-						'<:vError:725270799124004934> Please provide a reason.',
-					);
+					Reason = 'No reason provided';
 				}
 				try {
 					await member.send(`You have been tempmuted for ${time} in ${message.guild}\n\`[Reason]\` ${Reason}`);

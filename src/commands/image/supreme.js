@@ -4,7 +4,6 @@ module.exports = {
 	name: 'supreme',
 	category: 'Image',
 	description: 'Make a supreme logo with the text of your choice.',
-	aliases: [],
 	usage: 'supreme <text>',
 	run: async (client, message, args) => {
 		if(!message.guild.me.hasPermission('ATTACH_FILES')) {

@@ -5,7 +5,6 @@ module.exports = {
 	name: 'test',
 	category: 'Owner',
 	description: 'Checks if the bot is working.',
-	aliases: [],
 	usage: 'test',
 	run: async (client, message, args) => {
 		const embed = new MessageEmbed()
