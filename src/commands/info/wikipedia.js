@@ -15,6 +15,15 @@ module.exports = {
 			);
 		}
 
+		const nsfw = [	'porn', 'vagina', 'breats', 'hentai', 'bdsm', 'naked', 'rape', 'nude', 'sex'];
+		for(const word of nsfw) {
+			if (query.includes(word) && !message.channel.nsfw) {
+				return message.channel.send(
+					'<:vError:725270799124004934> This query can only be viewed in a nsfw channel.',
+				);
+			}
+		}
+
 		const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`;
 
 		let body ;
