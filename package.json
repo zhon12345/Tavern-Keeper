@@ -33,7 +33,7 @@
     "mongoose": "^5.10.9",
     "ms": "^2.1.2",
     "node-fetch": "^2.6.1",
-    "nodemon": "^2.0.4",
+    "nodemon": "^2.0.5",
     "os": "^0.1.1",
     "twemoji-parser": "^13.0.0",
     "weather-js": "^2.0.0"
