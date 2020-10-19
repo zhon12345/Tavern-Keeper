@@ -2,6 +2,7 @@ module.exports = {
 	name: 'pin',
 	category: 'Moderation',
 	description: 'Pin a specific messaged to the channel.',
+	aliases: [],
 	usage: 'pin <message>',
 	run: async (bot, message, args) => {
 		if(!message.member.hasPermission('MANAGE_MESSAGES')) {

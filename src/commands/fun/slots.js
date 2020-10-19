@@ -5,6 +5,7 @@ module.exports = {
 	name: 'slots',
 	category: 'Fun',
 	description: '​How lucky are you? Play slots to find out.',
+	aliases: [],
 	usage: 'slots',
 	run: async (client, message, args) => {
 		const slot = ['🍒', '🍊', '🍋', '🍉', '🍌'];

@@ -5,6 +5,7 @@ module.exports = {
 	name: 'hack',
 	usage: 'hack',
 	description: '*Fake* Hacks a user',
+	aliases: [],
 	category:'Fun',
 	run: async (bot, message, args) => {
 		try {

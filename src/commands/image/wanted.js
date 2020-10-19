@@ -6,6 +6,7 @@ module.exports = {
 	name: 'wanted',
 	category: 'Image',
 	description: 'Excuse me ur under arrest.',
+	aliases: [],
 	usage: 'wanted [user]',
 	run: async (client, message, args) => {
 		if(!message.guild.me.hasPermission('ATTACH_FILES')) {

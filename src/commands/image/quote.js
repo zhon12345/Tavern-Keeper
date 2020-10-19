@@ -6,6 +6,7 @@ module.exports = {
 	name: 'quote',
 	category: 'Image',
 	description: 'Get someone to say whatever you want!',
+	aliases: [],
 	usage: 'quote [user] <text>',
 	run: async (client, message, args) => {
 		if(!message.guild.me.hasPermission('ATTACH_FILES')) {

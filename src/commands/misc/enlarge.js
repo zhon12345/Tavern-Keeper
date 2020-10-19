@@ -5,6 +5,7 @@ module.exports = {
 	name: 'enlarge',
 	category: 'Misc',
 	description: 'Enlarge a specified emoji.',
+	aliases: [],
 	usage: 'enlarge <emoji>',
 	run: async (client, message, args) => {
 		const emoji = args[0];

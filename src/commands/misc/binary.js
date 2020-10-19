@@ -5,6 +5,7 @@ module.exports = {
 	name: 'binary',
 	category: 'Misc',
 	description: 'Converts normal text to 011000100110100101101110011000010111001001111001.',
+	aliases: [],
 	usage: 'binary <encode/decode> <text>',
 	run: async (client, message, args) => {
 		if(!args[0]) {

@@ -3,7 +3,7 @@ module.exports = {
 	name: 'join',
 	category: 'Music',
 	description: 'Shows what song the bot is currently playing.',
-	aliases: ['nowplaying'],
+	aliases: [],
 	usage: 'np',
 	run: async (client, message, args) => {
 		if(!message.member.voice.channel) {

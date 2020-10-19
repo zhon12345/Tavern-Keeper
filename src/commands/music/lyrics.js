@@ -5,6 +5,7 @@ module.exports = {
 	name: 'lyrics',
 	category: 'Music',
 	description: 'Searches for lyrics of a specified song.',
+	aliases: [],
 	usage: 'lyrics <song>',
 	run: async (client, message, args) => {
 		if (!args[0]) {

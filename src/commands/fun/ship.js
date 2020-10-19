@@ -5,6 +5,7 @@ module.exports = {
 	name: 'ship',
 	category: 'Fun',
 	description: 'Get the compatibility rate of a two users.',
+	aliases: [],
 	usage: 'ship <user> <user>',
 	run: async (client, message, args) => {
 		let rating = Math.floor(Math.random() * 100) + 1;

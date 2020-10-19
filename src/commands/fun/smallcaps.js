@@ -3,6 +3,7 @@ const dictionary = require('../../assets/json/smallcaps.json');
 module.exports = {
 	name: 'smallcaps',
 	description: 'Converts text into sᴍᴀʟʟᴄᴀᴘs.',
+	aliases: [],
 	usage: 'smallcaps <text>',
 	category: 'Fun',
 	run: async (client, message, args) => {

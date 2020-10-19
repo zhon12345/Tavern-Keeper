@@ -3,6 +3,7 @@ module.exports = {
 	name: 'nitro',
 	category: 'Image',
 	description: 'Ever wanted a fake nitro giveaway? Now you\'ve got one.',
+	aliases: [],
 	usage: 'nitro',
 	run: (client, message, args) => {
 		if(!message.guild.me.hasPermission('ATTACH_FILES')) {

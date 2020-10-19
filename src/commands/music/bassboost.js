@@ -3,6 +3,7 @@ module.exports = {
 	name: 'bassboost',
 	category: 'Music',
 	description: 'Enables the Bass Boost filter.',
+	aliases: [],
 	usage: 'bassboost',
 	run: async (client, message, args) => {
 		if(!message.member.voice.channel) {

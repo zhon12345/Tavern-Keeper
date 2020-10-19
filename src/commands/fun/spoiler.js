@@ -2,6 +2,7 @@ module.exports = {
 	name: 'spoiler',
 	category: 'Fun',
 	description: 'Make the bot say whatever you want in annoying spoiler form.',
+	aliases: [],
 	usage: 'soiler <text>',
 	run: async (client, message, args) => {
 		if(!args[0]) {

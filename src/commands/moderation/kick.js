@@ -5,6 +5,7 @@ module.exports = {
 	name: 'kick',
 	category: 'Moderation',
 	description: 'Kick a specified user from the server.',
+	aliases: [],
 	usage: 'kick <user> <reason>',
 	run: async (client, message, args) => {
 		const settings = await Guild.findOne({

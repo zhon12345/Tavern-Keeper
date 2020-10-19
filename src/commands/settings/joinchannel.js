@@ -5,6 +5,7 @@ module.exports = {
 	name: 'joinchannel',
 	category: 'Settings',
 	description: 'Sets the welcome channel for the server.',
+	aliases: [],
 	usage: 'joinchannel <channel>',
 	run: async (client, message, args) => {
 		if (!message.member.hasPermission('ADMINISTRATOR')) {

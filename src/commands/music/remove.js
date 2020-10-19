@@ -2,6 +2,7 @@ module.exports = {
 	name: 'remove',
 	category: 'Music',
 	description: 'Remove a track from the queue.',
+	aliases: [],
 	usage: 'remove <number>',
 	run: async (client, message, args) => {
 		if(!message.member.voice.channel) {

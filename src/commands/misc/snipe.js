@@ -3,6 +3,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
 	name: 'snipe',
 	description: 'Shows the last deleted message from a specified channel',
+	aliases: [],
 	usage: 'snipe',
 	category: 'Misc',
 	run: async (client, message, args) => {

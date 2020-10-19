@@ -6,6 +6,7 @@ module.exports = {
 	name: 'gif',
 	category: 'Misc',
 	description: 'Searches for a specified gif.',
+	aliases: [],
 	usage: 'gif <text>',
 	run: async (client, message, args) => {
 		if (!args[0]) {

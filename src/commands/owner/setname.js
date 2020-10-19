@@ -1,6 +1,7 @@
 module.exports = {
 	name: 'setname',
 	description: 'Changes the bot\'s name',
+	aliases: [],
 	category: 'Owner',
 	usage: 'setname <name>',
 	run: async (client, message, args) => {

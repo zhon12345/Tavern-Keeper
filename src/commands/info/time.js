@@ -6,6 +6,7 @@ module.exports = {
 	name: 'time',
 	category: 'Info',
 	description: 'Shows the current time.',
+	aliases: [],
 	usage: 'time',
 	run: async (client, message, args) => {
 		const pEmbed = new MessageEmbed()

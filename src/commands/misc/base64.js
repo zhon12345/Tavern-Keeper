@@ -5,6 +5,7 @@ module.exports = {
 	name: 'base64',
 	category: 'Misc',
 	description: 'Converts normal text to QmFzZTY0.',
+	aliases: [],
 	usage: 'base64 <encode/decode> <text>',
 	run: async (client, message, args) => {
 		if(!args[0]) {

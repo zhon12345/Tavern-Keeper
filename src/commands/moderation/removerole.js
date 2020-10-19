@@ -2,6 +2,7 @@ module.exports = {
 	name: 'removerole',
 	category: 'Moderation',
 	description: 'Removes a specified role from a specified user.',
+	aliases: [],
 	usage: 'removerole <user> <role>',
 	run: async (client, message, args) => {
 		if(!message.member.hasPermission('MANAGE_ROLES')) {

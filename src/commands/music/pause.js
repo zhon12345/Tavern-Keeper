@@ -3,6 +3,7 @@ module.exports = {
 	name: 'pause',
 	category: 'Music',
 	description: 'Pauses the currently playing track.',
+	aliases: [],
 	usage: 'pause',
 	run: async (client, message, args) => {
 		if(!message.member.voice.channel) {

@@ -6,6 +6,7 @@ module.exports = {
 	name: 'color',
 	category: 'Info',
 	description: 'Shows information about a specified color.',
+	aliases: [],
 	usage: 'color <color>',
 	run: async (client, message, args) => {
 		let colour;

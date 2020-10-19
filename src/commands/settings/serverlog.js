@@ -4,6 +4,7 @@ module.exports = {
 	name: 'serverlog',
 	category: 'Settings',
 	description: 'Sets the serverlogs channel for the server.',
+	aliases: [],
 	usage: 'serverlog <channel>',
 	run: async (client, message, args) => {
 		if (!message.member.hasPermission('ADMINISTRATOR')) {

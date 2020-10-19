@@ -7,6 +7,7 @@ module.exports = {
 	name: 'wallpaper',
 	category: 'Misc',
 	description: 'Get a ramdom wallpaper.',
+	aliases: [],
 	usage: 'wallpaper',
 	run: async (client, message, args) => {
 		const url = 'https://api.unsplash.com/photos/random?client_id=' + token;

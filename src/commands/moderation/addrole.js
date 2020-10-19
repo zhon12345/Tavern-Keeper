@@ -2,6 +2,7 @@ module.exports = {
 	name: 'addrole',
 	category: 'Moderation',
 	description: 'Adds a role to a specified user.',
+	aliases: [],
 	usage: 'addrole <user> <role>',
 	run: async (client, message, args) => {
 		if(!message.member.hasPermission('MANAGE_ROLES')) {

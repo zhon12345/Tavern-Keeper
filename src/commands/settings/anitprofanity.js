@@ -4,6 +4,7 @@ module.exports = {
 	name: 'antiprofanity',
 	category: 'Settings',
 	description: 'Toggle the antiprofanity feature on/off.',
+	aliases: [],
 	usage: 'antiprofanity <on/off>',
 	run: async (client, message, args) => {
 		if (!message.member.hasPermission('ADMINISTRATOR')) {

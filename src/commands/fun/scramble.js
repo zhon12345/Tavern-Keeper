@@ -7,6 +7,7 @@ module.exports = {
 	name: 'scramble',
 	category: 'Fun',
 	description: 'Test your knowledge and unscramble a random word',
+	aliases: [],
 	usage: 'scramble',
 	run: async (client, message, args) => {
 		const filter = m => m.author.id === message.author.id;

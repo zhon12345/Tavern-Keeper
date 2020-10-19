@@ -3,6 +3,7 @@ module.exports = {
 	name: 'worm',
 	category: 'Fun',
 	description: 'Makes a worm of a random length',
+	aliases: [],
 	usage: 'worm',
 	run: async (client, message, args) => {
 		const length = Math.floor(Math.random() * 20);

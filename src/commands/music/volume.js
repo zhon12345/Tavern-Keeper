@@ -3,6 +3,7 @@ module.exports = {
 	name: 'volume',
 	category: 'Music',
 	description: 'Change the current volume.',
+	aliases: [],
 	usage: 'volume <number>',
 	run: async (client, message, args) => {
 		if(!message.member.voice.channel) {

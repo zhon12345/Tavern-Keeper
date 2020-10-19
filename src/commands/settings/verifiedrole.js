@@ -4,6 +4,7 @@ module.exports = {
 	name: 'verifiedrole',
 	category: 'Settings',
 	description: 'Sets the verified role for the server.',
+	aliases: [],
 	usage: 'verifiedrole <role>',
 	run: async (client, message, args) => {
 		if (!message.member.hasPermission('ADMINISTRATOR')) {

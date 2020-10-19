@@ -3,6 +3,7 @@ module.exports = {
 	name: 'facepalm',
 	category: 'Image',
 	description: 'I have no comments...',
+	aliases: [],
 	usage: 'facepalm',
 	run: (client, message, args) => {
 		if(!message.guild.me.hasPermission('ATTACH_FILES')) {

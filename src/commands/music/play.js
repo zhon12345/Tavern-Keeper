@@ -2,6 +2,7 @@ module.exports = {
 	name: 'play',
 	category: 'Music',
 	description: 'Plays a song with the specified name.',
+	aliases: [],
 	usage: 'play <song>',
 	run: async (client, message, args) => {
 		if(!message.member.voice.channel) {

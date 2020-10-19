@@ -7,6 +7,7 @@ module.exports = {
 	name: 'news',
 	category: 'Misc',
 	description: 'Get the latest news from around the world.',
+	aliases: [],
 	usage: 'news',
 	run: async (client, message, args) => {
 		const num = Math.floor(Math.random() * 11);

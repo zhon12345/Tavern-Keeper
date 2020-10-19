@@ -3,6 +3,7 @@ module.exports = {
 	name: 'loremipsum',
 	category: 'Misc',
 	description: 'Send the Lorem Ipsum dummy text.',
+	aliases: [],
 	usage: 'loremipsum',
 	run: async (client, message, args) => {
 		message.channel.send(

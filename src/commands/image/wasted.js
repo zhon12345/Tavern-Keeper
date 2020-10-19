@@ -6,6 +6,7 @@ module.exports = {
 	name: 'wasted',
 	category: 'Image',
 	description: 'Display the wasted text on a specified user\'s avatar.',
+	aliases: [],
 	usage: 'wasted [user]',
 	run: async (client, message, args) => {
 		if(!message.guild.me.hasPermission('ATTACH_FILES')) {

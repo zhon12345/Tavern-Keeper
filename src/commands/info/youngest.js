@@ -6,6 +6,7 @@ module.exports = {
 	name: 'youngest',
 	category: 'Info',
 	description: 'Get the youngest account in the guild.',
+	aliases: [],
 	usage: 'youngest',
 	run: async (client, message, args) => {
 		const member = message.guild.members.cache

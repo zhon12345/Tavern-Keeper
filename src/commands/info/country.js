@@ -5,6 +5,7 @@ module.exports = {
 	name: 'country',
 	category: 'Info',
 	description: 'Displays information about a specified country.',
+	aliases: [],
 	usage: 'country <country>',
 	run: async (client, message, args) => {
 		const country = args.slice().join(' ');

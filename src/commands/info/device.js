@@ -5,6 +5,7 @@ module.exports = {
 	name: 'device',
 	category: 'Info',
 	description: 'Tells you which devices a user is on.',
+	aliases: [],
 	usage: 'device <member>',
 	run: async (client, message, args) => {
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]) || message.member;

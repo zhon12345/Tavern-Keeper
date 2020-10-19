@@ -5,6 +5,7 @@ module.exports = {
 	name: 'report',
 	category: 'Misc',
 	description: 'Report an issue within the bot to the developers.',
+	aliases: [],
 	usage: 'report <issue>',
 	run: async (client, message, args) => {
 		const text = args.slice().join(' ');

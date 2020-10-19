@@ -6,6 +6,7 @@ module.exports = {
 	name: 'hitler',
 	category: 'Image',
 	description: 'It\'s not offensive if it\'s true, so use this wisely.',
+	aliases: [],
 	usage: 'hitler [user]',
 	run: async (client, message, args) => {
 		if(!message.guild.me.hasPermission('ATTACH_FILES')) {

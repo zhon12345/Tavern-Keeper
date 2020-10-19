@@ -6,6 +6,7 @@ module.exports = {
 	name: 'delete',
 	category: 'Image',
 	description: 'Delete this.',
+	aliases: [],
 	usage: 'delete [user]',
 	run: async (client, message, args) => {
 		if(!message.guild.me.hasPermission('ATTACH_FILES')) {

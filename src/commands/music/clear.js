@@ -3,6 +3,7 @@ module.exports = {
 	name: 'clear',
 	category: 'Music',
 	description: 'Clears the queue.',
+	aliases: ['cq'],
 	usage: 'clear',
 	run: async (client, message, args) => {
 		if(!message.member.voice.channel) {

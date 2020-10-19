@@ -4,6 +4,7 @@ module.exports = {
 	name: 'cursive',
 	category: 'Fun',
 	description: 'Converts text into 𝒸𝓊𝓇𝓈𝒾𝓋𝑒 𝓉𝑒𝓍𝓉.',
+	aliases: [],
 	usage: 'cursive <message>',
 	run: async (client, message, args) => {
 		const text = args.slice().join(' ');

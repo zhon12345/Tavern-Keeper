@@ -6,6 +6,7 @@ module.exports = {
 	name: 'blacklist',
 	category: 'Owner',
 	description: 'Add or Remove a specified guild from the blacklist.',
+	aliases: [],
 	usage: 'blacklist [add/remove] [guild]',
 	run: async (client, message, args) => {
 		if(message.author.id !== BOT_OWNER) {

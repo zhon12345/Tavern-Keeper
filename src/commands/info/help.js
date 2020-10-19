@@ -5,7 +5,7 @@ const Guild = require('../../models/guild');
 
 module.exports = {
 	name: 'help',
-	aliases: ['h', 'commands'],
+	aliases: ['commands'],
 	category: 'Info',
 	description: 'Returns the help page, or one specific command info.',
 	usage: 'help [command/category]',
@@ -62,7 +62,7 @@ module.exports = {
 						`**❯ Category:** ${cmd.category.toString()}`,
 						`**❯ Description:** ${cmd.description}`,
 						`**❯ Usage:** ${settings.prefix}${cmd.usage}`,
-						`**❯ Aliases:** ${cmd.aliases ? cmd.aliases.map((a) => `\`${a}\``).join(', ') : '`None`'}`,
+						`**❯ Aliases:** ${cmd.aliases.length ? cmd.aliases.map((a) => `\`${a}\``).join(', ') : '`None`'}`,
 					]);
 				return message.channel.send(hembed);
 			}

@@ -12,6 +12,7 @@ module.exports = {
 	name: 'tableflip',
 	category: 'Fun',
 	description: 'Flips a table... with animation!',
+	aliases: [],
 	usage: 'tableflip',
 	run: async (client, message, args) => {
 		const msg = await message.channel.send('(\\\\°□°)\\\\  ┬─┬');

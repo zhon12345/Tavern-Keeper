@@ -4,6 +4,7 @@ module.exports = {
 	name: 'leavetext',
 	category: 'Settings',
 	description: 'Sets the leave message for the server.',
+	aliases: [],
 	usage: 'leavetext <message>',
 	run: async (client, message, args) => {
 		if (!message.member.hasPermission('ADMINISTRATOR')) {

@@ -5,6 +5,7 @@ module.exports = {
 	name: 'translate',
 	category: 'Misc',
 	description: 'Why does this mean? Time to translate it.',
+	aliases: [],
 	usage: 'translate',
 	run: async (client, message, args) => {
 		const text = args.slice().join(' ');
