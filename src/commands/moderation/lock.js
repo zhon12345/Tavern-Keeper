@@ -7,13 +7,7 @@ module.exports = {
 	aliases: ['lockdown'],
 	usage: 'lock [channel] <on/off>',
 	run: async (client, message, args) => {
-		if(!message.member.hasPermission('MANAGE_CHANNELS')) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Insufficient Permission! `MANAGE_CHANNELS` required.',
-			);
-		}
-
-		if(!message.guild.me.hasPermission('MANAGE_CHANNELS')) {
+		if(!message.member.hasPermission('MANAGE_CHANNELS') || !message.guild.me.hasPermission('MANAGE_CHANNELS')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Insufficient Permission! `MANAGE_CHANNELS` required.',
 			);

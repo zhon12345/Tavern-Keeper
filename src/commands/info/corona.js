@@ -9,12 +9,12 @@ module.exports = {
 	category: 'Info',
 	aliases: ['covid', 'cv'],
 	run: async (client, message, args) => {
-		const baseUrl = 'https://corona.lmao.ninja/v2';
+		const baseUrl = 'https://disease.sh/v3/covid-19/';
 
 		let url, response, corona;
 
 		try {
-			url = args[0] ? `${baseUrl}/countries/${args[0]}` : `${baseUrl}/all`;
+			url = args[0] ? `${baseUrl}countries/${args[0]}` : `${baseUrl}all`;
 			response = await fetch(url).then(res => res.json());
 			corona = response;
 		}

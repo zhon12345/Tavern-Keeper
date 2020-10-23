@@ -5,13 +5,7 @@ module.exports = {
 	aliases: [],
 	usage: 'removerole <user> <role>',
 	run: async (client, message, args) => {
-		if(!message.member.hasPermission('MANAGE_ROLES')) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Insufficient Permission! `MANAGE_ROLES` required.',
-			);
-		}
-
-		if(!message.guild.me.hasPermission('MANAGE_ROLES')) {
+		if(!message.member.hasPermission('MANAGE_ROLES') || !message.guild.me.hasPermission('MANAGE_ROLES')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Insufficient Permission! `MANAGE_ROLES` required.',
 			);

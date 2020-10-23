@@ -5,13 +5,7 @@ module.exports = {
 	aliases: ['nick'],
 	usage: 'nickname <user> <nickname>',
 	run: async (client, message, args) => {
-		if(!message.member.hasPermission('MANAGE_NICKNAMES')) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Insufficient Permission! `MANAGE_NICKNAMES` required.',
-			);
-		}
-
-		if(!message.guild.me.hasPermission('MANAGE_NICKNAMES')) {
+		if(!message.member.hasPermission('MANAGE_NICKNAMES') || !message.guild.me.hasPermission('MANAGE_NICKNAMES')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Insufficient Permission! `MANAGE_NICKNAMES` required.',
 			);

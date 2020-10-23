@@ -15,13 +15,7 @@ module.exports = {
 		const channel = message.guild.channels.cache.get(logs);
 		if (!channel) return;
 
-		if(!message.member.hasPermission('KICK_MEMBERS')) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Insufficient Permission! `KICK_MEMBERS` required.',
-			);
-		}
-
-		if(!message.guild.me.hasPermission('KICK_MEMBERS')) {
+		if(!message.member.hasPermission('KICK_MEMBERS') || !message.guild.me.hasPermission('KICK_MEMBERS')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Insufficient Permission! `KICK_MEMBERS` required.',
 			);

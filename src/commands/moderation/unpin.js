@@ -5,13 +5,7 @@ module.exports = {
 	aliases: [],
 	usage: 'unpin <message>',
 	run: async (bot, message, args) => {
-		if(!message.member.hasPermission('MANAGE_MESSAGES')) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Insufficient Permission! `MANAGE_MESSAGES` required.',
-			);
-		}
-
-		if(!message.guild.me.hasPermission('MANAGE_MESSAGES')) {
+		if(!message.member.hasPermission('MANAGE_MESSAGES') || !message.guild.me.hasPermission('MANAGE_MESSAGES')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Insufficient Permission! `MANAGE_MESSAGES` required.',
 			);
