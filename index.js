@@ -14,10 +14,13 @@ client.snipes = new Map();
 	require(`./handlers/${handler}`)(client);
 });
 
-abl.count(ASTROBOTLIST_TOKEN, client, (error, success) => {
-	if(error) throw new Error(error);
-	else console.log(success);
-});
+setInterval(() => {
+	abl.count(ASTROBOTLIST_TOKEN, client, (error, success) => {
+		if(error) throw new Error(error);
+		else console.log(success);
+	});
+}, 1.8e+6);
+
 
 keepAlive();
 client.login(process.env.BOT_TOKEN);
