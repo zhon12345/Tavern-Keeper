@@ -20,7 +20,7 @@ module.exports = {
 			);
 		}
 
-		await message.channel.clone().then((ch) =>{
+		await message.channel.clone().then((ch) => {
 			ch.setParent(message.channel.parent.id);ch.setPosition(message.channel.position);
 			const embed = new MessageEmbed()
 				.setTitle("This channel has been NUKED!")

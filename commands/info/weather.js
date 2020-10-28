@@ -23,7 +23,7 @@ module.exports = {
 				message.channel.send(err);
 			}
 
-			if (result === undefined || result.length === 0) {
+			if (result.length === 0) {
 				return message.channel.send(
 					"<:vError:725270799124004934> Please provide a valid location",
 				);

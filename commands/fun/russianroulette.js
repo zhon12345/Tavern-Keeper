@@ -14,7 +14,7 @@ module.exports = {
 			await delay(1000);
 			await msg.edit("...you place the muzzle against your head and pull the trigger...");
 			await delay(3000);
-			if (rr_bullet == rr_count) {
+			if (rr_bullet === rr_count) {
 				msg.edit("...your brain gets splattered all over the wall.");
 			}
 			else {

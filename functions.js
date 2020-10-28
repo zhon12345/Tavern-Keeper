@@ -36,7 +36,9 @@ module.exports = {
 
 	// botinfo.js
 	formatBytes: function(a, b) {
-		if (a == 0) return "0 Bytes";
+		if (a == 0) {
+			return "0 Bytes";
+		}
 		const c = 1024,
 			d = b || 2,
 			e = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"],
@@ -107,7 +109,7 @@ module.exports = {
 	// color.js
 	isHex: function(string) {
 		let str = string;
-		if(str.charAt(0) == "#") {
+		if(str.charAt(0) === "#") {
 			str = str.slice(1);
 		}
 		return typeof str === "string"
@@ -204,5 +206,14 @@ module.exports = {
 			.replace(/_/g, " ")
 			.replace(/Use Vad/g, "Use Voice Acitvity")
 			.replace(/Send Tts Messages/g, "Send text-to-speech Messages");
+	},
+
+	randomNoRepeat: function(array) {
+		let copy = array.slice(0);
+		if (copy.length < 1) { copy = array.slice(0); }
+		const index = Math.floor(Math.random() * copy.length);
+		const item = copy[index];
+		copy.splice(index, 1);
+		return item;
 	},
 };

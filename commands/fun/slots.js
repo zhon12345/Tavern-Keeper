@@ -1,6 +1,4 @@
 /* eslint-disable no-unused-vars */
-const { MessageEmbed } = require("discord.js");
-
 module.exports = {
 	name: "slots",
 	category: "Fun",
@@ -9,36 +7,22 @@ module.exports = {
 	usage: "slots",
 	run: async (client, message, args) => {
 		const slot = ["🍒", "🍊", "🍋", "🍉", "🍌"];
-		const rand1 = Math.floor(Math.random() * slot.length);
-		const rand2 = Math.floor(Math.random() * slot.length);
-		const rand3 = Math.floor(Math.random() * slot.length);
-		const result = `${slot[rand1]} : ${slot[rand2]} : ${slot[rand3]}`;
+		const a = slot[Math.floor(Math.random() * slot.length)];
+		const b = slot[Math.floor(Math.random() * slot.length)];
+		const c = slot[Math.floor(Math.random() * slot.length)];
+
+		const result = `----------------\n${a} : ${b} : ${c}\n----------------`;
 
 		message.channel.send("🎰 Spinning...").then(msg => {
-			const bembed = new MessageEmbed();
-			if(rand1 == rand2 && rand2 == rand3) {
-				bembed.setColor("GREEN");
-				bembed.setDescription([`
-            -------------------
-
-            ${result}
-
-            -------------------
-            You Won!
-            `]);
+			if (a === b && b === c) {
+				msg.edit(`${result}\n\nAll matching, you won! 🎉`);
+			}
+			else if (a === b || a === c || b === c) {
+				msg.edit(`${result}\n\n2 matching, you won! 🎉`);
 			}
 			else {
-				bembed.setColor("RED");
-				bembed.setDescription([`
-            -------------------
-            
-            ${result}
-
-            -------------------
-            You Lost!
-            `]);
+				msg.edit(`${result}\n\nNo match, you lost! 😢`);
 			}
-			msg.edit(bembed);
 		});
 
 	},
