@@ -14,7 +14,7 @@ client.snipes = new Map();
 	require(`./handlers/${handler}`)(client);
 });
 
-setInterval(() => {
+setInterval(function() {
 	abl.count(ASTROBOTLIST_TOKEN, client, (error, success) => {
 		if(error) throw new Error(error);
 		else console.log(success);
