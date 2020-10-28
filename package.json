@@ -1,0 +1,29 @@
+{
+  "name": "tavern-keeper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "zhon12345",
+  "license": "ISC",
+  "dependencies": {
+    "abl-wrapper": "^1.1.7",
+    "cpu-stat": "^2.0.1",
+    "discord.js": "^12.4.1",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.10.0",
+    "express": "^4.17.1",
+    "figlet": "^1.5.0",
+    "html2plaintext": "^2.1.2",
+    "mathjs": "^7.5.1",
+    "moment": "^2.29.1",
+    "ms": "^2.1.2",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.6",
+    "os": "^0.1.1",
+    "twemoji-parser": "^13.0.0",
+    "weather-js": "^2.0.0"
+  }
+}
