@@ -4,7 +4,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
 	name: 'embed',
 	category: 'Misc',
-	description: 'Get a example embed or embed specified text.',
+	description: 'Get a example embed.',
 	aliases: [],
 	usage: 'embed [text]',
 	run: async (client, message, args) => {
