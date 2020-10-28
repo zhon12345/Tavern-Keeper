@@ -1,27 +1,27 @@
 /* eslint-disable no-unused-vars */
-const { MessageEmbed } = require('discord.js');
-const { getResult } = require('../../functions.js');
+const { MessageEmbed } = require("discord.js");
+const { getResult } = require("../../functions.js");
 
-const chooseArr = ['🗻', '📰', '✂'];
+const chooseArr = ["🗻", "📰", "✂"];
 
 module.exports = {
-	name: 'rps',
-	category: 'Fun',
-	description: 'Play a game of Rock Paper Scissors.',
+	name: "rps",
+	category: "Fun",
+	description: "Play a game of Rock Paper Scissors.",
 	aliases: [],
-	usage: 'rps',
+	usage: "rps",
 	run: async (client, message, args) => {
-		if(!message.guild.me.hasPermission('ADD_REACTIONS')) {
+		if(!message.guild.me.hasPermission("ADD_REACTIONS")) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Insufficient Permission! `ADD_REACTIONS` required.',
+				"<:vError:725270799124004934> Insufficient Permission! `ADD_REACTIONS` required.",
 			);
 		}
 
 		const filter = (reaction, user) => chooseArr.includes(reaction.emoji.name) && user.id === message.author.id;
 		const embed = new MessageEmbed()
-			.setColor('BLUE')
-			.setTitle('Rock Paper Scissors')
-			.setDescription('React to one of the emojis to start.');
+			.setColor("BLUE")
+			.setTitle("Rock Paper Scissors")
+			.setDescription("React to one of the emojis to start.");
 
 		const m = await message.channel.send(embed);
 
@@ -32,7 +32,7 @@ module.exports = {
 				const emoji = collected.first() && collected.first().emoji.name;
 				if(!emoji) {
 					embed
-						.setDescription('Looks like you did not answer in time.');
+						.setDescription("Looks like you did not answer in time.");
 
 					return m.edit(embed);
 				}
@@ -41,7 +41,7 @@ module.exports = {
 					const result = getResult(emoji, botChoice);
 
 					embed
-						.setTitle('Rock Paper Scissors')
+						.setTitle("Rock Paper Scissors")
 						.setDescription([`
 						${emoji} vs ${botChoice}
 

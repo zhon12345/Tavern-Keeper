@@ -1,18 +1,18 @@
 /* eslint-disable no-unused-vars */
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed } = require("discord.js");
 const prefix = process.env.BOT_PREFIX;
 
 module.exports = {
-	name: 'tos',
-	category: 'Info',
-	description: 'Shows the terms of service of the bot.',
-	aliases: ['termsofservice'],
-	usage: 'tos',
+	name: "tos",
+	category: "Info",
+	description: "Shows the terms of service of the bot.",
+	aliases: ["termsofservice"],
+	usage: "tos",
 	run: async (client, message, args) => {
 		const pEmbed = new MessageEmbed()
-			.setThumbnail('https://www.symphonyenvironmental.com/wp-content/uploads/2019/10/Terms-and-conditions-icon-V2.png')
-			.setTitle('**Terms of Service**')
-			.setColor('BLUE')
+			.setThumbnail("https://www.symphonyenvironmental.com/wp-content/uploads/2019/10/Terms-and-conditions-icon-V2.png")
+			.setTitle("**Terms of Service**")
+			.setColor("BLUE")
 			.setDescription([`
             By using ${client.user.username}, you **agree** to abide by the terms of service. This bot has zero relation with Discord, it's only the service that it's used on.
 

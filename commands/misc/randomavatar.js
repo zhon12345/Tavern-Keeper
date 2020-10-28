@@ -1,20 +1,20 @@
 /* eslint-disable no-unused-vars */
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed } = require("discord.js");
 
 const sets = [
-	'set1',
-	'set2',
-	'set3',
-	'set4',
+	"set1",
+	"set2",
+	"set3",
+	"set4",
 ];
 const set = sets[Math.floor(Math.random() * sets.length)];
 
 module.exports = {
-	name: 'randomavatar',
-	category: 'Misc',
-	description: 'Get random avatars!',
-	aliases: ['ravatar'],
-	usage: 'randomavatar',
+	name: "randomavatar",
+	category: "Misc",
+	description: "Get random avatars!",
+	aliases: ["ravatar"],
+	usage: "randomavatar",
 	run: async (client, message, args) => {
 		const string = Math.random().toString(20).substr(2, 6);
 		const urls = [
@@ -25,7 +25,7 @@ module.exports = {
 		const url = urls[Math.floor(Math.random() * urls.length)];
 
 		const embed = new MessageEmbed()
-			.setColor('BLUE')
+			.setColor("BLUE")
 			.setTitle(string)
 			.setURL(url)
 			.setImage(url)

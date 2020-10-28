@@ -1,15 +1,15 @@
 /* eslint-disable no-unused-vars */
-const fetch = require('node-fetch');
-const { MessageEmbed } = require('discord.js');
+const fetch = require("node-fetch");
+const { MessageEmbed } = require("discord.js");
 
 module.exports = {
-	name: 'quotes',
-	category: 'Misc',
-	description: 'Get a random inspiring quote.',
+	name: "quotes",
+	category: "Misc",
+	description: "Get a random inspiring quote.",
 	aliases: [],
-	usage: 'quotes',
+	usage: "quotes",
 	run: async (client, message, args) => {
-		const url = 'https://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json';
+		const url = "https://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json";
 
 		let response;
 		try {
@@ -17,11 +17,11 @@ module.exports = {
 		}
 		catch (e) {
 			return message.channel.send(
-				'<:vError:725270799124004934> An error occured, please try again!',
+				"<:vError:725270799124004934> An error occured, please try again!",
 			);
 		}
 		const embed = new MessageEmbed()
-			.setColor('BLUE')
+			.setColor("BLUE")
 			.setDescription(response.quoteAuthor)
 			.setTitle(response.quoteText)
 			.setFooter(`Requested by ${message.author.tag}`)

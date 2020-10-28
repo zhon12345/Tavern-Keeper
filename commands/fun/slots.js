@@ -1,23 +1,23 @@
 /* eslint-disable no-unused-vars */
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed } = require("discord.js");
 
 module.exports = {
-	name: 'slots',
-	category: 'Fun',
-	description: '​How lucky are you? Play slots to find out.',
+	name: "slots",
+	category: "Fun",
+	description: "​How lucky are you? Play slots to find out.",
 	aliases: [],
-	usage: 'slots',
+	usage: "slots",
 	run: async (client, message, args) => {
-		const slot = ['🍒', '🍊', '🍋', '🍉', '🍌'];
+		const slot = ["🍒", "🍊", "🍋", "🍉", "🍌"];
 		const rand1 = Math.floor(Math.random() * slot.length);
 		const rand2 = Math.floor(Math.random() * slot.length);
 		const rand3 = Math.floor(Math.random() * slot.length);
 		const result = `${slot[rand1]} : ${slot[rand2]} : ${slot[rand3]}`;
 
-		message.channel.send('🎰 Spinning...').then(msg => {
+		message.channel.send("🎰 Spinning...").then(msg => {
 			const bembed = new MessageEmbed();
 			if(rand1 == rand2 && rand2 == rand3) {
-				bembed.setColor('GREEN');
+				bembed.setColor("GREEN");
 				bembed.setDescription([`
             -------------------
 
@@ -28,7 +28,7 @@ module.exports = {
             `]);
 			}
 			else {
-				bembed.setColor('RED');
+				bembed.setColor("RED");
 				bembed.setDescription([`
             -------------------
             

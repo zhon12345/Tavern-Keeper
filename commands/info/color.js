@@ -1,28 +1,28 @@
-const { isHex, stringToHex } = require('../../functions');
-const fetch = require('node-fetch');
-const { MessageEmbed } = require('discord.js');
+const { isHex, stringToHex } = require("../../functions");
+const fetch = require("node-fetch");
+const { MessageEmbed } = require("discord.js");
 
 module.exports = {
-	name: 'color',
-	category: 'Info',
-	description: 'Shows information about a specified color.',
+	name: "color",
+	category: "Info",
+	description: "Shows information about a specified color.",
 	aliases: [],
-	usage: 'color <color>',
+	usage: "color <color>",
 	run: async (client, message, args) => {
 		let colour;
 		if(!args[0]) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid color.',
+				"<:vError:725270799124004934> Please provide a valid color.",
 			);
 		}
-		else if(isHex(args.join(' ')) !== true) {
-			colour = stringToHex(args.join(' '));
+		else if(isHex(args.join(" ")) !== true) {
+			colour = stringToHex(args.join(" "));
 		}
 		else {
 			colour = args[0];
 		}
 
-		const url = 'https://api.alexflipnote.xyz/colour/' + colour;
+		const url = "https://api.alexflipnote.xyz/colour/" + colour;
 
 		let response;
 		try {
@@ -30,7 +30,7 @@ module.exports = {
 		}
 		catch (e) {
 			return message.channel.send(
-				'<:vError:725270799124004934> An error occured, please try again!',
+				"<:vError:725270799124004934> An error occured, please try again!",
 			);
 		}
 
@@ -39,8 +39,8 @@ module.exports = {
 			.setTitle(response.name)
 			.setImage(response.image)
 			.addFields(
-				{ name: 'RGB Value', value: `${response.rgb}` },
-				{ name: 'Hex Value', value: `#${colour}` },
+				{ name: "RGB Value", value: `${response.rgb}` },
+				{ name: "Hex Value", value: `#${colour}` },
 			)
 			.setFooter(`Requested by ${message.author.tag}`)
 			.setTimestamp();

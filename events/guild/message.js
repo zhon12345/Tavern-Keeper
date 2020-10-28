@@ -20,14 +20,14 @@ module.exports = async (client, message) => {
 	if (!command) command = client.commands.get(client.aliases.get(cmd));
 
 	if (command) {
-		if(!message.guild.me.hasPermission('USE_EXTERNAL_EMOJIS')) {
+		if(!message.guild.me.hasPermission("USE_EXTERNAL_EMOJIS")) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Insufficient Permission! `Use External Emojis` required.',
+				"<:vError:725270799124004934> Insufficient Permission! `Use External Emojis` required.",
 			);
 		}
-		if(!message.guild.me.hasPermission('EMBED_LINKS')) {
+		if(!message.guild.me.hasPermission("EMBED_LINKS")) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Insufficient Permission! `Embed Links` required.',
+				"<:vError:725270799124004934> Insufficient Permission! `Embed Links` required.",
 			);
 		}
 		command.run(client, message, args);

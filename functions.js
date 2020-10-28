@@ -1,6 +1,6 @@
 module.exports = {
 	// love.js
-	getMember: function(message, toFind = '') {
+	getMember: function(message, toFind = "") {
 		toFind = toFind.toLowerCase();
 
 		let target = message.guild.members.cache.get(toFind);
@@ -21,28 +21,28 @@ module.exports = {
 
 	// rps.js
 	getResult: function(me, clientChosen) {
-		if ((me === '🗻' && clientChosen === '✂') ||
-			(me === '📰' && clientChosen === '🗻') ||
-			(me === '✂' && clientChosen === '📰')) {
-			return 'You won!';
+		if ((me === "🗻" && clientChosen === "✂") ||
+			(me === "📰" && clientChosen === "🗻") ||
+			(me === "✂" && clientChosen === "📰")) {
+			return "You won!";
 		}
 		else if (me === clientChosen) {
-			return 'It\'s a tie!';
+			return "It's a tie!";
 		}
 		else {
-			return 'You lost!';
+			return "You lost!";
 		}
 	},
 
 	// botinfo.js
 	formatBytes: function(a, b) {
-		if (a == 0) return '0 Bytes';
+		if (a == 0) return "0 Bytes";
 		const c = 1024,
 			d = b || 2,
-			e = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+			e = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"],
 			f = Math.floor(Math.log(a) / Math.log(c));
 
-		return parseFloat((a / Math.pow(c, f)).toFixed(d)) + ' ' + e[f];
+		return parseFloat((a / Math.pow(c, f)).toFixed(d)) + " " + e[f];
 	},
 
 	// uptime.js, botinfo.js & channelinfo.js
@@ -95,9 +95,9 @@ module.exports = {
 
 	// eval,js
 	clean: function(string) {
-		if (typeof text === 'string') {
-			return string.replace(/`/g, '`' + String.fromCharCode(8203))
-				.replace(/@/g, '@' + String.fromCharCode(8203));
+		if (typeof text === "string") {
+			return string.replace(/`/g, "`" + String.fromCharCode(8203))
+				.replace(/@/g, "@" + String.fromCharCode(8203));
 		}
 		else {
 			return string;
@@ -107,12 +107,12 @@ module.exports = {
 	// color.js
 	isHex: function(string) {
 		let str = string;
-		if(str.charAt(0) == '#') {
+		if(str.charAt(0) == "#") {
 			str = str.slice(1);
 		}
-		return typeof str === 'string'
+		return typeof str === "string"
 		&& str.length === 6
-		&& !isNaN(Number('0x' + str));
+		&& !isNaN(Number("0x" + str));
 	},
 
 	// color.js
@@ -121,28 +121,28 @@ module.exports = {
 		for (let i = 0; i < string.length; i++) {
 			hash = string.charCodeAt(i) + ((hash << 5) - hash);
 		}
-		let colour = '#';
+		let colour = "#";
 		for (let i = 0; i < 3; i++) {
 			const value = (hash >> (i * 8)) & 0xFF;
-			colour += ('00' + value.toString(16)).substr(-2);
+			colour += ("00" + value.toString(16)).substr(-2);
 		}
 		return colour;
 	},
 
 	// owoify.js
 	owoify: function(text) {
-		text = text.replace(/[lr]/g, 'w');
-		text = text.replace(/u/g, 'uw');
-		text = text.replace(/[LR]/g, 'W');
-		text = text.replace(/U/g, 'UW');
+		text = text.replace(/[lr]/g, "w");
+		text = text.replace(/u/g, "uw");
+		text = text.replace(/[LR]/g, "W");
+		text = text.replace(/U/g, "UW");
 		return text;
 	},
 
 	// spongebob.js
 	alternateCaps: function(text) {
-		const array = text.split('');
+		const array = text.split("");
 		const n = text.length;
-		let out = '';
+		let out = "";
 		let caps = false;
 
 		for (let i = 0; i < n; i++) {
@@ -183,8 +183,8 @@ module.exports = {
 
 	// scramble.js
 	shuffle: function(word) {
-		let shuffledWord = '';
-		word = word.split('');
+		let shuffledWord = "";
+		word = word.split("");
 		while (word.length > 0) {
 			shuffledWord += word.splice(word.length * Math.random() << 0, 1);
 		}
@@ -201,8 +201,8 @@ module.exports = {
 		return perm
 			.toLowerCase()
 			.replace(/(^|"|_)(\S)/g, (s) => s.toUpperCase())
-			.replace(/_/g, ' ')
-			.replace(/Use Vad/g, 'Use Voice Acitvity')
-			.replace(/Send Tts Messages/g, 'Send text-to-speech Messages');
+			.replace(/_/g, " ")
+			.replace(/Use Vad/g, "Use Voice Acitvity")
+			.replace(/Send Tts Messages/g, "Send text-to-speech Messages");
 	},
 };

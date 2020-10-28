@@ -1,25 +1,25 @@
-const fetch = require('node-fetch');
-const { MessageEmbed } = require('discord.js');
+const fetch = require("node-fetch");
+const { MessageEmbed } = require("discord.js");
 
 module.exports = {
-	name: 'wikipedia',
-	category: 'Info',
-	description: 'Returns information from Wikipedia.',
-	aliases: ['wiki'],
-	usage: 'wikipedia <query>',
+	name: "wikipedia",
+	category: "Info",
+	description: "Returns information from Wikipedia.",
+	aliases: ["wiki"],
+	usage: "wikipedia <query>",
 	run: async (client, message, args) => {
-		const query = args.slice().join(' ');
+		const query = args.slice().join(" ");
 		if(!query) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid query',
+				"<:vError:725270799124004934> Please provide a valid query",
 			);
 		}
 
-		const nsfw = [	'porn', 'vagina', 'breats', 'hentai', 'bdsm', 'naked', 'rape', 'nude', 'sex'];
+		const nsfw = [	"porn", "vagina", "breats", "hentai", "bdsm", "naked", "rape", "nude", "sex"];
 		for(const word of nsfw) {
 			if (query.includes(word) && !message.channel.nsfw) {
 				return message.channel.send(
-					'<:vError:725270799124004934> This query can only be viewed in a nsfw channel.',
+					"<:vError:725270799124004934> This query can only be viewed in a nsfw channel.",
 				);
 			}
 		}
@@ -33,14 +33,14 @@ module.exports = {
 		}
 		catch (e) {
 			return message.channel.send(
-				'<:vError:725270799124004934> An error occured, please try again!',
+				"<:vError:725270799124004934> An error occured, please try again!",
 			);
 		}
 
 		try{
-			if (body.type === 'disambiguation') {
+			if (body.type === "disambiguation") {
 				const embed = new MessageEmbed()
-					.setColor('BLUE')
+					.setColor("BLUE")
 					.setTitle(body.title)
 					.setURL(body.content_urls.desktop.page)
 					.setDescription([`
@@ -53,7 +53,7 @@ module.exports = {
 			}
 			else {
 				const embed = new MessageEmbed()
-					.setColor('BLUE')
+					.setColor("BLUE")
 					.setTitle(body.title)
 					.setThumbnail(body.thumbnail.source)
 					.setURL(body.content_urls.desktop.page)
@@ -64,7 +64,7 @@ module.exports = {
 		}
 		catch {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid query',
+				"<:vError:725270799124004934> Please provide a valid query",
 			);
 		}
 	},
