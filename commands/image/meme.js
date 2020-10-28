@@ -1,18 +1,18 @@
 /* eslint-disable no-unused-vars */
-const { MessageEmbed } = require('discord.js');
-const fetch = require('node-fetch');
+const { MessageEmbed } = require("discord.js");
+const fetch = require("node-fetch");
 
 module.exports = {
-	name: 'meme',
-	category: 'Image',
-	description: 'Get some fresh new memes from reddit!',
-	aliases: ['memes'],
-	usage: 'meme',
+	name: "meme",
+	category: "Image",
+	description: "Get some fresh new memes from reddit!",
+	aliases: ["memes"],
+	usage: "meme",
 	run: async (client, message, args) => {
 		const subreddits = [
-			'memes',
-			'dankmemes',
-			'meme',
+			"memes",
+			"dankmemes",
+			"meme",
 		];
 
 		const sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
@@ -32,13 +32,13 @@ module.exports = {
 		}
 		catch (e) {
 			return message.channel.send(
-				'<:vError:725270799124004934> An error occured, please try again!',
+				"<:vError:725270799124004934> An error occured, please try again!",
 			);
 		}
 		function Randomimage(post) {
 			const random = post[Math.floor(Math.random() * post.length) + 1];
 			const embed = new MessageEmbed()
-				.setColor('BLUE')
+				.setColor("BLUE")
 				.setURL(`https://www.reddit.com/r/${random.subreddit}/comments/${random.id}`)
 				.setTitle(random.title)
 				.setImage(random.url)

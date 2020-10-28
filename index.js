@@ -1,16 +1,16 @@
-require('dotenv').config();
-const { abl } = require('abl-wrapper');
+require("dotenv").config();
+const { abl } = require("abl-wrapper");
 const { ASTROBOTLIST_TOKEN } = process.env;
-const { Client, Collection } = require('discord.js');
-const client = new Client({ disableMentions: 'everyone' });
-const keepAlive = require('./server');
+const { Client, Collection } = require("discord.js");
+const client = new Client({ disableMentions: "everyone" });
+const keepAlive = require("./server");
 
 client.commands = new Collection();
 client.aliases = new Collection();
 client.category = new Collection();
 client.snipes = new Map();
 
-['command', 'event'].forEach(handler => {
+["command", "event"].forEach(handler => {
 	require(`./handlers/${handler}`)(client);
 });
 
@@ -19,7 +19,7 @@ setInterval(() => {
 		if(error) throw new Error(error);
 		else console.log(success);
 	});
-}, 86400000);
+}, 8.64e+7);
 
 
 keepAlive();

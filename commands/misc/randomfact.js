@@ -1,15 +1,15 @@
 /* eslint-disable no-unused-vars */
-const fetch = require('node-fetch');
-const { MessageEmbed } = require('discord.js');
+const fetch = require("node-fetch");
+const { MessageEmbed } = require("discord.js");
 
 module.exports = {
-	name: 'randomfact',
-	category: 'Misc',
-	description: 'Get a random fact from the internet.',
+	name: "randomfact",
+	category: "Misc",
+	description: "Get a random fact from the internet.",
 	aliases: [],
-	usage: 'randomfact',
+	usage: "randomfact",
 	run: async (client, message, args) => {
-		const url = 'https://useless-facts.sameerkumar.website/api';
+		const url = "https://useless-facts.sameerkumar.website/api";
 
 		let response;
 		try {
@@ -17,13 +17,13 @@ module.exports = {
 		}
 		catch (e) {
 			return message.channel.send(
-				'<:vError:725270799124004934> An error occured, please try again!',
+				"<:vError:725270799124004934> An error occured, please try again!",
 			);
 		}
 		const embed = new MessageEmbed()
-			.setColor('BLUE')
+			.setColor("BLUE")
 			.setDescription(response.data)
-			.setTitle('Random Fact')
+			.setTitle("Random Fact")
 			.setFooter(`Requested by ${message.author.tag}`)
 			.setTimestamp();
 

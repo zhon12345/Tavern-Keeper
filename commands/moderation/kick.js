@@ -1,53 +1,53 @@
 module.exports = {
-	name: 'kick',
-	category: 'Moderation',
-	description: 'Kick a specified user from the server.',
+	name: "kick",
+	category: "Moderation",
+	description: "Kick a specified user from the server.",
 	aliases: [],
-	usage: 'kick <user> <reason>',
+	usage: "kick <user> <reason>",
 	run: async (client, message, args) => {
-		if(!message.member.hasPermission('KICK_MEMBERS') || !message.guild.me.hasPermission('KICK_MEMBERS')) {
+		if(!message.member.hasPermission("KICK_MEMBERS") || !message.guild.me.hasPermission("KICK_MEMBERS")) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Insufficient Permission! `KICK_MEMBERS` required.',
+				"<:vError:725270799124004934> Insufficient Permission! `KICK_MEMBERS` required.",
 			);
 		}
 
 
-		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]);
+		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(" ") || x.user.username === args[0]);
 		if (!member) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid user.',
+				"<:vError:725270799124004934> Please provide a valid user.",
 			);
 		}
 
 		if(member.id === message.author.id) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You are not allowed to kick yourself.',
+				"<:vError:725270799124004934> You are not allowed to kick yourself.",
 			);
 		}
 
 		if(member.id === client.user.id) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You are not allowed to kick me.',
+				"<:vError:725270799124004934> You are not allowed to kick me.",
 			);
 		}
 
 		if(member.id === message.guild.owner.id) {
 			return message.channel.send(
-				'<:vWarning:725276167346585681> Are you trying to get yourself into trouble?',
+				"<:vWarning:725276167346585681> Are you trying to get yourself into trouble?",
 			);
 		}
 
-		let Reason = args.slice(1).join(' ');
+		let Reason = args.slice(1).join(" ");
 		if (!Reason) {
-			Reason = 'No reason provided';
+			Reason = "No reason provided";
 		}
 		else {
-			Reason = args.slice(1).join(' ');
+			Reason = args.slice(1).join(" ");
 		}
 
 		if (!member.kickable) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You are not allowed kick this user.',
+				"<:vError:725270799124004934> You are not allowed kick this user.",
 			);
 		}
 

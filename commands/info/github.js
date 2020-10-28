@@ -1,17 +1,17 @@
-const { MessageEmbed } = require('discord.js');
-const fetch = require('node-fetch');
+const { MessageEmbed } = require("discord.js");
+const fetch = require("node-fetch");
 
 module.exports = {
-	name: 'github',
-	description: 'Displays information about someone\'s Github account',
-	usage: 'github <username>',
-	category: 'Info',
-	aliases: ['git', 'gh'],
+	name: "github",
+	description: "Displays information about someone's Github account",
+	usage: "github <username>",
+	category: "Info",
+	aliases: ["git", "gh"],
 	run: async (client, message, args) => {
-		const name = args.join(' ');
+		const name = args.join(" ");
 		if (!name) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid user',
+				"<:vError:725270799124004934> Please provide a valid user",
 			);
 		}
 
@@ -23,22 +23,22 @@ module.exports = {
 		}
 		catch (e) {
 			return message.channel.send(
-				'<:vError:725270799124004934> An error occured, please try again!',
+				"<:vError:725270799124004934> An error occured, please try again!",
 			);
 		}
 
 		try{
 			const embed = new MessageEmbed()
-				.setColor('BLUE')
+				.setColor("BLUE")
 				.setTitle(`${response.login} (${response.id})`)
-				.setDescription(response.bio ? response.bio : 'None')
+				.setDescription(response.bio ? response.bio : "None")
 				.addFields(
-					{ name: 'Followers', value: `\`\`\`${response.followers.toLocaleString()}\`\`\``, inline: true },
-					{ name: 'Following', value: `\`\`\`${response.following.toLocaleString()}\`\`\``, inline: true },
-					{ name: 'Repositories', value: `\`\`\`${response.public_repos.toLocaleString()}\`\`\``, inline: true },
-					{ name: 'Email', value: `\`\`\`${response.email ? response.email : 'None'}\`\`\`` },
-					{ name: 'Company', value: `\`\`\`${response.company ? response.company : 'None'}\`\`\`` },
-					{ name: 'Location', value: `\`\`\`${response.location ? response.location : 'None'}\`\`\`` },
+					{ name: "Followers", value: `\`\`\`${response.followers.toLocaleString()}\`\`\``, inline: true },
+					{ name: "Following", value: `\`\`\`${response.following.toLocaleString()}\`\`\``, inline: true },
+					{ name: "Repositories", value: `\`\`\`${response.public_repos.toLocaleString()}\`\`\``, inline: true },
+					{ name: "Email", value: `\`\`\`${response.email ? response.email : "None"}\`\`\`` },
+					{ name: "Company", value: `\`\`\`${response.company ? response.company : "None"}\`\`\`` },
+					{ name: "Location", value: `\`\`\`${response.location ? response.location : "None"}\`\`\`` },
 				)
 				.setURL(response.html_url)
 				.setThumbnail(response.avatar_url)
@@ -49,7 +49,7 @@ module.exports = {
 		}
 		catch (err) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid user',
+				"<:vError:725270799124004934> Please provide a valid user",
 			);
 		}
 	},

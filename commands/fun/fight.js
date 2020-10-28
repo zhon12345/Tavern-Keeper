@@ -1,19 +1,19 @@
 const { BOT_OWNER } = process.env;
-const { delay } = require('../../functions');
-const responses = require('../../assets/json/fight.json');
+const { delay } = require("../../functions");
+const responses = require("../../assets/json/fight.json");
 
 module.exports = {
-	name: 'fight',
-	category: 'Fun',
-	usage: 'fight <user>',
-	description: 'Simulates a fight against another user.',
+	name: "fight",
+	category: "Fun",
+	usage: "fight <user>",
+	description: "Simulates a fight against another user.",
 	aliases: [],
 	run: async (client, message, args) => {
 		const player1 = message.author;
-		const player2 = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]);
+		const player2 = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(" ") || x.user.username === args[0]);
 		if(!player2) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide valid user',
+				"<:vError:725270799124004934> Please provide valid user",
 			);
 		}
 		let hp1 = 100;
@@ -23,7 +23,7 @@ module.exports = {
 		if (player2.id === client.user.id && player1.id !== BOT_OWNER) {
 			return message.channel.send([
 				`**${client.user.username}** COMPLETELY AND UTTERLY DESTROYED **${player1.username}**! *[-999999 HP] [0 HP remaining]*`,
-				'*Hint: Don\'t try to fight me! Nothing personal, kid.*',
+				"*Hint: Don't try to fight me! Nothing personal, kid.*",
 			]);
 		}
 		else if (player2.id === BOT_OWNER) {
@@ -33,7 +33,7 @@ module.exports = {
 			]);
 		}
 		else {
-			message.channel.send('⚔ Fighting...').then(async msg => {
+			message.channel.send("⚔ Fighting...").then(async msg => {
 				while (hp1 > 0 && hp2 > 0) {
 					const i = Math.floor(Math.random() * responses.length);
 					const x = Math.floor(Math.random() * 70);

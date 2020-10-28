@@ -1,31 +1,31 @@
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed } = require("discord.js");
 const { BOT_OWNER } = process.env;
 
 module.exports = {
-	name: 'ship',
-	category: 'Fun',
-	description: 'Get the compatibility rate of a two users.',
+	name: "ship",
+	category: "Fun",
+	description: "Get the compatibility rate of a two users.",
 	aliases: [],
-	usage: 'ship <user> <user>',
+	usage: "ship <user> <user>",
 	run: async (client, message, args) => {
 		let rating = Math.floor(Math.random() * 100) + 1;
-		const meter = ['▬', '▬', '▬', '▬', '▬', '▬', '▬', '▬', '▬'];
+		const meter = ["▬", "▬", "▬", "▬", "▬", "▬", "▬", "▬", "▬"];
 		const hearts = {
-			0: '❤️',
-			1: '🧡',
-			2: '💛',
-			3: '💚',
-			4: '💙',
-			5: '💜',
+			0: "❤️",
+			1: "🧡",
+			2: "💛",
+			3: "💚",
+			4: "💙",
+			5: "💜",
 		};
-		const member1 = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]);
+		const member1 = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(" ") || x.user.username === args[0]);
 		if (!member1) {
-			return message.channel.send('<:vError:725270799124004934> Please provide valid users');
+			return message.channel.send("<:vError:725270799124004934> Please provide valid users");
 		}
 
-		const member2 = message.mentions.members.last() || message.guild.members.cache.get(args[1]) || message.guild.members.cache.find(x => x.user.username === args.slice(1).join(' ') || x.user.username === args[1]);
+		const member2 = message.mentions.members.last() || message.guild.members.cache.get(args[1]) || message.guild.members.cache.find(x => x.user.username === args.slice(1).join(" ") || x.user.username === args[1]);
 		if (!member2) {
-			return message.channel.send('<:vError:725270799124004934> Please provide valid users');
+			return message.channel.send("<:vError:725270799124004934> Please provide valid users");
 		}
 
 		const firstName = member1.user.username;
@@ -34,7 +34,7 @@ module.exports = {
 		const shipName = firstName.substr(0, firstName.length * 0.5) + secondName.substr(secondName.length * 0.5);
 
 		if (shipName === client.users.cache.get(BOT_OWNER).username) {
-			rating = '100';
+			rating = "100";
 		}
 
 		let pos = 0;
@@ -54,10 +54,10 @@ module.exports = {
 
 		const embed = new MessageEmbed()
 			.setTitle(`Original Names: ${firstName}, ${secondName}`)
-			.setColor('BLUE')
+			.setColor("BLUE")
 			.setFooter(`Requested by ${message.author.tag}`)
 			.setTimestamp()
-			.setDescription(`Ship Name: **${shipName}**\nCompatibility: **${rating}%**\n**[**${meter.join('')}**]**`);
+			.setDescription(`Ship Name: **${shipName}**\nCompatibility: **${rating}%**\n**[**${meter.join("")}**]**`);
 		message.channel.send(embed);
 	},
 };

@@ -1,18 +1,18 @@
 /* eslint-disable no-unused-vars */
-const { MessageEmbed } = require('discord.js');
-const h2p = require('html2plaintext');
-const fetch = require('node-fetch');
+const { MessageEmbed } = require("discord.js");
+const h2p = require("html2plaintext");
+const fetch = require("node-fetch");
 
 module.exports = {
-	name: 'lizard',
-	category: 'Animals',
-	description: 'How do you describe them again?',
-	aliases: ['lizards'],
-	usage: 'lizard',
+	name: "lizard",
+	category: "Animals",
+	description: "How do you describe them again?",
+	aliases: ["lizards"],
+	usage: "lizard",
 	run: async (client, message, args) => {
 		const subreddits = [
-			'reptiles',
-			'Lizards',
+			"reptiles",
+			"Lizards",
 		];
 
 		const sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
@@ -28,11 +28,11 @@ module.exports = {
 					while (!random || !random.url.match(/(jpg|png|gif)$/)) {
 						random = post[Math.floor(Math.random() * post.length) + 1];
 					}
-					if(random.url.endsWith('gifv')) {
-						random.url.replace('gifv', 'gif');
+					if(random.url.endsWith("gifv")) {
+						random.url.replace("gifv", "gif");
 					}
 					const embed = new MessageEmbed()
-						.setColor('BLUE')
+						.setColor("BLUE")
 						.setURL(`https://www.reddit.com/r/${random.subreddit}/comments/${random.id}`)
 						.setTitle(h2p(random.title))
 						.setImage(random.url)
@@ -43,7 +43,7 @@ module.exports = {
 		}
 		catch (e) {
 			return message.channel.send(
-				'<:vError:725270799124004934> An error occured, please try again!',
+				"<:vError:725270799124004934> An error occured, please try again!",
 			);
 		}
 	},
