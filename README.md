@@ -9,7 +9,7 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/8632633712bf43e5a068c734b9e2baf4)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=zhon12345/Tavern_Keeper_Private&amp;utm_campaign=Badge_Grade)
 [![Discord](https://img.shields.io/discord/450846546867519503.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/jMpw3jw)
 [![library](https://img.shields.io/badge/library-discord.js-blue)](https://discord.js.org/#/)
-[![License](https://img.shields.io/github/license/zhon12345/Tavern-Keeper)](https://github.com/zhon12345/Tavern-Keeper/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/zhon12345/Tavern_Keeper)](https://github.com/zhon12345/Tavern-Keeper/blob/master/LICENSE)
 
 </div>
 
