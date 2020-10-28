@@ -1,9 +1,9 @@
 require("dotenv").config();
+const keepAlive = require("./server");
 const { abl } = require("abl-wrapper");
 const { ASTROBOTLIST_TOKEN } = process.env;
-const { Client, Collection } = require("discord.js");
-const client = new Client({ disableMentions: "everyone" });
-const keepAlive = require("./server");
+const { Client, Collection, Intents } = require("discord.js");
+const client = new Client({ disableMentions: "everyone", ws: { intents: Intents.ALL } });
 
 client.commands = new Collection();
 client.aliases = new Collection();
