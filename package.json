@@ -9,8 +9,8 @@
   "author": "zhon12345",
   "license": "ISC",
   "dependencies": {
-    "abl-wrapper": "^1.1.7",
     "cpu-stat": "^2.0.1",
+    "dblapi.js": "^2.4.1",
     "discord.js": "^12.4.1",
     "dotenv": "^8.2.0",
     "eslint": "^7.10.0",
