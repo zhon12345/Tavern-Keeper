@@ -1,14 +1,13 @@
 const fetch = require('node-fetch');
-const { MessageEmbed } = require('discord.js');
 const { is_url } = require('../../functions');
-const API_KEY = process.env.BITLY_API_TOKEN;
+const { MessageEmbed } = require('discord.js');
 
 module.exports = {
 	name: 'shorten',
 	category: 'Misc',
 	description: 'Shortens a provided link using bit.ly.',
 	aliases: ['short'],
-	usage: 'shortel <url>',
+	usage: 'shorten <url>',
 	run: async (client, message, args) => {
 		const link = args.slice().join(' ');
 		if (!link) {
@@ -22,18 +21,12 @@ module.exports = {
 			);
 		}
 
-		const url = 'https://api-ssl.bitly.com/v4/shorten';
-
-		const data = {
-			'long_url': link,
-		};
+		const url = `https://is.gd/create.php?format=simple&url=${encodeURI(link)}`;
 
 		let response;
 		try {
-			response = await fetch(url, { method: 'POST', headers: {
-				'Content-Type': 'application/json',
-				'authorization': `Bearer ${API_KEY}`,
-			}, body: JSON.stringify(data) }).then(res => res.json());
+			response = await fetch(url)
+				.then(res => res.text());
 		}
 		catch (e) {
 			return message.channel.send('<:vError:725270799124004934> An error occured, please try again!');
@@ -43,7 +36,7 @@ module.exports = {
 			.setColor('BLUE')
 			.setTitle('Link Shortener')
 			.addField('Input', `\`\`\`\n${link}\`\`\``)
-			.addField('Output', `\`\`\`\n${response.link}\`\`\``)
+			.addField('Output', `\`\`\`\n${response}\`\`\``)
 			.setFooter(`Requested by ${message.author.tag}`)
 			.setTimestamp();
 

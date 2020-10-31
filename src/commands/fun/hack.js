@@ -12,6 +12,7 @@ module.exports = {
 		try {
 			const ending = ['@gmail.com', '@hotmail.com', '@yahoo.com', '@yourmom.gov'];
 			const genending = ending[Math.floor(Math.random() * ending.length)];
+
 			const passwords = ['`lickmy*****`', '`pe***`', '`ilike****`', '`co**lover`', '`hairy*****`'];
 			const genpass = passwords[Math.floor(Math.random() * passwords.length)];
 
@@ -39,7 +40,7 @@ module.exports = {
 				await delay(1500);
 				await msg.edit('[▖] Fiding discord login... (2fa bypassed)');
 				await delay(2000);
-				await msg.edit(`[▘] Found:\n**Email:** \`${hacked.user.username}${genending}\`\n**Password:** ${genpass}`);
+				await msg.edit(`[▘] Found:\n**Email:** \`${hacked.user.username.split(' ').join('').toLowerCase()}${genending}\`\n**Password:** ${genpass}`);
 				await delay(2500);
 				await msg.edit('[▝] Fetching DM\'s with closest friends (They have no friends)');
 				await delay(2000);
@@ -49,23 +50,23 @@ module.exports = {
 				await delay(1700);
 				await msg.edit(`[▘] **Most common phrase:** "${dodo}"`);
 				await delay(2000);
-				await msg.edit(`[▘] Injecting pepe virus into discriminator \`#${hacked.user.discriminator}\``);
+				await msg.edit(`[▝] Injecting pepe virus into discriminator \`#${hacked.user.discriminator}\``);
 				await delay(1000);
-				await msg.edit('[▝] Virus injected');
+				await msg.edit('[▗] Virus injected');
 				await delay(1000);
-				await msg.edit('[▗] Finding IP');
+				await msg.edit('[▖] Finding IP');
 				await delay(2500);
-				await msg.edit(`[▖] **IP:** ${jj}`);
+				await msg.edit(`[▘] **IP:** ${jj}`);
 				await delay(1000);
-				await msg.edit('[▘] Spamming email...');
+				await msg.edit('[▝] Spamming email...');
 				await delay(1400);
-				await msg.edit('[▝] Reporting user for breaking Discord ToS...');
+				await msg.edit('[▗] Reporting user for breaking Discord ToS...');
 				await delay(1400);
-				await msg.edit('[▗] Selling all data to the government...');
+				await msg.edit('[▖] Selling all data to the government...');
 				await delay(1400);
 				const embed = new MessageEmbed()
 					.setTitle(`${hacked.user.username}'s Information`)
-					.setDescription(`Email: \`${hacked.user.username}${genending}\`\nPassword: \`${genpass}\`\nIP: \`${jj}\``)
+					.setDescription(`Email: \`${hacked.user.username.split(' ').join('').toLowerCase()}${genending}\`\nPassword: \`${genpass}\`\nIP: \`${jj}\``)
 					.setColor('BLUE');
 				await msg.edit(`<:vSuccess:725270799098970112> Successfully hacked ${hacked.user.username}`, embed);
 			});

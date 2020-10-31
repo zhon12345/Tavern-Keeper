@@ -1,7 +1,7 @@
 require('dotenv').config();
-const { Client, Collection } = require('discord.js');
-const client = new Client({ disableMentions: 'everyone' });
 const { Player } = require('discord-player');
+const { Client, Collection, Intents } = require('discord.js');
+const client = new Client({ disableMentions: 'everyone', ws: { intents: Intents.ALL } });
 const player = new Player(client);
 
 client.commands = new Collection();
