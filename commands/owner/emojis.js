@@ -34,8 +34,8 @@ module.exports = {
 		});
 		const Embed = new MessageEmbed()
 			.setDescription(`**Total: [${OverallEmojis}]**`)
-			.addField(`Regular [${EmojiCount}]`, Emojis.length > 1024 ? Emojis.slice(0, 1021).join("...") : Emojis)
-			.addField(`Animated [${Animated}]`, EmojisAnimated.length > 1024 ? EmojisAnimated.slice(0, 1021).join("...") : EmojisAnimated)
+			.addField(`Regular [${EmojiCount}]`, Emojis.length > 1024 ? `${Emojis.slice(0, 1021)}...` : Emojis)
+			.addField(`Animated [${Animated}]`, EmojisAnimated.length > 1024 ? `${EmojisAnimated.slice(0, 1021)}...` : EmojisAnimated)
 			.setColor("BLUE");
 		message.channel.send(Embed);
 	},
