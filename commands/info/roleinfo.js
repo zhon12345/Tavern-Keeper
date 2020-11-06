@@ -18,28 +18,28 @@ module.exports = {
 
 		let permissions;
 		if(role.permissions.toArray().length !== 0) {
-			permissions = role.permissions.toArray().map(formatPerms).join(", ");
+			permissions = role.permissions.toArray().map(formatPerms).join("`, `");
 		}
 		else {
 			permissions = "None";
 		}
-
 		const embed = new MessageEmbed()
 			.setColor(role.hexColor)
 			.setFooter(`Requested by ${message.author.tag} `)
 			.setTimestamp()
 			.setTitle("Role Information")
-			.addFields(
-				{ name: "Role Name", value: `\`\`\`${role.name}\`\`\``, inline:true },
-				{ name: "Role ID", value: `\`\`\`${role.id}\`\`\``, inline:true },
-				{ name: "Hex Color", value: `\`\`\`${role.hexColor.toUpperCase()}\`\`\`` },
-				{ name: "Members", value: `\`\`\`${role.members.size}\`\`\``, inline:true },
-				{ name: "Hoisted", value: `\`\`\`${role.hoist ? "Yes" : "No"}\`\`\``, inline:true },
-				{ name: "Mentionable", value: `\`\`\`${role.mentionable ? "Yes" : "No"}\`\`\``, inline:true },
-				{ name: "Created", value: `\`\`\`${moment(role.createdTimestamp).format("MMMM Do YYYY, h:mm:ss")} | ${Math.floor((Date.now() - role.createdTimestamp) / 86400000)} day(s) ago\`\`\`` },
-			)
-			.addField("Permissions", [
-				`\`\`\`${permissions}\`\`\``,
+			.addField("<:documents:773950876347793449> General ❯", [
+				`> **<:card:773965449402646549> Role Name: \`${role.name}\`**`,
+				`> **\\📇 Role ID: \`${role.id}\`**`,
+				`> **<:hashtag:774084894409883648> Hex Color: \`${role.hexColor.toUpperCase()}\`**`,
+				`> **\\👥 Members: \`${role.members.size}\`**`,
+				`> **\\🏆 Hoisted: \`${role.hoist ? "Yes" : "No"}\`**`,
+				`> **<:mention:774084592709664830> Mentionable: \`${role.hoist ? "Yes" : "No"}\`**`,
+				`> **\\📅 Created: \`${moment(role.createdTimestamp).format("MMMM Do YYYY, h:mm:ss")}\` | \`${Math.floor((Date.now() - role.createdTimestamp) / 86400000)}\` day(s) ago**`,
+				"\u200b",
+			])
+			.addField("<:documents:773950876347793449> Permissions ❯", [
+				`> **\`${permissions}\`**`,
 			]);
 
 		return message.channel.send(embed);
