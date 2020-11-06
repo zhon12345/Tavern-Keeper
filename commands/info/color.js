@@ -1,4 +1,3 @@
-const { isHex, stringToHex } = require("../../functions");
 const fetch = require("node-fetch");
 const { MessageEmbed } = require("discord.js");
 
@@ -9,20 +8,26 @@ module.exports = {
 	aliases: [],
 	usage: "color <color>",
 	run: async (client, message, args) => {
-		let colour;
 		if(!args[0]) {
 			return message.channel.send(
 				"<:vError:725270799124004934> Please provide a valid color.",
 			);
 		}
-		else if(isHex(args.join(" ")) !== true) {
-			colour = stringToHex(args.join(" "));
+
+		let colour;
+		if(args[0].startsWith("#") && args[0].length === 7) {
+			colour = args[0].split("#").join("");
+		}
+		else if(args[0].startsWith("0x") && args[0].length === 8) {
+			colour = args[0].split("0x").join("");
 		}
 		else {
-			colour = args[0];
+			return message.channel.send(
+				"<:vError:725270799124004934> Please provide a valid color.",
+			);
 		}
 
-		const url = "https://api.alexflipnote.xyz/colour/" + colour;
+		const url = `https://api.alexflipnote.xyz/colour/${colour}`;
 
 		let response;
 		try {
@@ -35,13 +40,14 @@ module.exports = {
 		}
 
 		const embed = new MessageEmbed()
-			.setColor(colour)
+			.setColor(`#${colour}`)
 			.setTitle(response.name)
+			.setDescription([
+				`**Name: \`${response.name}\`**`,
+				`**RGB Value: \`${response.rgb}\`**`,
+				`**Hex Value: \`${colour}\`**`,
+			])
 			.setImage(response.image)
-			.addFields(
-				{ name: "RGB Value", value: `${response.rgb}` },
-				{ name: "Hex Value", value: `#${colour}` },
-			)
 			.setFooter(`Requested by ${message.author.tag}`)
 			.setTimestamp();
 		message.channel.send(embed);

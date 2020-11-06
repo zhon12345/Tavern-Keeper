@@ -14,16 +14,17 @@ module.exports = {
 			.setColor("BLUE")
 			.setFooter(`Requested by ${message.author.tag} `)
 			.setTimestamp()
-			.addFields(
-				{ name: "Humans", value: `\`\`\`${members.filter(member => !member.user.bot).size}\`\`\``, inline:true },
-				{ name: "Bots", value: `\`\`\`${members.filter(member => member.user.bot).size}\`\`\``, inline:true },
-				{ name: "Total Members", value: `\`\`\`${guild.memberCount}\`\`\`` },
-				{ name: "\u200b", value: "**Presence**" },
-				{ name: "Online", value: `\`\`\`${members.filter(member => member.presence.status === "online").size}\`\`\``, inline:true },
-				{ name: "Idle", value: `\`\`\`${members.filter(member => member.presence.status === "idle").size}\`\`\``, inline:true },
-				{ name: "Do Not Disturb", value: `\`\`\`${members.filter(member => member.presence.status === "dnd").size}\`\`\``, inline:true },
-				{ name: "Offline", value: `\`\`\`${members.filter(member => member.presence.status === "offline").size}\`\`\`` },
-			);
+			.addField("<:documents:773950876347793449> General ❯", [
+				`> **\\👤 Humans: \`${members.filter(member => !member.user.bot).size}\`**`,
+				`> **\\🤖 Bots: \`${members.filter(member => member.user.bot).size}\`**`,
+				`> **\\👥 Total Members: \`${guild.memberCount}\`**`,
+			])
+			.addField("<:documents:773950876347793449> Presence ❯", [
+				`> **<:online:745651877382717560> Online: \`${members.filter(member => member.presence.status === "online").size}\`**`,
+				`> **<:idle:773964101390958632> Idle: \`${members.filter(member => member.presence.status === "idle").size}\`**`,
+				`> **<:dnd:773964313630998538> Do Not Disturb: \`${members.filter(member => member.presence.status === "dnd").size}\`**`,
+				`> **<:offline:745651876552376402> Offline: \`${members.filter(member => member.presence.status === "offline").size}\`**`,
+			]);
 		message.channel.send(embed);
 	},
 };
