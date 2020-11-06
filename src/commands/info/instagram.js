@@ -41,9 +41,9 @@ module.exports = {
 					{ name: 'Posts', value: `\`\`\`${account.edge_owner_to_timeline_media.count.toLocaleString()}\`\`\``, inline: true },
 					{ name: 'Followers', value: `\`\`\`${account.edge_followed_by.count.toLocaleString()}\`\`\``, inline: true },
 					{ name: 'Following', value: `\`\`\`${account.edge_follow.count.toLocaleString()}\`\`\``, inline: true },
+					{ name: 'Recently Joined', value: `\`\`\`${account.is_joined_recently ? 'Yes' : 'No'}\`\`\``, inline: true },
 					{ name: 'Private', value: `\`\`\`${account.is_private ? 'Yes' : 'No'}\`\`\``, inline: true },
 					{ name: 'Verified', value: `\`\`\`${account.is_verified ? 'Yes' : 'No'}\`\`\``, inline: true },
-					{ name: 'Recently Joined', value: `\`\`\`${account.is_joined_recently ? 'Yes' : 'No'}\`\`\``, inline: true },
 				);
 			message.channel.send(embed);
 		}

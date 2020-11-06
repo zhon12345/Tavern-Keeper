@@ -61,15 +61,15 @@ module.exports = {
 		seconds = parseInt(seconds % 60);
 
 		if (days) {
-			return `${days} day, ${hours} hours, ${minutes} minutes`;
+			return `\`${days}\` day, \`${hours}\` hours, \`${minutes}\` minutes`;
 		}
 		else if (hours) {
-			return `${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+			return `\`${hours}\` hours, \`${minutes}\` minutes, \`${seconds}\` seconds`;
 		}
 		else if (minutes) {
-			return `${minutes} minutes, ${seconds} seconds`;
+			return `\`${minutes}\` minutes, \`${seconds}\` seconds`;
 		}
-		return `${seconds} second(s)`;
+		return `\`${seconds}\` second(s)`;
 	},
 
 	// aliases.js & help.js
@@ -127,31 +127,6 @@ module.exports = {
 			caps = !caps;
 		}
 		return out;
-	},
-
-	// color.js
-	isHex: function(string) {
-		let str = string;
-		if(str.charAt(0) == '#') {
-			str = str.slice(1);
-		}
-		return typeof str === 'string'
-		&& str.length === 6
-		&& !isNaN(Number('0x' + str));
-	},
-
-	// color.js
-	stringToHex: function(string) {
-		let hash = 0;
-		for (let i = 0; i < string.length; i++) {
-			hash = string.charCodeAt(i) + ((hash << 5) - hash);
-		}
-		let colour = '#';
-		for (let i = 0; i < 3; i++) {
-			const value = (hash >> (i * 8)) & 0xFF;
-			colour += ('00' + value.toString(16)).substr(-2);
-		}
-		return colour;
 	},
 
 	// tableflip.js, hack.js, russianroulette.js & fight.js

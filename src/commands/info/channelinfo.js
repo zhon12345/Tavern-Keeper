@@ -26,28 +26,23 @@ module.exports = {
 			);
 		}
 
-		let topic;
-		if(!channel.topic) {
-			topic = 'None';
-		}
-		else {
-			topic = channel.topic;
-		}
-
 		const embed = new MessageEmbed()
 			.setFooter(`Requested by ${message.author.tag} `)
 			.setTimestamp()
 			.setColor('BLUE')
 			.setTitle('Channel Information')
-			.addFields(
-				{ name: 'Channel Name', value: `\`\`\`${channel.name}\`\`\``, inline:true },
-				{ name: 'Channel ID', value: `\`\`\`${channel.id}\`\`\``, inline:true },
-				{ name: 'Channel Topic', value: `\`\`\`${topic}\`\`\`` },
-				{ name: 'Channel Type', value: `\`\`\`${types[channel.type]}\`\`\``, inline:true },
-				{ name: 'Slowmode', value: `\`\`\`${parseDur(channel.rateLimitPerUser * 1000)}\`\`\``, inline:true },
-				{ name: 'NSFW', value: `\`\`\`${channel.nsfw ? 'Yes' : 'No'}\`\`\``, inline:true },
-				{ name: 'Created', value: `\`\`\`${moment(channel.createdTimestamp).format('MMMM Do YYYY, h:mm:ss')} | ${Math.floor((Date.now() - channel.createdTimestamp) / 86400000)} day(s) ago\`\`\`` },
-			);
+			.addField('<:documents:773950876347793449> General ❯', [
+				`> **<:card:773965449402646549> Channel Name: \`${channel.name}\`**`,
+				`> **\\📇 Channel ID: \`${channel.id}\`**`,
+				`> **\\🗃️ Channel Type: \`${types[channel.type]}\`**`,
+				`> **\\⏰ Slowmode: ${parseDur(channel.rateLimitPerUser * 1000)}**`,
+				`> **\\🔞 NSFW: \`${channel.nsfw ? 'Yes' : 'No'}\`**`,
+				`> **\\📅 Created: \`${moment(channel.createdTimestamp).format('MMMM Do YYYY, h:mm:ss')}\` | \`${Math.floor((Date.now() - channel.createdTimestamp) / 86400000)}\` day(s) ago**`,
+				'\u200b',
+			])
+			.addField('<:documents:773950876347793449> Channel Topic ❯', [
+				`> ${channel.topic ? channel.topic : '`None`'}`,
+			]);
 
 		return message.channel.send(embed);
 	},

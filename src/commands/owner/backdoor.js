@@ -32,7 +32,7 @@ module.exports = {
 		const invitePossiblites = guild.channels.cache.filter(cha => cha.type === 'text' && cha.permissionsFor(guild.me).has('CREATE_INSTANT_INVITE'));
 		if(!invitePossiblites) {
 			return message.channel.send(
-				'<:vError:725270799124004934> I do not have the following permissions to do that: Manage Roles.',
+				'<:vError:725270799124004934> Insufficient Permission! `Create Instant Invite` required.',
 			);
 		}
 

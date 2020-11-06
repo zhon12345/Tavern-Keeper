@@ -1,5 +1,4 @@
 const { MessageEmbed } = require('discord.js');
-const { BOT_OWNER } = process.env;
 const moment = require('moment');
 
 const verificationLevels = {
@@ -11,20 +10,20 @@ const verificationLevels = {
 };
 
 const regions = {
-	brazil: 'Brazil',
-	europe: 'Europe',
-	hongkong: 'Hong Kong',
-	india: 'India',
-	japan: 'Japan',
-	russia: 'Russia',
-	singapore: 'Singapore',
-	southafrica: 'South Africa',
-	sydney: 'Sydeny',
-	'us-central': 'US Central',
-	'us-east': 'US East',
-	'us-west': 'US West',
-	'us-south': 'US South',
-	'eu-west': 'EU West',
+	brazil: ':flag_br: `Brazil`',
+	europe: ':flag_eu: `Europe`',
+	hongkong: ':flag_hk: `Hong Kong`',
+	india: ':flag_in: `India`',
+	japan: ':flag_jp: `Japan`',
+	russia: ':flag_ru: `Russia`',
+	singapore: ':flag_sg: `Singapore`',
+	southafrica: ':flag_za: `South Africa`',
+	sydney: ':flag_au: `Sydeny`',
+	'us-central': ':flag_us: `US Central`',
+	'us-east': 'flag_us: `US East`',
+	'us-west': 'flag_us: `US West`',
+	'us-south': 'flag_us: `US South`',
+	'eu-west': ':flag_eu: `EU West`',
 };
 
 module.exports = {
@@ -43,25 +42,33 @@ module.exports = {
 			.setColor('BLUE')
 			.setThumbnail(guild.iconURL({ dynamic: true }))
 			.setTitle('Guild Information')
-			.addFields(
-				{ name: 'Guild Name', value: `\`\`\`${guild.name}\`\`\``, inline:true },
-				{ name: 'Guild ID', value: `\`\`\`${guild.id}\`\`\``, inline:true },
-				{ name: 'Guild Owner', value: `\`\`\`${guild.owner.user.tag}\`\`\`` },
-				{ name: 'Verification Level', value: `\`\`\`${verificationLevels[guild.verificationLevel]}\`\`\``, inline:true },
-				{ name: 'Region', value: `\`\`\`${regions[guild.region]}\`\`\``, inline:true },
-				{ name: `Member Count [${guild.memberCount}]`, value: `\`\`\`${members.filter(member => !member.user.bot).size} Users | ${members.filter(member => member.user.bot).size} Bots\`\`\`` },
-				{ name: `Channels [${channels.filter(ch => ch.type === 'text').size + channels.filter(channel => channel.type === 'voice').size}]`, value: `\`\`\`${channels.filter(channel => channel.type === 'text').size} Text ${channels.filter(channel => channel.type === 'voice').size} Voice\`\`\`` },
-				{ name: 'Guild Boost Tier', value: `\`\`\`Tier ${guild.premiumTier}\`\`\``, inline:true },
-				{ name: 'Guild Boost Count', value: `\`\`\`${guild.premiumSubscriptionCount}\`\`\``, inline:true },
-				{ name: `Emoji Count [${emojis.size}]`, value: `\`\`\`${emojis.filter(emoji => !emoji.animated).size} Regular ${emojis.filter(emoji => emoji.animated).size} Animated\`\`\`` },
-				{ name: 'Created', value: `\`\`\`${moment(guild.createdTimestamp).format('MMMM Do YYYY, h:mm:ss')} | ${Math.floor((Date.now() - guild.createdTimestamp) / 86400000)} day(s) ago\`\`\`` },
-			)
+			.addField('<:documents:773950876347793449> General ❯', [
+				`> **<:card:773965449402646549> Guild Name: \`${guild.name}\`**`,
+				`> **\\📇 Guild ID: \`${guild.id}\`**`,
+				`> **\\👦 Guild Icon: ${guild.iconURL() ? `[Click here!](${guild.iconURL({ size: 256, dynamic: true })})` : '`None`'}**`,
+				`> **\\👑 Guild Owner: ${guild.owner}**`,
+				`> **\\🌐 Region: ${regions[guild.region]}**`,
+				`> **\\✅ Verification Level: \`${verificationLevels[guild.verificationLevel]}\`**`,
+				`> **\\📅 Created: \`${moment(guild.createdTimestamp).format('MMMM Do YYYY, h:mm:ss')}\` | \`${Math.floor((Date.now() - guild.createdTimestamp) / 86400000)}\` day(s) ago**`,
+				'\u200b',
+			])
+			.addField('<:documents:773950876347793449> Statistics ❯', [
+				`> **\\👥 Member Count: \`${members.filter(member => !member.user.bot).size}\` Users \`${members.filter(member => member.user.bot).size}\` Bots**`,
+				`> **\\💬 Channel Count: \`${channels.filter(channel => channel.type === 'text').size}\` Text \`${channels.filter(channel => channel.type === 'voice').size}\` Voice**`,
+				`> **<:emojis:774070456059822090> Emoji Count: \`${emojis.filter(emoji => !emoji.animated).size}\` Regular \`${emojis.filter(emoji => emoji.animated).size}\` Animated**`,
+				`> **<:tier:774071372942147594> Guild Boost Tier: \`Tier ${guild.premiumTier}\`**`,
+				`> **<:boost:774071372644483082> Guild Boost Count: \`${guild.premiumSubscriptionCount}\`**`,
+				'\u200b',
+			])
+			.addField('<:documents:773950876347793449> Presence ❯', [
+				`> **<:online:745651877382717560> Online: \`${members.filter(member => member.presence.status === 'online').size}\`**`,
+				`> **<:idle:773964101390958632> Idle: \`${members.filter(member => member.presence.status === 'idle').size}\`**`,
+				`> **<:dnd:773964313630998538> Do Not Disturb: \`${members.filter(member => member.presence.status === 'dnd').size}\`**`,
+				`> **<:offline:745651876552376402> Offline: \`${members.filter(member => member.presence.status === 'offline').size}\`**`,
+			])
 			.setFooter(`Requested by ${message.author.tag} `)
 			.setTimestamp();
 
-		if(message.author.id === BOT_OWNER) {
-			embed.addField('Joined', `\`\`\`${moment(guild.joinedAt).format('MMMM Do YYYY, h:mm:ss')} | ${Math.floor((Date.now() - guild.joinedAt) / 86400000)} day(s) ago\`\`\``);
-		}
 		message.channel.send(embed);
 	},
 };

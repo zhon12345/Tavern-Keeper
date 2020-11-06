@@ -30,25 +30,30 @@ module.exports = {
 			const core = os.cpus()[0];
 			const embed = new MessageEmbed()
 				.setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 512 }))
-				.setColor(client.displayHexColor || 'BLUE')
+				.setColor(message.guild.members.cache.get(client.user.id).displayHexColor)
 				.setFooter(`Requested by ${message.author.tag} `)
 				.setTimestamp()
 				.setTitle('Bot Information')
-				.addFields(
-					{ name: 'Bot Name', value: `\`\`\`${client.user.username}\`\`\``, inline:true },
-					{ name: 'Bot ID', value: `\`\`\`${client.user.id}\`\`\``, inline:true },
-					{ name: 'Bot Owner', value: `\`\`\`${client.users.cache.get(BOT_OWNER).tag}\`\`\`` },
-					{ name: 'Servers', value: `\`\`\`${client.guilds.cache.size.toLocaleString()}\`\`\``, inline:true },
-					{ name: 'Users', value: `\`\`\`${client.users.cache.size.toLocaleString()}\`\`\``, inline:true },
-					{ name: 'Commands', value: `\`\`\`${client.commands.size}\`\`\``, inline:true },
-					{ name: 'Uptime', value: `\`\`\`${parseDur(client.uptime)}\`\`\`` },
-					{ name: 'Node.js Version', value: `\`\`\`${process.version}\`\`\``, inline:true },
-					{ name: 'Discord.js Version', value: `\`\`\`v${djsversion}\`\`\``, inline:true },
-					{ name: 'Platform', value: `\`\`\`${formatOS[os.platform]}\`\`\``, inline:true },
-					{ name: 'CPU', value: `\`\`\`${core.model}\`\`\`` },
-					{ name: 'Memory', value: `\`\`\`${formatBytes(process.memoryUsage().heapUsed)} Used\`\`\`` },
-					{ name: 'Created', value: `\`\`\`${moment(client.user.createdTimestamp).format('MMMM Do YYYY, h:mm:ss')} | ${Math.floor((Date.now() - client.user.createdTimestamp) / 86400000)} day(s) ago\`\`\`` },
-				);
+				.addField('<:documents:773950876347793449> General ❯', [
+					`> **\\👑 Owner: \`${client.users.cache.get(BOT_OWNER).tag}\`**`,
+					`> **\\🌐 Servers: \`${client.guilds.cache.size.toLocaleString()}\` Servers**`,
+					`> **\\👥 Users: \`${client.users.cache.size.toLocaleString()}\` Users**`,
+					`> **\\📺 Channels: \`${client.channels.cache.size.toLocaleString()}\` Channels**`,
+					`> **\\💬 Commands: \`${client.commands.size}\` Commands**`,
+					'\u200b',
+				])
+				.addField('<:documents:773950876347793449> System ❯', [
+					`> **<:nodejs:773599989724348448> Node.js: \`${process.version}\`**`,
+					`> **<:djs:773599989833400371> Discord.js: \`v${djsversion}\`**`,
+					`> **\\🖥 Platform: \`${formatOS[os.platform]}\`**`,
+					`> **\\📊 Memory: \`${formatBytes(process.memoryUsage().heapUsed)} / ${formatBytes(process.memoryUsage().heapTotal)}\`**`,
+					`> **\\💻 CPU: \`${core.model}\`**`,
+					'\u200b',
+				])
+				.addField('<:documents:773950876347793449> Others ❯', [
+					`> **<:online:745651877382717560> Uptime: ${parseDur(client.uptime)}**`,
+					`> **\\📅 Created: \`${moment(client.user.createdTimestamp).format('MMMM Do YYYY, h:mm:ss')}\` | \`${Math.floor((Date.now() - client.user.createdTimestamp) / 86400000)}\` day(s) ago**`,
+				]);
 			message.channel.send(embed);
 		});
 	},

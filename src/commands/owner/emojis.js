@@ -2,7 +2,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
 	name: 'emojis',
 	description: 'View all emojis in the specified guild.',
-	category: 'Info',
+	category: 'Owner',
 	usage: 'emojis',
 	aliases: ['elist'],
 	run: async (client, message, args) => {
@@ -26,10 +26,19 @@ module.exports = {
 				Emojis += Emoji(emoji.id);
 			}
 		});
+
+		if(!Emojis) {
+			Emojis = '`None`';
+		}
+
+		if(!EmojisAnimated) {
+			EmojisAnimated = '`None`';
+		}
+
 		const Embed = new MessageEmbed()
-			.setDescription(
-				`**Animated [${Animated}]**:\n${EmojisAnimated}\n\n**Standard [${EmojiCount}]**:\n${Emojis}\n\n**Total: [${OverallEmojis}]**`,
-			)
+			.setDescription(`**Total: [${OverallEmojis}]**`)
+			.addField(`Regular [${EmojiCount}]`, Emojis.length > 1024 ? `${Emojis.slice(0, 1021)}...` : Emojis)
+			.addField(`Animated [${Animated}]`, EmojisAnimated.length > 1024 ? `${EmojisAnimated.slice(0, 1021)}...` : EmojisAnimated)
 			.setColor('BLUE');
 		message.channel.send(Embed);
 	},

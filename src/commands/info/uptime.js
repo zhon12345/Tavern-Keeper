@@ -15,7 +15,7 @@ module.exports = {
 				.setTitle(':inbox_tray: Online for')
 				.setColor('BLUE')
 				.setDescription(
-					`${duration}`,
+					`**${duration}**`,
 				);
 			msg.edit(pEmbed);
 		});
