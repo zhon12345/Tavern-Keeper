@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 const { randomNoRepeat } = require("../../functions");
+
 module.exports = {
 	name: "soccer",
 	category: "Fun",
