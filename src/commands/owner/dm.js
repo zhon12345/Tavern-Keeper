@@ -9,9 +9,7 @@ module.exports = {
 	usage: 'dm <text>',
 	run: async (client, message, args) => {
 		if(message.author.id !== BOT_OWNER) {
-			return message.channel.send(
-				'<:vError:725270799124004934> You must have the following permissions to use that: Bot Owner.',
-			);
+			return;
 		}
 
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]);
@@ -31,7 +29,7 @@ module.exports = {
 		try{
 			member.send(text);
 			await message.channel.send(
-				`<:vSuccess:725270799098970112> Successfully DMed ${member.user.tag}.`,
+				`<:vSuccess:725270799098970112> Successfully DMed \`${member.user.tag}\`.`,
 			);
 		}
 		catch (e) {

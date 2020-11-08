@@ -51,7 +51,7 @@ module.exports = async (client, oldChannel, newChannel) => {
 					{ name: 'After', value: newChannel.topic ? newChannel.topic : 'None', inline: true },
 				);
 			logchannel.send(
-				`\`[${moment(newChannel.createdTimestamo).format('HH:mm:ss')}]\` ✏️ #${oldChannel.name} (ID: ${oldChannel.id})'s topic has been changed by **${executor.username}**#${executor.discriminator}.\n\`[Type]\` ${types[oldChannel.type]}`, embed,
+				`\`[${moment(newChannel.createdTimestamp).format('HH:mm:ss')}]\` ✏️ #${oldChannel.name} (ID: ${oldChannel.id})'s topic has been changed by **${executor.username}**#${executor.discriminator}.\n\`[Type]\` ${types[oldChannel.type]}`, embed,
 			);
 		}
 	}

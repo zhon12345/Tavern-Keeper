@@ -153,4 +153,14 @@ module.exports = {
 			.replace(/Use Vad/g, 'Use Voice Acitvity')
 			.replace(/Send Tts Messages/g, 'Send text-to-speech Messages');
 	},
+
+	// soccer.js
+	randomNoRepeat: function(array) {
+		let copy = array.slice(0);
+		if (copy.length < 1) { copy = array.slice(0); }
+		const index = Math.floor(Math.random() * copy.length);
+		const item = copy[index];
+		copy.splice(index, 1);
+		return item;
+	},
 };

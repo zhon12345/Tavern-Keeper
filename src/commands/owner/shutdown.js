@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
-const { BOT_OWNER, BOT_TOKEN } = process.env;
+const { BOT_OWNER } = process.env;
 
 module.exports = {
-	name: 'restart',
+	name: 'shutdown',
 	category: 'Owner',
-	description: 'Restarts the bot.',
+	description: 'Shutdown the bot.',
 	aliases: ['reload'],
 	usage: 'restart',
 	run: async (client, message, args) => {
@@ -13,10 +13,8 @@ module.exports = {
 		}
 
 		try {
-			message.channel.send('⚙ Restarting...').then(msg => msg.delete({ timeout: 300 }))
-				.then(() => client.destroy())
-				.then(() => client.login(BOT_TOKEN))
-				.then(() => message.channel.send('<:vSuccess:725270799098970112> Restart Successful'));
+			message.channel.send('⚙ Shutting down...')
+				.then(() => process.exit());
 		}
 		catch (e) {
 			return message.channel.send(

@@ -12,9 +12,7 @@ module.exports = {
 	usage: 'guilds',
 	run: async (client, message, args) => {
 		if(message.author.id !== BOT_OWNER) {
-			return message.channel.send(
-				'<:vError:725270799124004934> You must have the following permissions to use that: Bot Owner.',
-			);
+			return;
 		}
 		const botembed = new MessageEmbed()
 			.setColor('BLUE');

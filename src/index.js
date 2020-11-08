@@ -7,7 +7,7 @@ const player = new Player(client);
 client.commands = new Collection();
 client.category = new Collection();
 client.aliases = new Collection();
-client.snipes = new Map();
+client.snipes = new Collection();
 client.player = player;
 
 ['command', 'event'].forEach(handler => {
