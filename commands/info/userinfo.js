@@ -47,6 +47,7 @@ module.exports = {
 				"\u200b",
 			])
 			.addField("<:documents:773950876347793449> Member ❯", [
+				`> **<:card:773965449402646549> Display Name: \`${member.displayName}\`**`,
 				`> **\\🥇 Highest Role: \`${member.roles.highest.id === message.guild.id ? "None" : member.roles.highest.name}\`**`,
 				`> **\\🏆 Hoisted: \`${member.roles.hoist ? "Yes" : "No"}\`**`,
 				`> **\\🏅 Roles: \`${roles.length - 1}\` Roles**`,
