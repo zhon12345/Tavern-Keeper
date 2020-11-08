@@ -6,7 +6,7 @@ const client = new Client({ disableMentions: "everyone", ws: { intents: ["GUILDS
 client.commands = new Collection();
 client.aliases = new Collection();
 client.category = new Collection();
-client.snipes = new Map();
+client.snipes = new Collection();
 
 ["command", "event"].forEach(handler => {
 	require(`./handlers/${handler}`)(client);

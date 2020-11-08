@@ -217,9 +217,4 @@ module.exports = {
 		copy.splice(index, 1);
 		return item;
 	},
-
-	// changelog.js
-	embedURL: function(title, url, display) {
-		return `[${title}](${url.replace(/\)/g, "%27")}${display ? ` "${display}"` : ""})`;
-	},
 };

@@ -13,11 +13,10 @@ module.exports = {
 		}
 
 		try {
-			message.channel.send("Restarting...").then(msg => msg.delete({ timeout: 300 }))
+			message.channel.send("⚙ Restarting...").then(msg => msg.delete({ timeout: 300 }))
 				.then(() => client.destroy())
 				.then(() => client.login(BOT_TOKEN))
-				.then(() => client.user.setActivity(`${BOT_PREFIX}help | ${client.commands.size} Commands`, { type: "PLAYING" }))
-				.then(() => message.channel.send("Restart Successful"));
+				.then(() => message.channel.send("<:vSuccess:725270799098970112> Restart Successful"));
 		}
 		catch (e) {
 			return message.channel.send(
