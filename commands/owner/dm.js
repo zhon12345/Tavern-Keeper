@@ -29,7 +29,7 @@ module.exports = {
 		try{
 			member.send(text);
 			await message.channel.send(
-				`<:vSuccess:725270799098970112> Successfully DMed ${member.user.tag}.`,
+				`<:vSuccess:725270799098970112> Successfully DMed \`${member.user.tag}\`.`,
 			);
 		}
 		catch (e) {
