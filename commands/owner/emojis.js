@@ -32,6 +32,15 @@ module.exports = {
 				Emojis += Emoji(emoji.id);
 			}
 		});
+
+		if(!Emojis) {
+			Emojis = "`None`";
+		}
+
+		if(!EmojisAnimated) {
+			EmojisAnimated = "`None`";
+		}
+
 		const Embed = new MessageEmbed()
 			.setDescription(`**Total: [${OverallEmojis}]**`)
 			.addField(`Regular [${EmojiCount}]`, Emojis.length > 1024 ? `${Emojis.slice(0, 1021)}...` : Emojis)

@@ -208,6 +208,7 @@ module.exports = {
 			.replace(/Send Tts Messages/g, "Send text-to-speech Messages");
 	},
 
+	// soccer.js
 	randomNoRepeat: function(array) {
 		let copy = array.slice(0);
 		if (copy.length < 1) { copy = array.slice(0); }
