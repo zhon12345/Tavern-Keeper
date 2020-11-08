@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
 const { BOT_OWNER, GITHUB_USERNAME, GITHUB_CLIENT_TOKEN } = process.env;
-const { embedURL } = require("../../functions");
 const { MessageEmbed } = require("discord.js");
 const fetch = require("node-fetch");
 
@@ -9,13 +7,19 @@ module.exports = {
 	category: "Owner",
 	description: "Shows the 10 latest commits.",
 	aliases: [],
-	usage: "changelog",
+	usage: "changelog <repository>",
 	run: async (client, message, args) => {
 		if(message.author.id !== BOT_OWNER) {
 			return;
 		}
 
-		const url = `https://api.github.com/repos/${GITHUB_USERNAME}/Tavern-Keeper/commits`;
+		if(!args[0] || args.length > 1) {
+			return message.channel.send(
+				"<:vError:725270799124004934> Please provide a valid GitHub repository.",
+			);
+		}
+
+		const url = `https://api.github.com/repos/${GITHUB_USERNAME}/${args[0]}/commits`;
 
 		let response;
 		try {
@@ -28,12 +32,11 @@ module.exports = {
 
 		const commits = response.slice(0, 12);
 		const embed = new MessageEmbed()
-			.setTitle("[Tavern-Keeper:master] 12 latest commits")
+			.setTitle(`[${response[0].url.split(`https://api.github.com/repos/${GITHUB_USERNAME}/`).join("").split(`/commits/${response[0].sha}`).join("")}:master] 12 latest commits`)
 			.setColor("BLUE")
-			.setURL(`https://github.com/${GITHUB_USERNAME}/Tavern-Keeper/commits/master`)
+			.setURL(response[0].html_url.split(`commit/${response[0].sha}`).join("commits/master"))
 			.setDescription(commits.map(commit => {
-				const hash = embedURL(`\`${commit.sha.slice(0, 7)}\``, commit.html_url, false);
-				return `${hash} ${commit.commit.message.split("\n")[0].length > 50 ? `${commit.commit.message.split("\n")[0].substr(0, 50 - 3)}...` : commit.commit.message.split("\n")[0]} - ${commit.author.login}`;
+				return `[\`${commit.sha.slice(0, 7)}\`](${commit.html_url}) ${commit.commit.message.split("\n")[0].length > 50 ? `${commit.commit.message.split("\n")[0].substr(0, 50 - 3)}...` : commit.commit.message.split("\n")[0]} - ${commit.author.login}`;
 			}).join("\n"));
 		return message.channel.send(embed);
 	},

@@ -36,7 +36,7 @@ module.exports = {
 			.setColor("BLUE")
 			.setTitle(response.data[0].title)
 			.setURL(response.data[0].url)
-			.setImage(response.data[0].embed_url)
+			.setImage(response.data[0].images.original.url)
 			.setFooter(`Requested by ${message.author.tag}`)
 			.setTimestamp();
 
