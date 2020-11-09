@@ -45,7 +45,7 @@ module.exports = {
 			.addField('<:documents:773950876347793449> General ❯', [
 				`> **<:card:773965449402646549> Guild Name: \`${guild.name}\`**`,
 				`> **\\📇 Guild ID: \`${guild.id}\`**`,
-				`> **\\👦 Guild Icon: ${guild.iconURL() ? `[Click here!](${guild.iconURL({ size: 256, dynamic: true })})` : '`None`'}**`,
+				`> **\\👦 Guild Icon: ${guild.iconURL() ? `[\`Click here!\`](${guild.iconURL({ size: 256, dynamic: true })})` : '`None`'}**`,
 				`> **\\👑 Guild Owner: ${guild.owner}**`,
 				`> **\\🌐 Region: ${regions[guild.region]}**`,
 				`> **\\✅ Verification Level: \`${verificationLevels[guild.verificationLevel]}\`**`,
@@ -57,7 +57,7 @@ module.exports = {
 				`> **\\💬 Channel Count: \`${channels.filter(channel => channel.type === 'text').size}\` Text \`${channels.filter(channel => channel.type === 'voice').size}\` Voice**`,
 				`> **<:emojis:774070456059822090> Emoji Count: \`${emojis.filter(emoji => !emoji.animated).size}\` Regular \`${emojis.filter(emoji => emoji.animated).size}\` Animated**`,
 				`> **<:tier:774071372942147594> Guild Boost Tier: \`Tier ${guild.premiumTier}\`**`,
-				`> **<:boost:774071372644483082> Guild Boost Count: \`${guild.premiumSubscriptionCount}\`**`,
+				`> **<:boost:774071372644483082> Guild Boost Count: \`${guild.premiumSubscriptionCount}\` Boost(s)**`,
 				'\u200b',
 			])
 			.addField('<:documents:773950876347793449> Presence ❯', [

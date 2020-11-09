@@ -18,7 +18,7 @@ module.exports = {
 
 		if(!message.member.hasPermission('BAN_MEMBERS')) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You must have the following permissions to use that: Ban Members.',
+				'<:vError:725270799124004934> Insufficient Permission! `BAN_MEMBERS` required.',
 			);
 		}
 

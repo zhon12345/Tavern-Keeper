@@ -38,11 +38,7 @@ module.exports = {
 		}
 
 		try {
-			let evaled = eval(code);
-			if (typeof evaled !== 'string') {
-				evaled = require('util').inspect(evaled, { depth: 0 });
-			}
-
+			const evaled = eval(code);
 			const output = clean(evaled);
 			if (output.length >= 1024) {
 				let response;

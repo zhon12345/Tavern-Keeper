@@ -40,7 +40,7 @@ module.exports = {
 			.addField('<:documents:773950876347793449> User ❯', [
 				`> **<:card:773965449402646549> Username: \`${member.user.tag}\`**`,
 				`> **\\📇 User ID: \`${member.id}\`**`,
-				`> **\\👦 Avatar: [Click here!](${member.user.displayAvatarURL({ dynamic: true })})**`,
+				`> **\\👦 Avatar: [\`Click here!\`](${member.user.displayAvatarURL({ dynamic: true })})**`,
 				`> **\\📛 Badges: ${member.user.flags.toArray().length ? member.user.flags.toArray().map(flag => flags[flag]).join('') : 'None'}**`,
 				`> **<:online:745651877382717560> Status: ${Presence[member.user.presence.status]}**`,
 				`> **\\📅 Created: \`${moment(member.user.createdTimestamp).format('MMMM Do YYYY, h:mm:ss')}\` | \`${Math.floor((Date.now() - member.user.createdTimestamp) / 86400000)}\` day(s) ago**`,
@@ -48,7 +48,7 @@ module.exports = {
 			])
 			.addField('<:documents:773950876347793449> Member ❯', [
 				`> **<:card:773965449402646549> Display Name: \`${member.displayName}\`**`,
-				`> **\\🥇 Highest Role: \`${member.roles.highest.id === message.guild.id ? 'None' : member.roles.highest.name}\`**`,
+				`> **\\🥇 Highest Role: ${member.roles.highest.id === message.guild.id ? 'None' : member.roles.highest}**`,
 				`> **\\🏆 Hoisted: \`${member.roles.hoist ? 'Yes' : 'No'}\`**`,
 				`> **\\🏅 Roles: \`${roles.length - 1}\` Roles**`,
 				`> **\\📥 Joined: \`${moment(member.joinedAt).format('MMMM Do YYYY, h:mm:ss')}\` | \`${Math.floor((Date.now() - member.joinedAt) / 86400000)}\` day(s) ago**`,
