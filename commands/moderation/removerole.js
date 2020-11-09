@@ -52,7 +52,7 @@ module.exports = {
 
 		member.roles.remove(role);
 		await message.channel.send(
-			`<:vSuccess:725270799098970112> Successfully removed ${role.name} from **${member.user.username}**#${member.user.discriminator}`,
+			`<:vSuccess:725270799098970112> Successfully removed \`${role.name}\` from **${member.user.username}**#${member.user.discriminator}`,
 		).then(message.delete());
 	},
 };

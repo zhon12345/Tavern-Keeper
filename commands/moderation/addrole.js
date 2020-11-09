@@ -51,7 +51,7 @@ module.exports = {
 
 		member.roles.add(role);
 		await message.channel.send(
-			`<:vSuccess:725270799098970112> Successfully gave ${role.name} to **${member.user.username}**#${member.user.discriminator}`,
+			`<:vSuccess:725270799098970112> Successfully gave \`${role.name}\` to **${member.user.username}**#${member.user.discriminator}`,
 		).then(message.delete());
 	},
 };
