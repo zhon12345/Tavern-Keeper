@@ -39,7 +39,7 @@ module.exports = {
 				'\u200b',
 			])
 			.addField('<:documents:773950876347793449> Permissions ❯', [
-				`> **\`${permissions}\`**`,
+				`>>> **\`${permissions}\`**`,
 			]);
 
 		return message.channel.send(embed);

@@ -49,38 +49,27 @@ module.exports = {
 				'<:vError:725270799124004934> Mute role not found.',
 			);
 		}
+
 		if(member.roles.cache.has(muteRole)) {
-			if(!verifiedRole) {
-				try {
-					await member.send(`You have been unmuted in ${message.guild}\n\`[Reason]\` ${Reason}`);
-				}
-				catch(err) {
-					await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
-				}
-				member.roles.remove(muteRole);
-				channel.send(
-					`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🔊 **${message.author.username}**#${message.author.discriminator} unmuted **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` ${Reason}`,
-				);
-				await message.channel.send(
-					`<:vSuccess:725270799098970112> Successfully unmuted **${member.user.username}**#${member.user.discriminator}`,
-				).then(message.delete());
+			try {
+				await member.send(`You have been unmuted in ${message.guild}\n\`[Reason]\` ${Reason}`);
 			}
-			else {
-				try {
-					await member.send(`You have been unmuted in ${message.guild}\n\`[Reason]\` ${Reason}`);
-				}
-				catch(err) {
-					await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
-				}
-				member.roles.remove(muteRole);
+			catch(err) {
+				await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+			}
+
+			if(verifiedRole) {
 				member.roles.add(verifiedRole);
-				channel.send(
-					`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🔊 **${message.author.username}**#${message.author.discriminator} unmuted **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` ${Reason}`,
-				);
-				await message.channel.send(
-					`<:vSuccess:725270799098970112> Successfully unmuted **${member.user.username}**#${member.user.discriminator}`,
-				).then(message.delete());
 			}
+
+			member.roles.remove(muteRole);
+			channel.send(
+				`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🔊 **${message.author.username}**#${message.author.discriminator} unmuted **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` ${Reason}`,
+			);
+			await message.channel.send(
+				`<:vSuccess:725270799098970112> Successfully unmuted **${member.user.username}**#${member.user.discriminator}`,
+			).then(message.delete());
+
 		}
 		else {
 			message.channel.send(

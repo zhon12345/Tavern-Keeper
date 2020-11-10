@@ -35,14 +35,25 @@ module.exports = {
 			.setThumbnail(resp.sprites.front_default)
 			.setFooter(`Requested by ${message.author.tag}`)
 			.setTimestamp()
-			.addFields(
-				{ name: 'Height', value: `\`\`\`${response.height}\`\`\``, inline: true },
-				{ name: 'Weight', value: `\`\`\`${response.weight}\`\`\``, inline: true },
-				{ name: 'Generation', value: `\`\`\`${response.generation}\`\`\``, inline: true },
-				{ name: 'Type', value: `\`\`\`${response.type.join(', ')}\`\`\`` },
-			);
-		resp.stats.forEach(stat => embed.addField(capitalizeFirstLetter(stat.stat.name).split('Special-attack').join('Sp. Attack').split('Special-defense').join('Sp. Defense'), `\`\`\`${stat.base_stat}\`\`\``, true));
-		embed.addField('Evolutions', `\`\`\`${response.family.evolutionLine ? response.family.evolutionLine.join(' -> ') : 'None'}\`\`\``);
+			.addField('<:documents:773950876347793449> General ❯', [
+				`> **\\📏 Height: \`${response.height}\`**`,
+				`> **\\⚖️ Weight: \`${response.weight}\`**`,
+				`> **\\👶 Generation: \`${response.generation}\`**`,
+				`> **\\💠 Type: \`${response.type.join('`, `')}\`**`,
+				'\u200b',
+			])
+			.addField('<:documents:773950876347793449> Stats ❯', [
+				`> **\\❤️ Health: \`${resp.stats[0].base_stat}\` Health**`,
+				`> **\\🗡️ Attack: \`${resp.stats[1].base_stat}\` Attack**`,
+				`> **\\🛡️ Defense: \`${resp.stats[2].base_stat}\` Defense**`,
+				`> **\\⚔️ Sp. Attack: \`${resp.stats[3].base_stat}\` Sp. Attack**`,
+				`> **\\🔰 Sp. Defense: \`${resp.stats[4].base_stat}\` Sp. Defense**`,
+				`> **\\💨 Speed: \`${resp.stats[5].base_stat}\`  Speed**`,
+				'\u200b',
+			])
+			.addField('<:documents:773950876347793449> Evolution ❯', [
+				`> **\`${response.family.evolutionLine ? response.family.evolutionLine.join('` -> `') : 'None'}\`**s`,
+			]);
 		message.channel.send(embed);
 	},
 };

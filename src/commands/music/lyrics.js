@@ -31,22 +31,14 @@ module.exports = {
 			.setURL(response.links.genius)
 			.setThumbnail(response.thumbnail.genius);
 
-		if(response.lyrics.length > 4095) {
-			embed.setDescription(
-				`The lyrics are too long to be returned in a message embed. Click [here](${response.links.genius}) instead`,
-				embed.setFooter(`Requested by ${message.author.tag} `),
-				embed.setTimestamp(),
-			);
-			message.channel.send(embed);
-		}
-		else if(response.lyrics.length < 2048) {
+		if(response.lyrics.length < 2048) {
 			embed.setDescription(response.lyrics);
 			embed.setFooter(`Requested by ${message.author.tag} `);
 			embed.setTimestamp();
 			message.channel.send(embed);
 		}
 		else {
-			embed.setDescription(`${response.lyrics.slice(0, 1085)}...`);
+			embed.setDescription(`${response.lyrics.slice(0, 2045)}...`);
 			embed.setFooter(`Requested by ${message.author.tag} `);
 			embed.setTimestamp();
 			await message.channel.send(embed);

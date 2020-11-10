@@ -31,20 +31,22 @@ module.exports = {
 			const account = response.graphql.user;
 			const embed = new MessageEmbed()
 				.setColor('BLUE')
-				.setTitle(account.full_name)
+				.setTitle(`${name}'s Instagram Profile`)
 				.setURL(`https://instagram.com/${name}`)
 				.setThumbnail(account.profile_pic_url_hd)
-				.setDescription(account.biography.length == 0 ? 'None' : account.biography)
+				.setDescription(account.biography.length > 0 ? account.biography : '`None`')
 				.setFooter(`Requested by ${message.author.tag}`)
 				.setTimestamp()
-				.addFields(
-					{ name: 'Posts', value: `\`\`\`${account.edge_owner_to_timeline_media.count.toLocaleString()}\`\`\``, inline: true },
-					{ name: 'Followers', value: `\`\`\`${account.edge_followed_by.count.toLocaleString()}\`\`\``, inline: true },
-					{ name: 'Following', value: `\`\`\`${account.edge_follow.count.toLocaleString()}\`\`\``, inline: true },
-					{ name: 'Recently Joined', value: `\`\`\`${account.is_joined_recently ? 'Yes' : 'No'}\`\`\``, inline: true },
-					{ name: 'Private', value: `\`\`\`${account.is_private ? 'Yes' : 'No'}\`\`\``, inline: true },
-					{ name: 'Verified', value: `\`\`\`${account.is_verified ? 'Yes' : 'No'}\`\`\``, inline: true },
-				);
+				.addField('<:documents:773950876347793449> General ❯', [
+					`> **<:card:773965449402646549> Name: \`${account.full_name}\`**`,
+					`> **\\📇 ID: \`${account.id}\`**`,
+					`> **\\👦 Avatar: [\`Click here!\`](${account.profile_pic_url_hd})**`,
+					`> **\\👥 Followers: \`${account.edge_followed_by.count.toLocaleString()}\` Followers**`,
+					`> **\\👤 Following: \`${account.edge_follow.count.toLocaleString()}\` Following**`,
+					`> **\\📷 Posts: \`${account.edge_owner_to_timeline_media.count.toLocaleString()}\` Posts**`,
+					`> **\\🔐 Private: \`${account.is_private ? 'Yes' : 'No'}\`**`,
+					`> **<:instaverified:775758117513199626> Verified: \`${account.is_verified ? 'Yes' : 'No'}\`**`,
+				]);
 			message.channel.send(embed);
 		}
 		catch (err) {

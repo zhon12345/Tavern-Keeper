@@ -23,8 +23,7 @@ module.exports = {
 		}
 		const embed = new MessageEmbed()
 			.setColor('BLUE')
-			.setTitle('Translator')
-			.addField('Language', `\`\`\`\n${response.lang}\`\`\``)
+			.setTitle(`${response.lang.toUpperCase()} Translator`)
 			.addField('Input', `\`\`\`\n${response.original}\`\`\``)
 			.addField('Output', `\`\`\`\n${response.text}\`\`\``)
 			.setFooter(`Requested by ${message.author.tag}`)
