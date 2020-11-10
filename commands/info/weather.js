@@ -1,4 +1,3 @@
-/* eslint-disable max-statements-per-line */
 const weather = require("weather-js");
 const { MessageEmbed } = require("discord.js");
 
@@ -23,7 +22,7 @@ module.exports = {
 				message.channel.send(err);
 			}
 
-			if (result.length === 0) {
+			if (result === undefined || result.length === 0) {
 				return message.channel.send(
 					"<:vError:725270799124004934> Please provide a valid location",
 				);
@@ -38,14 +37,13 @@ module.exports = {
 				.setFooter(`Requested by ${message.author.tag}`)
 				.setTimestamp()
 				.addFields(
-					{ name: "Timezone", value: `\`\`\`UTC ${location.timezone}\`\`\``, inline: true },
-					{ name: "Degree Measurement", value: `\`\`\`°${location.degreetype}\`\`\``, inline: true },
-					{ name: "Temperature", value: `\`\`\`${current.temperature} Degrees\`\`\``, inline: true },
-					{ name: "Feels Like", value: `\`\`\`${current.feelslike} Degrees\`\`\``, inline: true },
-					{ name: "Wind", value: `\`\`\`${current.winddisplay}\`\`\``, inline: true },
-					{ name: "Humidity", value: `\`\`\`${current.humidity}%\`\`\``, inline: true },
+					{ name: "Timezone", value: `UTC ${location.timezone}`, inline: true },
+					{ name: "Degree Measurement", value: `°${location.degreetype}`, inline: true },
+					{ name: "Temperature", value: `${current.temperature} Degrees`, inline: true },
+					{ name: "Feels Like", value: `${current.feelslike} Degrees`, inline: true },
+					{ name: "Wind", value: current.winddisplay, inline: true },
+					{ name: "Humidity", value: `${current.humidity}%`, inline: true },
 				);
-
 			message.channel.send(embed);
 		});
 	},

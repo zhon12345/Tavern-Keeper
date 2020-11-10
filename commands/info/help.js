@@ -53,11 +53,11 @@ module.exports = {
 					.setTimestamp()
 					.setFooter("Syntax: <> = required, [] = optional", `${client.user.avatarURL()}`)
 					.setDescription([
-						`**❯ Name:** ${cmd.name}`,
-						`**❯ Category:** ${capitalizeFirstLetter(cmd.category.toString().toLowerCase())}`,
-						`**❯ Description:** ${cmd.description}`,
-						`**❯ Usage:** ${BOT_PREFIX}${cmd.usage}`,
-						`**❯ Aliases:** ${cmd.aliases.length ? cmd.aliases.map((a) => `\`${a}\``).join(", ") : "`None`"}`,
+						`> **Name: \`${cmd.name}\`**`,
+						`> **Category: \`${cmd.category.toString()}\`**`,
+						`> **Description: \`${capitalizeFirstLetter(cmd.description)}\`**`,
+						`> **Usage: \`${BOT_PREFIX}${cmd.usage}\`**`,
+						`> **Aliases: \`${cmd.aliases.length ? cmd.aliases.map((a) => `${a}`).join("`, `") : "None"}\`**`,
 					]);
 				return message.channel.send(hembed);
 			}

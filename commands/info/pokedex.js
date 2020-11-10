@@ -10,7 +10,7 @@ module.exports = {
 	usage: "pokemon <pokemon>",
 	run: async (client, message, args) => {
 		const pokemon = args.slice().join(" ");
-		if (!pokemon) {
+		if(!pokemon) {
 			return message.channel.send(
 				"<:vError:725270799124004934> Please provide a valid Pokémon.",
 			);
@@ -28,30 +28,32 @@ module.exports = {
 				"<:vError:725270799124004934> An error occured, please try again!",
 			);
 		}
-
-		try {
-			const data = response;
-			const embed = new MessageEmbed()
-				.setColor("BLUE")
-				.setTitle(`${capitalizeFirstLetter(data.name)} #${data.id}`)
-				.setDescription(data.description)
-				.setThumbnail(resp.sprites.front_default)
-				.setFooter(`Requested by ${message.author.tag}`)
-				.setTimestamp()
-				.addFields(
-					{ name: "Height", value: `\`\`\`${data.height}\`\`\``, inline: true },
-					{ name: "Weight", value: `\`\`\`${data.weight}\`\`\``, inline: true },
-					{ name: "Generation", value: `\`\`\`${data.generation}\`\`\``, inline: true },
-					{ name: "Type", value: `\`\`\`${data.type.join(", ")}\`\`\`` },
-				);
-			resp.stats.forEach(stat => embed.addField(capitalizeFirstLetter(stat.stat.name).split("Special-attack").join("Sp. Attack").split("Special-defense").join("Sp. Defense"), `\`\`\`${stat.base_stat}\`\`\``, true));
-			embed.addField("Evolutions", `\`\`\`${data.family.evolutionLine ? data.family.evolutionLine.join(" -> ") : "None"}\`\`\``);
-			message.channel.send(embed);
-		}
-		catch (e) {
-			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid Pokémon.",
-			);
-		}
+		const embed = new MessageEmbed()
+			.setColor("BLUE")
+			.setTitle(`${capitalizeFirstLetter(response.name)} #${response.id}`)
+			.setDescription(response.description)
+			.setThumbnail(resp.sprites.front_default)
+			.setFooter(`Requested by ${message.author.tag}`)
+			.setTimestamp()
+			.addField("<:documents:773950876347793449> General ❯", [
+				`> **\\📏 Height: \`${response.height}\`**`,
+				`> **\\⚖️ Weight: \`${response.weight}\`**`,
+				`> **\\👶 Generation: \`${response.generation}\`**`,
+				`> **\\💠 Type: \`${response.type.join("`, `")}\`**`,
+				"\u200b",
+			])
+			.addField("<:documents:773950876347793449> Stats ❯", [
+				`> **\\❤️ Health: \`${resp.stats[0].base_stat}\` Health**`,
+				`> **\\🗡️ Attack: \`${resp.stats[1].base_stat}\` Attack**`,
+				`> **\\🛡️ Defense: \`${resp.stats[2].base_stat}\` Defense**`,
+				`> **\\⚔️ Sp. Attack: \`${resp.stats[3].base_stat}\` Sp. Attack**`,
+				`> **\\🔰 Sp. Defense: \`${resp.stats[4].base_stat}\` Sp. Defense**`,
+				`> **\\💨 Speed: \`${resp.stats[5].base_stat}\`  Speed**`,
+				"\u200b",
+			])
+			.addField("<:documents:773950876347793449> Evolution ❯", [
+				`> **\`${response.family.evolutionLine ? response.family.evolutionLine.join("` -> `") : "None"}\`**s`,
+			]);
+		message.channel.send(embed);
 	},
 };
