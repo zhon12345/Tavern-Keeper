@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const fetch = require("node-fetch");
+const moment = require("moment");
 
 module.exports = {
 	name: "github",
@@ -30,21 +31,24 @@ module.exports = {
 		try{
 			const embed = new MessageEmbed()
 				.setColor("BLUE")
-				.setTitle(`${response.login} (${response.id})`)
-				.setDescription(response.bio ? response.bio : "None")
-				.addFields(
-					{ name: "Followers", value: `\`\`\`${response.followers.toLocaleString()}\`\`\``, inline: true },
-					{ name: "Following", value: `\`\`\`${response.following.toLocaleString()}\`\`\``, inline: true },
-					{ name: "Repositories", value: `\`\`\`${response.public_repos.toLocaleString()}\`\`\``, inline: true },
-					{ name: "Email", value: `\`\`\`${response.email ? response.email : "None"}\`\`\`` },
-					{ name: "Company", value: `\`\`\`${response.company ? response.company : "None"}\`\`\`` },
-					{ name: "Location", value: `\`\`\`${response.location ? response.location : "None"}\`\`\`` },
-				)
+				.setTitle(`${response.login}'s GitHub Profile'`)
+				.setDescription(response.bio ? response.bio : "`None`")
 				.setURL(response.html_url)
 				.setThumbnail(response.avatar_url)
 				.setFooter(`Requested by ${message.author.tag}`)
-				.setTimestamp();
-
+				.setTimestamp()
+				.addField("<:documents:773950876347793449> General ❯", [
+					`> **<:card:773965449402646549> Name: \`${response.login}\`**`,
+					`> **\\📇 ID: \`${response.id}\`**`,
+					`> **\\👦 Avatar: [\`Click here!\`](${response.avatar_url})**`,
+					`> **\\📍 Location: \`${response.location ? response.location : "None"}\`**`,
+					`> **\\📧 E-mail: \`${response.email ? response.email : "None"}\`**`,
+					`> **\\🌐 Website: \`${response.blog ? response.blog : "None"}\`**`,
+					`> **\\👥 Followers: \`${response.followers.toLocaleString()}\` Followers**`,
+					`> **\\👤 Following: \`${response.following.toLocaleString()}\` Following**`,
+					`> **\\🗃️ Repositories: \`${response.public_repos.toLocaleString()}\` Repositories**`,
+					`> **\\📅 Created: \`${moment(response.created_at).format("MMMM Do YYYY, h:mm:ss")}\` | \`${Math.floor((Date.now() - Date.parse(response.created_at)) / 86400000)}\` day(s) ago**`,
+				]);
 			message.channel.send(embed);
 		}
 		catch (err) {
