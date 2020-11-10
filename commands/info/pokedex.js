@@ -52,7 +52,7 @@ module.exports = {
 				"\u200b",
 			])
 			.addField("<:documents:773950876347793449> Evolution ❯", [
-				`> **\`${response.family.evolutionLine ? response.family.evolutionLine.join("` -> `") : "None"}\`**s`,
+				`> **\`${response.family.evolutionLine ? response.family.evolutionLine.join("` -> `") : "None"}\`**`,
 			]);
 		message.channel.send(embed);
 	},
