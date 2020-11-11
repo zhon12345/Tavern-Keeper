@@ -31,7 +31,7 @@ module.exports = async (client, message) => {
 					return;
 				}
 				else if(!message.member.hasPermission(permission)) {
-					return message.reply(
+					return message.channel.send(
 						`<:vError:725270799124004934> Insufficient Permission! \`${permission}\` required.`,
 					);
 				}
@@ -45,16 +45,10 @@ module.exports = async (client, message) => {
 			for(const permission of command.botperms) {
 				if (!message.member.hasPermission(permission)) {
 					return message.channel.send(
-						`<:vError:725270799124004934> Insufficient Permission! \`${permission}\` required.`,
+						`<:vError:725270799124004934> Insufficient Permission! I require \`${permission}\`.`,
 					);
 				}
 			}
-		}
-
-		if(!message.guild.me.hasPermission("USE_EXTERNAL_EMOJIS")) {
-			return message.channel.send(
-				"<:vError:725270799124004934> Insufficient Permission! `Use External Emojis` required.",
-			);
 		}
 		command.run(client, message, args);
 	}
