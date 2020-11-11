@@ -10,6 +10,8 @@ module.exports = {
 	description: 'Test your knowledge with a trivia question.',
 	aliases: ['quiz'],
 	usage: 'trivia',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		const filter = (m) => m.author.id === message.author.id;
 		const url = 'https://opentdb.com/api.php?amount=1&type=boolean';

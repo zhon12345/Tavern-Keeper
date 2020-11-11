@@ -20,9 +20,9 @@ const regions = {
 	southafrica: ':flag_za: `South Africa`',
 	sydney: ':flag_au: `Sydeny`',
 	'us-central': ':flag_us: `US Central`',
-	'us-east': 'flag_us: `US East`',
-	'us-west': 'flag_us: `US West`',
-	'us-south': 'flag_us: `US South`',
+	'us-east': ':flag_us: `US East`',
+	'us-west': ':flag_us: `US West`',
+	'us-south': ':flag_us: `US South`',
 	'eu-west': ':flag_eu: `EU West`',
 };
 
@@ -32,6 +32,8 @@ module.exports = {
 	description: 'Displays information about the server.',
 	aliases: ['server', 'guild', 'guildinfo', 'si', 'gi'],
 	usage: 'serverinfo',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		const guild = client.guilds.cache.get(args[0]) || message.guild;
 		const members = guild.members.cache;

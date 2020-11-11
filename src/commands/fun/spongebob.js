@@ -6,6 +6,8 @@ module.exports = {
 	description: 'Converts text into SpOnGeBoB mOcKiNg TeXt.',
 	aliases: ['mocking'],
 	usage: 'clapify <text>',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		const text = args.slice().join(' ');
 		if(!text) {

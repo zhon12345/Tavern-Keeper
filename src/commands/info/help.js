@@ -8,7 +8,9 @@ module.exports = {
 	aliases: ['commands'],
 	category: 'Info',
 	description: 'Returns the help page, or one specific command info.',
-	usage: 'help [command/category]',
+	usage: 'help [command]',
+	userperms: [],
+	botperms: [],
 	run: async (client, message, args) => {
 		const settings = await Guild.findOne({
 			guildID: message.guild.id,
@@ -24,7 +26,7 @@ module.exports = {
 				.setDescription([`
 			This server's prefix is \`${settings.prefix}\`.
 			For more info on a specific command, type \`${settings.prefix}help <command>\`.
-			Visit the bot's website [here](https://tavern-keeper.weebly.com/) for more info on certain features.
+			Visit the bot's website [here](http://tavernkeeper.ml) for more info on certain features.
 			`]);
 
 			for (const id of categories) {
@@ -76,7 +78,7 @@ module.exports = {
 				.setDescription([`
 				This server's prefix is \`${settings.prefix}\`.
 				For more info on a specific command, type \`${settings.prefix}help <command>\`.
-				Visit the bot's website [here](https://tavern-keeper.weebly.com/) for more info on certain features.
+				Visit the bot's website [here](http://tavernkeeper.ml) for more info on certain features.
 				`]);
 
 			const categories = [...new Set(client.commands.filter(cmd => cmd.category !== 'Owner').map(cmd => cmd.category))];

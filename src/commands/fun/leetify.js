@@ -6,6 +6,8 @@ module.exports = {
 	description: 'B3C0M3 4N l337 h4X0R.',
 	aliases: ['leet', '1337'],
 	usage: 'leetify <text>',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		const text = args.slice().join(' ');
 		if(!text) {

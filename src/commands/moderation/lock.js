@@ -6,13 +6,9 @@ module.exports = {
 	description: 'Locks the specified channel to prevent raids.',
 	aliases: ['lockdown'],
 	usage: 'lock [channel] <on/off>',
+	userperms: ['MANAGE_CHANNELS'],
+	botperms: ['USE_EXTERNAL_EMOJIS', 'MANAGE_CHANNELS'],
 	run: async (client, message, args) => {
-		if(!message.member.hasPermission('MANAGE_CHANNELS') || !message.guild.me.hasPermission('MANAGE_CHANNELS')) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Insufficient Permission! `MANAGE_CHANNELS` required.',
-			);
-		}
-
 		const settings = await Guild.findOne({
 			guildID: message.guild.id,
 		});

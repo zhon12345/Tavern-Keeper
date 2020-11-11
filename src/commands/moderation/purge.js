@@ -8,6 +8,8 @@ module.exports = {
 	description: 'Clear up to 99 messages in a specified channel.',
 	aliases: ['prune'],
 	usage: 'purge <amount> [reason]',
+	userperms: ['MANAGE_MESSAGES'],
+	botperms: ['USE_EXTERNAL_EMOJIS', 'MANAGE_MESSAGES'],
 	run: async (client, message, args) => {
 		const settings = await Guild.findOne({
 			guildID: message.guild.id,
@@ -15,12 +17,6 @@ module.exports = {
 		const logs = settings.settings.modlog;
 		const channel = message.guild.channels.cache.get(logs);
 		if (!channel) return;
-
-		if(!message.member.hasPermission('MANAGE_MESSAGES') || !message.guild.me.hasPermission('MANAGE_MESSAGES')) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Insufficient Permission! `ADD_REACTIONS` required.',
-			);
-		}
 
 		const amount = parseInt(args[0]);
 

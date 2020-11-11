@@ -8,6 +8,8 @@ module.exports = {
 	description: 'Temporarily mute a specified user.',
 	aliases: ['silent'],
 	usage: 'tempmute <user> <time> <reason> ',
+	userperms: ['KICK_MEMBERS'],
+	botperms: ['USE_EXTERNAL_EMOJIS', 'MANAGE_ROLES'],
 	run: async (client, message, args) => {
 		const settings = await Guild.findOne({
 			guildID: message.guild.id,
@@ -15,18 +17,6 @@ module.exports = {
 		const logs = settings.settings.modlog;
 		const channel = message.guild.channels.cache.get(logs);
 		if (!channel) return;
-
-		if(!message.member.hasPermission('KICK_MEMBERS')) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Insufficient Permission! `KICK_MEMBERS` required.',
-			);
-		}
-
-		if(!message.guild.me.hasPermission('MANAGE_ROLES')) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Insufficient Permission! `MANAGE_ROLES` required.',
-			);
-		}
 
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]);
 		if(!member) {

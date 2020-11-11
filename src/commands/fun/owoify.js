@@ -6,6 +6,8 @@ module.exports = {
 	description: 'OwOify a provided text.',
 	aliases: [],
 	usage: 'owoify <text>',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		const text = args.slice().join(' ');
 		if(!text) {

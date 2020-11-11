@@ -7,6 +7,8 @@ module.exports = {
 	description: 'Searches for lyrics of a specified song.',
 	aliases: [],
 	usage: 'lyrics <song>',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		if (!args[0]) {
 			return message.channel.send(
@@ -29,19 +31,10 @@ module.exports = {
 			.setColor('BLUE')
 			.setTitle(`${response.title} by ${response.author}`)
 			.setURL(response.links.genius)
-			.setThumbnail(response.thumbnail.genius);
-
-		if(response.lyrics.length < 2048) {
-			embed.setDescription(response.lyrics);
-			embed.setFooter(`Requested by ${message.author.tag} `);
-			embed.setTimestamp();
-			message.channel.send(embed);
-		}
-		else {
-			embed.setDescription(`${response.lyrics.slice(0, 2045)}...`);
-			embed.setFooter(`Requested by ${message.author.tag} `);
-			embed.setTimestamp();
-			await message.channel.send(embed);
-		}
+			.setThumbnail(response.thumbnail.genius)
+			.setDescription(response.lyrics.length > 2048 ? `${response.lyrics.slice(0, 2045)}...` : response.lyrics)
+			.setFooter(`Requested by ${message.author.tag} `)
+			.setTimestamp();
+		return message.channel.send(embed);
 	},
 };

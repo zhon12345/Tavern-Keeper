@@ -7,6 +7,8 @@ module.exports = {
 	description: 'Displays indept information about the secified invite code.',
 	aliases: ['ii'],
 	usage: 'inviteinfo',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		const code = args[0];
 		if(!code) {

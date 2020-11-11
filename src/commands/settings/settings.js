@@ -8,13 +8,9 @@ module.exports = {
 	description: 'Displays the server\'s settings.',
 	aliases: ['setting'],
 	usage: 'settings',
+	userperms: ['ADMINISTRATOR'],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
-		if (!message.member.hasPermission('ADMINISTRATOR')) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Insufficient Permission! `ADMINISTRATOR` required.',
-			);
-		}
-
 		const settings = await Guild.findOne({
 			guildID: message.guild.id,
 		});
@@ -28,26 +24,28 @@ module.exports = {
 		const leavechannel = message.guild.channels.cache.get(settings.welcomer.leavechannel);
 
 		const embed = new MessageEmbed()
-			.setTitle(`**${client.user.username} settings for ${message.guild.name}**`)
+			.setTitle(`${client.user.username}'s Settings`)
 			.setColor('BLUE')
+			.setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 512 }))
 			.setFooter(`Requested by ${message.author.tag} `)
 			.setTimestamp()
-			.addFields(
-				{ name: 'Prefix', value: `\`\`\`${settings.prefix}\`\`\`` },
-				{ name: 'Anti Profanity', value: `\`\`\`${settings.settings.antiprofanity ? 'On' : 'Off'}\`\`\``, inline:true },
-				{ name: 'Anti Links', value: `\`\`\`${settings.settings.antilinks ? 'On' : 'Off'}\`\`\``, inline:true },
-				{ name: 'Muted Role', value: `\`\`\`${settings.settings.muterole ? muterole.name : ' None'}\`\`\`` },
-				{ name: 'Verified Role', value: `\`\`\`${settings.settings.verifyrole ? verifiedrole.name : ' None'}\`\`\`` },
-				{ name: 'Mod Log', value: `\`\`\`${settings.settings.modlog ? modlog.name : ' None'}\`\`\`` },
-				{ name: 'Server Log', value: `\`\`\`${settings.settings.serverlog ? serverlog.name : ' None'}\`\`\`` },
-				{ name: 'Message Log', value: `\`\`\`${settings.settings.messagelog ? messagelog.name : ' None'}\`\`\`` },
-				{ name: '\u200b', value: '**Welcomer**' },
-				{ name: 'Join channel', value: `\`\`\`${settings.welcomer.joinchannel ? joinchannel.name : ' None'}\`\`\``, inline:true },
-				{ name: 'Leave channel', value: `\`\`\`${settings.welcomer.leavechannel ? leavechannel.name : ' None'}\`\`\``, inline:true },
-				{ name: 'Join message', value: `\`\`\`${settings.welcomer.jointext ? settings.welcomer.jointext : 'None'}\`\`\`` },
-				{ name: 'Leave message', value: `\`\`\`${settings.welcomer.leavetext ? settings.welcomer.leavetext : 'None'}\`\`\`` },
-			);
-
+			.addField('<:documents:773950876347793449> Settings ❯', [
+				`> **Prefix: \`${settings.prefix}\`**`,
+				`> **Anti Profanity: \`${settings.settings.antiprofanity ? 'On' : 'Off'}\`**`,
+				`> **Anti Links: \`${settings.settings.antilinks ? 'On' : 'Off'}\`**`,
+				`> **Muted Role:** ${settings.settings.muterole ? muterole : '`None`'}`,
+				`> **Verified Role:** ${settings.settings.verifyrole ? verifiedrole : '`None`'}`,
+				`> **Mod Log: ${settings.settings.modlog ? modlog : '`None`'}**`,
+				`> **Server Log: ${settings.settings.serverlog ? serverlog : '`None`'}**`,
+				`> **Message Log: ${settings.settings.messagelog ? messagelog : '`None`'}**`,
+				'\u200b',
+			])
+			.addField('<:documents:773950876347793449> Welcomer ❯', [
+				`> **Join channel: ${settings.welcomer.joinchannel ? joinchannel : '`None`'}**`,
+				`> **Leave channel: ${settings.welcomer.leavechannel ? leavechannel : '`None`'}**`,
+				`> **Join message: \n> \`${settings.welcomer.jointext ? settings.welcomer.jointext : 'None'}\`**`,
+				`> **Leave message: \n> \`${settings.welcomer.leavetext ? settings.welcomer.leavetext : 'None'}\`**`,
+			]);
 		return message.channel.send(embed);
 	},
 };

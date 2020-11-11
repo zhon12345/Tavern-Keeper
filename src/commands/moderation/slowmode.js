@@ -7,13 +7,9 @@ module.exports = {
 	category: 'Moderation',
 	description: 'Set the slowmode for a specific channel.',
 	usage: 'slowmode [channel] <time>',
+	userperms: ['MANAGE_CHANNELS'],
+	botperms: ['USE_EXTERNAL_EMOJIS', 'MANAGE_CHANNELS'],
 	run: async (client, message, args) => {
-		if(!message.member.hasPermission('MANAGE_CHANNELS') || !message.guild.me.hasPermission('MANAGE_CHANNELS')) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Insufficient Permission! `MANAGE_CHANNELS` required.',
-			);
-		}
-
 		let channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]),
 			time = args[1];
 

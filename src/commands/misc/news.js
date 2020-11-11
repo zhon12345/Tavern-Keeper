@@ -9,6 +9,8 @@ module.exports = {
 	description: 'Get the latest news from around the world.',
 	aliases: [],
 	usage: 'news',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		const num = Math.floor(Math.random() * 11);
 		const url = 'https://newsapi.org/v2/top-headlines?sources=reuters&apiKey=' + token;

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-const { BOT_OWNER, BOT_TOKEN } = process.env;
+const { BOT_TOKEN } = process.env;
 
 module.exports = {
 	name: 'restart',
@@ -7,11 +7,9 @@ module.exports = {
 	description: 'Restarts the bot.',
 	aliases: ['reload'],
 	usage: 'restart',
+	userperms: ['BOT_OWNER'],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
-		if (message.author.id !== BOT_OWNER) {
-			return;
-		}
-
 		try {
 			message.channel.send('⚙ Restarting...').then(msg => msg.delete({ timeout: 300 }))
 				.then(() => client.destroy())

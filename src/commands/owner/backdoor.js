@@ -1,5 +1,4 @@
 const { MessageEmbed } = require('discord.js');
-const { BOT_OWNER } = process.env;
 
 module.exports = {
 	name: 'backdoor',
@@ -7,12 +6,9 @@ module.exports = {
 	usage: 'backdoor <server>',
 	category: 'Owner',
 	aliases: ['bd'],
-
+	userperms: ['BOT_OWNER'],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
-		if(message.author.id !== BOT_OWNER) {
-			return;
-		}
-
 		const guildId = args[0];
 		if(!guildId || isNaN(guildId) || guildId.length > 18) {
 			return message.channel.send(

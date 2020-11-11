@@ -1,8 +1,8 @@
-const { is_url, is_invite } = require('../../functions');
+const { is_url, is_invite, validatePermissions } = require('../../functions');
+const { BOT_PREFIX, BOT_OWNER } = process.env;
 const Guild = require('../../models/guild');
 const { warn } = require('../../util/warn');
 const mongoose = require('mongoose');
-const { BOT_PREFIX } = process.env;
 
 module.exports = async (client, message) => {
 	if (message.author.bot) return;
@@ -106,14 +106,40 @@ module.exports = async (client, message) => {
 	const command = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
 
 	if (command) {
+		if (command.userperms.length > 0 || command.botperms.length > 0) {
+			if (typeof command.userperms === 'string') {
+				command.userperms = command.userperms.split();
+				validatePermissions(command.userperms);
+			}
+
+			for(const permission of command.userperms) {
+				if(permission === 'BOT_OWNER' && message.member.id !== BOT_OWNER) {
+					return;
+				}
+				else if(!message.member.hasPermission(permission)) {
+					return message.reply(
+						`<:vError:725270799124004934> Insufficient Permission! \`${permission}\` required.`,
+					);
+				}
+			}
+
+			if(typeof command.botperms === 'string') {
+				command.botperms = command.botperms.split();
+				validatePermissions(command.botperms);
+			}
+
+			for(const permission of command.botperms) {
+				if (!message.member.hasPermission(permission)) {
+					return message.channel.send(
+						`<:vError:725270799124004934> Insufficient Permission! \`${permission}\` required.`,
+					);
+				}
+			}
+		}
+
 		if(!message.guild.me.hasPermission('USE_EXTERNAL_EMOJIS')) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Insufficient Permission! `Use External Emojis` required.',
-			);
-		}
-		if(!message.guild.me.hasPermission('EMBED_LINKS')) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Insufficient Permission! `Embed Links` required.',
 			);
 		}
 		command.run(client, message, args);

@@ -3,14 +3,10 @@ module.exports = {
 	category: 'Moderation',
 	description: 'Adds a role to a specified user.',
 	aliases: [],
+	userperms: ['MANAGE_ROLES'],
+	botperms: ['USE_EXTERNAL_EMOJIS', 'MANAGE_ROLES'],
 	usage: 'addrole <user> <role>',
 	run: async (client, message, args) => {
-		if(!message.member.hasPermission('MANAGE_ROLES') || !message.guild.me.hasPermission('MANAGE_ROLES')) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Insufficient Permission! `Manage Roles` required.',
-			);
-		}
-
 		const role = message.mentions.roles.first() || message.guild.roles.cache.get(args[1]);
 		if(!role) {
 			return message.channel.send(

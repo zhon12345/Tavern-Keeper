@@ -9,6 +9,8 @@ module.exports = {
 	description: 'Lets see some pretty kitties!',
 	aliases: ['cats', 'kitty', 'meow'],
 	usage: 'cat',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		const subreddits = [
 			'cats',

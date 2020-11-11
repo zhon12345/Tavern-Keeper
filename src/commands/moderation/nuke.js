@@ -8,6 +8,8 @@ module.exports = {
 	description: 'Clones the current channel and deletes the old one.',
 	aliases: [],
 	usage: 'nuke',
+	userperms: ['ADMINISTRATOR'],
+	botperms: ['USE_EXTERNAL_EMOJIS', 'MANAGE_CHANNELS'],
 	run: async (client, message, args) => {
 		const settings = await Guild.findOne({
 			guildID: message.guild.id,
@@ -15,18 +17,6 @@ module.exports = {
 		const logs = settings.settings.modlog;
 		const channel = message.guild.channels.cache.get(logs);
 		if (!channel) return;
-
-		if (!message.member.hasPermission('ADMINISTRATOR')) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Insufficient Permission! `ADMINISTRATOR` required.',
-			);
-		}
-
-		if (!message.guild.me.hasPermission('MANAGE_CHANNELS')) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Insufficient Permission! `MANAGE_CHANNELS` required.',
-			);
-		}
 
 		let Reason = args.slice(1).join(' ');
 		if (!Reason) {

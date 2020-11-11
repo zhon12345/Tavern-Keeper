@@ -7,6 +7,8 @@ module.exports = {
 	description: 'Unmute a muted user.',
 	aliases: ['unsilent'],
 	usage: 'unmute <user> <reason>',
+	userperms: ['MANAGE_ROLES'],
+	botperms: ['USE_EXTERNAL_EMOJIS', 'MANAGE_ROLES'],
 	run: async (client, message, args) => {
 		const settings = await Guild.findOne({
 			guildID: message.guild.id,
@@ -14,12 +16,6 @@ module.exports = {
 		const logs = settings.settings.modlog;
 		const channel = message.guild.channels.cache.get(logs);
 		if (!channel) return;
-
-		if(!message.member.hasPermission('MANAGE_ROLES') || !message.guild.me.hasPermission('MANAGE_ROLES')) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Insufficient Permission! `MANAGE_ROLES` required.',
-			);
-		}
 
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]);
 		if(!member) {

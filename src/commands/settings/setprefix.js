@@ -6,13 +6,9 @@ module.exports = {
 	description: 'Change the bot\'s prefix for the server.',
 	aliases: ['prefix'],
 	usage: 'setprefix <prefix>',
+	userperms: ['ADMINISTRATOR'],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
-		if (!message.member.hasPermission('ADMINISTRATOR')) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Insufficient Permission! `ADMINISTRATOR` required.',
-			);
-		}
-
 		const settings = await Guild.findOne({
 			guildID: message.guild.id,
 		});

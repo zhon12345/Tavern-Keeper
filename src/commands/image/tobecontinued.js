@@ -8,6 +8,8 @@ module.exports = {
 	description: 'To be continued...',
 	aliases: [],
 	usage: 'tobecontinued [user]',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS', 'ATTACH_FILES'],
 	run: async (client, message, args) => {
 		if(!message.guild.me.hasPermission('ATTACH_FILES')) {
 			return message.channel.send(

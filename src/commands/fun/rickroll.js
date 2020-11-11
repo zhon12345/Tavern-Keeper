@@ -5,6 +5,8 @@ module.exports = {
 	description: '"Never Gonna Give You Up"',
 	aliases: [],
 	usage: 'rickroll',
+	userperms: [],
+	botperms: ['ATTACH_FILES'],
 	run: async (client, message, args) => {
 		message.channel.send({ files: ['./assets/image/rickroll.gif'] }).then(message.delete());
 	},

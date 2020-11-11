@@ -5,6 +5,8 @@ module.exports = {
 	description: 'guessing game of the year 10/10',
 	aliases: ['gtn'],
 	usage: 'guess',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		const random = Math.floor(Math.random() * 10) + 1;
 		const filter = mi => mi.author.id === message.author.id;

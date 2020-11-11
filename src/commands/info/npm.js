@@ -7,6 +7,8 @@ module.exports = {
 	description: 'Get info about a specified npm package.',
 	aliases: [],
 	usage: 'npm <package>',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		const package = args[0];
 		if(!package) {

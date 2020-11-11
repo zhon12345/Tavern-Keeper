@@ -5,6 +5,8 @@ module.exports = {
 	description: '​How lucky are you? Play slots to find out.',
 	aliases: [],
 	usage: 'slots',
+	userperms: [],
+	botperms: [],
 	run: async (client, message, args) => {
 		const slot = ['🍒', '🍊', '🍋', '🍉', '🍌'];
 		const a = slot[Math.floor(Math.random() * slot.length)];

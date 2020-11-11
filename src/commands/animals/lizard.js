@@ -9,6 +9,8 @@ module.exports = {
 	description: 'How do you describe them again?',
 	aliases: ['lizards'],
 	usage: 'lizard',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		const subreddits = [
 			'reptiles',

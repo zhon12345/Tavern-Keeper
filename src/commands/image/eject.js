@@ -21,6 +21,8 @@ module.exports = {
 	description: 'Are they the imposter? They seem kinda sus.',
 	aliases: [],
 	usage: 'eject <user>',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS', 'ATTACH_FILES'],
 	run: async (client, message, args) => {
 		const color = colors[Math.floor(Math.random() * colors.length)];
 		const isimpostor = ['true', 'false'][Math.floor(Math.random() * 2)];

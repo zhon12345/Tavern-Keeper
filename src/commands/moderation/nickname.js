@@ -4,13 +4,9 @@ module.exports = {
 	description: 'Set the nickname of a specified user.',
 	aliases: ['nick'],
 	usage: 'nickname <user> <nickname>',
+	userperms: ['MANAGE_NICKNAMES'],
+	botperms: ['USE_EXTERNAL_EMOJIS', 'MANAGE_NICKNAMES'],
 	run: async (client, message, args) => {
-		if(!message.member.hasPermission('MANAGE_NICKNAMES') || !message.guild.me.hasPermission('MANAGE_NICKNAMES')) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Insufficient Permission! `MANAGE_NICKNAMES` required.',
-			);
-		}
-
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]);
 		if (!member) {
 			return message.channel.send(

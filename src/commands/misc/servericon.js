@@ -6,6 +6,8 @@ module.exports = {
 	usage: 'serverinfo',
 	category: 'Misc',
 	aliases: ['sav'],
+	userperms: [],
+	botperms: [],
 	run: async (client, message, args) => {
 		const guild = client.guilds.cache.get(args[0]) || message.guild;
 		const avatar = guild.iconURL({ size: 256, dynamic: true });

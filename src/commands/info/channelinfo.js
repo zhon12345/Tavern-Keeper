@@ -18,6 +18,8 @@ module.exports = {
 	description: 'Displays information about a provided channel.',
 	aliases: ['channel', 'ci'],
 	usage: 'channelinfo [channel]',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		const channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]) || message.channel;
 		if(!channel) {

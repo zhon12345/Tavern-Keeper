@@ -14,6 +14,8 @@ module.exports = {
 	description: 'Flips a table... with animation!',
 	aliases: [],
 	usage: 'tableflip',
+	userperms: [],
+	botperms: [],
 	run: async (client, message, args) => {
 		const msg = await message.channel.send('(\\\\°□°)\\\\  ┬─┬');
 		for (const frame of frames) {

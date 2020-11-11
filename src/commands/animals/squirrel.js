@@ -9,6 +9,8 @@ module.exports = {
 	description: 'Aren\'t squirrel cute when they are eating?',
 	aliases: ['squirrels'],
 	usage: 'squirrel',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		const url = 'https://www.reddit.com/r/SEUT/hot.json';
 

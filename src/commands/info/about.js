@@ -8,6 +8,8 @@ module.exports = {
 	description: 'Returns the bot\'s about page.',
 	aliases: [],
 	usage: 'about',
+	userperms: [],
+	botperms: [],
 	run: async (client, message, args) => {
 		const embed = new MessageEmbed()
 			.setDescription([

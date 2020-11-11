@@ -9,6 +9,8 @@ module.exports = {
 	description: 'Test your knowledge and unscramble a random word',
 	aliases: [],
 	usage: 'scramble',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		const filter = m => m.author.id === message.author.id;
 		const word = words[Math.floor(Math.random() * words.length)];

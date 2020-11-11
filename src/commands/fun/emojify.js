@@ -6,6 +6,8 @@ module.exports = {
 	description: 'Changes text into emojis',
 	aliases: [],
 	usage: 'emojify <text>',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		const text = args.slice().join(' ');
 		if(!text) {

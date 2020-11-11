@@ -9,6 +9,8 @@ module.exports = {
 	description: 'Are they really that scary?',
 	aliases: ['snakes', 'snek'],
 	usage: 'snake',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		const subreddits = [
 			'Snek',

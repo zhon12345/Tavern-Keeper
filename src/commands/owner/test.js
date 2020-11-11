@@ -7,6 +7,8 @@ module.exports = {
 	description: 'Checks if the bot is working.',
 	aliases: [],
 	usage: 'test',
+	userperms: [],
+	botperms: [],
 	run: async (client, message, args) => {
 		const embed = new MessageEmbed()
 			.setTitle('I am working!')

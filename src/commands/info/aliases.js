@@ -7,6 +7,8 @@ module.exports = {
 	description: 'Shows you a list of aliases for the specified command.',
 	aliases: [],
 	usage: 'aliases <command>',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		if(args[0]) {
 			const cmd = client.commands.get(args[0].toLowerCase()) || client.commands.get(client.aliases.get(args[0].toLowerCase()));

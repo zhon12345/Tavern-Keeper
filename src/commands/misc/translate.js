@@ -7,6 +7,8 @@ module.exports = {
 	description: 'Why does this mean? Time to translate it.',
 	aliases: [],
 	usage: 'translate',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		const text = args.slice().join(' ');
 		const url = `https://bruhapi.xyz/translate/${encodeURI(text)}`;

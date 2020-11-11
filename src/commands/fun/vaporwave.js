@@ -6,6 +6,8 @@ module.exports = {
 	description: 'Converts text into ｖａｐｏｒｗａｖｅ.',
 	usage: 'vapourwave <text>',
 	category: 'Fun',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		const text = args.slice().join(' ');
 		if(!args[0]) {

@@ -8,6 +8,8 @@ module.exports = {
 	description: 'Searches for a specified gif.',
 	aliases: [],
 	usage: 'gif <text>',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		if (!args[0]) {
 			return message.channel.send(

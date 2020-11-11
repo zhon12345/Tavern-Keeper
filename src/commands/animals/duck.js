@@ -9,6 +9,8 @@ module.exports = {
 	description: 'Do you even know what\'s a duck?',
 	aliases: ['ducks'],
 	usage: 'duck',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		const url = 'https://www.reddit.com/r/duck/hot.json';
 

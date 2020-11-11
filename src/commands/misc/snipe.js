@@ -6,6 +6,8 @@ module.exports = {
 	aliases: [],
 	usage: 'snipe [number]',
 	category: 'Misc',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		const channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]) || message.channel;
 		const snipes = client.snipes.get(channel.id) || [];
@@ -17,7 +19,7 @@ module.exports = {
 		}
 		const embed = new MessageEmbed()
 			.setAuthor(msg.author.tag, msg.author.displayAvatarURL({ format: 'png', dynamic: true }))
-			.setDescription(msg.content)
+			.setDescription(msg.content.length > 2048 ? `${msg.content.slice(0, 2045)}...` : msg.content)
 			.setColor('BLUE')
 			.setTimestamp(msg.date);
 

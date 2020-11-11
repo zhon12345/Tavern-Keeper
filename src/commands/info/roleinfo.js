@@ -8,6 +8,8 @@ module.exports = {
 	description: 'Displays information about a provided role.',
 	aliases: ['role', 'ri'],
 	usage: 'roleinfo <role>',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		const role = message.mentions.roles.first() || message.guild.roles.cache.get(args[0]);
 		if(!role) {

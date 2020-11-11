@@ -7,13 +7,9 @@ module.exports = {
 	description: 'Sets the welcome channel for the server.',
 	aliases: [],
 	usage: 'joinchannel <channel>',
+	userperms: ['ADMINISTRATOR'],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
-		if (!message.member.hasPermission('ADMINISTRATOR')) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Insufficient Permission! `ADMINISTRATOR` required.',
-			);
-		}
-
 		const settings = await Guild.findOne({
 			guildID: message.guild.id,
 		});

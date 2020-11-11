@@ -6,6 +6,8 @@ module.exports = {
 	description: 'Upload specified text to hastebin.',
 	aliases: ['pastebin', 'bin'],
 	usage: 'hastebin <text>',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		const text = args.slice().join(' ');
 		if (!text) {

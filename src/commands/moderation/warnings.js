@@ -8,6 +8,8 @@ module.exports = {
 	description: 'Get the warnings and other info of the message author or a specified user.',
 	aliases: ['warns', 'strikes'],
 	usage: 'warnings [user]',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]) || message.member;
 		if (!member) {
@@ -33,17 +35,19 @@ module.exports = {
 		}
 
 		const mute = settings.settings.muterole;
+		const bannedUsers = await message.guild.fetchBans();
 		const embed = new MessageEmbed()
-			.setTitle('Moderation information')
+			.setTitle('Moderation Information')
 			.setColor('BLUE')
 			.setFooter(`Requested by ${message.author.tag} `)
 			.setTimestamp()
-			.addFields(
-				{ name: 'Username', value: `\`\`\`${member.user.tag}\`\`\``, inline:true },
-				{ name: 'ID', value: `\`\`\`${member.id}\`\`\``, inline:true },
-				{ name: 'Strikes', value: `\`\`\`${warnings}\`\`\`` },
-				{ name: 'Muted', value: `\`\`\`${member.roles.cache.has(mute) ? 'Yes' : 'No'}\`\`\`` },
-			);
+			.addField('<:documents:773950876347793449> General ❯', [
+				`> **<:card:773965449402646549> Username: \`${member.user.tag}\`**`,
+				`> **\\📇 User ID: \`${member.id}\`**`,
+				`> **\\🚩 Strikes: \`${warnings}\` Strikes**`,
+				`> **\\🤐 Muted: \`${member.roles.cache.has(mute) ? 'Yes' : 'No'}\`**`,
+				`> **\\🔨 Banned: \`${bannedUsers.get(member.id) ? 'Yes' : 'No'}\`**`,
+			]);
 		message.channel.send(embed);
 	},
 };

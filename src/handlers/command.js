@@ -9,11 +9,9 @@ module.exports = (client) => {
 			client.commands.set(pull.name, pull);
 			client.category.set(pull.category.toLowerCase(), pull);
 
-			if(pull.aliases) {
-				pull.aliases.forEach(alias => {
-					client.aliases.set(alias, pull.name);
-				});
-			}
+			pull.aliases.forEach(alias => {
+				client.aliases.set(alias, pull.name);
+			});
 		});
 	});
 	console.log('Loading commands...');

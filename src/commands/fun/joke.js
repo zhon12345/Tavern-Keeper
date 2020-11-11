@@ -8,6 +8,8 @@ module.exports = {
 	description: 'Get a funny joke. Dad\'s love them!',
 	aliases: ['pun'],
 	usage: 'joke',
+	userperms: [],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		const url = 'https://official-joke-api.appspot.com/jokes/random';
 		let response;

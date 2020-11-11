@@ -8,6 +8,8 @@ module.exports = {
 	description: 'Flip a coin and see what you get. Heads or Tails?',
 	aliases: ['cf', 'coinf'],
 	usage: 'coinflip',
+	userperms: [],
+	botperms: [],
 	run: async (client, message, args) => {
 		const responses = ['Heads', 'Tails'];
 		const response =

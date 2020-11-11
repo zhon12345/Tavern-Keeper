@@ -1,4 +1,3 @@
-const { BOT_OWNER } = process.env;
 const Guild = require('../../models/guild');
 const { MessageEmbed } = require('discord.js');
 
@@ -8,11 +7,9 @@ module.exports = {
 	description: 'Add or Remove a specified guild from the blacklist.',
 	aliases: [],
 	usage: 'blacklist [add/remove] [guild]',
+	userperms: ['BOT_OWNER'],
+	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
-		if(message.author.id !== BOT_OWNER) {
-			return;
-		}
-
 		let guild;
 		if (args[0]) {
 			if(isNaN(args[1])) {
