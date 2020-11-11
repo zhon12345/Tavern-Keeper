@@ -8,6 +8,8 @@ module.exports = {
 	description: "Get the youngest account in the guild.",
 	aliases: [],
 	usage: "youngest",
+	userperms: [],
+	botperms: [],
 	run: async (client, message, args) => {
 		const member = message.guild.members.cache
 			.filter((m) => !m.user.bot)

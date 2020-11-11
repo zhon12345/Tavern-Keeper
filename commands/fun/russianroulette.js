@@ -7,6 +7,8 @@ module.exports = {
 	description: "Gamble with your life and play russian roulette.",
 	aliases: ["rr"],
 	usage: "russianroulette",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const rr_bullet = Math.floor(Math.random() * 6);
 		const rr_count = 1 ;

@@ -7,6 +7,8 @@ module.exports = {
 	description: "Returns the bot's links.",
 	aliases: ["link", "invite"],
 	usage: "links",
+	userperms: [],
+	botperms: [],
 	run: async (client, message, args) => {
 		const pEmbed = new MessageEmbed()
 			.setTitle(`${client.user.username}'s Links`)

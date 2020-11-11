@@ -8,6 +8,8 @@ module.exports = {
 	usage: "corona <location>",
 	category: "Info",
 	aliases: ["covid", "cv"],
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const baseUrl = "https://disease.sh/v3/covid-19/";
 

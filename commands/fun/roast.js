@@ -8,6 +8,8 @@ module.exports = {
 	description: "Sick of someone? Easy! Just roast them!",
 	aliases: ["insult"],
 	usage: "roast [user]",
+	userperms: [],
+	botperms: [],
 	run: async (client, message, args) => {
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(" ") || x.user.username === args[0]) || message.member;
 		if (member.id === BOT_OWNER) {

@@ -9,6 +9,8 @@ module.exports = {
 	description: "What do you prefer? Red pandas or Pandas.",
 	aliases: ["redpandas"],
 	usage: "redpanda",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const url = "https://www.reddit.com/r/redpandas/hot.json";
 

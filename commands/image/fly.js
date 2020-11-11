@@ -5,13 +5,9 @@ module.exports = {
 	description: "Sends a fake image of a fly that looks suspiciously real.",
 	aliases: [],
 	usage: "fly",
-	run: (client, message, args) => {
-		if(!message.guild.me.hasPermission("ATTACH_FILES")) {
-			return message.channel.send(
-				"<:vError:725270799124004934> Insufficient Permission! `ATTACH_FILES` required.",
-			);
-		}
-
+	userperms: [],
+	botperms: ["ATTACH_FILES"],
+	run: async (client, message, args) => {
 		message.channel.send({ files: ["./assets/image/fly.png"] }).then(message.delete());
 	},
 };

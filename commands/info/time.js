@@ -8,6 +8,8 @@ module.exports = {
 	description: "Shows the current time.",
 	aliases: [],
 	usage: "time",
+	userperms: [],
+	botperms: [],
 	run: async (client, message, args) => {
 		const pEmbed = new MessageEmbed()
 			.setColor("BLUE")

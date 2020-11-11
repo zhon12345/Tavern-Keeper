@@ -6,6 +6,8 @@ module.exports = {
 	description: "Displays the specified guild's member count.",
 	aliases: ["usercount", "uc", "mc"],
 	usage: "membercount",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const guild = client.guilds.cache.get(args[0]) || message.guild;
 		const members = guild.members.cache;

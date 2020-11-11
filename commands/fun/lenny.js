@@ -5,6 +5,8 @@ module.exports = {
 	description: "Surely you know what lenny is, everyone does.",
 	aliases: [],
 	usage: "lenny",
+	userperms: [],
+	botperms: [],
 	run: async (client, message, args) => {
 		message.channel.send("( ͡° ͜ʖ ͡°)");
 	},

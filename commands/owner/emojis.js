@@ -1,5 +1,4 @@
 const { MessageEmbed } = require("discord.js");
-const { BOT_OWNER } = process.env;
 
 module.exports = {
 	name: "emojis",
@@ -7,11 +6,9 @@ module.exports = {
 	category: "Owner",
 	usage: "emojis",
 	aliases: ["elist"],
+	userperms: ["BOT_OWNER"],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
-		if(message.author.id !== BOT_OWNER) {
-			return;
-		}
-
 		const guild = client.guilds.cache.get(args[0]) || message.guild;
 		let Emojis = "";
 		let EmojisAnimated = "";

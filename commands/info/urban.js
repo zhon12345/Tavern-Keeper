@@ -7,6 +7,8 @@ module.exports = {
 	description: "Get a definition from the Urban Dictonary. (NSFW Channel required)",
 	aliases: ["ud"],
 	usage: "urban <query>",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		if(!message.channel.nsfw) {
 			return message.channel.send(

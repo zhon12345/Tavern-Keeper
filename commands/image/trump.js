@@ -7,12 +7,9 @@ module.exports = {
 	description: "Make trump tweet something.",
 	aliases: [],
 	usage: "trump <text>",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS", "ATTACH_FILES"],
 	run: async (client, message, args) => {
-		if(!message.guild.me.hasPermission("ATTACH_FILES")) {
-			return message.channel.send(
-				"<:vError:725270799124004934> Insufficient Permission! `ATTACH_FILES` required.",
-			);
-		}
 
 		const text = args.slice().join(" ");
 		if (!text) {

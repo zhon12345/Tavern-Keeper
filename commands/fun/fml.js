@@ -8,6 +8,8 @@ module.exports = {
 	description: "Is looking at the misery of others funny?.",
 	aliases: ["fmylife"],
 	usage: "fml",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const url = "https://api.alexflipnote.dev/fml";
 		let response;

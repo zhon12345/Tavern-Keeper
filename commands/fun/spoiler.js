@@ -4,6 +4,8 @@ module.exports = {
 	description: "Make the bot say whatever you want in annoying spoiler form.",
 	aliases: [],
 	usage: "soiler <text>",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		if(!args[0]) {
 			return message.channel.send(

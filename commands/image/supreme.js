@@ -6,12 +6,9 @@ module.exports = {
 	description: "Make a supreme logo with the text of your choice.",
 	aliases: [],
 	usage: "supreme <text>",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS", "ATTACH_FILES"],
 	run: async (client, message, args) => {
-		if(!message.guild.me.hasPermission("ATTACH_FILES")) {
-			return message.channel.send(
-				"<:vError:725270799124004934> Insufficient Permission! `ATTACH_FILES` required.",
-			);
-		}
 
 		if (!args[0]) {
 			return message.channel.send(

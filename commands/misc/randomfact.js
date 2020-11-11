@@ -8,6 +8,8 @@ module.exports = {
 	description: "Get a random fact from the internet.",
 	aliases: [],
 	usage: "randomfact",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const url = "https://useless-facts.sameerkumar.website/api";
 

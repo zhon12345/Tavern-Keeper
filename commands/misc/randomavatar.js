@@ -1,13 +1,6 @@
 /* eslint-disable no-unused-vars */
 const { MessageEmbed } = require("discord.js");
-
-const sets = [
-	"set1",
-	"set2",
-	"set3",
-	"set4",
-];
-const set = sets[Math.floor(Math.random() * sets.length)];
+const set = ["set1", "set2", "set3", "set4"][Math.floor(Math.random() * 4)];
 
 module.exports = {
 	name: "randomavatar",
@@ -15,6 +8,8 @@ module.exports = {
 	description: "Get random avatars!",
 	aliases: ["ravatar"],
 	usage: "randomavatar",
+	userperms: [],
+	botperms: [],
 	run: async (client, message, args) => {
 		const string = Math.random().toString(20).substr(2, 6);
 		const urls = [

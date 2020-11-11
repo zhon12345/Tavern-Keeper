@@ -8,6 +8,8 @@ module.exports = {
 	description: "*Fake* Hacks a user",
 	aliases: [],
 	category:"Fun",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (bot, message, args) => {
 		try {
 			const ending = ["@gmail.com", "@hotmail.com", "@yahoo.com", "@yourmom.gov"];

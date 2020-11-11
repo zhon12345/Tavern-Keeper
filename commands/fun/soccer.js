@@ -7,6 +7,8 @@ module.exports = {
 	description: "Play a game of soccer.",
 	aliases: ["football"],
 	usage: "soccer",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const filter = m => m.author.id === message.author.id;
 		const intro = "Soccer - Hit the ball into a goal where the goalkeeper is not! To hit the ball, type `left`, `right` or `middle`.";

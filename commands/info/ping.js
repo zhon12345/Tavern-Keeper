@@ -7,6 +7,8 @@ module.exports = {
 	description: "Returns the bot's latency and API ping.",
 	aliases: ["latency"],
 	usage: "ping",
+	userperms: [],
+	botperms: [],
 	run: async (client, message, args) => {
 		message.channel.send("🏓 Pinging....").then((msg) => {
 			const pEmbed = new MessageEmbed()

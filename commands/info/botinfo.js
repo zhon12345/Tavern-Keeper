@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 const { MessageEmbed, version: djsversion } = require("discord.js");
 const { formatBytes, parseDur } = require("../../functions.js");
-const moment = require("moment");
-const os = require("os");
 const cpuStat = require("cpu-stat");
 const { BOT_OWNER } = process.env;
+const moment = require("moment");
+const os = require("os");
 
 const formatOS = {
 	aix: "IBM AIX",
@@ -22,12 +22,13 @@ module.exports = {
 	description: "Displays indept information about the bot.",
 	aliases: ["bot", "bi"],
 	usage: "botinfo",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		cpuStat.usagePercent(function(error, percent, seconds) {
 			if(error) {
 				return console.error(error);
 			}
-			const core = os.cpus()[0];
 			const embed = new MessageEmbed()
 				.setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 512 }))
 				.setColor(message.guild.members.cache.get(client.user.id).displayHexColor)
@@ -47,7 +48,7 @@ module.exports = {
 					`> **<:djs:773599989833400371> Discord.js: \`v${djsversion}\`**`,
 					`> **\\🖥 Platform: \`${formatOS[os.platform]}\`**`,
 					`> **\\📊 Memory: \`${formatBytes(process.memoryUsage().heapUsed)} / ${formatBytes(process.memoryUsage().heapTotal)}\`**`,
-					`> **\\💻 CPU: \`${core.model}\`**`,
+					`> **\\💻 CPU: \`${os.cpus()[0].model}\`**`,
 					"\u200b",
 				])
 				.addField("<:documents:773950876347793449> Others ❯", [

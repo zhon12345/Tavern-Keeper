@@ -8,6 +8,8 @@ module.exports = {
 	description: "Shows the terms of service of the bot.",
 	aliases: ["termsofservice"],
 	usage: "tos",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const pEmbed = new MessageEmbed()
 			.setThumbnail("https://www.symphonyenvironmental.com/wp-content/uploads/2019/10/Terms-and-conditions-icon-V2.png")

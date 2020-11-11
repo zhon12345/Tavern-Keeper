@@ -7,6 +7,8 @@ module.exports = {
 	usage: "weather <location>",
 	category: "Info",
 	aliases: ["temp"],
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		if(!args[0]) {
 			return message.channel.send(
@@ -22,7 +24,7 @@ module.exports = {
 				message.channel.send(err);
 			}
 
-			if (result === undefined || result.length === 0) {
+			if (!result) {
 				return message.channel.send(
 					"<:vError:725270799124004934> Please provide a valid location",
 				);

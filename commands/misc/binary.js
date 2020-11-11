@@ -7,6 +7,8 @@ module.exports = {
 	description: "Converts normal text to 011000100110100101101110011000010111001001111001.",
 	aliases: [],
 	usage: "binary <encode/decode> <text>",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		if(!args[0]) {
 			return message.channel.send(

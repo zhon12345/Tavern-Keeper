@@ -9,6 +9,8 @@ module.exports = {
 	description: "Feeling bored? Get some activities to do.",
 	aliases: [],
 	usage: "activity",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const url = "https://www.boredapi.com/api/activity/";
 

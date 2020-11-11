@@ -9,6 +9,8 @@ module.exports = {
 	description: "Only available in Australia!",
 	aliases: ["koalas"],
 	usage: "koala",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const url = "https://www.reddit.com/r/koalas/hot.json";
 

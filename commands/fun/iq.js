@@ -7,6 +7,8 @@ module.exports = {
 	description: " ̶ R̶a̶n̶d̶o̶m̶i̶s̶e̶  Calculate your IQ..",
 	aliases: [],
 	usage: "iq",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(" ") || x.user.username === args[0]) || message.member;
 

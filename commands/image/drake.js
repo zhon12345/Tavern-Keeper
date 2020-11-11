@@ -6,12 +6,9 @@ module.exports = {
 	description: "Make a drake meme!",
 	aliases: [],
 	usage: "drake <text> | <text>",
+	userperms: [],
+	botperms: ["ATTACH_FILES"],
 	run: async (client, message, args) => {
-		if(!message.guild.me.hasPermission("ATTACH_FILES")) {
-			return message.channel.send(
-				"<:vError:725270799124004934> Insufficient Permission! `ATTACH_FILES` required.",
-			);
-		}
 
 		let text1 = args.join(" ").split(" |")[0];
 		let text2 = args.join(" ").split("| ")[1];

@@ -9,6 +9,8 @@ module.exports = {
 	description: "What do you prefer? Red pandas or Pandas.",
 	aliases: ["pandas"],
 	usage: "panda",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const subreddits = [
 			"panda",

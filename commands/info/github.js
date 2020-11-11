@@ -8,6 +8,8 @@ module.exports = {
 	usage: "github <username>",
 	category: "Info",
 	aliases: ["git", "gh"],
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const name = args.join(" ");
 		if (!name) {

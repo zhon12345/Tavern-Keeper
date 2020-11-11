@@ -4,19 +4,21 @@ module.exports = {
 	description: "Unban a specified user from the server.",
 	aliases: [],
 	usage: "unban <user> <reason>",
+	userperms: ["BAN_MEMBERS"],
+	botperms: ["USE_EXTERNAL_EMOJIS", "BAN_MEMBERS"],
 	run: async (client, message, args) => {
-		if(!message.member.hasPermission("BAN_MEMBERS") || !message.guild.me.hasPermission("BAN_MEMBERS")) {
+		const id = args[0];
+		if(!id || isNaN(id)) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Insufficient Permission! `BAN_MEMBERS` required.",
+				"<:vError:725270799124004934> Please provide a valid user id.",
 			);
 		}
 
-		const id = args[0];
 		const bannedUsers = await message.guild.fetchBans();
 		const user = bannedUsers.get(id);
 		if (!user) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid user.",
+				"<:vError:725270799124004934> Please provide a valid user id.",
 			);
 		}
 
