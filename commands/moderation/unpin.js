@@ -4,13 +4,9 @@ module.exports = {
 	description: "Unpin a specific messaged to the channel.",
 	aliases: [],
 	usage: "unpin <message>",
+	userperms: ["MANAGE_MESSAGES"],
+	botperms: ["USE_EXTERNAL_EMOJIS", "MANAGE_MESSAGES"],
 	run: async (bot, message, args) => {
-		if(!message.member.hasPermission("MANAGE_MESSAGES") || !message.guild.me.hasPermission("MANAGE_MESSAGES")) {
-			return message.channel.send(
-				"<:vError:725270799124004934> Insufficient Permission! `MANAGE_MESSAGES` required.",
-			);
-		}
-
 		const msg = args[0];
 		if(!msg || isNaN(msg)) {
 			return message.channel.send(

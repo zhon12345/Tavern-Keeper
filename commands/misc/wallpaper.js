@@ -9,6 +9,8 @@ module.exports = {
 	description: "Get a ramdom wallpaper.",
 	aliases: [],
 	usage: "wallpaper",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const url = "https://api.unsplash.com/photos/random?client_id=" + token;
 

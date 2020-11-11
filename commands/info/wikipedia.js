@@ -7,6 +7,8 @@ module.exports = {
 	description: "Returns information from Wikipedia.",
 	aliases: ["wiki"],
 	usage: "wikipedia <query>",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const query = args.slice().join(" ");
 		if(!query) {

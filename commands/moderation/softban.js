@@ -4,13 +4,9 @@ module.exports = {
 	description: "Softban a specified user from the server.",
 	aliases: [],
 	usage: "softban <user> <reason>",
+	userperms: ["BAN_MEMBERS"],
+	botperms: ["USE_EXTERNAL_EMOJIS", "BAN_MEMBERS"],
 	run: async (client, message, args) => {
-		if(!message.member.hasPermission("BAN_MEMBERS") || !message.guild.me.hasPermission("BAN_MEMBERS")) {
-			return message.channel.send(
-				"<:vError:725270799124004934> Insufficient Permission! `BAN_MEMBERS` required.",
-			);
-		}
-
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(" ") || x.user.username === args[0]);
 		if (!member) {
 			return message.channel.send(

@@ -7,6 +7,8 @@ module.exports = {
 	category: "Info",
 	description: "Find a user's instagram statistics.",
 	usage: "instagram <user>",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const name = args.join(" ");
 		if (!name) {
@@ -39,7 +41,7 @@ module.exports = {
 				.setTitle(`${name}'s Instagram Profile`)
 				.setURL(`https://instagram.com/${name}`)
 				.setThumbnail(account.profile_pic_url_hd)
-				.setDescription(account.biography.length == 0 ? "None" : account.biography)
+				.setDescription(account.biography.length > 0 ? "None" : account.biography)
 				.setFooter(`Requested by ${message.author.tag}`)
 				.setTimestamp()
 				.addField("<:documents:773950876347793449> General ❯", [

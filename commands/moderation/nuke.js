@@ -7,19 +7,9 @@ module.exports = {
 	description: "Clones the current channel and deletes the old one.",
 	aliases: [],
 	usage: "nuke",
+	userperms: ["ADMINISTRATOR"],
+	botperms: ["USE_EXTERNAL_EMOJIS", "MANAGE_CHANNELS"],
 	run: async (client, message, args) => {
-		if (!message.member.hasPermission("ADMINISTRATOR")) {
-			return message.channel.send(
-				"<:vError:725270799124004934> Insufficient Permission! `ADMINISTRATOR` required.",
-			);
-		}
-
-		if (!message.guild.me.hasPermission("MANAGE_CHANNELS")) {
-			return message.channel.send(
-				"<:vError:725270799124004934> Insufficient Permission! `MANAGE_CHANNELS` required.",
-			);
-		}
-
 		await message.channel.clone().then((ch) => {
 			ch.setParent(message.channel.parent.id);ch.setPosition(message.channel.position);
 			const embed = new MessageEmbed()

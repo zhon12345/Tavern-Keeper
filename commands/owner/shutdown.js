@@ -1,17 +1,13 @@
 /* eslint-disable no-unused-vars */
-const { BOT_OWNER } = process.env;
-
 module.exports = {
 	name: "shutdown",
 	category: "Owner",
 	description: "Shutdown the bot.",
 	aliases: ["reload"],
 	usage: "restart",
+	userperms: ["BOT_OWNER"],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
-		if (message.author.id !== BOT_OWNER) {
-			return;
-		}
-
 		try {
 			message.channel.send("⚙ Shutting down...")
 				.then(() => process.exit());

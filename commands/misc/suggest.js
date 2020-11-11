@@ -7,7 +7,8 @@ module.exports = {
 	description: "Make suggestion for the bot's upcoming features.",
 	aliases: [],
 	usage: "suggest <suggestion>",
-	guildOnly: true,
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const text = args.slice().join(" ");
 		if(!text) {

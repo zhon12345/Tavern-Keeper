@@ -8,9 +8,10 @@ module.exports = {
 	aliases: ["commands"],
 	category: "Info",
 	description: "Returns the help page, or one specific command info.",
-	usage: "help [command/category]",
+	usage: "help [command]",
+	userperms: [],
+	botperms: [],
 	run: async (client, message, args) => {
-
 		if (message.author.id === BOT_OWNER && args[0] === "all") {
 			const categories = [...new Set(client.commands.map(cmd => cmd.category))];
 			const embed = new MessageEmbed()

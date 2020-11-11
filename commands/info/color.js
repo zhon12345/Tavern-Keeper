@@ -7,6 +7,8 @@ module.exports = {
 	description: "Shows information about a specified color.",
 	aliases: [],
 	usage: "color <color>",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		if(!args[0]) {
 			return message.channel.send(

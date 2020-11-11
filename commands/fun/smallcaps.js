@@ -6,6 +6,8 @@ module.exports = {
 	aliases: [],
 	usage: "smallcaps <text>",
 	category: "Fun",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const text = args.slice().join(" ");
 		if(!text) {

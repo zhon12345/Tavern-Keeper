@@ -7,6 +7,8 @@ module.exports = {
 	description: "Helps you solve a math calculation.",
 	aliases: ["calculate"],
 	usage: "math <equation>",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const text = args.join(" ");
 		if (!text) {

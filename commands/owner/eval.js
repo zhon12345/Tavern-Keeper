@@ -2,7 +2,6 @@
 const fetch = require("node-fetch");
 const { MessageEmbed } = require("discord.js");
 const { clean } = require("../../functions");
-const { BOT_OWNER } = process.env;
 
 module.exports = {
 	name: "eval",
@@ -10,13 +9,10 @@ module.exports = {
 	aliases: ["ev"],
 	description: "Evaluate a specified JavaScript code.",
 	usage: "eval <code>",
+	userperms: ["BOT_OWNER"],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const url = "https://hasteb.in/documents";
-
-		if(message.author.id !== BOT_OWNER) {
-			return;
-		}
-
 		const embed = new MessageEmbed()
 			.addField("Input", "```js\n" + args.join(" ") + "```");
 

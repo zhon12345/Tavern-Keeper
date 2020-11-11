@@ -6,13 +6,9 @@ module.exports = {
 	description: "Get a personalised minecraft achievement.",
 	aliases: ["achivement"],
 	usage: "achi <text>",
-	run: (client, message, args) => {
-		if(!message.guild.me.hasPermission("ATTACH_FILES")) {
-			return message.channel.send(
-				"<:vError:725270799124004934> Insufficient Permission! `ATTACH_FILES` required.",
-			);
-		}
-
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS", "ATTACH_FILES"],
+	run: async (client, message, args) => {
 		const tips = [
 			"Dont forget milk good for you!",
 			"2.2 when?",

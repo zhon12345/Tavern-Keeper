@@ -9,6 +9,8 @@ module.exports = {
 	description: "hamsters! Do you like em?",
 	aliases: ["hamsters"],
 	usage: "hamster",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const url = [
 			"https://www.reddit.com/r/hamsters/hot.json",

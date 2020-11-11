@@ -8,6 +8,8 @@ module.exports = {
 	description: "Sick of someone? Easy! Just kill them! (virtually)",
 	aliases: [],
 	usage: "kill <user>",
+	userperms: [],
+	botperms: [],
 	run: async (client, message, args) => {
 		if(message.author.id !== BOT_OWNER) return;
 

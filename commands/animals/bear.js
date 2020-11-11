@@ -9,6 +9,8 @@ module.exports = {
 	description: "Did you know that bears have a heightened sense of smell?",
 	aliases: ["bears"],
 	usage: "bear",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const url = "https://www.reddit.com/r/bears/hot.json";
 

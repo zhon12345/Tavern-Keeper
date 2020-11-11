@@ -1,4 +1,4 @@
-const { BOT_OWNER, GITHUB_USERNAME, GITHUB_CLIENT_TOKEN } = process.env;
+const { GITHUB_USERNAME, GITHUB_CLIENT_TOKEN } = process.env;
 const { MessageEmbed } = require("discord.js");
 const fetch = require("node-fetch");
 
@@ -8,11 +8,9 @@ module.exports = {
 	description: "Shows the 10 latest commits.",
 	aliases: [],
 	usage: "changelog <repository>",
+	userperms: ["BOT_OWNER"],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
-		if(message.author.id !== BOT_OWNER) {
-			return;
-		}
-
 		if(!args[0] || args.length > 1) {
 			return message.channel.send(
 				"<:vError:725270799124004934> Please provide a valid GitHub repository.",

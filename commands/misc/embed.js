@@ -7,6 +7,8 @@ module.exports = {
 	description: "Get a example embed.",
 	aliases: [],
 	usage: "embed [text]",
+	userperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const exampleEmbed = new MessageEmbed()
 			.setColor("#0099ff")
