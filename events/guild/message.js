@@ -43,7 +43,7 @@ module.exports = async (client, message) => {
 			}
 
 			for(const permission of command.botperms) {
-				if (!message.member.hasPermission(permission)) {
+				if (!message.guild.me.hasPermission(permission)) {
 					return message.channel.send(
 						`<:vError:725270799124004934> Insufficient Permission! I require \`${permission}\`.`,
 					);

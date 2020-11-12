@@ -9,11 +9,11 @@ module.exports = {
 	usage: "test",
 	userperms: [],
 	botperms: [],
-		run: async (client, message, args) => {
-			const embed = new MessageEmbed()
-				.setTitle("I am working!")
-				.setColor("BLUE")
-				.setImage("https://media.giphy.com/media/gw3IWyGkC0rsazTi/200.gif");
-			message.channel.send(embed);
-		},
+	run: async (client, message, args) => {
+		const embed = new MessageEmbed()
+			.setTitle("I am working!")
+			.setColor("BLUE")
+			.setImage("https://media.giphy.com/media/gw3IWyGkC0rsazTi/200.gif");
+		message.channel.send(embed);
+	},
 };
