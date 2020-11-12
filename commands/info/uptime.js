@@ -17,7 +17,7 @@ module.exports = {
 				.setTitle("📥 Online for")
 				.setColor("BLUE")
 				.setDescription(
-					`${duration}`,
+					`**${duration}**`,
 				);
 			msg.edit(pEmbed);
 		});

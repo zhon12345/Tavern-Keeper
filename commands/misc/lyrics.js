@@ -17,7 +17,7 @@ module.exports = {
 		}
 
 		const song = args.slice().join(" ");
-		const url = `https://some-random-api.ml/lyrics?title=${song}`;
+		const url = `https://no-api-key.com/api/v1/ksof/lyrics?song=${song}`;
 
 		let response;
 		try {
@@ -29,10 +29,10 @@ module.exports = {
 
 		const embed = new MessageEmbed()
 			.setColor("BLUE")
-			.setTitle(`${response.title} by ${response.author}`)
-			.setURL(response.links.genius)
-			.setThumbnail(response.thumbnail.genius)
-			.setDescription(response.lyrics.length > 2048 ? `${response.lyrics.slice(0, 2045)}...` : response.lyrics)
+			.setTitle(`${response.data.data[0].name} by ${response.data.data[0].artist}`)
+			.setURL(response.data.data[0].url)
+			.setThumbnail(response.data.data[0].album_art)
+			.setDescription(response.data.data[0].lyrics.length > 2048 ? `${response.data.data[0].lyrics.slice(0, 2045)}...` : response.data.data[0].lyrics)
 			.setFooter(`Requested by ${message.author.tag} `)
 			.setTimestamp();
 		return message.channel.send(embed);
