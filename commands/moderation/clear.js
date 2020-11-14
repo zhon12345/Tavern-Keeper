@@ -14,7 +14,7 @@ module.exports = {
 				"<:vError:725270799124004934> Please provide a valid number.",
 			);
 		}
-		else if (amount <= 0 || amount > 100) {
+		else if (amount <= 0 || amount >= 100) {
 			return message.channel.send(
 				"<:vError:725270799124004934> Please provide a valid number between 1 and 99.",
 			);
