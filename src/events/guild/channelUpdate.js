@@ -39,7 +39,7 @@ module.exports = async (client, oldChannel, newChannel) => {
 					{ name: 'After', value: newChannel.name, inline: true },
 				);
 			logchannel.send(
-				`\`[${moment(Date.now()).format('HH:mm:ss')}]\` ✏️ #${oldChannel.name} (ID: ${oldChannel.id})'s name has been changed by **${executor.username}**#${executor.discriminator}.\n\`[Type]\` ${types[oldChannel.type]}`, embed,
+				`\`[${moment(Date.now()).format('HH:mm:ss')}]\` ✏️ \`#${oldChannel.name}\` (ID: ${oldChannel.id})'s name has been changed by **${executor.username}**#${executor.discriminator}.\n\`[Type]\` ${types[oldChannel.type]}`, embed,
 			);
 		}
 		else if(newChannel.topic !== oldChannel.topic) {
@@ -51,7 +51,7 @@ module.exports = async (client, oldChannel, newChannel) => {
 					{ name: 'After', value: newChannel.topic ? newChannel.topic : 'None', inline: true },
 				);
 			logchannel.send(
-				`\`[${moment(newChannel.createdTimestamp).format('HH:mm:ss')}]\` ✏️ #${oldChannel.name} (ID: ${oldChannel.id})'s topic has been changed by **${executor.username}**#${executor.discriminator}.\n\`[Type]\` ${types[oldChannel.type]}`, embed,
+				`\`[${moment(Date.now()).format('HH:mm:ss')}]\` ✏️ \`#${oldChannel.name}\` (ID: ${oldChannel.id})'s topic has been changed by **${executor.username}**#${executor.discriminator}.\n\`[Type]\` ${types[oldChannel.type]}`, embed,
 			);
 		}
 	}

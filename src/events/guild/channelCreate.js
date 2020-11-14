@@ -23,15 +23,15 @@ module.exports = async (client, channel) => {
 	});
 
 	const auditLog = fetchedLogs.entries.first();
-	const { executor, target } = auditLog;
+	const { executor } = auditLog;
 	if(!executor) return;
 
 	const logs = settings.settings.serverlog;
 	const logchannel = channel.guild.channels.cache.get(logs);
-	if (!logchannel) {return;}
-	else if(target.id == channel) {
-		logchannel.send(
-			`\`[${moment(channel.createdTimestamp).format('HH:mm:ss')}]\` ⚒ ${channel} (ID: ${channel.id}) has been created by **${executor.username}**#${executor.discriminator} .\n\`[Type]\` ${types[channel.type]}`,
-		);
-	}
+	if (!logchannel) return;
+
+	logchannel.send(
+		`\`[${moment(channel.createdTimestamp).format('HH:mm:ss')}]\` ⚒ \`${channel.name}\` (ID: ${channel.id}) has been created by **${executor.username}**#${executor.discriminator} .\n\`[Type]\` ${types[channel.type]}`,
+	);
+
 };

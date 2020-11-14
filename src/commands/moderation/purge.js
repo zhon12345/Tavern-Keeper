@@ -25,23 +25,15 @@ module.exports = {
 				'<:vError:725270799124004934> Please provide a valid number.',
 			);
 		}
-		else if (amount <= 0 || amount > 100) {
+		else if (amount <= 0 || amount >= 100) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide a valid number between 1 and 99.',
 			);
 		}
 
-		let Reason = args.slice(1).join(' ');
-		if (!Reason) {
-			Reason = 'No reason provided';
-		}
-		else {
-			Reason = args.slice(1).join(' ');
-		}
-
 		message.channel.bulkDelete(amount + 1, true);
 		channel.send(
-			`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🗑️ **${message.author.username}**#${message.author.discriminator} cleared \`${amount}\`messages in ${message.channel} \n\`[Reason]\` ${Reason}`,
+			`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🗑️ **${message.author.username}**#${message.author.discriminator} cleared \`${amount}\` messages in ${message.channel}`,
 		);
 		await message.channel.send(
 			`<:vSuccess:725270799098970112> Successfully cleared \`${amount}\`messages`,

@@ -13,49 +13,34 @@ module.exports = {
 			guildID: message.guild.id,
 		});
 
-		if(!args[0]) {
-			if(settings.settings.modlog === null) {
-				return message.channel.send(
-					`Mod Logs for **${message.guild}** has been \`disabled\`.`,
-				);
-			}
-			else {
-				return message.channel.send(
-					`Mod Logs for **${message.guild}** has been set to <#${settings.settings.modlog}>.`,
-				);
-			}
-		}
-		else if (args[0].toLowerCase() === 'off') {
+		const channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]);
+		if (args[0] === 'off') {
 			await Guild.updateOne(
-				{
-					guildID: message.guild.id,
-				},
-				{
-					'settings.modlog': null,
-				},
+				{ guildID:message.guild.id },
+				{ 'settings.modlog': null },
 			);
 			message.channel.send(
-				'<:vSuccess:725270799098970112> Mod logs has been turned off',
-			).then(message.delete());
+				'<:vSuccess:725270799098970112> Mod logs has been `disabled`',
+			);
+		}
+		else if(channel) {
+			await Guild.updateOne(
+				{ guildID: message.guild.id },
+				{ 'settings.modlog': channel.id },
+			);
+			message.channel.send(
+				`<:vSuccess:725270799098970112> Mod logs has been set to ${channel}`,
+			);
+		}
+		else if(settings.settings.modlog === null) {
+			return message.channel.send(
+				`Mod Logs for **${message.guild}** has been \`disabled\`.`,
+			);
 		}
 		else {
-			args[0] = message.mentions.channels.first();
-			if (!args[0]) {
-				return message.channel.send(
-					'<:vError:725270799124004934> Please provide a valid channel.',
-				);
-			}
-			await Guild.updateOne(
-				{
-					guildID: message.guild.id,
-				},
-				{
-					'settings.modlog': args[0].id,
-				},
+			return message.channel.send(
+				`Mod Logs for **${message.guild}** has been set to <#${settings.settings.modlog}>.`,
 			);
-			message.channel.send(
-				`<:vSuccess:725270799098970112> Mod logs will now be sent to ${args[0]}`,
-			).then(message.delete());
 		}
 	},
 };

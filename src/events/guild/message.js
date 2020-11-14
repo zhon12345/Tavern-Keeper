@@ -20,35 +20,24 @@ module.exports = async (client, message) => {
 				prefix: BOT_PREFIX,
 				blacklisted: false,
 				settings:{
-					id: mongoose.Types.ObjectId(),
 					antiprofanity: false,
 					antilinks: false,
 					muterole: null,
-					verifyrole: null,
+					memberrole: null,
 					modlog: null,
 					serverlog: null,
 					messagelog: null,
 				},
-				welcomer: {
-					id: mongoose.Types.ObjectId(),
-					joinchannel: null,
-					leavechannel: null,
-					jointext: null,
-					leavetext: null,
-				},
 			});
 
 			newGuild.save();
+			return message.channel.send(
+				`<:vError:725270799124004934> ${message.guild} was not registed to my database, registering server now....`,
+			);
 		}
 	});
 
-	let prefix;
-	if(!settings.prefix) {
-		prefix = 'm!';
-	}
-	else {
-		prefix = settings.prefix;
-	}
+	const prefix = settings.prefix ? settings.prefix : 'm!';
 
 	if (message.content.match(`^<@!?${client.user.id}>( |)$`)) {
 		message.channel.send(`${message.guild.name}'s prefix is \`${prefix}\``);

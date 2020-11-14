@@ -38,7 +38,7 @@ module.exports = {
 			Reason = args.slice(1).join(' ');
 		}
 
-		const verifiedRole = settings.settings.verifyrole;
+		const verifiedRole = settings.settings.memberrole;
 		const muteRole = settings.settings.muterole;
 		if (!muteRole) {
 			return message.channel.send(

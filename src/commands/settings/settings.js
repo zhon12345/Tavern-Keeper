@@ -15,14 +15,6 @@ module.exports = {
 			guildID: message.guild.id,
 		});
 
-		const muterole = message.guild.roles.cache.get(settings.settings.muterole);
-		const verifiedrole = message.guild.roles.cache.get(settings.settings.verifyrole);
-		const modlog = message.guild.channels.cache.get(settings.settings.modlog);
-		const serverlog = message.guild.channels.cache.get(settings.settings.serverlog);
-		const messagelog = message.guild.channels.cache.get(settings.settings.messagelog);
-		const joinchannel = message.guild.channels.cache.get(settings.welcomer.joinchannel);
-		const leavechannel = message.guild.channels.cache.get(settings.welcomer.leavechannel);
-
 		const embed = new MessageEmbed()
 			.setTitle(`${client.user.username}'s Settings`)
 			.setColor('BLUE')
@@ -33,18 +25,11 @@ module.exports = {
 				`> **Prefix: \`${settings.prefix}\`**`,
 				`> **Anti Profanity: \`${settings.settings.antiprofanity ? 'On' : 'Off'}\`**`,
 				`> **Anti Links: \`${settings.settings.antilinks ? 'On' : 'Off'}\`**`,
-				`> **Muted Role:** ${settings.settings.muterole ? muterole : '`None`'}`,
-				`> **Verified Role:** ${settings.settings.verifyrole ? verifiedrole : '`None`'}`,
-				`> **Mod Log: ${settings.settings.modlog ? modlog : '`None`'}**`,
-				`> **Server Log: ${settings.settings.serverlog ? serverlog : '`None`'}**`,
-				`> **Message Log: ${settings.settings.messagelog ? messagelog : '`None`'}**`,
-				'\u200b',
-			])
-			.addField('<:documents:773950876347793449> Welcomer ❯', [
-				`> **Join channel: ${settings.welcomer.joinchannel ? joinchannel : '`None`'}**`,
-				`> **Leave channel: ${settings.welcomer.leavechannel ? leavechannel : '`None`'}**`,
-				`> **Join message: \n> \`${settings.welcomer.jointext ? settings.welcomer.jointext : 'None'}\`**`,
-				`> **Leave message: \n> \`${settings.welcomer.leavetext ? settings.welcomer.leavetext : 'None'}\`**`,
+				`> **Muted Role:** ${settings.settings.muterole ? message.guild.roles.cache.get(settings.settings.muterole) : '`None`'}`,
+				`> **Member Role:** ${settings.settings.memberrole ? message.guild.roles.cache.get(settings.settings.memberrole) : '`None`'}`,
+				`> **Mod Log: ${settings.settings.modlog ? message.guild.channels.cache.get(settings.settings.modlog) : '`None`'}**`,
+				`> **Server Log: ${settings.settings.serverlog ? message.guild.channels.cache.get(settings.settings.serverlog) : '`None`'}**`,
+				`> **Message Log: ${settings.settings.messagelog ? message.guild.channels.cache.get(settings.settings.messagelog) : '`None`'}**`,
 			]);
 		return message.channel.send(embed);
 	},

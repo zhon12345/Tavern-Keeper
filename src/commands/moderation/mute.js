@@ -47,7 +47,7 @@ module.exports = {
 			Reason = 'No reason provided';
 		}
 
-		const verifiedRole = settings.settings.verifyrole;
+		const verifiedRole = settings.settings.memberrole;
 		const mutedRole = settings.settings.muterole;
 		if(!mutedRole) {
 			return message.channel.send(

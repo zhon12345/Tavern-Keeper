@@ -11,17 +11,10 @@ const guildSchema = mongoose.Schema({
 		antiprofanity: Boolean,
 		antilinks: Boolean,
 		muterole: String,
-		verifyrole: String,
+		memberrole: String,
 		modlog: String,
 		serverlog: String,
 		messagelog: String,
-	},
-	welcomer: {
-		id: mongoose.Schema.Types.ObjectId,
-		joinchannel: String,
-		leavechannel: String,
-		jointext: String,
-		leavetext: String,
 	},
 });
 

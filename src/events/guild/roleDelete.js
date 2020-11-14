@@ -9,15 +9,14 @@ module.exports = async (client, role) => {
 		type: 'ROLE_CREATE',
 	});
 	const auditLog = fetchedLogs.entries.first();
-	const { executor, target } = auditLog;
+	const { executor } = auditLog;
 	if(!executor) return;
 
 	const logs = settings.settings.serverlog;
 	const logchannel = role.guild.channels.cache.get(logs);
-	if (!logchannel) {return;}
-	else if(target.id == role) {
-		logchannel.send(
-			`\`[${moment(Date.now()).format('HH:mm:ss')}]\` ❌ ${role.name} (ID: ${role.id}) has been deleted by **${executor.username}**#${executor.discriminator}.\n\`[Permissions]\` ${role.permissions.toArray().map(p => p[0] + p.slice(1).toLowerCase()).join(', ').replace(/_/g, ' ')}`,
-		);
-	}
+	if (!logchannel) return;
+
+	logchannel.send(
+		`\`[${moment(Date.now()).format('HH:mm:ss')}]\` ❌ ${role.name} (ID: ${role.id}) has been deleted by **${executor.username}**#${executor.discriminator}.\n\`[Permissions]\` ${role.permissions.toArray().map(p => p[0] + p.slice(1).toLowerCase()).join(', ').replace(/_/g, ' ')}`,
+	);
 };

@@ -1,7 +1,7 @@
 /* eslint-disable no-empty */
 const { MessageEmbed } = require('discord.js');
-const moment = require('moment');
 const Guild = require('../../models/guild');
+const moment = require('moment');
 
 module.exports = async (client, message) => {
 	if (message.author.bot) return;
@@ -25,16 +25,17 @@ module.exports = async (client, message) => {
 		type: 'MESSAGE_DELETE',
 	});
 	const deletionLog = fetchedLogs.entries.first();
-	const { executor, target } = deletionLog;
+	const { executor } = deletionLog;
 
 	const logs = settings.settings.messagelog;
 	const channel = message.guild.channels.cache.get(logs);
-	if (!channel) {return;}
-	else if(target.id === message.author.id) {
+	if (!channel) return;
+
+	if(executor.id !== message.author.id) {
 		const embed = new MessageEmbed()
 			.setColor('RED')
 			.addFields(
-				{ name: 'Content:', value:`${message.attachments.size > 0 ? message.attachments.first().proxyURL : message.content}` },
+				{ name: 'Content:', value:`${message.attachments.size > 0 ? message.attachments.first().proxyURL : message.content >= 1024 ? `${message.content.slice(0, 1021)}...` : message.content}` },
 			);
 		channel.send(
 			`\`[${moment(Date.now()).format('HH:mm:ss')}]\` ❌ **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id})'s message has been deleted by **${executor.username}**#${executor.discriminator} in ${message.channel}.`, embed,
@@ -44,7 +45,7 @@ module.exports = async (client, message) => {
 		const embed = new MessageEmbed()
 			.setColor('RED')
 			.addFields(
-				{ name: 'Content:', value:`${message.attachments.size > 0 ? message.attachments.first().proxyURL : message.content}` },
+				{ name: 'Content:', value:`${message.attachments.size > 0 ? message.attachments.first().proxyURL : message.content >= 1024 ? `${message.content.slice(0, 1021)}...` : message.content}` },
 			);
 		channel.send(
 			`\`[${moment(Date.now()).format('HH:mm:ss')}]\` ❌ **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id}) deleted a message in ${message.channel}.`, embed,

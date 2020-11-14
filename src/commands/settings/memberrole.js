@@ -1,11 +1,11 @@
 const Guild = require('../../models/guild');
 
 module.exports = {
-	name: 'muterole',
+	name: 'memberrole',
 	category: 'Settings',
-	description: 'Sets the muted role for the server.',
+	description: 'Sets the member role for the server.',
 	aliases: [],
-	usage: 'muterole <role>',
+	usage: 'memberrole <role>',
 	userperms: ['ADMINISTRATOR'],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
@@ -17,29 +17,29 @@ module.exports = {
 		if (args[0] === 'off') {
 			await Guild.updateOne(
 				{ guildID:message.guild.id },
-				{ 'settings.muterole': null },
+				{ 'settings.memberrole': null },
 			);
 			message.channel.send(
-				'<:vSuccess:725270799098970112> Muted role has been set to `None`.',
+				'<:vSuccess:725270799098970112> Member role has been set to `None`.',
 			);
 		}
 		else if(role) {
 			await Guild.updateOne(
 				{ guildID: message.guild.id },
-				{ 'settings.muterole': role.id },
+				{ 'settings.memberrole': role.id },
 			);
 			message.channel.send(
-				`<:vSuccess:725270799098970112> Muted role has been set to \`${role.name}\``,
+				`<:vSuccess:725270799098970112> Member role has been set to \`${role.name}\``,
 			);
 		}
-		else if(settings.settings.muterole === null) {
+		else if(settings.settings.memberrole === null) {
 			return message.channel.send(
-				`Muted role for **${message.guild}** has been set to \`None\`.`,
+				`Member role for **${message.guild}** has been set to \`None\`.`,
 			);
 		}
 		else {
 			return message.channel.send(
-				`Muted role for **${message.guild}** has been set to \`${message.guild.roles.cache.get(settings.settings.muterole).name}\`.`,
+				`Member role for **${message.guild}** has been set to \`${message.guild.roles.cache.get(settings.settings.memberrole).name}\`.`,
 			);
 		}
 	},

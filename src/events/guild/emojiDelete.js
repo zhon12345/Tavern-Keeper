@@ -10,15 +10,14 @@ module.exports = async (client, emoji) => {
 		type: 'EMOJI_CREATE',
 	});
 	const auditLog = fetchedLogs.entries.first();
-	const { executor, target } = auditLog;
+	const { executor } = auditLog;
 	if(!executor) return;
 
 	const logs = settings.settings.serverlog;
 	const logchannel = emoji.guild.channels.cache.get(logs);
-	if (!logchannel) {return;}
-	else if(target.id == emoji) {
-		logchannel.send(
-			`\`[${moment(Date.now()).format('HH:mm:ss')}]\` ❌ ${emoji.name} (ID: ${emoji.id}) has been deleted by **${executor.username}**#${executor.discriminator}.\n\`[Emoji]\` <:${emoji.name}:${emoji.id}>`,
-		);
-	}
+	if (!logchannel) return;
+
+	logchannel.send(
+		`\`[${moment(Date.now()).format('HH:mm:ss')}]\` ❌ \`${emoji.name}\` (ID: ${emoji.id}) has been deleted by **${executor.username}**#${executor.discriminator}.\n\`[Emoji]\` <:${emoji.name}:${emoji.id}>`,
+	);
 };

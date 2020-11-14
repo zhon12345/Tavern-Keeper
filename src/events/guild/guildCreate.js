@@ -13,17 +13,10 @@ module.exports = async (client, guild) => {
 			antiprofanity: false,
 			antilinks: false,
 			muterole: null,
-			verifyrole: null,
+			memberrole: null,
 			modlog: null,
 			serverlog: null,
 			messagelog: null,
-		},
-		welcomer: {
-			id: mongoose.Types.ObjectId(),
-			joinchannel: null,
-			leavechannel: null,
-			jointext: null,
-			leavetext: null,
 		},
 	});
 

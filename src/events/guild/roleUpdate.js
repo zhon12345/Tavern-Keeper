@@ -1,6 +1,6 @@
-const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
 const Guild = require('../../models/guild');
+const { formatPerms, arrayDiff } = require('../../functions');
 
 module.exports = async (client, oldRole, newRole) => {
 	const settings = await Guild.findOne({
@@ -11,57 +11,27 @@ module.exports = async (client, oldRole, newRole) => {
 		type: 'ROLE_UPDATE',
 	});
 	const auditLog = fetchedLogs.entries.first();
-	const { executor, target } = auditLog;
+	const { executor } = auditLog;
 	if(!executor) return;
 
 	const logs = settings.settings.serverlog;
 	const logchannel = oldRole.guild.channels.cache.get(logs);
-	if (!logchannel) {return;}
-	else if(target.id == oldRole) {
-		const newRolePerms = newRole.permissions.toArray();
-		const oldRolePerms = oldRole.permissions.toArray();
+	if (!logchannel) return;
 
-		newRolePerms.forEach(p =>{
-			if(!oldRolePerms.includes(p)) {
-				logchannel.send(
-					`\`[${moment(newRole.createdTimestamp).format('HH:mm:ss')}]\` ✏️ \`${oldRole.name}\` (ID: ${oldRole.id})'s permissions has been changed by **${executor.username}**#${executor.discriminator}.\n\`[Added]\` ${p[0] + p.slice(1).toLowerCase().replace(/_/g, ' ')}`,
-				);
-			}
-		});
+	const newRolePerms = newRole.permissions.toArray();
+	const oldRolePerms = oldRole.permissions.toArray();
 
-		oldRolePerms.forEach(p =>{
-			if(!newRolePerms.includes(p)) {
-				logchannel.send(
-					`\`[${moment(newRole.createdTimestamp).format('HH:mm:ss')}]\` ✏️ \`${oldRole.name}\` (ID: ${oldRole.id})'s permissions has been changed by **${executor.username}**#${executor.discriminator}.\n\`[Removed]\` ${p[0] + p.slice(1).toLowerCase().replace(/_/g, ' ')}`,
-				);
-			}
-		});
+	if(newRolePerms.includes('ADMINISTRATOR') && oldRolePerms.includes('ADMINISTRATOR')) {
+		if(newRolePerms !== oldRolePerms) {
+			logchannel.send(
+				`\`[${moment(Date.now()).format('HH:mm:ss')}]\` ✏️ \`${oldRole.name}\` (ID: ${oldRole.id})'s permissions has been changed by **${executor.username}**#${executor.discriminator}.\n\`[${newRolePerms.length > oldRolePerms.length ? 'Added' : 'Removed'}]\` ${arrayDiff(newRolePerms, oldRolePerms).map(formatPerms).join(', ')}`,
+			);
+		}
+	}
 
-		if(newRole.name !== oldRole.name) {
-			logchannel.send(
-				`\`[${moment(newRole.createdTimestamp).format('HH:mm:ss')}]\` ✏️ \`${oldRole.name}\` (ID: ${oldRole.id})'s name has been changed to ${newRole.name} by **${executor.username}**#${executor.discriminator}.\n\`[Time]\` ${moment(newRole.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`,
-			);
-		}
-		else if(newRole.hexColor !== oldRole.hexColor) {
-			const embed = new MessageEmbed()
-				.setColor('YELLOW')
-				.addFields(
-					{ name: 'Before', value: oldRole.hexColor.toUpperCase(), inline: true },
-					{ name: 'After', value: newRole.hexColor.toUpperCase(), inline: true },
-				);
-			logchannel.send(
-				`\`[${moment(newRole.createdTimestamp).format('HH:mm:ss')}]\` ✏️ \`${oldRole.name}\` (ID: ${oldRole.id})'s color has been changed by **${executor.username}**#${executor.discriminator}.\n\`[Time]\` ${moment(newRole.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`, embed,
-			);
-		}
-		else if(newRole.hoist === true && oldRole.hoist === false) {
-			logchannel.send(
-				`\`[${moment(newRole.createdTimestamp).format('HH:mm:ss')}]\` ✏️ \`${oldRole.name}\` (ID: ${oldRole.id}) has been hoisted by **${executor.username}**#${executor.discriminator}.\n\`[Time]\` ${moment(newRole.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`,
-			);
-		}
-		else if(newRole.hoist === false && oldRole.hoist === true) {
-			logchannel.send(
-				`\`[${moment(newRole.createdTimestamp).format('HH:mm:ss')}]\` ✏️ \`${oldRole.name}\` (ID: ${oldRole.id}) has been unhoisted by **${executor.username}**#${executor.discriminator}.\n\`[Time]\` ${moment(newRole.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`,
-			);
-		}
+	if(newRole.name !== oldRole.name) {
+		logchannel.send(
+			`\`[${moment(Date.now()).format('HH:mm:ss')}]\` ✏️ \`${oldRole.name}\` (ID: ${oldRole.id})'s name has been changed to \`${newRole.name}\` by **${executor.username}**#${executor.discriminator}.\n\`[Time]\` ${moment(newRole.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`,
+		);
 	}
 };

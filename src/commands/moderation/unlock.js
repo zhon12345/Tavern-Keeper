@@ -1,11 +1,11 @@
 const Guild = require('../../models/guild');
 
 module.exports = {
-	name: 'lock',
+	name: 'unlock',
 	category: 'Moderation',
-	description: 'Locks the specified channel to prevent raids.',
-	aliases: ['lockdown'],
-	usage: 'lock [category id]',
+	description: 'Unlocks the specified channel after raids.',
+	aliases: [],
+	usage: 'unlock [channel id]',
 	userperms: ['MANAGE_CHANNELS'],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'MANAGE_CHANNELS'],
 	run: async (client, message, args) => {
@@ -14,16 +14,16 @@ module.exports = {
 		});
 
 		const role = settings.settings.memberrole ? settings.settings.memberrole : message.guild.roles.everyone;
-		const channel = message.guild.channels.cache.get(args[0]) || message.guild.channels.cache.get(message.channel.parent.id);
+		const category = message.guild.channels.cache.get(args[0]) || message.guild.channels.cache.get(message.channel.parent.id);
 
-		if(channel.type === 'category') {
-			channel.children.forEach(chnl => {
-				chnl.updateOverwrite(role, {
-					SEND_MESSAGES: false,
+		if(category.type === 'category') {
+			category.children.forEach(channel => {
+				channel.updateOverwrite(role, {
+					SEND_MESSAGES: true,
 				});
 			});
 			return message.channel.send(
-				`<:vSuccess:725270799098970112> Successfully locked \`${channel.name}\``,
+				`<:vSuccess:725270799098970112> Successfully unlocked \`${category.name}\``,
 			).then(message.delete());
 		}
 		else {

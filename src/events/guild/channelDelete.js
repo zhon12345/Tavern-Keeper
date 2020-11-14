@@ -22,15 +22,14 @@ module.exports = async (client, channel) => {
 		type: 'CHANNEL_DELETE',
 	});
 	const auditLog = fetchedLogs.entries.first();
-	const { executor, target } = auditLog;
+	const { executor } = auditLog;
 	if(!executor) return;
 
 	const logs = settings.settings.serverlog;
 	const logchannel = channel.guild.channels.cache.get(logs);
-	if (!logchannel) {return;}
-	else if(target.id == channel) {
-		logchannel.send(
-			`\`[${moment(Date.now()).format('HH:mm:ss')}]\` ❌ #${channel.name} (ID: ${channel.id}) has been deleted by **${executor.username}**#${executor.discriminator} .\n\`[Type]\` ${types[channel.type]}`,
-		);
-	}
+	if (!logchannel) return;
+
+	logchannel.send(
+		`\`[${moment(Date.now()).format('HH:mm:ss')}]\` ❌ \`#${channel.name}\` (ID: ${channel.id}) has been deleted by **${executor.username}**#${executor.discriminator} .\n\`[Type]\` ${types[channel.type]}`,
+	);
 };
