@@ -26,7 +26,7 @@ module.exports = {
 
 		const words = ["secret", "token", "process.env", "config.json"];
 		for(const word of words) {
-			if (code.toLowerCase().includes(word)) {
+			if (code.replace("\\", "").toLowerCase().includes(word)) {
 				embed.setTitle("Error!");
 				embed.addField("Output", "```Nice try buddy! What you gonna do with it?```").setColor("GREEN");
 				return message.channel.send(embed);
