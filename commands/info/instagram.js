@@ -21,27 +21,22 @@ module.exports = {
 
 		let response;
 		try {
-			response = await fetch(url, {
-				headers: {
-					cookie: "sessionid=5442744739%3Azpl9fG3FjGXtH7%3A0",
-				},
-			}).then(res => res.json());
+			response = await fetch(url).then(res => res.json());
 		}
 		catch (e) {
-			console.log(e);
 			return message.channel.send(
 				"<:vError:725270799124004934> An error occured, please try again!",
 			);
 		}
 
-		try {
+		try{
 			const account = response.graphql.user;
 			const embed = new MessageEmbed()
 				.setColor("BLUE")
-				.setTitle(`${name}'s Instagram Profile`)
-				.setURL(`https://instagram.com/${name}`)
+				.setTitle(`${account.username}'s Instagram Profile`)
+				.setURL(`https://instagram.com/${account.username}`)
 				.setThumbnail(account.profile_pic_url_hd)
-				.setDescription(account.biography.length > 0 ? "None" : account.biography)
+				.setDescription(account.biography.length > 0 ? account.biography : "`None`")
 				.setFooter(`Requested by ${message.author.tag}`)
 				.setTimestamp()
 				.addField("<:documents:773950876347793449> General ❯", [

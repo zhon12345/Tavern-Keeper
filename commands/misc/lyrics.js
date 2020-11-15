@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
 	name: "lyrics",
-	category: "Music",
+	category: "Misc",
 	description: "Searches for lyrics of a specified song.",
 	aliases: [],
 	usage: "lyrics <song>",

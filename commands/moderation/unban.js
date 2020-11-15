@@ -3,7 +3,7 @@ module.exports = {
 	category: "Moderation",
 	description: "Unban a specified user from the server.",
 	aliases: [],
-	usage: "unban <user> <reason>",
+	usage: "unban <user> [reason]",
 	userperms: ["BAN_MEMBERS"],
 	botperms: ["USE_EXTERNAL_EMOJIS", "BAN_MEMBERS"],
 	run: async (client, message, args) => {
