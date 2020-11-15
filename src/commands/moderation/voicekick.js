@@ -2,13 +2,13 @@ const moment = require('moment');
 const Guild = require('../../models/guild');
 
 module.exports = {
-	name: 'kick',
+	name: 'voicekick',
 	category: 'Moderation',
-	description: 'Kick a specified user from the server.',
+	description: 'Kick a specified user from a voice channel.',
 	aliases: [],
-	userperms: ['KICK_MEMBERS'],
-	botperms: ['USE_EXTERNAL_EMOJIS', 'KICK_MEMBERS'],
-	usage: 'kick <user> [reason]',
+	userperms: ['MOVE_MEMBERS'],
+	botperms: ['USE_EXTERNAL_EMOJIS', 'MOVE_MEMBERS'],
+	usage: 'voicekick <user> [reason]',
 	run: async (client, message, args) => {
 		const settings = await Guild.findOne({
 			guildID: message.guild.id,
@@ -50,25 +50,25 @@ module.exports = {
 			Reason = args.slice(1).join(' ');
 		}
 
-		if (!member.kickable) {
+		if (!member.voice.channel) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You are not allowed kick this user.',
+				'<:vError:725270799124004934> That member is not in a voice channel.',
 			);
 		}
 
 		try {
-			await member.send(`You have been kicked from ${message.guild}\n\`[Reason]\` ${Reason}`);
+			await member.send(`You have been voice kicked from \`${member.voice.channel.name}\`\n\`[Reason]\` ${Reason}`);
 		}
 		catch(err) {
 			await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
 		}
 
-		member.kick({ reason: Reason });
+		member.voice.setChannel(null);
 		channel.send(
-			`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 👢 **${message.author.username}**#${message.author.discriminator} kicked **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` ${Reason}`,
+			`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 👢 **${message.author.username}**#${message.author.discriminator} voice kicked **${member.user.username}**#${member.user.discriminator} (ID: ${member.id}) from \`${member.voice.channel.name}\`\n\`[Reason]\` ${Reason}`,
 		);
 		await message.channel.send(
-			`<:vSuccess:725270799098970112> Successfully kicked **${member.user.username}**#${member.user.discriminator}`,
+			`<:vSuccess:725270799098970112> Successfully voice kicked **${member.user.username}**#${member.user.discriminator} from \`${member.voice.channel.name}\``,
 		).then(message.delete());
 	},
 };

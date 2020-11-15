@@ -1,6 +1,12 @@
 const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
 
+const filterLevels = {
+	DISABLED: 'Off',
+	MEMBERS_WITHOUT_ROLES: 'No Roles',
+	ALL_MEMBERS: 'Everyone',
+};
+
 const verificationLevels = {
 	NONE: 'None',
 	LOW: 'Low',
@@ -50,11 +56,13 @@ module.exports = {
 				`> **\\👦 Guild Icon: ${guild.iconURL() ? `[\`Click here!\`](${guild.iconURL({ size: 256, dynamic: true })})` : '`None`'}**`,
 				`> **\\👑 Guild Owner: ${guild.owner}**`,
 				`> **\\🌐 Region: ${regions[guild.region]}**`,
+				`> **\\🤬 Explicit Filter: \`${filterLevels[message.guild.explicitContentFilter]}\`**`,
 				`> **\\✅ Verification Level: \`${verificationLevels[guild.verificationLevel]}\`**`,
 				`> **\\📅 Created: \`${moment(guild.createdTimestamp).format('MMMM Do YYYY, h:mm:ss')}\` | \`${Math.floor((Date.now() - guild.createdTimestamp) / 86400000)}\` day(s) ago**`,
 				'\u200b',
 			])
 			.addField('<:documents:773950876347793449> Statistics ❯', [
+				`> **\\🏆 Role Count: \`${message.guild.roles.cache.map(role => role.toString()).length}\` Roles**`,
 				`> **\\👥 Member Count: \`${members.filter(member => !member.user.bot).size}\` Users \`${members.filter(member => member.user.bot).size}\` Bots**`,
 				`> **\\💬 Channel Count: \`${channels.filter(channel => channel.type === 'text').size}\` Text \`${channels.filter(channel => channel.type === 'voice').size}\` Voice**`,
 				`> **<:emojis:774070456059822090> Emoji Count: \`${emojis.filter(emoji => !emoji.animated).size}\` Regular \`${emojis.filter(emoji => emoji.animated).size}\` Animated**`,

@@ -21,7 +21,7 @@ module.exports = {
 		const code = args.join(' ');
 		if (!code) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid code.',
+				'<:vError:725270799124004934> Please provide valid code.',
 			);
 		}
 

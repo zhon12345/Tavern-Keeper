@@ -8,7 +8,7 @@ module.exports = {
 	category: 'Moderation',
 	description: 'Warn a specified user for breaking the rules.',
 	aliases: ['warn'],
-	usage: 'strike <user> [amount] <reason>',
+	usage: 'strike <user> [amount] [reason]',
 	userperms: ['KICK_MEMBERS'],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

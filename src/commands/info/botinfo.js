@@ -36,24 +36,23 @@ module.exports = {
 				.setTimestamp()
 				.setTitle('Bot Information')
 				.addField('<:documents:773950876347793449> General ❯', [
-					`> **\\👑 Owner: \`${client.users.cache.get(BOT_OWNER).tag}\`**`,
+					`> **<:card:773965449402646549> Bot Name: \`${client.user.tag}\`**`,
+					`> **\\📇 Bot ID: \`${client.user.id}\`**`,
+					`> **\\👑 Bot Owner: \`${client.users.cache.get(BOT_OWNER).tag}\`**`,
 					`> **\\🌐 Servers: \`${client.guilds.cache.size.toLocaleString()}\` Servers**`,
 					`> **\\👥 Users: \`${client.users.cache.size.toLocaleString()}\` Users**`,
 					`> **\\📺 Channels: \`${client.channels.cache.size.toLocaleString()}\` Channels**`,
 					`> **\\💬 Commands: \`${client.commands.size}\` Commands**`,
+					`> **\\📅 Created: \`${moment(client.user.createdTimestamp).format('MMMM Do YYYY, h:mm:ss')}\` | \`${Math.floor((Date.now() - client.user.createdTimestamp) / 86400000)}\` day(s) ago**`,
 					'\u200b',
 				])
 				.addField('<:documents:773950876347793449> System ❯', [
+					`> **<:online:745651877382717560> Uptime: ${parseDur(client.uptime)}**`,
 					`> **<:nodejs:773599989724348448> Node.js: \`${process.version}\`**`,
 					`> **<:djs:773599989833400371> Discord.js: \`v${djsversion}\`**`,
 					`> **\\🖥 Platform: \`${formatOS[os.platform]}\`**`,
 					`> **\\📊 Memory: \`${formatBytes(process.memoryUsage().heapUsed)} / ${formatBytes(process.memoryUsage().heapTotal)}\`**`,
-					`> **\\💻 CPU: \`${os.cpus()[0].model}\`**`,
-					'\u200b',
-				])
-				.addField('<:documents:773950876347793449> Others ❯', [
-					`> **<:online:745651877382717560> Uptime: ${parseDur(client.uptime)}**`,
-					`> **\\📅 Created: \`${moment(client.user.createdTimestamp).format('MMMM Do YYYY, h:mm:ss')}\` | \`${Math.floor((Date.now() - client.user.createdTimestamp) / 86400000)}\` day(s) ago**`,
+					`> **\\💻 CPU: \`${os.cpus()[0].model.split('CPU')[0]}${os.cpus().length} Cores ${os.cpus()[0].model.split('CPU ')[1]}\`**`,
 				]);
 			message.channel.send(embed);
 		});

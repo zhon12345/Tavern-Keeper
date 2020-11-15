@@ -6,7 +6,7 @@ module.exports = {
 	name: 'pardon',
 	category: 'Moderation',
 	aliases: ['delwarn', 'unwarn'],
-	usage: 'pardon <user> [amount] <reason>',
+	usage: 'pardon <user> [amount] [reason]',
 	description: 'Remove strikes from a specified person.',
 	userperms: ['BAN_MEMBERS'],
 	botperms: ['USE_EXTERNAL_EMOJIS'],

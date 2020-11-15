@@ -6,7 +6,7 @@ module.exports = {
 	category: 'Moderation',
 	description: 'Permanently mute a specified user.',
 	aliases: [],
-	usage: 'mute <user> <reason>',
+	usage: 'mute <user> [reason]',
 	userperms: ['KICK_MEMBERS'],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'MANAGE_ROLES'],
 	run: async (client, message, args) => {

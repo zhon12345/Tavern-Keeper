@@ -7,7 +7,7 @@ module.exports = {
 	category: 'Moderation',
 	description: 'Clear up to 99 messages in a specified channel.',
 	aliases: ['prune'],
-	usage: 'purge <amount> [reason]',
+	usage: 'purge <amount>',
 	userperms: ['MANAGE_MESSAGES'],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'MANAGE_MESSAGES'],
 	run: async (client, message, args) => {

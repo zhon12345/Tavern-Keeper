@@ -33,8 +33,8 @@ module.exports = {
 			const account = response.graphql.user;
 			const embed = new MessageEmbed()
 				.setColor('BLUE')
-				.setTitle(`${name}'s Instagram Profile`)
-				.setURL(`https://instagram.com/${name}`)
+				.setTitle(`${account.username}'s Instagram Profile`)
+				.setURL(`https://instagram.com/${account.username}`)
 				.setThumbnail(account.profile_pic_url_hd)
 				.setDescription(account.biography.length > 0 ? account.biography : '`None`')
 				.setFooter(`Requested by ${message.author.tag}`)

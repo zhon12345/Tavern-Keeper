@@ -6,7 +6,7 @@ module.exports = {
 	category: 'Moderation',
 	description: 'Ban a specified user from the server.',
 	aliases: ['banish'],
-	usage: 'ban <user> <reason>',
+	usage: 'ban <user> [reason]',
 	userperms: ['BAN_MEMBERS'],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'BAN_MEMBERS'],
 	run: async (client, message, args) => {

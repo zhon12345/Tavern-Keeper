@@ -7,7 +7,7 @@ module.exports = {
 	category: 'Moderation',
 	description: 'Temporarily mute a specified user.',
 	aliases: ['silent'],
-	usage: 'tempmute <user> <time> <reason> ',
+	usage: 'tempmute <user> <time> [reason]',
 	userperms: ['KICK_MEMBERS'],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'MANAGE_ROLES'],
 	run: async (client, message, args) => {

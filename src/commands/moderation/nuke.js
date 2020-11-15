@@ -7,7 +7,7 @@ module.exports = {
 	category: 'Moderation',
 	description: 'Clones the current channel and deletes the old one.',
 	aliases: [],
-	usage: 'nuke',
+	usage: 'nuke [channel] [reason]',
 	userperms: ['ADMINISTRATOR'],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'MANAGE_CHANNELS'],
 	run: async (client, message, args) => {
@@ -15,8 +15,10 @@ module.exports = {
 			guildID: message.guild.id,
 		});
 		const logs = settings.settings.modlog;
-		const channel = message.guild.channels.cache.get(logs);
-		if (!channel) return;
+		const logchannel = message.guild.channels.cache.get(logs);
+		if (!logchannel) return;
+
+		const channel = message.guild.channels.mentions.first() || message.guild.channels.cache.get(args[0]) || message.channel;
 
 		let Reason = args.slice(1).join(' ');
 		if (!Reason) {
@@ -26,16 +28,16 @@ module.exports = {
 			Reason = args.slice(1).join(' ');
 		}
 
-		await message.channel.clone().then((ch) =>{
-			ch.setParent(message.channel.parent.id);ch.setPosition(message.channel.position);
+		await channel.clone().then((ch) => {
+			ch.setParent(channel.parent.id);ch.setPosition(channel.position);
 			const embed = new MessageEmbed()
 				.setTitle('This channel has been NUKED!')
 				.setColor('#36393f')
 				.setImage('https://images-ext-1.discordapp.net/external/rGT3vhB8xqYng_StlUaV3jNAgdIpo9SISDskCjxq5Ug/%3Fcid%3D790b7611e787b306d4cf5d03b88cc2c6870eb35b8f37e008%26rid%3Dgiphy.gif/https/media1.giphy.com/media/uSHMDTUL7lKso/giphy.gif');
 			ch.send(embed);
-		}); message.channel.delete();
+		}); channel.delete();
 
-		channel.send(
+		logchannel.send(
 			`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` ☢ \`${message.channel.name}\` has been nuked by **${message.author.username}**#${message.author.discriminator}\n\`[Reason]\` ${Reason}`,
 		);
 	},

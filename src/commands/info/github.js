@@ -33,7 +33,7 @@ module.exports = {
 		try{
 			const embed = new MessageEmbed()
 				.setColor('BLUE')
-				.setTitle(`${response.login}'s GitHub Profile'`)
+				.setTitle(`${response.login}'s GitHub Profile`)
 				.setDescription(response.bio ? response.bio : '`None`')
 				.setURL(response.html_url)
 				.setThumbnail(response.avatar_url)
