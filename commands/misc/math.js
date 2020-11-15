@@ -5,7 +5,7 @@ module.exports = {
 	name: "math",
 	category: "Misc",
 	description: "Helps you solve a math calculation.",
-	aliases: ["calculate"],
+	aliases: ["calculate", "calc"],
 	usage: "math <equation>",
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],

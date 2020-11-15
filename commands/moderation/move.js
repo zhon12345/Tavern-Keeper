@@ -1,11 +1,11 @@
 module.exports = {
-	name: "kick",
+	name: "move",
 	category: "Moderation",
-	description: "Kick a specified user from the server.",
+	description: "Move a specified user from a voice channel.",
 	aliases: [],
-	usage: "kick <user> [reason]",
-	userperms: ["KICK_MEMBERS"],
-	botperms: ["USE_EXTERNAL_EMOJIS", "KICK_MEMBERS"],
+	userperms: ["MOVE_MEMBERS"],
+	botperms: ["USE_EXTERNAL_EMOJIS", "MOVE_MEMBERS"],
+	usage: "move <user> <channel> [reason]",
 	run: async (client, message, args) => {
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(" ") || x.user.username === args[0]);
 		if (!member) {
@@ -32,30 +32,37 @@ module.exports = {
 			);
 		}
 
-		let Reason = args.slice(1).join(" ");
+		const channel = message.guild.channels.cache.get(args[1]);
+		if(!channel || channel.type !== "voice") {
+			return message.channel.send(
+				"<:vError:725270799124004934> Please provide a valid voice channel.",
+			);
+		}
+
+		if (!member.voice.channel) {
+			return message.channel.send(
+				"<:vError:725270799124004934> That member is not in a voice channel.",
+			);
+		}
+
+		let Reason = args.slice(2).join(" ");
 		if (!Reason) {
 			Reason = "No reason provided";
 		}
 		else {
-			Reason = args.slice(1).join(" ");
-		}
-
-		if (!member.kickable) {
-			return message.channel.send(
-				"<:vError:725270799124004934> You are not allowed kick this user.",
-			);
+			Reason = args.slice(2).join(" ");
 		}
 
 		try {
-			await member.send(`You have been kicked from ${message.guild}\n\`[Reason]\` ${Reason}`);
+			await member.send(`You have been moved from \`${member.voice.channel.name}\` to \`${channel.name}\`\n\`[Reason]\` ${Reason}`);
 		}
 		catch(err) {
 			await message.channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
 		}
 
-		member.kick({ reason: Reason });
+		member.voice.setChannel(channel);
 		await message.channel.send(
-			`<:vSuccess:725270799098970112> Successfully kicked **${member.user.username}**#${member.user.discriminator}\n\`[Reason]\` ${Reason}`,
+			`<:vSuccess:725270799098970112> Successfully moved **${member.user.username}**#${member.user.discriminator} from \`${member.voice.channel.name}\` to \`${channel.name}\`\n\`[Reason]\` ${Reason}`,
 		).then(message.delete());
 	},
 };
