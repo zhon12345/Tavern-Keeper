@@ -1,3 +1,6 @@
+const Guild = require("../../models/guild");
+const moment = require("moment");
+
 module.exports = {
 	name: "clear",
 	category: "Moderation",
@@ -7,8 +10,14 @@ module.exports = {
 	userperms: ["MANAGE_MESSAGES"],
 	botperms: ["USE_EXTERNAL_EMOJIS", "MANAGE_MESSAGES"],
 	run: async (client, message, args) => {
-		const amount = parseInt(args[0]);
+		const settings = await Guild.findOne({
+			guildID: message.guild.id,
+		});
 
+		const channel = message.guild.channels.cache.get(settings.settings.modlog);
+		if (!channel) return;
+
+		const amount = parseInt(args[0]);
 		if (isNaN(amount)) {
 			return message.channel.send(
 				"<:vError:725270799124004934> Please provide a valid number.",
@@ -21,6 +30,10 @@ module.exports = {
 		}
 
 		message.channel.bulkDelete(amount + 1, true);
+		channel.send(
+			`\`[${moment(message.createdTimestamp).format("HH:mm:ss")}]\` 🗑️ **${message.author.username}**#${message.author.discriminator} cleared \`${amount}\` messages in ${message.channel}`,
+		);
+
 		await message.channel.send(
 			`<:vSuccess:725270799098970112> Successfully cleared \`${amount}\`messages`,
 		).then(msg => msg.delete({ timeout: 5000 }));
