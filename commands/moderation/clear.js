@@ -17,7 +17,7 @@ module.exports = {
 		const channel = message.guild.channels.cache.get(settings.settings.modlog);
 		if (!channel) return;
 
-		const amount = parseInt(args[0]);
+		const amount = parseInt(args[0], 10);
 		if (isNaN(amount)) {
 			return message.channel.send(
 				"<:vError:725270799124004934> Please provide a valid number.",

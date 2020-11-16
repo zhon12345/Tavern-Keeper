@@ -10,38 +10,38 @@ module.exports = {
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const guild = client.guilds.cache.get(args[0]) || message.guild;
-		let Emojis = "";
-		let EmojisAnimated = "";
-		let EmojiCount = 0;
-		let Animated = 0;
-		let OverallEmojis = 0;
+		let emojis = "";
+		let emojisAnimated = "";
+		let emojiCount = 0;
+		let animated = 0;
+		let overallEmojis = 0;
 		function Emoji(id) {
 			return client.emojis.cache.get(id).toString();
 		}
 		guild.emojis.cache.forEach((emoji) => {
-			OverallEmojis++;
+			overallEmojis++;
 			if (emoji.animated) {
-				Animated++;
-				EmojisAnimated += Emoji(emoji.id);
+				animated++;
+				emojisAnimated += Emoji(emoji.id);
 			}
 			else {
-				EmojiCount++;
-				Emojis += Emoji(emoji.id);
+				emojiCount++;
+				emojis += Emoji(emoji.id);
 			}
 		});
 
-		if(!Emojis) {
-			Emojis = "`None`";
+		if(!emojis) {
+			emojis = "`None`";
 		}
 
-		if(!EmojisAnimated) {
-			EmojisAnimated = "`None`";
+		if(!emojisAnimated) {
+			emojisAnimated = "`None`";
 		}
 
 		const Embed = new MessageEmbed()
-			.setDescription(`**Total: [${OverallEmojis}]**`)
-			.addField(`Regular [${EmojiCount}]`, Emojis.length > 1024 ? `${Emojis.slice(0, 1021)}...` : Emojis)
-			.addField(`Animated [${Animated}]`, EmojisAnimated.length > 1024 ? `${EmojisAnimated.slice(0, 1021)}...` : EmojisAnimated)
+			.setDescription(`**Total: [${overallEmojis}]**`)
+			.addField(`Regular [${emojiCount}]`, emojis.length > 1024 ? `${emojis.slice(0, 1021)}...` : emojis)
+			.addField(`Animated [${animated}]`, emojisAnimated.length > 1024 ? `${emojisAnimated.slice(0, 1021)}...` : emojisAnimated)
 			.setColor("BLUE");
 		message.channel.send(Embed);
 	},
