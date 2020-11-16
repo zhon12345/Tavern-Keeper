@@ -7,7 +7,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = async (client, messages) => {
 	const guildArray = [];
 
-	messages.forEach(async (mes) =>{
+	messages.forEach(async (mes) => {
 		if(mes.partial) await mes.fetch();
 		guildArray.push(mes.guild);
 	});
