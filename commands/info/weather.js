@@ -30,21 +30,20 @@ module.exports = {
 				);
 			}
 
-			const { current, location } = result[0];
 			const embed = new MessageEmbed()
-				.setTitle(`Weather for ${current.observationpoint}`)
-				.setDescription(`Current Conditions: **${current.skytext}**`)
-				.setThumbnail(current.imageUrl)
+				.setTitle(`Weather for ${result[0].current.observationpoint}`)
+				.setDescription(`Current Conditions: **${result[0].current.skytext}**`)
+				.setThumbnail(result[0].current.imageUrl)
 				.setColor("BLUE")
 				.setFooter(`Requested by ${message.author.tag}`)
 				.setTimestamp()
 				.addFields(
-					{ name: "Timezone", value: `UTC ${location.timezone}`, inline: true },
-					{ name: "Degree Measurement", value: `°${location.degreetype}`, inline: true },
-					{ name: "Temperature", value: `${current.temperature} Degrees`, inline: true },
-					{ name: "Feels Like", value: `${current.feelslike} Degrees`, inline: true },
-					{ name: "Wind", value: current.winddisplay, inline: true },
-					{ name: "Humidity", value: `${current.humidity}%`, inline: true },
+					{ name: "Timezone", value: `UTC ${result[0].location.timezone}`, inline: true },
+					{ name: "Degree Measurement", value: `°${result[0].location.degreetype}`, inline: true },
+					{ name: "Temperature", value: `${result[0].current.temperature} Degrees`, inline: true },
+					{ name: "Feels Like", value: `${result[0].current.feelslike} Degrees`, inline: true },
+					{ name: "Wind", value: result[0].current.winddisplay, inline: true },
+					{ name: "Humidity", value: `${result[0].current.humidity}%`, inline: true },
 				);
 			message.channel.send(embed);
 		});
