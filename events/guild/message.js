@@ -1,18 +1,56 @@
-const { validatePermissions } = require("../../functions");
+const { is_url, is_invite, validatePermissions } = require("../../functions");
 const { BOT_PREFIX, BOT_OWNER } = process.env;
+const Guild = require("../../models/guild");
+const mongoose = require("mongoose");
 
 module.exports = async (client, message) => {
 	if (message.author.bot) return;
 	if (!message.guild) return;
 
+	const settings = await Guild.findOne({
+		guildID: message.guild.id,
+	}, (err, guild) => {
+		if (err) console.error(err);
+		if (!guild) {
+			const newGuild = new Guild({
+				_id: mongoose.Types.ObjectId(),
+				guildID: message.guild.id,
+				guildName: message.guild.name,
+				prefix: BOT_PREFIX,
+				blacklisted: false,
+				settings:{
+					antiprofanity: false,
+					antilinks: false,
+					muterole: null,
+					memberrole: null,
+					modlog: null,
+					serverlog: null,
+					messagelog: null,
+				},
+			});
+
+			newGuild.save();
+		}
+	});
+
+	const prefix = settings ? settings.prefix : BOT_PREFIX;
+
 	if (message.content.match(`^<@!?${client.user.id}>( |)$`)) {
-		message.channel.send(`${message.guild.name}'s prefix is \`${BOT_PREFIX}\``);
+		message.channel.send(`${message.guild.name}'s prefix is \`${prefix}\``);
 	}
 
-	if (!message.content.startsWith(BOT_PREFIX)) return;
+	if (settings && settings.settings.antilinks) {
+		if(is_url(message.content) || is_invite(message.content)) {
+			if(!message.member.hasPermission("KICK_MEMBERS")) {
+				message.delete();
+			}
+		}
+	}
+
+	if (!message.content.startsWith(prefix)) return;
 	if (!message.member) message.member = await message.guild.fetchMember(message);
 
-	const args = message.content.slice(BOT_PREFIX.length).split(/ +/g);
+	const args = message.content.slice(prefix.length).split(/ +/g);
 	const cmd = args.shift().toLowerCase();
 
 	if (cmd.length === 0) return;
@@ -50,6 +88,6 @@ module.exports = async (client, message) => {
 				}
 			}
 		}
-		command.run(client, message, args);
+		command.run(client, message, args, prefix);
 	}
 };

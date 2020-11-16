@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 const { MessageEmbed } = require("discord.js");
-const prefix = process.env.BOT_PREFIX;
 
 module.exports = {
 	name: "tos",
@@ -10,7 +9,7 @@ module.exports = {
 	usage: "tos",
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
-	run: async (client, message, args) => {
+	run: async (client, message, args, prefix) => {
 		const pEmbed = new MessageEmbed()
 			.setThumbnail("https://www.symphonyenvironmental.com/wp-content/uploads/2019/10/Terms-and-conditions-icon-V2.png")
 			.setTitle("**Terms of Service**")
