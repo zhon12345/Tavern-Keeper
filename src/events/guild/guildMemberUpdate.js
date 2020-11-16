@@ -27,7 +27,7 @@ module.exports = async (client, oldMember, newMember) => {
 		}
 	});
 
-	oldMemberRoles.forEach(async (p)=>{
+	oldMemberRoles.forEach(async (p) => {
 		if(!newMemberRoles.includes(p)) {
 			logchannel.send(
 				`\`[${moment(Date.now()).format('HH:mm:ss')}]\` ✏️ **${oldMember.user.username}**#${oldMember.user.discriminator} (ID: ${oldMember.user.id}) was removed from the \`${p}\` role by **${executor.username}**#${executor.discriminator}.\n\`[Time]\` ${moment(newMember.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`,

@@ -20,7 +20,6 @@ module.exports = {
 		const invites = await message.guild.fetchInvites();
 		const invite = invites.find(i => i.code === code);
 
-		console.log(invite.expiresTimestamp);
 		const embed = new MessageEmbed()
 			.setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 512 }))
 			.setColor('BLUE')

@@ -38,7 +38,7 @@ module.exports = {
 
 	// botinfo.js
 	formatBytes: function(a, b) {
-		if (a == 0) return '0 Bytes';
+		if (a === 0) return '0 Bytes';
 		const c = 1024,
 			d = b || 2,
 			e = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],

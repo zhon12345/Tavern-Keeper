@@ -7,8 +7,7 @@ module.exports = {
 		User.findOne({
 			guildID: message.guild.id,
 			userID: message.author.id,
-		}, async (err, data) => {
-			if (err) console.error(err);
+		}, async (data) => {
 			if (!data) {
 				const newUser = new User({
 					_id: mongoose.Types.ObjectId(),

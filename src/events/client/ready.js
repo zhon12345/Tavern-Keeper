@@ -1,7 +1,7 @@
 const { BOT_PREFIX, BOT_DB } = process.env;
 const mongoose = require('mongoose');
 
-module.exports = async (client) =>{
+module.exports = async (client) => {
 	mongoose.connect(BOT_DB, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,

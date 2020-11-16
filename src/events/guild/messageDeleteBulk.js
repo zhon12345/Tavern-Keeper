@@ -5,7 +5,7 @@ const url = 'https://hasteb.in/documents';
 const Guild = require('../../models/guild');
 const { MessageEmbed } = require('discord.js');
 
-module.exports = async (client, messages) =>{
+module.exports = async (client, messages) => {
 	const guildArray = [];
 
 	messages.forEach(async (mes) =>{

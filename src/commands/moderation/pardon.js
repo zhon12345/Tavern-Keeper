@@ -65,8 +65,7 @@ module.exports = {
 		await User.findOne({
 			guildID: message.guild.id,
 			userID: member.id,
-		}, async (err, data) => {
-			if (err) console.error(err);
+		}, async (data) => {
 			if (!data || data.warnings <= 0) {
 				return message.channel.send(
 					`<:vWarning:725276167346585681> **${member.user.username}**#${member.user.discriminator} has no strikes`,
