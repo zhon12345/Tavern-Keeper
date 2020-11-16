@@ -6,20 +6,6 @@ module.exports = async (client, member) => {
 		guildID: member.guild.id,
 	});
 
-	const welcome = settings.welcomer.joinchannel;
-	const channel = member.guild.channels.cache.get(welcome);
-	if (!channel) return;
-	const msg = settings.welcomer.jointext;
-	if (!msg) return;
-	const message = msg
-		.split('{user.name}').join(member.user.username)
-		.split('{user.discriminator}').join(member.user.discriminator)
-		.split('{user.id}').join(member.id)
-		.split('{user.mention}').join(member)
-		.split('{guild.name}').join(member.guild.name)
-		.split('{guild.membercount}').join(member.guild.memberCount);
-	channel.send(message);
-
 	const logs = settings.settings.serverlog;
 	const logchannel = member.guild.channels.cache.get(logs);
 	if (!logchannel) return;

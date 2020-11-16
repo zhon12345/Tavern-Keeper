@@ -18,7 +18,7 @@ module.exports = {
 		const logchannel = message.guild.channels.cache.get(logs);
 		if (!logchannel) return;
 
-		const channel = message.guild.channels.mentions.first() || message.guild.channels.cache.get(args[0]) || message.channel;
+		const channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]) || message.channel;
 
 		let Reason = args.slice(1).join(' ');
 		if (!Reason) {

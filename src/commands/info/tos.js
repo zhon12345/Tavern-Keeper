@@ -10,12 +10,7 @@ module.exports = {
 	usage: 'tos',
 	userperms: [],
 	botperms: [],
-	run: async (client, message, args) => {
-		const settings = await Guild.findOne({
-			guildID: message.guild.id,
-		});
-
-		const prefix = settings.prefix;
+	run: async (client, message, args, prefix) => {
 		const pEmbed = new MessageEmbed()
 			.setThumbnail('https://www.symphonyenvironmental.com/wp-content/uploads/2019/10/Terms-and-conditions-icon-V2.png')
 			.setTitle('**Terms of Service**')

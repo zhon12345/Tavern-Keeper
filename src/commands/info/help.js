@@ -1,7 +1,6 @@
 /* eslint-disable no-inner-declarations */
 const { MessageEmbed } = require('discord.js');
 const { BOT_OWNER } = process.env;
-const Guild = require('../../models/guild');
 
 module.exports = {
 	name: 'help',
@@ -11,11 +10,7 @@ module.exports = {
 	usage: 'help [command]',
 	userperms: [],
 	botperms: [],
-	run: async (client, message, args) => {
-		const settings = await Guild.findOne({
-			guildID: message.guild.id,
-		});
-
+	run: async (client, message, args, prefix) => {
 		if (message.author.id === BOT_OWNER && args[0] === 'all') {
 			const categories = [...new Set(client.commands.map(cmd => cmd.category))];
 			const embed = new MessageEmbed()
@@ -24,8 +19,8 @@ module.exports = {
 				.setTimestamp()
 				.setColor('BLUE')
 				.setDescription([`
-			This server's prefix is \`${settings.prefix}\`.
-			For more info on a specific command, type \`${settings.prefix}help <command>\`.
+			This server's prefix is \`${prefix}\`.
+			For more info on a specific command, type \`${prefix}help <command>\`.
 			Visit the bot's website [here](http://tavernkeeper.ml) for more info on certain features.
 			`]);
 
@@ -63,7 +58,7 @@ module.exports = {
 						`> **Name: \`${cmd.name}\`**`,
 						`> **Category: \`${cmd.category.toString()}\`**`,
 						`> **Description: \`${cmd.description}\`**`,
-						`> **Usage: \`${settings.prefix}${cmd.usage}\`**`,
+						`> **Usage: \`${prefix}${cmd.usage}\`**`,
 						`> **Aliases: \`${cmd.aliases.length ? cmd.aliases.map((a) => `${a}`).join('`, `') : 'None'}\`**`,
 					]);
 				return message.channel.send(hembed);
@@ -76,8 +71,8 @@ module.exports = {
 				.setTimestamp()
 				.setColor('BLUE')
 				.setDescription([`
-				This server's prefix is \`${settings.prefix}\`.
-				For more info on a specific command, type \`${settings.prefix}help <command>\`.
+				This server's prefix is \`${prefix}\`.
+				For more info on a specific command, type \`${prefix}help <command>\`.
 				Visit the bot's website [here](http://tavernkeeper.ml) for more info on certain features.
 				`]);
 
@@ -85,7 +80,7 @@ module.exports = {
 			for (const id of categories) {
 				const category = client.commands.filter(cmd => cmd.category === id);
 
-				embed.addField(`${id} (${category.size})`, `\`${settings.prefix}help ${id.toLowerCase()}\``, true);
+				embed.addField(`${id} (${category.size})`, `\`${prefix}help ${id.toLowerCase()}\``, true);
 			}
 			message.channel.send(embed);
 		}

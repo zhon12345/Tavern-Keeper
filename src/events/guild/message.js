@@ -31,21 +31,18 @@ module.exports = async (client, message) => {
 			});
 
 			newGuild.save();
-			return message.channel.send(
-				`<:vError:725270799124004934> ${message.guild} was not registed to my database, registering server now....`,
-			);
 		}
 	});
 
-	const prefix = settings.prefix ? settings.prefix : 'm!';
+	const prefix = settings ? settings.prefix : 'm!';
 
 	if (message.content.match(`^<@!?${client.user.id}>( |)$`)) {
 		message.channel.send(`${message.guild.name}'s prefix is \`${prefix}\``);
 	}
 
-	if (settings.blacklisted === true) return;
+	if (settings && settings.blacklisted === true) return;
 
-	if (settings.settings.antiprofanity === true) {
+	if (settings && settings.settings.antiprofanity === true) {
 		const profanity = [	'fuck', 'shit', 'fucker', 'nigger', 'nigga', 'asshole', 'bitch'];
 		for(const word of profanity) {
 			if (message.content.includes(word)) {
@@ -66,7 +63,7 @@ module.exports = async (client, message) => {
 		}
 	}
 
-	if (settings.settings.antilinks === true) {
+	if (settings && settings.settings.antilinks === true) {
 		if(is_url(message.content) || is_invite(message.content) === true) {
 			const reason = 'Sending Links';
 			const logs = settings.settings.modlog;
@@ -131,6 +128,6 @@ module.exports = async (client, message) => {
 				'<:vError:725270799124004934> Insufficient Permission! `Use External Emojis` required.',
 			);
 		}
-		command.run(client, message, args);
+		command.run(client, message, args, prefix);
 	}
 };

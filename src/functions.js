@@ -207,6 +207,7 @@ module.exports = {
 		}
 	},
 
+	// roleUpdate.js
 	arrayDiff: function(a1, a2) {
 		const a = [], diff = [];
 		for (let i = 0; i < a1.length; i++) {

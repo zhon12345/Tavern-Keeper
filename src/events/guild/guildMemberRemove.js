@@ -1,50 +1,28 @@
-const moment = require('moment');
 const Guild = require('../../models/guild');
+const moment = require('moment');
 
 module.exports = async (client, member) => {
 	const settings = await Guild.findOne({
 		guildID: member.guild.id,
 	});
 
-	const welcome = settings.welcomer.joinchannel;
-	const goodbye = settings.welcomer.leavechannel;
-	let channel = member.guild.channels.cache.get(goodbye);
-	if (!goodbye) {
-		channel = member.guild.channels.cache.get(welcome);
-	}
-	else if (!welcome) {
-		return;
-	}
-	const msg = settings.welcomer.leavetext;
-	if (!msg) return;
-	const message = msg
-		.split('{user.name}').join(member.user.username)
-		.split('{user.discriminator}').join(member.user.discriminator)
-		.split('{user.id}').join(member.id)
-		.split('{user.mention}').join(member)
-		.split('{guild.name}').join(member.guild.name)
-		.split('{guild.membercount}').join(member.guild.memberCount);
-	channel.send(message);
-
 	const isKicked = await member.guild.fetchAuditLogs({
 		type: 'MEMBER_KICK',
 	});
+
 	const isBanned = await member.guild.fetchAuditLogs({
 		type: 'MEMBER_BAN',
 	});
-	const memberKicked = isKicked.entries.first().target;
-	const memberBanned = isBanned.entries.first().target;
 
-	const logs = settings.settings.serverlog;
-	const logchannel = member.guild.channels.cache.get(logs);
+	const logchannel = member.guild.channels.cache.get(settings.settings.serverlog);
 	if (!logchannel) return;
 
-	if(memberKicked.id == member) {
+	if(isKicked.entries.first().target.id === member.id) {
 		logchannel.send(
 			`\`[${moment(Date.now()).format('HH:mm:ss')}]\` 📤 **${member.user.username}**#${member.user.discriminator} (ID: ${member.user.id}) was kicked from the server.\n\`[Joined Date]\` ${moment(member.user.joinedAt).format('dddd, Do MMMM YYYY, h:mm:ss a')}`,
 		);
 	}
-	else if(memberBanned.id == member) {
+	else if(isBanned.entries.first().target.id === member.id) {
 		logchannel.send(
 			`\`[${moment(Date.now()).format('HH:mm:ss')}]\` 📤 **${member.user.username}**#${member.user.discriminator} (ID: ${member.user.id}) was banned from the server.\n\`[Joined Date]\` ${moment(member.user.joinedAt).format('dddd, Do MMMM YYYY, h:mm:ss a')}`,
 		);

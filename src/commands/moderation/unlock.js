@@ -19,7 +19,7 @@ module.exports = {
 		if(category.type === 'category') {
 			category.children.forEach(channel => {
 				channel.updateOverwrite(role, {
-					SEND_MESSAGES: true,
+					SEND_MESSAGES: null,
 				});
 			});
 			return message.channel.send(
