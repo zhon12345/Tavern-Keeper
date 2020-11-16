@@ -26,7 +26,7 @@ module.exports = {
 			Reason = args.slice(1).join(" ");
 		}
 
-		const channel = message.guild.channels.mentions.first() || message.guild.channels.cache.get(args[0]) || message.channel;
+		const channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]) || message.channel;
 		await channel.clone().then((ch) => {
 			ch.setParent(channel.parent.id);ch.setPosition(channel.position);
 			const embed = new MessageEmbed()
