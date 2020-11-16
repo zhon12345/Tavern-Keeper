@@ -42,7 +42,11 @@ module.exports = async (client, message) => {
 	if (settings && settings.settings.antilinks) {
 		if(is_url(message.content) || is_invite(message.content)) {
 			if(!message.member.hasPermission("KICK_MEMBERS")) {
-				message.delete();
+				message.delete().then(() => {
+					message.channel.send(
+						`${message.author}, you are not allowed to send links here.`,
+					);
+				});
 			}
 		}
 	}
