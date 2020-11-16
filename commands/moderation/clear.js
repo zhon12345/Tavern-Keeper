@@ -7,7 +7,7 @@ module.exports = {
 	userperms: ["MANAGE_MESSAGES"],
 	botperms: ["USE_EXTERNAL_EMOJIS", "MANAGE_MESSAGES"],
 	run: async (client, message, args) => {
-		const amount = args[0];
+		const amount = parseInt(args[0]);
 
 		if (isNaN(amount)) {
 			return message.channel.send(
