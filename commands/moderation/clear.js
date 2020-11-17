@@ -45,7 +45,7 @@ module.exports = {
 
 			const embed = new MessageEmbed()
 				.setDescription(`[\`📄 View\`](https://hasteb.in/${response.key}.js)`)
-				.setColor("GREEN");
+				.setColor("RED");
 			channel.send(
 				`\`[${moment(message.createdTimestamp).format("HH:mm:ss")}]\` 🗑️ **${message.author.username}**#${message.author.discriminator} cleared \`${amount}\` messages in ${message.channel}`, embed,
 			);
