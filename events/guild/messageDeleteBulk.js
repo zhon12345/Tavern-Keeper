@@ -20,7 +20,7 @@ module.exports = async (client, messages) => {
 	const logsChannel = client.channels.cache.get(settings.settings.messagelog);
 	if(!logsChannel) return;
 
-	const output = messages.map(m => `${new Date(m.createdAt).toLocaleString("en-US")} - ${m.author.tag}: ${m.attachments.size > 0 ? m.attachments.first().proxyURL : m.content}`).join("\n");
+	const output = messages.array().reverse().map(m => `${new Date(m.createdAt).toLocaleString("en-US")} - ${m.author.tag}: ${m.attachments.size > 0 ? m.attachments.first().proxyURL : m.content}`).join("\n");
 
 	let response;
 	try {
