@@ -2,7 +2,7 @@
 module.exports = {
 	name: "portal",
 	category: "Fun",
-	description: "Surely you know what lenny is, everyone does.",
+	description: "Do you even play minecraft?.",
 	aliases: ["nether"],
 	usage: "portal  ",
 	userperms: [],

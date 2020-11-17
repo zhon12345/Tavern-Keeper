@@ -3,7 +3,7 @@ const { MessageAttachment } = require("discord.js");
 module.exports = {
 	name: "invert",
 	category: "Image",
-	description: "Invert the colors of a user's avatar",
+	description: "Invert the colors of a user's avatar.",
 	aliases: ["colorfilp"],
 	usage: "invert <user>",
 	userperms: [],

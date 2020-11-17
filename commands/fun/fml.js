@@ -5,7 +5,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
 	name: "fml",
 	category: "Fun",
-	description: "Is looking at the misery of others funny?.",
+	description: "Is looking at the misery of others funny?",
 	aliases: ["fmylife"],
 	usage: "fml",
 	userperms: [],
