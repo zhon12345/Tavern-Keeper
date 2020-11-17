@@ -32,7 +32,7 @@ module.exports = {
 			);
 		}
 
-		channel.messages.fetch({ limit: amount + 1 }).then(async (messages) => {
+		message.channel.messages.fetch({ limit: amount + 1 }).then(async (messages) => {
 			const output = messages.array().reverse().map(m => `${new Date(m.createdAt).toLocaleString("en-US")} - ${m.author.tag}: ${m.attachments.size > 0 ? m.attachments.first().proxyURL : m.content}`).join("\n");
 
 			let response;
