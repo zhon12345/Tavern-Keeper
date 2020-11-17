@@ -1,83 +1,63 @@
-const Guild = require('../../models/guild');
+const blacklist = require('../../models/blacklist');
 const { MessageEmbed } = require('discord.js');
 
 module.exports = {
 	name: 'blacklist',
 	category: 'Owner',
-	description: 'Add or Remove a specified guild from the blacklist.',
+	description: 'Add or Remove a specified member from the blacklist.',
 	aliases: [],
-	usage: 'blacklist [add/remove] [guild]',
+	usage: 'blacklist [add/remove] [member]',
 	userperms: ['BOT_OWNER'],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
-		let guild;
-		if (args[0]) {
-			if(isNaN(args[1])) {
+		const member = message.mentions.members.first() || message.guild.members.cache.get(args[1]) || message.guild.members.cache.find(x => x.user.username === args.slice(1).join(' ') || x.user.username === args[1]);
+		if(args[0] === 'add') {
+			if (!member) {
 				return message.channel.send(
-					'<:vError:725270799124004934> Please provide a valid guild id.',
+					'<:vError:725270799124004934> Please provide a valid user.',
 				);
 			}
-			else {
-				guild = args[1];
-			}
-		}
 
-		const settings = await Guild.findOne({
-			guildID: guild,
-		});
-
-		if (args[0].toLowerCase() === 'add') {
-			if(settings.blacklisted === true) {
-				return message.channel.send(
-					'<:vError:725270799124004934> The specified guild is already blacklisted.',
-				);
-			}
-			else {
-				await Guild.updateOne(
-					{
-						guildID: guild,
-					},
-					{
-						blacklisted: true,
-					});
-				message.channel.send(
-					`<:vSuccess:725270799098970112> Successfully added ${client.guilds.cache.get(guild)} to blacklist.`,
-				).then(message.delete());
-			}
+			blacklist.findOne({ id : member.user.id }, async (err, data) => {
+				if(err) throw err;
+				if(data) {
+					message.channel.send(`<:vError:725270799124004934> \`${member.user.tag}\` has already been blacklisted.`);
+				}
+				else {
+					data = new blacklist({ name: member.user.username, id : member.user.id });
+					data.save()
+						.catch(err => console.log(err));
+					message.channel.send(`<:vSuccess:725270799098970112> \`${member.user.tag}\` has been added to blacklist.`);
+				}
+			});
 		}
-		else if (args[0].toLowerCase() === 'remove') {
-			if(settings.blacklisted === false) {
+		else if(args[0] === 'remove') {
+			if (!member) {
 				return message.channel.send(
-					'<:vError:725270799124004934> The specified guild is not blacklisted.',
+					'<:vError:725270799124004934> Please provide a valid user.',
 				);
 			}
-			else {
-				await Guild.updateOne(
-					{
-						guildID: guild,
-					},
-					{
-						blacklisted: false,
-					});
-				message.channel.send(
-					`<:vSuccess:725270799098970112> Successfully removed ${settings.guildName} to blacklist.`,
-				).then(message.delete());
-			}
+
+			blacklist.findOne({ id : member.user.id }, async (err, data) => {
+				if(err) throw err;
+				if(data) {
+					await blacklist.findOneAndDelete({ id : member.user.id })
+						.catch(err => console.log(err));
+					message.channel.send(`<:vSuccess:725270799098970112> \`${member.user.tag}\` has been removed from blacklist.`);
+				}
+				else {
+					message.channel.send(`<:vError:725270799124004934> \`${member.user.tag}\` has not been blacklisted.`);
+				}
+			});
 		}
 		else {
-			const isBlacklisted = await Guild.find(
-				{
-					blacklisted: true,
-				},
-			);
-
-			const blacklisted = isBlacklisted.map(guilds => `${guilds.guildName} (${guilds.guildID})`.toString());
-
-			const embed = new MessageEmbed()
-				.setTitle('Blacklisted guilds')
-				.setDescription(blacklisted.length !== 0 ? blacklisted : 'None')
-				.setColor('BLUE');
-			return message.channel.send(embed);
+			blacklist.find({}, (err, data) => {
+				const embed = new MessageEmbed()
+					.setTitle('Blacklisted Users')
+					.setColor('BLUE')
+					.setDescription(data.length >= 1 ? data.map(u => {return `> **Username: ${client.users.cache.get(u.id)} (\`${u.name}\`)**\n> **User ID: \`${u.id}\`**\n`;}).join('\n') : '`None`');
+				message.channel.send(embed);
+			});
 		}
 	},
 };

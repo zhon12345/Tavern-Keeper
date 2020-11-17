@@ -1,4 +1,5 @@
 const { is_url, is_invite, validatePermissions } = require('../../functions');
+const blacklist = require('../../models/blacklist');
 const { BOT_PREFIX, BOT_OWNER } = process.env;
 const Guild = require('../../models/guild');
 const { warn } = require('../../util/warn');
@@ -81,53 +82,57 @@ module.exports = async (client, message) => {
 		}
 	}
 
-	if (!message.content.startsWith(prefix)) return;
-	if (!message.member) message.member = await message.guild.fetchMember(message);
+	blacklist.findOne({ id : message.author.id }, async (err, data) => {
+		if(!data) {
+			if (!message.content.startsWith(prefix)) return;
+			if (!message.member) message.member = await message.guild.fetchMember(message);
 
-	const args = message.content.slice(prefix.length).split(/ +/g);
-	const cmd = args.shift().toLowerCase();
+			const args = message.content.slice(prefix.length).split(/ +/g);
+			const cmd = args.shift().toLowerCase();
 
-	if (cmd.length === 0) return;
+			if (cmd.length === 0) return;
 
-	const command = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
+			const command = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
 
-	if (command) {
-		if (command.userperms.length > 0 || command.botperms.length > 0) {
-			if (typeof command.userperms === 'string') {
-				command.userperms = command.userperms.split();
-				validatePermissions(command.userperms);
-			}
+			if (command) {
+				if (command.userperms.length > 0 || command.botperms.length > 0) {
+					if (typeof command.userperms === 'string') {
+						command.userperms = command.userperms.split();
+						validatePermissions(command.userperms);
+					}
 
-			for(const permission of command.userperms) {
-				if(permission === 'BOT_OWNER' && message.member.id !== BOT_OWNER) {
-					return;
+					for(const permission of command.userperms) {
+						if(permission === 'BOT_OWNER' && message.member.id !== BOT_OWNER) {
+							return;
+						}
+						else if(!message.member.hasPermission(permission)) {
+							return message.reply(
+								`<:vError:725270799124004934> Insufficient Permission! \`${permission}\` required.`,
+							);
+						}
+					}
+
+					if(typeof command.botperms === 'string') {
+						command.botperms = command.botperms.split();
+						validatePermissions(command.botperms);
+					}
+
+					for(const permission of command.botperms) {
+						if (!message.member.hasPermission(permission)) {
+							return message.channel.send(
+								`<:vError:725270799124004934> Insufficient Permission! \`${permission}\` required.`,
+							);
+						}
+					}
 				}
-				else if(!message.member.hasPermission(permission)) {
-					return message.reply(
-						`<:vError:725270799124004934> Insufficient Permission! \`${permission}\` required.`,
-					);
-				}
-			}
 
-			if(typeof command.botperms === 'string') {
-				command.botperms = command.botperms.split();
-				validatePermissions(command.botperms);
-			}
-
-			for(const permission of command.botperms) {
-				if (!message.member.hasPermission(permission)) {
+				if(!message.guild.me.hasPermission('USE_EXTERNAL_EMOJIS')) {
 					return message.channel.send(
-						`<:vError:725270799124004934> Insufficient Permission! \`${permission}\` required.`,
+						'<:vError:725270799124004934> Insufficient Permission! `Use External Emojis` required.',
 					);
 				}
+				command.run(client, message, args, prefix);
 			}
 		}
-
-		if(!message.guild.me.hasPermission('USE_EXTERNAL_EMOJIS')) {
-			return message.channel.send(
-				'<:vError:725270799124004934> Insufficient Permission! `Use External Emojis` required.',
-			);
-		}
-		command.run(client, message, args, prefix);
-	}
+	});
 };
