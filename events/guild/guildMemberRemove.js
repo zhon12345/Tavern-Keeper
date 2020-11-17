@@ -2,6 +2,7 @@ const Guild = require("../../models/guild");
 const moment = require("moment");
 
 module.exports = async (client, member) => {
+	if(!member.guild.me.hasPermission("VIEW_AUDIT_LOG")) return;
 	const settings = await Guild.findOne({
 		guildID: member.guild.id,
 	});
