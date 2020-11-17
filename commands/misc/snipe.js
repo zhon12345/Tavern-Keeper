@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
 	name: "snipe",
-	description: "Shows the last deleted message from a specified channel",
+	description: "Shows the last few deleted message from a specified channel.",
 	aliases: [],
 	usage: "snipe [number]",
 	category: "Misc",

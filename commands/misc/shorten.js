@@ -5,7 +5,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
 	name: "shorten",
 	category: "Misc",
-	description: "Shortens a provided link using bit.ly.",
+	description: "Shortens a provided link.",
 	aliases: ["short"],
 	usage: "shorten <url>",
 	userperms: [],

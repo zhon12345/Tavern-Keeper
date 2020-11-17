@@ -6,7 +6,7 @@ const words = require("../../assets/json/words.json");
 module.exports = {
 	name: "scramble",
 	category: "Fun",
-	description: "Test your knowledge and unscramble a random word",
+	description: "Test your knowledge and unscramble a random word.",
 	aliases: [],
 	usage: "scramble",
 	userperms: [],
