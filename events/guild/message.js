@@ -17,7 +17,6 @@ module.exports = async (client, message) => {
 				guildID: message.guild.id,
 				guildName: message.guild.name,
 				prefix: BOT_PREFIX,
-				blacklisted: false,
 				settings:{
 					antiprofanity: false,
 					antilinks: false,
