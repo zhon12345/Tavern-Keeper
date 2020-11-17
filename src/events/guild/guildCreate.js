@@ -7,7 +7,6 @@ module.exports = async (client, guild) => {
 		guildID: guild.id,
 		guildName: guild.name,
 		prefix: process.env.BOT_PREFIX,
-		blacklisted: false,
 		settings:{
 			id: mongoose.Types.ObjectId(),
 			antiprofanity: false,

@@ -19,7 +19,6 @@ module.exports = async (client, message) => {
 				guildID: message.guild.id,
 				guildName: message.guild.name,
 				prefix: BOT_PREFIX,
-				blacklisted: false,
 				settings:{
 					antiprofanity: false,
 					antilinks: false,
@@ -40,8 +39,6 @@ module.exports = async (client, message) => {
 	if (message.content.match(`^<@!?${client.user.id}>( |)$`)) {
 		message.channel.send(`${message.guild.name}'s prefix is \`${prefix}\``);
 	}
-
-	if (settings && settings.blacklisted === true) return;
 
 	if (settings && settings.settings.antiprofanity === true) {
 		const profanity = [	'fuck', 'shit', 'fucker', 'nigger', 'nigga', 'asshole', 'bitch'];
