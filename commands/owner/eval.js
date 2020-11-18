@@ -21,6 +21,18 @@ module.exports = {
 			);
 		}
 
+		const words = ["token", "process.env", "bot_token"];
+		for(const word of words) {
+			if (code.replace("\\", "").toLowerCase().includes(word)) {
+				const embed = new MessageEmbed()
+					.setTitle("Error!")
+					.setColor("RED")
+					.addField("Input", `\`\`\`js\n${code}\`\`\``)
+					.addField("Output", "```Nice try buddy! What you gonna do with it?```");
+				return message.channel.send(embed);
+			}
+		}
+
 		try {
 			const start = process.hrtime();
 			let evaled = eval(code);
