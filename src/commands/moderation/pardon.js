@@ -6,7 +6,7 @@ module.exports = {
 	name: 'pardon',
 	category: 'Moderation',
 	aliases: ['delwarn', 'unwarn'],
-	usage: 'pardon <user> [amount] [reason]',
+	usage: 'pardon <user> <number> [reason]',
 	description: 'Remove strikes from a specified person.',
 	userperms: ['BAN_MEMBERS'],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
@@ -14,10 +14,8 @@ module.exports = {
 		const settings = await Guild.findOne({
 			guildID: message.guild.id,
 		});
-		const logs = settings.settings.modlog;
-		const channel = message.guild.channels.cache.get(logs);
-		if (!channel) return;
 
+		const channel = message.guild.channels.cache.get(settings.settings.modlog);
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]);
 
 		if(!member) {
@@ -38,54 +36,43 @@ module.exports = {
 			);
 		}
 
-		let Reason;
-		let amount;
-		if (isNaN(args[1])) {
-			amount = 1;
-			Reason = args.slice(1).join(' ');
-			if (!Reason) {
-				Reason = 'No reason provided';
-			}
-			else {
-				Reason = args.slice(1).join(' ');
-			}
-		}
-
-		else {
-			amount = Number(args[1]);
-			Reason = args.slice(2).join(' ');
-			if (!Reason) {
-				Reason = 'No reason provided';
-			}
-			else {
-				Reason = args.slice(2).join(' ');
-			}
+		const reason = args[2] ? args.slice(2).join(' ') : 'No reason provided';
+		const code = args[1];
+		if(!code || code.length !== 5) {
+			return message.channel.send(
+				'<:vError:725270799124004934> Please provide a valid code.',
+			);
 		}
 
 		await User.findOne({
 			guildID: message.guild.id,
-			userID: member.id,
-		}, async (data) => {
-			if (!data || data.warnings <= 0) {
-				return message.channel.send(
-					`<:vWarning:725276167346585681> **${member.user.username}**#${member.user.discriminator} has no strikes`,
-				);
-			}
-			else {
-				data.warnings -= amount;
+			userID: member.user.id,
+		}, async (err, data) => {
+			if(data) {
+				data.warnings.splice(data.warnings.findIndex(x => x.code === code), 1);
 				data.save();
+
 				try {
-					await member.send(`You have been pardoned \`${amount}\` strikes in ${message.guild}\n\`[Reason]\` ${Reason}`);
+					await member.send(`You have been pardoned \`1\` strikes in ${message.guild}\n\`[Reason]\` ${reason}`);
 				}
 				catch(err) {
 					await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
 				}
-				channel.send(
-					`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🏳️ **${message.author.username}**#${message.author.discriminator} pardoned \`${amount}\` strikes from **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` ${Reason}`,
-				);
+
+				if(channel) {
+					channel.send(
+						`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🏳️ **${message.author.username}**#${message.author.discriminator} pardoned \`1\` strikes from **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` ${reason}`,
+					);
+				}
+
 				await message.channel.send(
-					`<:vSuccess:725270799098970112> Successfully pardoned \`${amount}\` strikes from **${member.user.username}**#${member.user.discriminator}`,
+					`<:vSuccess:725270799098970112> Successfully pardoned \`1\` strikes from **${member.user.username}**#${member.user.discriminator}`,
 				).then(message.delete());
+			}
+			else {
+				return message.channel.send(
+					`<:vError:725270799124004934> \`${member.user.tag}\` does not have any warns in ${message.guild.name}`,
+				);
 			}
 		});
 	},

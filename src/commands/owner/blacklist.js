@@ -52,11 +52,18 @@ module.exports = {
 		}
 		else {
 			blacklist.find({}, (err, data) => {
-				const embed = new MessageEmbed()
-					.setTitle('Blacklisted Users')
-					.setColor('BLUE')
-					.setDescription(data.length >= 1 ? data.map(u => {return `> **Username: ${client.users.cache.get(u.id)} (\`${u.name}\`)**\n> **User ID: \`${u.id}\`**\n`;}).join('\n') : '`None`');
-				message.channel.send(embed);
+				if(data) {
+					const embed = new MessageEmbed()
+						.setTitle('Blacklisted Users')
+						.setColor('BLUE')
+						.setDescription(data.map(u => {return `> **Username: ${client.users.cache.get(u.id)} (\`${u.name}\`)**\n> **User ID: \`${u.id}\`**\n`;}).join('\n'));
+					message.channel.send(embed);
+				}
+				else {
+					return message.channel.send(
+						'<:vWarning:725276167346585681> There is no blacklisted member',
+					);
+				}
 			});
 		}
 	},

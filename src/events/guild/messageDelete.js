@@ -16,6 +16,7 @@ module.exports = async (client, message) => {
 	snipes.splice(10);
 	message.client.snipes.set(message.channel.id, snipes);
 
+	if(!message.guild.me.hasPermission('VIEW_AUDIT_LOG')) return;
 	const settings = await Guild.findOne({
 		guildID: message.guild.id,
 	});

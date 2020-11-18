@@ -2,6 +2,7 @@ const moment = require('moment');
 const Guild = require('../../models/guild');
 
 module.exports = async (client, emoji) => {
+	if(!emoji.guild.me.hasPermission('VIEW_AUDIT_LOG')) return;
 	const settings = await Guild.findOne({
 		guildID: emoji.guild.id,
 	});

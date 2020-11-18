@@ -14,12 +14,9 @@ module.exports = {
 		const settings = await Guild.findOne({
 			guildID: message.guild.id,
 		});
-		const logs = settings.settings.modlog;
-		const logchannel = message.guild.channels.cache.get(logs);
-		if (!logchannel) return;
 
+		const logchannel = message.guild.channels.cache.get(settings.settings.modlog);
 		const channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]) || message.channel;
-
 		let Reason = args.slice(1).join(' ');
 		if (!Reason) {
 			Reason = 'No reason provided';
@@ -37,8 +34,10 @@ module.exports = {
 			ch.send(embed);
 		}); channel.delete();
 
-		logchannel.send(
-			`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` ☢ \`${message.channel.name}\` has been nuked by **${message.author.username}**#${message.author.discriminator}\n\`[Reason]\` ${Reason}`,
-		);
+		if(logchannel) {
+			logchannel.send(
+				`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` ☢ \`${message.channel.name}\` has been nuked by **${message.author.username}**#${message.author.discriminator}\n\`[Reason]\` ${Reason}`,
+			);
+		}
 	},
 };

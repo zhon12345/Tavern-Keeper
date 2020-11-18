@@ -4,6 +4,7 @@ const Guild = require('../../models/guild');
 
 
 module.exports = async (client, oldGuild, newGuild) => {
+	if(!oldGuild.guild.me.hasPermission('VIEW_AUDIT_LOG')) return;
 	const settings = await Guild.findOne({
 		guildID: newGuild.guild.id,
 	});

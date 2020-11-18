@@ -14,6 +14,7 @@ const types = {
 
 module.exports = async (client, oldChannel, newChannel) => {
 	if(newChannel.type === 'dm') return;
+	if(!oldChannel.guild.me.hasPermission('VIEW_AUDIT_LOG')) return;
 
 	const settings = await Guild.findOne({
 		guildID: newChannel.guild.id,
