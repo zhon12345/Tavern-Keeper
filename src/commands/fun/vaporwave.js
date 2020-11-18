@@ -20,10 +20,10 @@ module.exports = {
 			return message.channel.send('<:vError:725270799124004934> The provided message exceeds 2000 characters.');
 		}
 
-		const vapour = text.split('').map(letter => {
-			return `${dictionary[letter]}`;
+		const vaporwave = text.split('').map(letter => {
+			return dictionary[letter] || letter;
 		}).join('');
 
-		message.channel.send(vapour);
+		message.channel.send(vaporwave);
 	},
 };

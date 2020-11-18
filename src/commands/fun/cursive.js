@@ -21,7 +21,7 @@ module.exports = {
 		}
 
 		const cursified = text.toLowerCase().split('').map(letter => {
-			return `${dictionary[letter]}`;
+			return dictionary[letter] || letter;
 		}).join('');
 
 		message.channel.send(cursified);
