@@ -78,14 +78,14 @@ module.exports = {
 	},
 
 	// evaljs
-	clean: function(string) {
-		if (typeof text === 'string') {
-			return string.replace(/`/g, '`' + String.fromCharCode(8203))
-				.replace(/@/g, '@' + String.fromCharCode(8203));
+	clean: function(string, client) {
+		if (typeof string === 'string') {
+			string = string
+				.replace(/`/g, `\`${String.fromCharCode(8203)}`)
+				.replace(/@/g, `@${String.fromCharCode(8203)}`)
+				.replace(new RegExp(client.token, 'gi'), 'Nice try buddy! What you gonna do with it?');
 		}
-		else {
-			return string;
-		}
+		return string;
 	},
 
 	// owoify.js

@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/zhon12345/Tavern_Keeper_Beta#readme",
   "dependencies": {
+    "@extreme_hero/deeptype": "^1.0.1",
     "canvacord": "^3.0.9",
     "cpu-stat": "^2.0.1",
     "discord.js": "^12.4.1",
