@@ -15,8 +15,6 @@ module.exports = {
 		});
 
 		const logchannel = message.guild.channels.cache.get(settings.settings.modlog);
-		if (!logchannel) return;
-
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(" ") || x.user.username === args[0]);
 		if (!member) {
 			return message.channel.send(
@@ -71,9 +69,11 @@ module.exports = {
 		}
 
 		member.voice.setChannel(channel);
-		logchannel.send(
-			`\`[${moment(message.createdTimestamp).format("HH:mm:ss")}]\` ➡ **${message.author.username}**#${message.author.discriminator} moved **${member.user.username}**#${member.user.discriminator} (ID: ${member.id}) from \`${member.voice.channel.name}\` to \`${channel.name}\`\n\`[Reason]\` ${Reason}`,
-		);
+		if(logchannel) {
+			logchannel.send(
+				`\`[${moment(message.createdTimestamp).format("HH:mm:ss")}]\` ➡ **${message.author.username}**#${message.author.discriminator} moved **${member.user.username}**#${member.user.discriminator} (ID: ${member.id}) from \`${member.voice.channel.name}\` to \`${channel.name}\`\n\`[Reason]\` ${Reason}`,
+			);
+		}
 
 		await message.channel.send(
 			`<:vSuccess:725270799098970112> Successfully moved **${member.user.username}**#${member.user.discriminator} from \`${member.voice.channel.name}\` to \`${channel.name}\``,

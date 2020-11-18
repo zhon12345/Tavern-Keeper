@@ -16,8 +16,6 @@ module.exports = {
 		});
 
 		const logchannel = message.guild.channels.cache.get(settings.settings.modlog);
-		if (!logchannel) return;
-
 		let Reason = args.slice(1).join(" ");
 		if (!Reason) {
 			Reason = "No reason provided";
@@ -36,8 +34,10 @@ module.exports = {
 			ch.send(embed);
 		}); channel.delete();
 
-		logchannel.send(
-			`\`[${moment(message.createdTimestamp).format("HH:mm:ss")}]\` ☢ \`${message.channel.name}\` has been nuked by **${message.author.username}**#${message.author.discriminator}\n\`[Reason]\` ${Reason}`,
-		);
+		if(logchannel) {
+			logchannel.send(
+				`\`[${moment(message.createdTimestamp).format("HH:mm:ss")}]\` ☢ \`${message.channel.name}\` has been nuked by **${message.author.username}**#${message.author.discriminator}\n\`[Reason]\` ${Reason}`,
+			);
+		}
 	},
 };
