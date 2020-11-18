@@ -58,7 +58,9 @@ module.exports = {
 			await member.send(`You have been banned from ${message.guild}\n\`[Reason]\` ${Reason}`);
 		}
 		catch(err) {
-			await message.channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+			if(channel) {
+				await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+			}
 		}
 
 		member.ban({ reason: Reason });
