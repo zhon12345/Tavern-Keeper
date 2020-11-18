@@ -21,8 +21,8 @@ module.exports = {
 		}
 
 		const emojified = text.toLowerCase().split("").map(letter => {
-			return `${dictionary[letter]} `;
-		}).join("");
+			return dictionary[letter] || letter;
+		}).join(" ");
 
 		message.channel.send(emojified);
 	},
