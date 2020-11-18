@@ -27,7 +27,6 @@ module.exports = async (client, message) => {
 					messagelog: null,
 				},
 			});
-
 			newGuild.save();
 		}
 	});
@@ -67,14 +66,16 @@ module.exports = async (client, message) => {
 				validatePermissions(command.userperms);
 			}
 
-			for(const permission of command.userperms) {
-				if(permission === "BOT_OWNER" && message.member.id !== BOT_OWNER) {
-					return;
-				}
-				else if(!message.member.hasPermission(permission)) {
-					return message.channel.send(
-						`<:vError:725270799124004934> Insufficient Permission! \`${permission}\` required.`,
-					);
+			if(message.author.id !== BOT_OWNER) {
+				for(const permission of command.userperms) {
+					if(permission === "BOT_OWNER" && message.member.id !== BOT_OWNER) {
+						return;
+					}
+					else if(!message.member.hasPermission(permission)) {
+						return message.channel.send(
+							`<:vError:725270799124004934> Insufficient Permission! \`${permission}\` required.`,
+						);
+					}
 				}
 			}
 

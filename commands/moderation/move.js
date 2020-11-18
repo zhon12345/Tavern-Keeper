@@ -65,7 +65,9 @@ module.exports = {
 			await member.send(`You have been moved from \`${member.voice.channel.name}\` to \`${channel.name}\`\n\`[Reason]\` ${Reason}`);
 		}
 		catch(err) {
-			await message.channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+			if(logchannel) {
+				await logchannel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+			}
 		}
 
 		member.voice.setChannel(channel);
