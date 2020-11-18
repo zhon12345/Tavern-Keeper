@@ -1,6 +1,5 @@
-/* eslint-disable no-unused-vars */
-const { MessageAttachment, MessageEmbed } = require('discord.js');
 const { Type } = require('@extreme_hero/deeptype');
+const { MessageEmbed } = require('discord.js');
 const { clean } = require('../../functions');
 const url = 'https://hasteb.in/documents';
 const fetch = require('node-fetch');
