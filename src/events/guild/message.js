@@ -11,7 +11,6 @@ module.exports = async (client, message) => {
 	const settings = await Guild.findOne({
 		guildID: message.guild.id,
 	}, (err, guild) => {
-		if (err) console.error(err);
 		if (!guild) {
 			const newGuild = new Guild({
 				_id: mongoose.Types.ObjectId(),

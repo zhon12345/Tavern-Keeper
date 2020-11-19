@@ -26,9 +26,6 @@ module.exports = {
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		cpuStat.usagePercent(function(error, percent, seconds) {
-			if(error) {
-				return console.error(error);
-			}
 			const embed = new MessageEmbed()
 				.setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 512 }))
 				.setColor(message.guild.members.cache.get(client.user.id).displayHexColor)

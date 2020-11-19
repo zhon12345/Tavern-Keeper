@@ -19,7 +19,7 @@ module.exports = async (client, oldMember, newMember) => {
 	const newMemberRoles = newMember.roles.cache.map(role => role.name);
 	const oldMemberRoles = oldMember.roles.cache.map(role => role.name);
 
-	newMemberRoles.forEach(async (p) =>{
+	newMemberRoles.forEach(async (p) => {
 		if(!oldMemberRoles.includes(p)) {
 			logchannel.send(
 				`\`[${moment(Date.now()).format('HH:mm:ss')}]\` ✏️ **${oldMember.user.username}**#${oldMember.user.discriminator} (ID: ${oldMember.user.id}) was given the \`${p}\` role by **${executor.username}**#${executor.discriminator}.\n\`[Time]\` ${moment(newMember.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}`,

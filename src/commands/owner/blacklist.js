@@ -43,8 +43,7 @@ module.exports = {
 			Blacklist.findOne({ id : member.user.id }, async (err, data) => {
 				if(err) throw err;
 				if(data) {
-					await Blacklist.findOneAndDelete({ id : member.user.id })
-						.catch(err => console.log(err));
+					await Blacklist.findOneAndDelete({ id : member.user.id });
 					message.channel.send(`<:vSuccess:725270799098970112> \`${member.user.tag}\` has been removed from blacklist.`);
 				}
 				else {
