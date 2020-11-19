@@ -69,12 +69,30 @@ module.exports = {
 			}
 		}
 		catch (err) {
-			const embed = new MessageEmbed()
-				.setTitle("Error!")
-				.setColor("RED")
-				.addField("Input", `\`\`\`js\n${code}\`\`\``)
-				.addField("Output", `\`\`\`xl\n${clean(err)}\n\`\`\``);
-			await message.channel.send(embed);
+			if(err.length > 1024) {
+				let response;
+				try {
+					response = await fetch(url, { method: "POST", body: err, headers: { "Content-Type": "text/plain" } }).then(res => res.json());
+				}
+				catch (e) {
+					return message.channel.send("<:vError:725270799124004934> An error occured, please try again!");
+				}
+
+				const embed = new MessageEmbed()
+					.setTitle("Success!")
+					.setColor("GREEN")
+					.addField("Input", `\`\`\`js\n${code}\`\`\``)
+					.addField("Output", `\`\`\`\nhttps://hasteb.in/${response.key}.js\n\`\`\``);
+				await message.channel.send(embed);
+			}
+			else {
+				const embed = new MessageEmbed()
+					.setTitle("Error!")
+					.setColor("RED")
+					.addField("Input", `\`\`\`js\n${code}\`\`\``)
+					.addField("Output", `\`\`\`xl\n${clean(err)}\n\`\`\``);
+				await message.channel.send(embed);
+			}
 		}
 	},
 };
