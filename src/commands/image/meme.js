@@ -39,7 +39,6 @@ module.exports = {
 
 					message.channel.send(embed);
 				});
-
 		}
 		catch (e) {
 			return message.channel.send(

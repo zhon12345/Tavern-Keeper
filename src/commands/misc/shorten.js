@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const { is_url } = require('../../functions');
+const { isURL } = require('../../functions');
 const { MessageEmbed } = require('discord.js');
 
 module.exports = {
@@ -17,7 +17,7 @@ module.exports = {
 				'<:vError:725270799124004934> Please provide a valid link.',
 			);
 		}
-		else if(!is_url(link)) {
+		else if(!isURL(link)) {
 			return message.channel.send(
 				'<:vError:725270799124004934> Please provide a valid link.',
 			);

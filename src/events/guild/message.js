@@ -1,4 +1,4 @@
-const { is_url, is_invite, validatePermissions } = require('../../functions');
+const { isURL, isInvite, validatePermissions } = require('../../functions');
 const blacklist = require('../../models/blacklist');
 const { BOT_PREFIX, BOT_OWNER } = process.env;
 const Guild = require('../../models/guild');
@@ -52,7 +52,7 @@ module.exports = async (client, message) => {
 	}
 
 	if (settings && settings.settings.antilinks === true) {
-		if(is_url(message.content) || is_invite(message.content) === true) {
+		if(isURL(message.content) || isInvite(message.content) === true) {
 			if(!message.member.hasPermission('MANAGE_MESSAGES')) {
 				message.delete();
 				message.channel.send(
