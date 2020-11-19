@@ -1,4 +1,4 @@
-const { is_url, is_invite, validatePermissions } = require("../../functions");
+const { isURL, isInvite, validatePermissions } = require("../../functions");
 const { BOT_PREFIX, BOT_OWNER } = process.env;
 const Guild = require("../../models/guild");
 const mongoose = require("mongoose");
@@ -10,7 +10,6 @@ module.exports = async (client, message) => {
 	const settings = await Guild.findOne({
 		guildID: message.guild.id,
 	}, (err, guild) => {
-		if (err) console.error(err);
 		if (!guild) {
 			const newGuild = new Guild({
 				_id: mongoose.Types.ObjectId(),
@@ -38,7 +37,7 @@ module.exports = async (client, message) => {
 	}
 
 	if (settings && settings.settings.antilinks) {
-		if(is_url(message.content) || is_invite(message.content)) {
+		if(isURL(message.content) || isInvite(message.content)) {
 			if(!message.member.hasPermission("KICK_MEMBERS")) {
 				message.delete().then(() => {
 					message.channel.send(

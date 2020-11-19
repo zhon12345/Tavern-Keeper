@@ -1,16 +1,16 @@
 module.exports = {
 	// aliases.js
-	capitalizeFirstLetter: function(string) {
+	capitalizeFirstLetter(string) {
 		return string.charAt(0).toUpperCase() + string.slice(1);
 	},
 
 	// hack.js & tableflip.js
-	delay: function(ms) {
+	delay(ms) {
 		return new Promise(resolve => setTimeout(resolve, ms));
 	},
 
 	// owoify.js
-	owoify: function(text) {
+	owoify(text) {
 		text = text.replace(/[lr]/g, "w");
 		text = text.replace(/u/g, "uw");
 		text = text.replace(/[LR]/g, "W");
@@ -19,7 +19,7 @@ module.exports = {
 	},
 
 	// roleinfo.js
-	formatPerms: function(perm) {
+	formatPerms(perm) {
 		return perm
 			.toLowerCase()
 			.replace(/(^|"|_)(\S)/g, (s) => s.toUpperCase())
@@ -29,7 +29,7 @@ module.exports = {
 	},
 
 	// scramble.js
-	shuffle: function(word) {
+	shuffle(word) {
 		let shuffledWord = "";
 		word = word.split("");
 		while (word.length > 0) {
@@ -39,7 +39,7 @@ module.exports = {
 	},
 
 	// soccer.js
-	randomNoRepeat: function(array) {
+	randomNoRepeat(array) {
 		let copy = array.slice(0);
 		if (copy.length < 1) { copy = array.slice(0); }
 		const index = Math.floor(Math.random() * copy.length);
@@ -49,7 +49,7 @@ module.exports = {
 	},
 
 	// message.js
-	is_url: function(string) {
+	isURL(string) {
 		const regexp = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
 		if(regexp.test(string)) {
 			return true;
@@ -60,7 +60,7 @@ module.exports = {
 	},
 
 	// message.js
-	is_invite: function(string) {
+	isInvite(string) {
 		const regexp = /(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|club)|discordapp\.com\/invite|discord\.com\/invite)\/.+[a-z]/gi;
 		if(regexp.test(string)) {
 			return true;
@@ -71,18 +71,18 @@ module.exports = {
 	},
 
 	// eval,js
-	clean: function(string, client) {
+	clean(string) {
 		if (typeof string === "string") {
 			string = string
 				.replace(/`/g, `\`${String.fromCharCode(8203)}`)
 				.replace(/@/g, `@${String.fromCharCode(8203)}`)
-				.replace(new RegExp(client.token, "gi"), "Nice try buddy! What you gonna do with it?");
+				.replace(process.env.BOT_TOKEN, "Nice try buddy! What you gonna do with it?");
 		}
 		return string;
 	},
 
 	// botinfo.js
-	formatBytes: function(a, b) {
+	formatBytes(a, b) {
 		if (a === 0) {
 			return "0 Bytes";
 		}
@@ -95,7 +95,7 @@ module.exports = {
 	},
 
 	// rps.js
-	getResult: function(me, clientChosen) {
+	getResult(me, clientChosen) {
 		if ((me === "🗻" && clientChosen === "✂") ||
 				(me === "📰" && clientChosen === "🗻") ||
 				(me === "✂" && clientChosen === "📰")) {
@@ -110,7 +110,7 @@ module.exports = {
 	},
 
 	// spongebob.js
-	alternateCaps: function(text) {
+	alternateCaps(text) {
 		const array = text.split("");
 		const n = text.length;
 		let out = "";
@@ -131,7 +131,7 @@ module.exports = {
 	},
 
 	// uptime.js, botinfo.js & channelinfo.js
-	parseDur: function(ms) {
+	parseDur(ms) {
 		let seconds = ms / 1000;
 
 		const days = parseInt(seconds / 86400, 10);
@@ -155,7 +155,7 @@ module.exports = {
 		return `\`${seconds}\` second(s)`;
 	},
 
-	validatePermissions: function(permissions) {
+	validatePermissions(permissions) {
 		const validPermissions = [
 			"CREATE_INSTANT_INVITE",
 			"KICK_MEMBERS",

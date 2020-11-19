@@ -9,7 +9,6 @@ module.exports = {
 	userperms: [],
 	botperms: ["ATTACH_FILES"],
 	run: async (client, message, args) => {
-
 		let text1 = args.join(" ").split(" |")[0];
 		let text2 = args.join(" ").split("| ")[1];
 
