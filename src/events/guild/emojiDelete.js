@@ -14,8 +14,7 @@ module.exports = async (client, emoji) => {
 	const { executor } = auditLog;
 	if(!executor) return;
 
-	const logs = settings.settings.serverlog;
-	const logchannel = emoji.guild.channels.cache.get(logs);
+	const logchannel = emoji.guild.channels.cache.get(settings.settings.serverlog);
 	if (!logchannel) return;
 
 	logchannel.send(

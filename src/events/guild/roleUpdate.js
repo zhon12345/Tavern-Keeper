@@ -15,8 +15,7 @@ module.exports = async (client, oldRole, newRole) => {
 	const { executor } = auditLog;
 	if(!executor) return;
 
-	const logs = settings.settings.serverlog;
-	const logchannel = oldRole.guild.channels.cache.get(logs);
+	const logchannel = oldRole.guild.channels.cache.get(settings.settings.serverlog);
 	if (!logchannel) return;
 
 	const newRolePerms = newRole.permissions.toArray();

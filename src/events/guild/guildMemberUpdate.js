@@ -13,8 +13,7 @@ module.exports = async (client, oldMember, newMember) => {
 	const auditLog = fetchedLogs.entries.first();
 	const { executor } = auditLog;
 
-	const logs = settings.settings.serverlog;
-	const logchannel = oldMember.guild.channels.cache.get(logs);
+	const logchannel = oldMember.guild.channels.cache.get(settings.settings.serverlog);
 	if (!logchannel) return;
 
 	const newMemberRoles = newMember.roles.cache.map(role => role.name);

@@ -28,8 +28,7 @@ module.exports = async (client, message) => {
 	const deletionLog = fetchedLogs.entries.first();
 	const { executor } = deletionLog;
 
-	const logs = settings.settings.messagelog;
-	const channel = message.guild.channels.cache.get(logs);
+	const channel = message.guild.channels.cache.get(settings.settings.messagelog);
 	if (!channel) return;
 
 	if(executor.id !== message.author.id) {

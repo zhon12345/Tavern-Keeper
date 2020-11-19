@@ -2,7 +2,6 @@ const { is_url, is_invite, validatePermissions } = require('../../functions');
 const blacklist = require('../../models/blacklist');
 const { BOT_PREFIX, BOT_OWNER } = process.env;
 const Guild = require('../../models/guild');
-const { warn } = require('../../util/warn');
 const mongoose = require('mongoose');
 
 module.exports = async (client, message) => {
@@ -43,18 +42,11 @@ module.exports = async (client, message) => {
 		const profanity = [	'fuck', 'shit', 'fucker', 'nigger', 'nigga', 'asshole', 'bitch'];
 		for(const word of profanity) {
 			if (message.content.includes(word)) {
-				const reason = 'Swearing';
-				const logs = settings.settings.modlog;
-				const channel = message.guild.channels.cache.get(logs);
-				if (!channel) return;
-
 				if(!message.member.hasPermission('MANAGE_MESSAGES')) {
 					message.delete();
 					message.channel.send(
 						`${message.author}, you are not allowed to swear in this channel. Hence, you have received a warning.`,
 					);
-
-					warn(client, message, channel, reason);
 				}
 			}
 		}
@@ -62,18 +54,11 @@ module.exports = async (client, message) => {
 
 	if (settings && settings.settings.antilinks === true) {
 		if(is_url(message.content) || is_invite(message.content) === true) {
-			const reason = 'Sending Links';
-			const logs = settings.settings.modlog;
-			const channel = message.guild.channels.cache.get(logs);
-			if (!channel) return;
-
 			if(!message.member.hasPermission('MANAGE_MESSAGES')) {
 				message.delete();
 				message.channel.send(
 					`${message.author}, you are not allowed to send links in this channel. Hence, you have received a warning.`,
 				);
-
-				warn(client, message, channel, reason);
 			}
 		}
 	}

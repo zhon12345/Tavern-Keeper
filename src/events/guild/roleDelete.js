@@ -13,8 +13,7 @@ module.exports = async (client, role) => {
 	const { executor } = auditLog;
 	if(!executor) return;
 
-	const logs = settings.settings.serverlog;
-	const logchannel = role.guild.channels.cache.get(logs);
+	const logchannel = role.guild.channels.cache.get(settings.settings.serverlog);
 	if (!logchannel) return;
 
 	logchannel.send(

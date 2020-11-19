@@ -71,12 +71,12 @@ module.exports = {
 	},
 
 	// evaljs
-	clean: function(string, client) {
+	clean: function(string) {
 		if (typeof string === 'string') {
 			string = string
 				.replace(/`/g, `\`${String.fromCharCode(8203)}`)
 				.replace(/@/g, `@${String.fromCharCode(8203)}`)
-				.replace(new RegExp(client.token, 'gi'), 'Nice try buddy! What you gonna do with it?');
+				.replace(process.env.BOT_TOKEN, 'Nice try buddy! What you gonna do with it?');
 		}
 		return string;
 	},
@@ -163,14 +163,14 @@ module.exports = {
 	parseDur: function(ms) {
 		let seconds = ms / 1000;
 
-		const days = parseInt(seconds / 86400);
+		const days = parseInt(seconds / 86400, 10);
 		seconds = seconds % 86400;
 
-		const hours = parseInt(seconds / 3600);
+		const hours = parseInt(seconds / 3600, 10);
 		seconds = seconds % 3600;
 
-		const minutes = parseInt(seconds / 60);
-		seconds = parseInt(seconds % 60);
+		const minutes = parseInt(seconds / 60, 10);
+		seconds = parseInt(seconds % 60, 10);
 
 		if (days) {
 			return `\`${days}\` day, \`${hours}\` hours, \`${minutes}\` minutes`;

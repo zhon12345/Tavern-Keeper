@@ -40,7 +40,7 @@ module.exports = {
 				evaled = await evaled;
 			}
 			const stop = process.hrtime(start);
-			const output = clean(inspect(evaled, { depth: 0 }), client);
+			const output = clean(inspect(evaled, { depth: 0 }));
 			if(output.length > 1024) {
 				let response;
 				try {

@@ -27,8 +27,7 @@ module.exports = async (client, oldChannel, newChannel) => {
 	const { executor, target } = auditLog;
 	if(!executor) return;
 
-	const logs = settings.settings.serverlog;
-	const logchannel = oldChannel.guild.channels.cache.get(logs);
+	const logchannel = oldChannel.guild.channels.cache.get(settings.settings.serverlog);
 	if (!logchannel) {return;}
 	else if(target.id === oldChannel) {
 		if(newChannel.name !== oldChannel.name) {

@@ -1,4 +1,4 @@
-const blacklist = require('../../models/blacklist');
+const Blacklist = require('../../models/blacklist');
 const { MessageEmbed } = require('discord.js');
 
 module.exports = {
@@ -18,15 +18,17 @@ module.exports = {
 				);
 			}
 
-			blacklist.findOne({ id : member.user.id }, async (err, data) => {
+			Blacklist.findOne({ id : member.user.id }, async (err, data) => {
 				if(err) throw err;
 				if(data) {
 					message.channel.send(`<:vError:725270799124004934> \`${member.user.tag}\` has already been blacklisted.`);
 				}
 				else {
-					data = new blacklist({ name: member.user.username, id : member.user.id });
-					data.save()
-						.catch(err => console.log(err));
+					data = new Blacklist({
+						name: member.user.username,
+						id : member.user.id,
+					});
+					data.save();
 					message.channel.send(`<:vSuccess:725270799098970112> \`${member.user.tag}\` has been added to blacklist.`);
 				}
 			});
@@ -38,10 +40,10 @@ module.exports = {
 				);
 			}
 
-			blacklist.findOne({ id : member.user.id }, async (err, data) => {
+			Blacklist.findOne({ id : member.user.id }, async (err, data) => {
 				if(err) throw err;
 				if(data) {
-					await blacklist.findOneAndDelete({ id : member.user.id })
+					await Blacklist.findOneAndDelete({ id : member.user.id })
 						.catch(err => console.log(err));
 					message.channel.send(`<:vSuccess:725270799098970112> \`${member.user.tag}\` has been removed from blacklist.`);
 				}
@@ -51,7 +53,7 @@ module.exports = {
 			});
 		}
 		else {
-			blacklist.find({}, (err, data) => {
+			Blacklist.find({}, (err, data) => {
 				if(data) {
 					const embed = new MessageEmbed()
 						.setTitle('Blacklisted Users')

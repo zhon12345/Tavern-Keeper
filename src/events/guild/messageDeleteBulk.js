@@ -17,8 +17,8 @@ module.exports = async (client, messages) => {
 	const settings = await Guild.findOne({
 		guildID: guild.id,
 	});
-	const logs = settings.settings.messagelog;
-	const logsChannel = client.channels.cache.get(logs);
+
+	const logsChannel = client.channels.cache.get(settings.settings.messagelog);
 	if(!logsChannel) return;
 
 	const output = messages.map(m => `${new Date(m.createdAt).toLocaleString('en-US')} - ${m.author.tag}: ${m.attachments.size > 0 ? m.attachments.first().proxyURL : m.content}`).join('\n');

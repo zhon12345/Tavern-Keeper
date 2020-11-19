@@ -6,8 +6,7 @@ module.exports = async (client, member) => {
 		guildID: member.guild.id,
 	});
 
-	const logs = settings.settings.serverlog;
-	const logchannel = member.guild.channels.cache.get(logs);
+	const logchannel = member.guild.channels.cache.get(settings.settings.serverlog);
 	if (!logchannel) return;
 
 	logchannel.send(

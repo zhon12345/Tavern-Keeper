@@ -15,8 +15,8 @@ module.exports = async (client, oldMessage, newMessage) => {
 			{ name: 'Before', value: oldMessage.attachments.size > 0 ? oldMessage.attachments.first().proxyURL : oldMessage.content >= 1024 ? `${oldMessage.content.slice(0, 1021)}...` : oldMessage.content, inline: true },
 			{ name: 'After', value: newMessage.attachments.size > 0 ? newMessage.attachments.first().proxyURL : newMessage.content >= 1024 ? `${newMessage.content.slice(0, 1021)}...` : newMessage.content, inline: true },
 		);
-	const logs = settings.settings.messagelog;
-	const channel = oldMessage.guild.channels.cache.get(logs);
+
+	const channel = oldMessage.guild.channels.cache.get(settings.settings.messagelog);
 	if (!channel) return;
 
 	channel.send(
