@@ -9,7 +9,6 @@ module.exports = {
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS", "ATTACH_FILES"],
 	run: async (client, message, args) => {
-
 		if (!args[0]) {
 			return message.channel.send(
 				"<:vError:725270799124004934> Please provide valid text.",

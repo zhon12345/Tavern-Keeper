@@ -10,7 +10,6 @@ module.exports = {
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS", "ATTACH_FILES"],
 	run: async (client, message, args) => {
-
 		const text = args.slice().join(" ");
 		if (!text) {
 			return message.channel.send(
