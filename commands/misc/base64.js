@@ -35,7 +35,7 @@ module.exports = {
 				response = await fetch(url).then(res => res.json());
 			}
 			catch (e) {
-				return message.channel.send("<:vError:725270799124004934> An error occured, please try again!");
+				return message.channel.send("<:vError:725270799124004934> An error occurred, please try again!");
 			}
 
 			const embed = new MessageEmbed()
@@ -68,7 +68,7 @@ module.exports = {
 				response = await fetch(url).then(res => res.json());
 			}
 			catch (e) {
-				return message.channel.send("<:vError:725270799124004934> An error occured, please try again!");
+				return message.channel.send("<:vError:725270799124004934> An error occurred, please try again!");
 			}
 
 			const embed = new MessageEmbed()

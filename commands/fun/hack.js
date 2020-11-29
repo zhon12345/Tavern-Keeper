@@ -35,7 +35,7 @@ module.exports = {
 			}
 			else if(hacked.id === BOT_OWNER) {
 				return message.channel.send(
-					"<:vError:725270799124004934> An error occured, please try again!",
+					"<:vError:725270799124004934> An error occurred, please try again!",
 				);
 			}
 			await message.channel.send(`Hacking ${hacked.user.username} now...`).then(async msg => {
@@ -74,7 +74,7 @@ module.exports = {
 			});
 		}
 		catch(err) {
-			message.channel.send("<:vError:725270799124004934> An error occured, please try again!");
+			message.channel.send("<:vError:725270799124004934> An error occurred, please try again!");
 		}
 	},
 };
