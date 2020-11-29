@@ -31,7 +31,7 @@ module.exports = {
 				.then(res => res.text());
 		}
 		catch (e) {
-			return message.channel.send('<:vError:725270799124004934> An error occured, please try again!');
+			return message.channel.send('<:vError:725270799124004934> An error occurred, please try again!');
 		}
 
 		const embed = new MessageEmbed()

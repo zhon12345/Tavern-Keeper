@@ -34,7 +34,7 @@ module.exports = {
 			.toLowerCase()
 			.replace(/(^|"|_)(\S)/g, (s) => s.toUpperCase())
 			.replace(/_/g, ' ')
-			.replace(/Use Vad/g, 'Use Voice Acitvity')
+			.replace(/Use Vad/g, 'Use Voice Activity')
 			.replace(/Send Tts Messages/g, 'Send text-to-speech Messages');
 	},
 
@@ -70,7 +70,7 @@ module.exports = {
 		}
 	},
 
-	// evaljs
+	// eval.js
 	clean(string) {
 		if (typeof string === 'string') {
 			string = string

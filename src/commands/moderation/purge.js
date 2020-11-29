@@ -39,7 +39,7 @@ module.exports = {
 					response = await fetch(url, { method: 'POST', body: output, headers: { 'Content-Type': 'text/plain' } }).then(res => res.json());
 				}
 				catch(e) {
-					return message.channel.send('An error occured, please try again!');
+					return message.channel.send('An error occurred, please try again!');
 				}
 
 				const embed = new MessageEmbed()

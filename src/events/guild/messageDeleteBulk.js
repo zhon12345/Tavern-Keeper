@@ -28,7 +28,7 @@ module.exports = async (client, messages) => {
 		response = await fetch(url, { method: 'POST', body: output, headers: { 'Content-Type': 'text/plain' } }).then(res => res.json());
 	}
 	catch (e) {
-		return logsChannel.channel.send('<:vError:725270799124004934> An error occured, please try again!');
+		return logsChannel.channel.send('<:vError:725270799124004934> An error occurred, please try again!');
 	}
 	const embed = new MessageEmbed()
 		.setDescription([`

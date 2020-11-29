@@ -19,8 +19,9 @@ module.exports = async (client, oldMessage, newMessage) => {
 	const channel = oldMessage.guild.channels.cache.get(settings.settings.messagelog);
 	if (!channel) return;
 
-	channel.send(
-		`\`[${moment(Date.now()).format('HH:mm:ss')}]\` ✏️ **${oldMessage.author.username}**#${oldMessage.author.discriminator} (ID: ${oldMessage.author.id}) edited a message in ${oldMessage.channel}.`, embed,
-	);
-
+	if(oldMessage !== newMessage) {
+		channel.send(
+			`\`[${moment(Date.now()).format('HH:mm:ss')}]\` ✏️ **${oldMessage.author.username}**#${oldMessage.author.discriminator} (ID: ${oldMessage.author.id}) edited a message in ${oldMessage.channel}.`, embed,
+		);
+	}
 };
