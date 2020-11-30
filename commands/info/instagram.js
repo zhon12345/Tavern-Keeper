@@ -21,7 +21,11 @@ module.exports = {
 
 		let response;
 		try {
-			response = await fetch(url).then(res => res.json());
+			response = await fetch(url, {
+				headers: {
+					cookie: "5442744739%3Azpl9fG3FjGXtH7%3A0",
+				},
+			}).then((res) => res.json());
 		}
 		catch (e) {
 			return message.channel.send(
