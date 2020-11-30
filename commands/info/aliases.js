@@ -10,10 +10,10 @@ module.exports = {
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
-		const cmd = client.commands.get(args[0].toLowerCase()) || client.commands.get(client.aliases.get(args[0].toLowerCase()));
+		const cmd = client.commands.get(args[0]) || client.commands.get(client.aliases.get(args[0]));
 		if(!cmd) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provied a vaild command.",
+				"<:vError:725270799124004934> Please provide a valid command.",
 			);
 		}
 
