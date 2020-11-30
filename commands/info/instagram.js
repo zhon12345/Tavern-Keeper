@@ -23,7 +23,7 @@ module.exports = {
 		try {
 			response = await fetch(url, {
 				headers: {
-					cookie: "5442744739%3Azpl9fG3FjGXtH7%3A0",
+					cookie: "sessionid=5442744739%3Azpl9fG3FjGXtH7%3A0",
 				},
 			}).then((res) => res.json());
 		}
