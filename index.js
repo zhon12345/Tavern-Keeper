@@ -9,6 +9,7 @@ client.commands = new Collection();
 client.aliases = new Collection();
 client.category = new Collection();
 client.snipes = new Collection();
+client.cooldowns = new Set();
 
 ["command", "event"].forEach(handler => {
 	require(`./handlers/${handler}`)(client);
