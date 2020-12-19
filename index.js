@@ -2,7 +2,6 @@ require("dotenv").config();
 const { Client, Collection } = require("discord.js");
 const client = new Client({
 	disableMentions: "everyone",
-	partials: ["MESSAGE", "CHANNEL", "REACTION"],
 	ws: { intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS", "GUILD_PRESENCES", "GUILD_VOICE_STATES"] },
 });
 
