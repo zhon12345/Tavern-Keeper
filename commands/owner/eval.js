@@ -1,7 +1,7 @@
 const { Type } = require("@extreme_hero/deeptype");
 const { MessageEmbed } = require("discord.js");
 const { clean } = require("../../functions");
-const url = "https://hasteb.in/documents";
+const url = "https://hastebin.com/documents";
 const fetch = require("node-fetch");
 const { inspect } = require("util");
 
@@ -50,12 +50,13 @@ module.exports = {
 					return message.channel.send("<:vError:725270799124004934> An error occurred, please try again!");
 				}
 
+				const { key } = await response.json();
 				const embed = new MessageEmbed()
 					.setTitle("Success!")
 					.setColor("GREEN")
 					.setFooter(`Type: ${new Type(evaled).is} | Time Taken: ${(((stop[0] * 1e9) + stop[1]) / 1e6)}ms`)
 					.addField("Input", `\`\`\`js\n${code}\`\`\``)
-					.addField("Output", `\`\`\`\nhttps://hasteb.in/${response.key}.js\n\`\`\``);
+					.addField("Output", `\`\`\`\nhttps://hastebin.com/${key}.js\n\`\`\``);
 				await message.channel.send(embed);
 			}
 			else {
@@ -78,11 +79,12 @@ module.exports = {
 					return message.channel.send("<:vError:725270799124004934> An error occurred, please try again!");
 				}
 
+				const { key } = await response.json();
 				const embed = new MessageEmbed()
 					.setTitle("Success!")
 					.setColor("GREEN")
 					.addField("Input", `\`\`\`js\n${code}\`\`\``)
-					.addField("Output", `\`\`\`\nhttps://hasteb.in/${response.key}.js\n\`\`\``);
+					.addField("Output", `\`\`\`\nhttps://hastebin.com/${key}.js\n\`\`\``);
 				await message.channel.send(embed);
 			}
 			else {
