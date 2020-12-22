@@ -25,7 +25,7 @@ module.exports = async (client, messages) => {
 
 	let response;
 	try {
-		response = await fetch(url, { method: 'POST', body: output, headers: { 'Content-Type': 'text/plain' } }).then(res => res.json());
+		response = await fetch(url, { method: 'POST', body: output, headers: { 'Content-Type': 'text/plain' } });
 	}
 	catch (e) {
 		return logsChannel.channel.send('<:vError:725270799124004934> An error occurred, please try again!');
