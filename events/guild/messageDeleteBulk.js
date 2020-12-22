@@ -1,6 +1,6 @@
 const moment = require("moment");
 const fetch = require("node-fetch");
-const url = "https://hasteb.in/documents";
+const url = "https://hastebin.com/documents";
 const Guild = require("../../models/guild");
 const { MessageEmbed } = require("discord.js");
 
@@ -29,8 +29,10 @@ module.exports = async (client, messages) => {
 	catch (e) {
 		return logsChannel.channel.send("<:vError:725270799124004934> An error occurred, please try again!");
 	}
+
+	const { key } = await response.json();
 	const embed = new MessageEmbed()
-		.setDescription(`[\`📄 View\`](${output.length > 0 ? `https://hasteb.in/${response.key}.js` : output})`)
+		.setDescription(`[\`📄 View\`](${output.length > 0 ? `https://hastebin.com/${key}.js` : output})`)
 		.setColor("RED");
 
 	await logsChannel.send(
