@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const Guild = require('../../models/guild');
-const url = 'https://hasteb.in/documents';
+const url = 'https://hastebin.com/documents';
 const fetch = require('node-fetch');
 const moment = require('moment');
 
@@ -36,14 +36,15 @@ module.exports = {
 
 				let response;
 				try {
-					response = await fetch(url, { method: 'POST', body: output, headers: { 'Content-Type': 'text/plain' } }).then(res => res.json());
+					response = await fetch(url, { method: 'POST', body: output, headers: { 'Content-Type': 'text/plain' } });
 				}
-				catch(e) {
-					return message.channel.send('An error occurred, please try again!');
+				catch (e) {
+					return message.channel.send('<:vError:725270799124004934> An error occurred, please try again!');
 				}
 
+				const { key } = await response.json();
 				const embed = new MessageEmbed()
-					.setDescription(`[\`📄 View\`](https://hasteb.in/${response.key}.js)`)
+					.setDescription(`[\`📄 View\`](https://hastebin.com/${key}.js)`)
 					.setColor('RED');
 				channel.send(
 					`\`[${moment(message.createdTimestamp).format('HH:mm:ss')}]\` 🗑️ **${message.author.username}**#${message.author.discriminator} cleared \`${amount}\` messages in ${message.channel}`, embed,

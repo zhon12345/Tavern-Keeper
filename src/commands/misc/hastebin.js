@@ -16,16 +16,17 @@ module.exports = {
 			);
 		}
 
-		const url = 'https://hasteb.in/documents';
+		const url = 'https://hastebin.com/documents';
 
 		let response;
 		try {
-			response = await fetch(url, { method: 'POST', body: text, headers: { 'Content-Type': 'text/plain' } }).then(res => res.json());
+			response = await fetch(url, { method: 'POST', body: text, headers: { 'Content-Type': 'text/plain' } });
 		}
 		catch (e) {
 			return message.channel.send('<:vError:725270799124004934> An error occurred, please try again!');
 		}
 
-		message.channel.send(`https://hasteb.in/${response.key}.js`);
+		const { key } = await response.json();
+		message.channel.send(`https://hastebin.com/${key}.js`);
 	},
 };
