@@ -59,6 +59,15 @@ module.exports = async (client, message) => {
 	const command = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
 
 	if (command) {
+		if (client.cooldowns.has(message.author.id)) {
+			return message.channel.send(`Hey ${message.author}, slow down, take a chill pill!`);
+		}
+
+		client.cooldowns.add(message.author.id);
+		setTimeout(() => {
+			client.cooldowns.delete(message.author.id);
+		}, 2000);
+
 		if (command.userperms.length > 0 || command.botperms.length > 0) {
 			if (typeof command.userperms === "string") {
 				command.userperms = command.userperms.split();

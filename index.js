@@ -5,13 +5,14 @@ const client = new Client({
 	ws: { intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS", "GUILD_PRESENCES", "GUILD_VOICE_STATES"] },
 });
 
-client.login(process.env.BOT_TOKEN);
-
 client.commands = new Collection();
 client.aliases = new Collection();
 client.category = new Collection();
 client.snipes = new Collection();
+client.cooldowns = new Set();
 
 ["command", "event"].forEach(handler => {
 	require(`./handlers/${handler}`)(client);
 });
+
+client.login(process.env.BOT_TOKEN);
