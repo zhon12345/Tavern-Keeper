@@ -1,4 +1,5 @@
 require("dotenv").config();
+const keepAlive = require("./server");
 const { Client, Collection } = require("discord.js");
 const client = new Client({
 	disableMentions: "everyone",
@@ -15,4 +16,5 @@ client.cooldowns = new Set();
 	require(`./handlers/${handler}`)(client);
 });
 
+keepAlive();
 client.login(process.env.BOT_TOKEN);
