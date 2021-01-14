@@ -13,15 +13,15 @@ module.exports = async (client) => {
 		`${client.guilds.cache.size} Servers`,
 	];
 
-	const cmd = [
+	const cmds = [
 		`${BOT_PREFIX}help`,
 		`${BOT_PREFIX}invite`
 	]
 
 	setInterval(function() {
 		const stat = stats[Math.floor(Math.random() * stats.length)];
-		const command = cmd[Math.floor(Math.random() * cmd.length)];
-		client.user.setActivity(`${BOT_PREFIX} | ${stat}`, { type: "PLAYING" });
+		const cmd = cmd[Math.floor(Math.random() * cmd.length)];
+		client.user.setActivity(`${cmd} | ${stat}`, { type: "PLAYING" });
 	}, 30000);
 
 	console.log("Connected to MongoDB");
