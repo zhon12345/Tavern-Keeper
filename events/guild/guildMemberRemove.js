@@ -10,6 +10,6 @@ module.exports = async (client, member) => {
 	if (!logchannel) return;
 
 	logchannel.send(
-		`\`[${moment(Date.now()).format("HH:mm:ss")}]\` 📤 **${member.user.username}**#${member.user.discriminator} (ID: ${member.user.id}) left, was kicked or banned from the server.\n\`[Joined Date]\` ${moment(member.user.joinedAt).format("dddd, Do MMMM YYYY, h:mm:ss a")}`,
+		`\`[${moment(Date.now()).format("HH:mm:ss")}]\` 📤 **${member.user.username}**#${member.user.discriminator} (ID: ${member.user.id}) left, kicked or was banned from the server.\n\`[Joined Date]\` ${moment(member.user.joinedAt).format("dddd, Do MMMM YYYY, h:mm:ss a")}`,
 	);
 };
