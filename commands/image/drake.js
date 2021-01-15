@@ -1,4 +1,6 @@
 const { MessageAttachment } = require("discord.js");
+const token = process.env.ALEXFLIPNOTE_API_TOKEN;
+const fetch = require("node-fetch");
 
 module.exports = {
 	name: "drake",
@@ -17,8 +19,21 @@ module.exports = {
 			text2 = "actually providing text";
 		}
 
-		const image = `https://api.alexflipnote.dev/drake?top=${text1}&bottom=${text2}`;
-		const attachment = new MessageAttachment(image, "drake.png");
+		const url = `https://api.alexflipnote.dev/drake?top=${text1}&bottom=${text2}`;
+
+		let response;
+		try {
+			response = await fetch(url, { headers: {
+				"Authorization" : token,
+			} });
+		}
+		catch (e) {
+			return message.channel.send(
+				"<:vError:725270799124004934> An error occurred, please try again!",
+			);
+		}
+
+		const attachment = new MessageAttachment(response, "drake.png");
 		message.channel.send(attachment);
 	},
 };

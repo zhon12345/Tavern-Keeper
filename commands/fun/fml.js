@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 const fetch = require("node-fetch");
+const token = process.env.ALEXFLIPNOTE_API_TOKEN;
 const { MessageEmbed } = require("discord.js");
 
 module.exports = {
@@ -12,9 +13,12 @@ module.exports = {
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const url = "https://api.alexflipnote.dev/fml";
+
 		let response;
 		try {
-			response = await fetch(url).then(res => res.json());
+			response = await fetch(url, { headers: {
+				"Authorization" : token,
+			} }).then(res => res.json());
 		}
 		catch (e) {
 			return message.channel.send(
