@@ -23,7 +23,7 @@ module.exports = {
 		try {
 			response = await fetch(url, { headers: {
 				"Authorization" : token,
-			} });
+			} }).then(res => res.buffer());
 		}
 		catch (e) {
 			return message.channel.send(
