@@ -15,12 +15,12 @@ module.exports = async (client) => {
 
 	const cmds = [
 		`${BOT_PREFIX}help`,
-		`${BOT_PREFIX}invite`
-	]
+		`${BOT_PREFIX}invite`,
+	];
 
 	setInterval(function() {
 		const stat = stats[Math.floor(Math.random() * stats.length)];
-		const cmd = cmd[Math.floor(Math.random() * cmd.length)];
+		const cmd = cmds[Math.floor(Math.random() * cmds.length)];
 		client.user.setActivity(`${cmd} | ${stat}`, { type: "PLAYING" });
 	}, 30000);
 
