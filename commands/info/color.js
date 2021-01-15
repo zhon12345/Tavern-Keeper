@@ -30,7 +30,7 @@ module.exports = {
 			);
 		}
 
-		const url = `https://api.alexflipnote.xyz/colour/${colour}`;
+		const url = `https://api.alexflipnote.dev/colour/${colour}`;
 
 		let response;
 		try {
