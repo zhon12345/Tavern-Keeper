@@ -15,7 +15,7 @@ module.exports = {
 		});
 
 		const channel = message.guild.channels.cache.get(settings.settings.modlog);
-		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(" ") || x.user.username === args[0]);
+		const member = message.mentions.users.first() || await client.users.fetch(args[0]);
 		if (!member) {
 			return message.channel.send(
 				"<:vError:725270799124004934> Please provide a valid user.",
@@ -59,19 +59,19 @@ module.exports = {
 		}
 		catch(err) {
 			if(channel) {
-				await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+				await channel.send(`<:vError:725270799124004934> Failed to DM **${member.username}**#${member.discriminator} (ID: ${member.id})`);
 			}
 		}
 
 		member.ban({ reason: Reason });
 		if(channel) {
 			channel.send(
-				`\`[${moment(message.createdTimestamp).format("HH:mm:ss")}]\` 🔨 **${message.author.username}**#${message.author.discriminator} banned **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})\n\`[Reason]\` ${Reason}`,
+				`\`[${moment(message.createdTimestamp).format("HH:mm:ss")}]\` 🔨 **${message.author.username}**#${message.author.discriminator} banned **${member.username}**#${member.discriminator} (ID: ${member.id})\n\`[Reason]\` ${Reason}`,
 			);
 		}
 
 		await message.channel.send(
-			`<:vSuccess:725270799098970112> Successfully banned **${member.user.username}**#${member.user.discriminator}`,
+			`<:vSuccess:725270799098970112> Successfully banned **${member.username}**#${member.discriminator}`,
 		).then(message.delete());
 	},
 };
