@@ -10,7 +10,7 @@ module.exports = {
 	userperms: ["BOT_OWNER"],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
-		const member = message.mentions.members.first() || message.guild.members.cache.get(args[1]) || message.guild.members.cache.find(x => x.user.username === args.slice(1).join(" ") || x.user.username === args[1]);
+		const member = message.mentions.members.first() || message.guild.members.cache.get(args[1]);
 		if(args[0] === "add") {
 			if (!member) {
 				return message.channel.send(
