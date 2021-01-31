@@ -49,7 +49,7 @@ module.exports = {
 					`> **<:djs:773599989833400371> Discord.js: \`v${djsversion}\`**`,
 					`> **\\🖥 Platform: \`${formatOS[os.platform]}\`**`,
 					`> **\\📊 Memory: \`${formatBytes(process.memoryUsage().heapUsed)} / ${formatBytes(process.memoryUsage().heapTotal)}\`**`,
-					`> **\\💻 CPU: \`${os.cpus()[0].model.split("CPU")[0]}${os.cpus().length} Cores ${os.cpus()[0].model.split("CPU ")[1]}\`**`,
+					`> **\\💻 CPU: \`${os.cpus()[0].model.trim().split("CPU")[0]}${os.cpus().length} Cores ${os.cpus()[0].model.trim().split("CPU ")[1]}\`**`,
 				]);
 			message.channel.send(embed);
 		});
