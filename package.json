@@ -12,7 +12,6 @@
     "@extreme_hero/deeptype": "^1.0.1",
     "@vitalets/google-translate-api": "^5.0.0",
     "cpu-stat": "^2.0.1",
-    "dblapi.js": "^2.4.1",
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
     "eslint": "^7.16.0",
