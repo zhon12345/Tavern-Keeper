@@ -1,4 +1,5 @@
-const fetch = require("node-fetch");
+/* eslint-disable no-unused-vars */
+const translate = require("@vitalets/google-translate-api");
 const { MessageEmbed } = require("discord.js");
 
 module.exports = {
@@ -11,25 +12,23 @@ module.exports = {
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const text = args.slice().join(" ");
-		const url = `https://bruhapi.xyz/translate/${encodeURI(text)}`;
 
-		let response;
-		try {
-			response = await fetch(url).then(res => res.json());
-		}
-		catch (e) {
+		translate(text, {
+			to: "en",
+		}).then(res => {
+			const embed = new MessageEmbed()
+				.setColor("BLUE")
+				.setTitle(`${res.from.language.iso} Translator`)
+				.addField("Input", `\`\`\`\n${text}\`\`\``)
+				.addField("Output", `\`\`\`\n${res.text}\`\`\``)
+				.setFooter(`Requested by ${message.author.tag}`)
+				.setTimestamp();
+
+			message.channel.send(embed);
+		}).catch(e => {
 			return message.channel.send(
 				"<:vError:725270799124004934> An error occurred, please try again!",
 			);
-		}
-		const embed = new MessageEmbed()
-			.setColor("BLUE")
-			.setTitle(`${response.lang.toUpperCase()} Translator`)
-			.addField("Input", `\`\`\`\n${response.original}\`\`\``)
-			.addField("Output", `\`\`\`\n${response.text}\`\`\``)
-			.setFooter(`Requested by ${message.author.tag}`)
-			.setTimestamp();
-
-		message.channel.send(embed);
+		});
 	},
 };
