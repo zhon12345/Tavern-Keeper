@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 const { MessageEmbed } = require("discord.js");
-const url = "https://hastebin.com/documents";
-const fetch = require("node-fetch");
+const sourcebin = require("sourcebin_js");
 
 module.exports = {
 	name: "guilds",
@@ -16,19 +15,27 @@ module.exports = {
 
 		let response;
 		try {
-			response = await fetch(url, { method: "POST", body: list, headers: { "Content-Type": "text/plain" } });
+			response = await sourcebin.create([
+				{
+					name: " ",
+					content: list,
+					languageId: "text",
+				},
+			], {
+				title: `${client.user.username}'s server list`,
+				description: " ",
+			});
 		}
 		catch (e) {
 			return message.channel.send("<:vError:725270799124004934> An error occurred, please try again!");
 		}
 
-		const { key } = await response.json();
 		const botembed = new MessageEmbed()
 			.setColor("BLUE")
 			.setDescription(list.length > 1024 ?
 				[`
 				**${client.user.username}** is currently in **${message.client.guilds.cache.size}** servers.
-				The server list exceeds the character limit, click [here](https://hastebin.com/${key}) for the full list
+				The server list exceeds the character limit, click [here](${response.url}) for the full list
 				`] : `**${client.user.username}** is currently in **${message.client.guilds.cache.size}** servers.`)
 			.addField("Servers", list.length > 1024 ? `${list.slice(0, 1021)}...` : list);
 		message.channel.send(botembed);

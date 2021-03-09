@@ -1,6 +1,5 @@
 const moment = require("moment");
-const fetch = require("node-fetch");
-const url = "https://hastebin.com/documents";
+const sourcebin = require("sourcebin_js");
 const Guild = require("../../models/guild");
 const { MessageEmbed } = require("discord.js");
 
@@ -24,15 +23,23 @@ module.exports = async (client, messages) => {
 
 	let response;
 	try {
-		response = await fetch(url, { method: "POST", body: output, headers: { "Content-Type": "text/plain" } });
+		response = await sourcebin.create([
+			{
+				name: " ",
+				content: output,
+				languageId: "text",
+			},
+		], {
+			title: `Deleted messages in ${messages.first().channel.name}`,
+			description: " ",
+		});
 	}
 	catch (e) {
 		return logsChannel.channel.send("<:vError:725270799124004934> An error occurred, please try again!");
 	}
 
-	const { key } = await response.json();
 	const embed = new MessageEmbed()
-		.setDescription(`[\`📄 View\`](${output.length > 0 ? `https://hastebin.com/${key}.js` : output})`)
+		.setDescription(`[\`📄 View\`](${output.length > 0 ? `${response.url}` : output})`)
 		.setColor("RED");
 
 	await logsChannel.send(
