@@ -11,7 +11,7 @@ module.exports = {
 	usage: "help [command]",
 	userperms: [],
 	botperms: [],
-	run: async (client, message, args, pefix) => {
+	run: async (client, message, args, prefix) => {
 		if (message.author.id === BOT_OWNER && args[0] === "all") {
 			const categories = [...new Set(client.commands.map(cmd => cmd.category))];
 			const embed = new MessageEmbed()
@@ -20,8 +20,8 @@ module.exports = {
 				.setTimestamp()
 				.setColor("BLUE")
 				.setDescription([`
-			This server's prefix is \`${pefix}\`.
-			For more info on a specific command, type \`${pefix}help <command>\`.
+			This server's prefix is \`${prefix}\`.
+			For more info on a specific command, type \`${prefix}help <command>\`.
 			Visit the bot's website [here](https://tavernkeeper.ml) for more info on certain features.
 			`]);
 
@@ -38,7 +38,6 @@ module.exports = {
 
 			if (category) {
 				if (args[0].toLowerCase() === "owner" && message.author.id !== BOT_OWNER) return;
-				if (args[0].toLowerCase() === "settings" && message.author.id !== BOT_OWNER) return;
 				const cembed = new MessageEmbed()
 					.setTitle(`${category.category} Commands`)
 					.setDescription(client.commands.filter(cmds => cmds.category.toLowerCase() === args[0].toLowerCase()).map(cmds => `\`${cmds.name}\``).join(" "))
@@ -49,7 +48,6 @@ module.exports = {
 			}
 			else if (cmd) {
 				if (cmd.category.toLowerCase() === "owner" && message.author.id !== BOT_OWNER) return;
-				if (cmd.category.toLowerCase() === "settings" && message.author.id !== BOT_OWNER) return;
 				const hembed = new MessageEmbed()
 					.setTitle(`Information for ${cmd.name.toString().toLowerCase()} command`)
 					.setColor("BLUE")
@@ -59,7 +57,7 @@ module.exports = {
 						`> **Name: \`${cmd.name}\`**`,
 						`> **Category: \`${cmd.category.toString()}\`**`,
 						`> **Description: \`${capitalizeFirstLetter(cmd.description)}\`**`,
-						`> **Usage: \`${pefix}${cmd.usage}\`**`,
+						`> **Usage: \`${prefix}${cmd.usage}\`**`,
 						`> **Aliases: \`${cmd.aliases.length ? cmd.aliases.map((a) => `${a}`).join("`, `") : "None"}\`**`,
 					]);
 				return message.channel.send(hembed);
@@ -72,23 +70,17 @@ module.exports = {
 				.setTimestamp()
 				.setColor("BLUE")
 				.setDescription([`
-				This server's prefix is \`${pefix}\`.
-				For more info on a specific command, type \`${pefix}help <command>\`.
+				This server's prefix is \`${prefix}\`.
+				For more info on a specific command, type \`${prefix}help <command>\`.
 				Visit the bot's website [here](https://tavernkeeper.ml) for more info on certain features.
 				`]);
 
-			let categories;
-			if(message.author.id !== BOT_OWNER) {
-				categories = [...new Set(client.commands.filter(cmd => cmd.category !== "Owner" && cmd.category !== "Settings").map(cmd => cmd.category))];
-			}
-			else {
-				categories = [...new Set(client.commands.filter(cmd => cmd.category !== "Owner").map(cmd => cmd.category))];
-			}
+			const categories = [...new Set(client.commands.filter(cmd => cmd.category !== "Owner").map(cmd => cmd.category))];
 
 			for (const id of categories) {
 				const category = client.commands.filter(cmd => cmd.category === id);
 
-				embed.addField(`${id} (${category.size})`, `\`${pefix}help ${id.toLowerCase()}\``, true);
+				embed.addField(`${id} (${category.size})`, `\`${prefix}help ${id.toLowerCase()}\``, true);
 			}
 			message.channel.send(embed);
 		}
