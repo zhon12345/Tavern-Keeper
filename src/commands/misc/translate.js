@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const translate = require('@vitalets/google-translate-api');
 const { MessageEmbed } = require('discord.js');
 

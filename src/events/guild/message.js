@@ -1,7 +1,9 @@
 const { isURL, isInvite, validatePermissions } = require('../../functions');
+const { BOT_PREFIX, BOT_OWNER, BOT_COMMAND_LOG } = process.env;
 const blacklist = require('../../models/blacklist');
-const { BOT_PREFIX, BOT_OWNER } = process.env;
+const { MessageEmbed } = require('discord.js');
 const Guild = require('../../models/guild');
+const sourcebin = require('sourcebin_js');
 const mongoose = require('mongoose');
 
 module.exports = async (client, message) => {
@@ -116,6 +118,50 @@ module.exports = async (client, message) => {
 						}
 					}
 				}
+
+				if(message.content.length > 512) {
+					let response;
+					try {
+						response = await sourcebin.create([
+							{
+								name: ' ',
+								content: message.content,
+								languageId: 'text',
+							},
+						], {
+							title: 'Message Content',
+							description: ' ',
+						});
+					}
+					catch (e) {
+						return message.channel.send('<:vError:725270799124004934> An error occurred, please try again!');
+					}
+
+					const embed = new MessageEmbed()
+						.setColor('BLUE')
+						.addField(`<:documents:773950876347793449>  A command was used in ${message.guild.name} (ID: ${message.guild.id}) ❯`, [
+							`> **<:card:773965449402646549> Username: \`${message.author.tag}\`**`,
+							`> **\\📇 User ID: \`${message.author.id}\`**`,
+							`> **<:hashtag:774084894409883648> Channel Name: \`${message.channel.name}\`**`,
+							`> **\\📥 Command: \`${command.name}\`**`,
+							`> **\\💬 Message Content: [\`${response.url}\`](${response.url})**`,
+						])
+						.setTimestamp();
+					await client.channels.cache.get(BOT_COMMAND_LOG).send(embed);
+				}
+
+				const embed = new MessageEmbed()
+					.setColor('BLUE')
+					.addField(`<:documents:773950876347793449>  A command was used in ${message.guild.name} (ID: ${message.guild.id}) ❯`, [
+						`> **<:card:773965449402646549> Username: \`${message.author.tag}\`**`,
+						`> **\\📇 User ID: \`${message.author.id}\`**`,
+						`> **<:hashtag:774084894409883648> Channel Name: \`${message.channel.name}\`**`,
+						`> **\\📥 Command: \`${command.name}\`**`,
+						`> **\\💬 Message Content: \`${message.content}\`**`,
+					])
+					.setTimestamp();
+				await client.channels.cache.get(BOT_COMMAND_LOG).send(embed);
+
 				command.run(client, message, args, prefix);
 			}
 		}
