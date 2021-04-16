@@ -9,7 +9,7 @@ module.exports = {
 	aliases: ["pokemon", "pokémon", "pokédex", "pkm"],
 	usage: "pokemon <pokemon>",
 	userperms: [],
-	botperms: [],
+	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const pokemon = args.slice().join(" ").toLowerCase();
 		if(!pokemon) {

@@ -21,7 +21,7 @@ module.exports = {
 				.setDescription([`
 			This server's prefix is \`${prefix}\`.
 			For more info on a specific command, type \`${prefix}help <command>\`.
-			Visit the bot's website [here](http://tavernkeeper.ml) for more info on certain features.
+			Visit the bot's website [here](https://tavernkeeper.ml) for more info on certain features.
 			`]);
 
 			for (const id of categories) {
@@ -40,7 +40,7 @@ module.exports = {
 				.setDescription([`
 				This server's prefix is \`${prefix}\`.
 				For more info on a specific command, type \`${prefix}help <command>\`.
-				Visit the bot's website [here](http://tavernkeeper.ml) for more info on certain features.
+				Visit the bot's website [here](https://tavernkeeper.ml) for more info on certain features.
 				`]);
 
 			const categories = [...new Set(client.commands.filter(cmd => cmd.category !== "Owner").map(cmd => cmd.category))];
@@ -56,7 +56,6 @@ module.exports = {
 
 				if (category) {
 					if (args[0].toLowerCase() === "owner" && message.author.id !== BOT_OWNER) return;
-					if (args[0].toLowerCase() === "nsfw" && !message.channel.nsfw) return;
 					const cembed = new MessageEmbed()
 						.setTitle(`${category.category} Commands`)
 						.setDescription(client.commands.filter(cmds => cmds.category.toLowerCase() === args[0].toLowerCase()).map(cmds => `\`${cmds.name}\``).join(" "))
@@ -67,7 +66,6 @@ module.exports = {
 				}
 				else if (cmd) {
 					if (cmd.category.toLowerCase() === "owner" && message.author.id !== BOT_OWNER) return;
-					if (cmd.category.toLowerCase() === "nsfw" && !message.channel.nsfw) return;
 					const hembed = new MessageEmbed()
 						.setTitle(`Information for ${cmd.name.toString().toLowerCase()} command`)
 						.setColor("BLUE")
