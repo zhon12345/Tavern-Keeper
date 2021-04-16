@@ -28,8 +28,6 @@ module.exports = {
 			);
 		}
 
-		console.log(message.content);
-
 		const embed = new MessageEmbed()
 			.setFooter(`Requested by ${message.author.tag} `)
 			.setTimestamp()
