@@ -6,7 +6,7 @@ const token = process.env.UNSPLASH_CLIENT_TOKEN;
 module.exports = {
 	name: "wallpaper",
 	category: "Misc",
-	description: "Get a ramdom wallpaper.",
+	description: "Get a random wallpaper.",
 	aliases: [],
 	usage: "wallpaper",
 	userperms: [],

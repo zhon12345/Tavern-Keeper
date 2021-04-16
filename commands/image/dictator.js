@@ -5,7 +5,7 @@ const token = process.env.AMETHYSTE_API_TOKEN;
 module.exports = {
 	name: "dictator",
 	category: "Image",
-	description: "Make someone's a dictator.",
+	description: "Make someone a dictator.",
 	aliases: [],
 	usage: "dictator [user]",
 	userperms: [],

@@ -2,7 +2,7 @@
 module.exports = {
 	name: "facepalm",
 	category: "Image",
-	description: "I have no comments...",
+	description: "I have no comment...",
 	aliases: [],
 	usage: "facepalm",
 	userperms: [],

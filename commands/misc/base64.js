@@ -19,12 +19,12 @@ module.exports = {
 			const text = args.slice(1).join(" ");
 			if (!text) {
 				return message.channel.send(
-					"<:vError:725270799124004934> Please provide valid text",
+					"<:vError:725270799124004934> Please provide valid text (eg. `hi`). ",
 				);
 			}
 			else if(text.length >= 1024) {
 				return message.channel.send(
-					"<:vError:725270799124004934> Please provide text that is lesser that 1024 words.",
+					"<:vError:725270799124004934> Please provide text that has less than 1024 words.",
 				);
 			}
 
@@ -52,12 +52,12 @@ module.exports = {
 			const text = args.slice(1).join(" ");
 			if (!text) {
 				return message.channel.send(
-					"<:vError:725270799124004934> Please provide valid text",
+					"<:vError:725270799124004934> Please provide valid base64 string (eg. `aGk=`)",
 				);
 			}
 			else if(text.length >= 1024) {
 				return message.channel.send(
-					"<:vError:725270799124004934> Please provide text that is lesser that 1024 words.",
+					"<:vError:725270799124004934> Please provide text that has less than 1024 words.",
 				);
 			}
 

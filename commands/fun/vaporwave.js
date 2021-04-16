@@ -4,7 +4,7 @@ module.exports = {
 	name: "vaporwave",
 	aliases: ["aesthetic"],
 	description: "Converts text into ｖａｐｏｒｗａｖｅ.",
-	usage: "vapourwave <text>",
+	usage: "vaporwave <text>",
 	category: "Fun",
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
