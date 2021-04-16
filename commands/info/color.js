@@ -13,7 +13,7 @@ module.exports = {
 	run: async (client, message, args) => {
 		if(!args[0]) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid color.",
+				"<:vError:725270799124004934> Please provide a valid hex color (eg. `#ffffff`).",
 			);
 		}
 
@@ -26,7 +26,7 @@ module.exports = {
 		}
 		else {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid color.",
+				"<:vError:725270799124004934> Please provide a valid hex color (eg. `#ffffff`).",
 			);
 		}
 

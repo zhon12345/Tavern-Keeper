@@ -13,7 +13,7 @@ module.exports = {
 		const text = args.join(" ");
 		if (!text) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid calculation",
+				"<:vError:725270799124004934> Please provide a valid calculation (eg. 1 + 1).",
 			);
 		}
 		if (text.startsWith(":")) return;
@@ -23,7 +23,7 @@ module.exports = {
 		}
 		catch (e) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid calculation",
+				"<:vError:725270799124004934> Please provide a valid calculation (eg. 1 + 1).",
 			);
 		}
 
