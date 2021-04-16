@@ -31,39 +31,6 @@ module.exports = {
 			}
 			return message.channel.send(embed);
 		}
-		else if (args[0]) {
-			const category = client.category.get(args[0].toLowerCase());
-			const cmd = client.commands.get(args[0].toLowerCase()) || client.commands.get(client.aliases.get(args[0].toLowerCase()));
-
-			if (category) {
-				if (args[0].toLowerCase() === 'owner' && message.author.id !== BOT_OWNER) return;
-				if (args[0].toLowerCase() === 'nsfw' && !message.channel.nsfw) return;
-				const cembed = new MessageEmbed()
-					.setTitle(`${category.category} Commands`)
-					.setDescription(client.commands.filter(cmds => cmds.category.toLowerCase() === args[0].toLowerCase()).map(cmds => `\`${cmds.name}\``).join(' '))
-					.setColor('BLUE')
-					.setFooter(`Requested by ${message.author.tag} `)
-					.setTimestamp();
-				return message.channel.send(cembed);
-			}
-			else if (cmd) {
-				if (cmd.category.toLowerCase() === 'owner' && message.author.id !== BOT_OWNER) return;
-				if (cmd.category.toLowerCase() === 'nsfw' && !message.channel.nsfw) return;
-				const hembed = new MessageEmbed()
-					.setTitle(`Information for ${cmd.name.toString().toLowerCase()} command`)
-					.setColor('BLUE')
-					.setTimestamp()
-					.setFooter('Syntax: <> = required, [] = optional', `${client.user.avatarURL()}`)
-					.setDescription([
-						`> **Name: \`${cmd.name}\`**`,
-						`> **Category: \`${cmd.category.toString()}\`**`,
-						`> **Description: \`${cmd.description}\`**`,
-						`> **Usage: \`${prefix}${cmd.usage}\`**`,
-						`> **Aliases: \`${cmd.aliases.length ? cmd.aliases.map((a) => `${a}`).join('`, `') : 'None'}\`**`,
-					]);
-				return message.channel.send(hembed);
-			}
-		}
 		else {
 			const embed = new MessageEmbed()
 				.setTitle(`${client.user.username}'s Commands`)
@@ -82,7 +49,46 @@ module.exports = {
 
 				embed.addField(`${id} (${category.size})`, `\`${prefix}help ${id.toLowerCase()}\``, true);
 			}
-			message.channel.send(embed);
+
+			if (args[0]) {
+				const category = client.category.get(args[0].toLowerCase());
+				const cmd = client.commands.get(args[0].toLowerCase()) || client.commands.get(client.aliases.get(args[0].toLowerCase()));
+
+				if (category) {
+					if (args[0].toLowerCase() === 'owner' && message.author.id !== BOT_OWNER) return;
+					if (args[0].toLowerCase() === 'nsfw' && !message.channel.nsfw) return;
+					const cembed = new MessageEmbed()
+						.setTitle(`${category.category} Commands`)
+						.setDescription(client.commands.filter(cmds => cmds.category.toLowerCase() === args[0].toLowerCase()).map(cmds => `\`${cmds.name}\``).join(' '))
+						.setColor('BLUE')
+						.setFooter(`Requested by ${message.author.tag} `)
+						.setTimestamp();
+					return message.channel.send(cembed);
+				}
+				else if (cmd) {
+					if (cmd.category.toLowerCase() === 'owner' && message.author.id !== BOT_OWNER) return;
+					if (cmd.category.toLowerCase() === 'nsfw' && !message.channel.nsfw) return;
+					const hembed = new MessageEmbed()
+						.setTitle(`Information for ${cmd.name.toString().toLowerCase()} command`)
+						.setColor('BLUE')
+						.setTimestamp()
+						.setFooter('Syntax: <> = required, [] = optional', `${client.user.avatarURL()}`)
+						.setDescription([
+							`> **Name: \`${cmd.name}\`**`,
+							`> **Category: \`${cmd.category.toString()}\`**`,
+							`> **Description: \`${cmd.description}\`**`,
+							`> **Usage: \`${prefix}${cmd.usage}\`**`,
+							`> **Aliases: \`${cmd.aliases.length ? cmd.aliases.map((a) => `${a}`).join('`, `') : 'None'}\`**`,
+						]);
+					return message.channel.send(hembed);
+				}
+				else {
+					message.channel.send(embed);
+				}
+			}
+			else {
+				message.channel.send(embed);
+			}
 		}
 	},
 };

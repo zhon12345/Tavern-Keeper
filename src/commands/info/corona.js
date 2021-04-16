@@ -4,7 +4,7 @@ const { capitalizeFirstLetter } = require('../../functions');
 
 module.exports = {
 	name: 'corona',
-	description: 'Shows the statistics for covid-19 worldwide or a specified loction.',
+	description: 'Shows the statistics for covid-19 worldwide or a specified location.',
 	usage: 'corona <location>',
 	category: 'Info',
 	aliases: ['covid', 'cv'],
@@ -25,6 +25,8 @@ module.exports = {
 		}
 
 		try{
+			const pp = (corona.cases / corona.tests * 100).toFixed(1);
+			const np = 100 - (corona.cases / corona.tests * 100).toFixed(1);
 			const embed = new MessageEmbed()
 				.setTitle(args[0] ? `Coronavirus (COVID-19) Information - ${capitalizeFirstLetter(args[0])}` : 'Coronavirus (COVID-19) Information - Worldwide')
 				.setDescription('[Find out more info from the WHO here](https://www.who.int/emergencies/diseases/novel-coronavirus-2019)')
@@ -46,15 +48,15 @@ module.exports = {
 					{ name: 'Tested per million', value: `\`\`\`${corona.testsPerOneMillion.toLocaleString()}\`\`\``, inline: true },
 					{ name: 'Current Fatality Rate', value: `\`\`\`${(corona.deaths / corona.cases * 100).toFixed(1)}%\`\`\``, inline: true },
 					{ name: 'Current Recovery Rate', value: `\`\`\`${(corona.recovered / corona.cases * 100).toFixed(1)}%\`\`\``, inline: true },
-					{ name: 'Positive Test Pecentage', value: `\`\`\`${(corona.cases / corona.tests * 100).toFixed(1)}%\`\`\``, inline: true },
-					{ name: 'Negative Test Pecentage', value: `\`\`\`${100 - (corona.cases / corona.tests * 100).toFixed(1)}%\`\`\``, inline: true },
+					{ name: 'Positive Test Percentage', value: `\`\`\`${pp.toLocaleLowerCase() === 'infinity' ? '0.0' : pp}%\`\`\``, inline: true },
+					{ name: 'Negative Test Percentage', value: `\`\`\`${np === -Infinity ? '0.0' : np}%\`\`\``, inline: true },
 				);
 
 			await message.channel.send(embed);
 		}
 		catch (e) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid country.',
+				'<:vError:725270799124004934> Please provide a valid country (eg. `Japan`).',
 			);
 		}
 	},

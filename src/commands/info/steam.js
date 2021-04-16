@@ -13,15 +13,15 @@ module.exports = {
 		const query = args.slice().join(' ');
 		if (!query) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid query',
+				'<:vError:725270799124004934> Please provide a valid query (eg. `Terraria`).',
 			);
 		}
 
 		const url1 = `https://store.steampowered.com/api/storesearch?cc=us&l=en&term=${encodeURIComponent(query)}`;
 
 		const id = await fetch(url1).then(res => res.json());
-		if (!id.items[0].id) {
-			return message.channel.send('Could not find any results.');
+		if (!id.items[0]) {
+			return message.channel.send('<:vError:725270799124004934> Could not find any results.');
 		}
 
 		const url2 = `https://store.steampowered.com/api/appdetails?appids=${id.items[0].id}`;
@@ -56,7 +56,7 @@ module.exports = {
 		}
 		catch (err) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid query',
+				'<:vError:725270799124004934> Please provide a valid query (eg. `Terraria`)',
 			);
 		}
 	},

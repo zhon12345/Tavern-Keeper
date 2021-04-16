@@ -14,7 +14,7 @@ module.exports = {
 		const pokemon = args.slice().join(' ').toLowerCase();
 		if(!pokemon) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid Pokémon.',
+				'<:vError:725270799124004934> Please provide a valid Pokémon (eg. `Pikachu`).',
 			);
 		}
 		const url = 'https://some-random-api.ml/pokedex?pokemon=' + pokemon;
@@ -26,9 +26,16 @@ module.exports = {
 			resp = await fetch(url2).then(res => res.json());
 		}
 		catch (e) {
-			return message.channel.send(
-				'<:vError:725270799124004934> An error occurred, please try again!',
-			);
+			if(response.error.includes('could not find')) {
+				return message.channel.send(
+					'<:vError:725270799124004934> Please provide a valid Pokémon (eg. `Pikachu`).',
+				);
+			}
+			else {
+				return message.channel.send(
+					'<:vError:725270799124004934> An error occurred, please try again!',
+				);
+			}
 		}
 		const embed = new MessageEmbed()
 			.setColor('BLUE')

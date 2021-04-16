@@ -14,7 +14,7 @@ module.exports = {
 		const text = args.slice().join(' ');
 		if(!text) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide text to draw',
+				'<:vError:725270799124004934> Please provide text to draw.',
 			);
 		}
 		else if(text.match(regexp)) {
