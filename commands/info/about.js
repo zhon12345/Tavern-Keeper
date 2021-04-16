@@ -13,7 +13,7 @@ module.exports = {
 	run: async (client, message, args) => {
 		const embed = new MessageEmbed()
 			.setDescription([
-				`Hello! I'm **${client.user.username}**, A featureful multi-purpouse Discord bot!`,
+				`Hello! I'm **${client.user.username}**, A featureful multi-purpose Discord bot!`,
 				`Created and maintained by \`${client.users.cache.get(BOT_OWNER).tag}\`.`,
 				"Built using [Node.js](https://nodejs.org/en/) and [Discord.js](https://discord.js.org/#/)",
 			])
