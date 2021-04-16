@@ -4,7 +4,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
 	name: 'urban',
 	category: 'Info',
-	description: 'Get a definition from the Urban Dictionary. (NSFW Channel required)',
+	description: 'Get a definition from the Urban Dictonary. (NSFW Channel required)',
 	aliases: ['ud'],
 	usage: 'urban <query>',
 	userperms: [],
