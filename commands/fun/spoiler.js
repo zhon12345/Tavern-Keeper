@@ -3,7 +3,7 @@ module.exports = {
 	category: "Fun",
 	description: "Make the bot say whatever you want in annoying spoiler form.",
 	aliases: [],
-	usage: "soiler <text>",
+	usage: "spoiler <text>",
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

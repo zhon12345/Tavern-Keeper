@@ -4,7 +4,7 @@ const moment = require("moment");
 module.exports = {
 	name: "inviteinfo",
 	category: "Info",
-	description: "Displays indept information about the secified invite code.",
+	description: "Displays indept information about a specified invite code.",
 	aliases: ["ii"],
 	usage: "inviteinfo",
 	userperms: [],

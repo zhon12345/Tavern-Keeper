@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
 	name: "weather",
-	description: "Shows the weather of a specified loction.",
+	description: "Shows the weather of a specified location.",
 	usage: "weather <location>",
 	category: "Info",
 	aliases: ["temp"],

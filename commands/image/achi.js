@@ -5,8 +5,8 @@ const fetch = require("node-fetch");
 module.exports = {
 	name: "achi",
 	category: "Image",
-	description: "Get a personalised minecraft achievement.",
-	aliases: ["achivement"],
+	description: "Get a personalized minecraft achievement.",
+	aliases: ["achievement"],
 	usage: "achi <text>",
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS", "ATTACH_FILES"],
