@@ -1,12 +1,10 @@
-/* eslint-disable no-unused-vars */
-const { MessageEmbed } = require('discord.js');
 const { isURL } = require('../../functions');
 const fetch = require('node-fetch');
 
 module.exports = {
 	name: 'screenshot',
 	category: 'Misc',
-	description: 'Get a screenshot of a website you provided. (NSFW Channel required)',
+	description: 'Get a screenshot of a website of your choosing. (NSFW Channel required)',
 	aliases: [],
 	usage: 'quotes',
 	userperms: [],
