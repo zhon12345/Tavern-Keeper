@@ -20,6 +20,9 @@ module.exports = {
             **Bot Spam and Misuse**
             • _Content:_ 
             Everything posted by the bot falls under your responsibility, not the bot or developer. If the bot posts something "questionable" it's because of the input you gave it. I do make an effort to filter such content, but it's impossible to filter everything on the internet.
+
+            • _Command Logging:_ 
+            Tavern Keeper keeps a command log of all the commands used by members, this is strictly used for moderation purposes so that users does not break the ToS of Tavern Keeper. All the information collected will and shall not be shared to anyone.
             
             • _API Spam:_ 
             Don't use this bot to spam Discord's API or any API it uses.
