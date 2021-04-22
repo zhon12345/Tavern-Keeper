@@ -13,7 +13,7 @@ module.exports = {
 		const package = args[0];
 		if(!package) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid package  (eg. `moment`).",
+				"<:vError:725270799124004934> Package not found, please provide a valid package  (eg. `moment`).",
 			);
 		}
 
@@ -49,7 +49,7 @@ module.exports = {
 		}
 		catch (e) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid package (eg. `moment`).",
+				"<:vError:725270799124004934> Package not found, please provide a valid package (eg. `moment`).",
 			);
 		}
 	},

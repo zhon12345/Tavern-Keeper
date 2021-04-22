@@ -19,7 +19,7 @@ module.exports = {
 			const text = args.slice(1).join(" ");
 			if (!text) {
 				return message.channel.send(
-					"<:vError:725270799124004934> Please provide valid text (eg. `hi`). ",
+					"<:vError:725270799124004934> Text not found, please provide valid text (eg. `hi`). ",
 				);
 			}
 			else if(text.length >= 1024) {
@@ -52,7 +52,7 @@ module.exports = {
 			const text = args.slice(1).join(" ");
 			if (!text) {
 				return message.channel.send(
-					"<:vError:725270799124004934> Please provide valid base64 string (eg. `aGk=`)",
+					"<:vError:725270799124004934> Base64 string not found, please provide valid base64 string (eg. `aGk=`)",
 				);
 			}
 			else if(text.length >= 1024) {

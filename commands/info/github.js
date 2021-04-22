@@ -14,7 +14,7 @@ module.exports = {
 		const name = args.join(" ");
 		if (!name) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid user (eg. `zhon12345`).",
+				"<:vError:725270799124004934> User not found, please provide a valid user (eg. `zhon12345`).",
 			);
 		}
 
@@ -55,7 +55,7 @@ module.exports = {
 		}
 		catch (err) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid user (eg. `zhon12345`).",
+				"<:vError:725270799124004934> User not found, please provide a valid user (eg. `zhon12345`).",
 			);
 		}
 	},

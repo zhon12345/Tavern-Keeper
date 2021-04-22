@@ -18,7 +18,7 @@ module.exports = {
 		const query = args.slice().join(" ");
 		if(!query) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid query (eg. `Friday`).",
+				"<:vError:725270799124004934> Query not found, please provide a valid query (eg. `Friday`).",
 			);
 		}
 		const url = "https://api.urbandictionary.com/v0/define?term=" + encodeURIComponent(query);
@@ -50,7 +50,7 @@ module.exports = {
 		}
 		catch (e) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid query (eg. `Friday`).",
+				"<:vError:725270799124004934> Query not found, please provide a valid query (eg. `Friday`).",
 			);
 		}
 	},

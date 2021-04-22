@@ -14,7 +14,7 @@ module.exports = {
 		const text = args.slice().join(" ");
 		if(!text) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide text to draw",
+				"<:vError:725270799124004934> Text not found, please provide text to draw. (eg. `Hello`)",
 			);
 		}
 		else if(text.match(regexp)) {
@@ -24,7 +24,7 @@ module.exports = {
 		}
 		else if(text.length >= 20) {
 			return message.channel.send(
-				"<:vWarning:725276167346585681> You have exceeded the character limit.",
+				"<:vWarning:725276167346585681> You have exceeded the 20 character limit.",
 			);
 		}
 

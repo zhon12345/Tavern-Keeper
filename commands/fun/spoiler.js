@@ -9,7 +9,7 @@ module.exports = {
 	run: async (client, message, args) => {
 		if(!args[0]) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide valid text.",
+				"<:vError:725270799124004934> Text not found, please provide valid text. (eg. `Hello`)",
 			);
 		}
 

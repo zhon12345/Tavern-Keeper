@@ -18,7 +18,7 @@ module.exports = {
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
 		if (!member) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid user.",
+				"<:vError:725270799124004934> User not found, please provide a valid user. (eg. `@zhon12345#8585`)",
 			);
 		}
 
@@ -43,7 +43,7 @@ module.exports = {
 		const channel = message.guild.channels.cache.get(args[1]);
 		if(!channel || channel.type !== "voice") {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid voice channel.",
+				"<:vError:725270799124004934> Voice channel ID not found, please provide a valid voice channel ID. (eg. `743797576800927785`)",
 			);
 		}
 

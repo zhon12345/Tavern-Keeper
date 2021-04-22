@@ -13,7 +13,7 @@ module.exports = {
 	run: async (client, message, args) => {
 		if(!args[0] || args.length > 1) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid GitHub repository.",
+				"<:vError:725270799124004934> GitHub repository not found, please provide a valid GitHub repository. (eg. `Tavern-Keeper`)",
 			);
 		}
 

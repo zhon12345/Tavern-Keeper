@@ -5,7 +5,7 @@ const moment = require("moment");
 module.exports = {
 	name: "inviteinfo",
 	category: "Info",
-	description: "Displays indept information about a specified invite code.",
+	description: "Displays in-depth information about a specified invite code in the current guild.",
 	aliases: ["ii"],
 	usage: "inviteinfo",
 	userperms: [],
@@ -14,7 +14,7 @@ module.exports = {
 		const code = args[0];
 		if(!code || isInvite(code)) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid invite code (eg. `QUTBrY4r`).",
+				"<:vError:725270799124004934> Invite code not found, please provide a valid invite code (eg. `QUTBrY4r`).",
 			);
 		}
 
@@ -22,7 +22,7 @@ module.exports = {
 		const invite = invites.find(i => i.code === code);
 		if(!invite) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid invite code (eg. `QUTBrY4r`).",
+				"<:vError:725270799124004934> Invite code not found, please provide a valid invite code (eg. `QUTBrY4r`).",
 			);
 		}
 

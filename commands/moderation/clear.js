@@ -20,7 +20,7 @@ module.exports = {
 		const amount = parseInt(args[0], 10);
 		if (isNaN(amount)) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid number.",
+				"<:vError:725270799124004934> Number not found, please provide a valid number. (eg. `15`)",
 			);
 		}
 		else if (amount <= 0 || amount >= 100) {

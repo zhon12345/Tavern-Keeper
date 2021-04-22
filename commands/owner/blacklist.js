@@ -14,7 +14,7 @@ module.exports = {
 		if(args[0] === "add") {
 			if (!member) {
 				return message.channel.send(
-					"<:vError:725270799124004934> Please provide a valid user.",
+					"<:vError:725270799124004934> User not found, please provide a valid user. (eg. `@zhon12345#8585`)",
 				);
 			}
 
@@ -36,7 +36,7 @@ module.exports = {
 		else if(args[0] === "remove") {
 			if (!member) {
 				return message.channel.send(
-					"<:vError:725270799124004934> Please provide a valid user.",
+					"<:vError:725270799124004934> User not found, please provide a valid user. (eg. `@zhon12345#8585`)",
 				);
 			}
 

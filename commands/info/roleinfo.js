@@ -14,7 +14,7 @@ module.exports = {
 		const role = message.mentions.roles.first() || message.guild.roles.cache.get(args[0]);
 		if(!role) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid role.",
+				"<:vError:725270799124004934> Role not found, please provide a valid role. (eg. `@👤 | Member`)",
 			);
 		}
 

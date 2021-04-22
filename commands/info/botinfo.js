@@ -19,7 +19,7 @@ const formatOS = {
 module.exports = {
 	name: "botinfo",
 	category: "Info",
-	description: "Displays indept information about the bot.",
+	description: "Displays in-depth information about the bot.",
 	aliases: ["bot", "bi"],
 	usage: "botinfo",
 	userperms: [],

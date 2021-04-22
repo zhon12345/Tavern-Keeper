@@ -10,7 +10,7 @@ module.exports = {
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(" ") || x.user.username === args[0]);
 		if (!member) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid user.",
+				"<:vError:725270799124004934> User not found, please provide a valid user. (eg. `@zhon12345#8585`)",
 			);
 		}
 
@@ -23,7 +23,7 @@ module.exports = {
 		const nickname = args.slice(1).join(" ");
 		if (!nickname) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid Please provide a nickname.",
+				"<:vError:725270799124004934> Nickname not found, please provide a valid nickname.",
 			);
 		}
 

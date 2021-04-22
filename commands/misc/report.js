@@ -12,7 +12,7 @@ module.exports = {
 		const text = args.slice().join(" ");
 		if (!text) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide text.",
+				"<:vError:725270799124004934> Text not found, please provide text. (eg. `Help command is broken, it does not send the help embed.`)",
 			);
 		}
 		const channel = client.channels.cache.get("720955196494053376");

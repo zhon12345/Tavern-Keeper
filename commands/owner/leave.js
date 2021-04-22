@@ -10,7 +10,7 @@ module.exports = {
 		const guild = client.guilds.cache.get(args[0]);
 		if(!guild) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid guild id.",
+				"<:vError:725270799124004934> Guild ID not found, please provide a valid guild ID. (eg. `450846546867519503`)",
 			);
 		}
 		else {

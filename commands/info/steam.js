@@ -13,7 +13,7 @@ module.exports = {
 		const query = args.slice().join(" ");
 		if (!query) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid query (eg. `Terraria`).",
+				"<:vError:725270799124004934> Query not found, please provide a valid query (eg. `Terraria`).",
 			);
 		}
 
@@ -21,7 +21,7 @@ module.exports = {
 
 		const id = await fetch(url1).then(res => res.json());
 		if (!id.items[0]) {
-			return message.channel.send("<:vError:725270799124004934> Could not find any results.");
+			return message.channel.send("<:vError:725270799124004934> Query not found, please provide a valid query (eg. `Terraria`).");
 		}
 
 		const url2 = `https://store.steampowered.com/api/appdetails?appids=${id.items[0].id}`;
@@ -56,7 +56,7 @@ module.exports = {
 		}
 		catch (err) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid query (eg. `Terraria`)",
+				"<:vError:725270799124004934> Query not found, please provide a valid query (eg. `Terraria`)",
 			);
 		}
 	},

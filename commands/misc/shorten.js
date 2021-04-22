@@ -14,12 +14,12 @@ module.exports = {
 		const link = args.slice().join(" ");
 		if (!link) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid link (eg. `https://google.com`).",
+				"<:vError:725270799124004934> Link not found, please provide a valid link (eg. `https://google.com`).",
 			);
 		}
 		else if(!isURL(link)) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid link (eg. `https://google.com`).",
+				"<:vError:725270799124004934> Link not found, please provide a valid link (eg. `https://google.com`).",
 			);
 		}
 
