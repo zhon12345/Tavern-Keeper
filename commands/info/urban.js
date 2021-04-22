@@ -21,7 +21,7 @@ module.exports = {
 				"<:vError:725270799124004934> Please provide a valid query",
 			);
 		}
-		const url = "https://api.urbandictionary.com/v0/define?term=" + query;
+		const url = "https://api.urbandictionary.com/v0/define?term=" + encodeURIComponent(query);
 
 		let definition;
 		try {
@@ -50,7 +50,7 @@ module.exports = {
 		}
 		catch (e) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid query.",
+				"<:vError:725270799124004934> Please provide a valid query (eg. `Friday`).",
 			);
 		}
 	},
