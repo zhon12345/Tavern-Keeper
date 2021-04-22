@@ -12,7 +12,7 @@ module.exports = {
 	run: async (client, message, args) => {
 		if(!args[0]) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid location (eg. `Melbourne`)",
+				"<:vError:725270799124004934> Please provide a valid location (eg. `Melbourne`).",
 			);
 		}
 
@@ -26,7 +26,7 @@ module.exports = {
 
 			if (!result[0]) {
 				return message.channel.send(
-					"<:vError:725270799124004934> Please provide a valid location (eg. `Melbourne`)",
+					"<:vError:725270799124004934> Please provide a valid location (eg. `Melbourne`).",
 				);
 			}
 
