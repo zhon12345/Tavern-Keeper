@@ -14,7 +14,7 @@ module.exports = {
 		const number = args[0];
 		if(isNaN(args[0])) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid number.",
+				"<:vError:725270799124004934> Number not found, please provide a valid number. (eg. `1`)",
 			);
 		}
 

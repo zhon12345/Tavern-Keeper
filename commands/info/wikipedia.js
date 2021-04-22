@@ -13,7 +13,7 @@ module.exports = {
 		const query = args.slice().join(" ");
 		if(!query) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid query (eg. `Adidas`).",
+				"<:vError:725270799124004934> Query not found, please provide a valid query (eg. `Adidas`).",
 			);
 		}
 
@@ -66,7 +66,7 @@ module.exports = {
 		}
 		catch {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid query (eg. `Adidas`).",
+				"<:vError:725270799124004934> Query not found, please provide a valid query (eg. `Adidas`).",
 			);
 		}
 	},

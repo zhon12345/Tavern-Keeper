@@ -18,7 +18,7 @@ module.exports = {
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
 		if (!member) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid user.",
+				"<:vError:725270799124004934> User not found, please provide a valid user. (eg. `@zhon12345#8585`)",
 			);
 		}
 

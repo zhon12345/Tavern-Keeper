@@ -10,7 +10,7 @@ module.exports = {
 		const msg = args[0];
 		if(!msg || isNaN(msg)) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid message.",
+				"<:vError:725270799124004934> Message ID not found, please provide a valid message ID. (eg. `834778767485960233`)",
 			);
 		}
 		try {

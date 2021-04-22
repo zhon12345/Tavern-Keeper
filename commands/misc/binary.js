@@ -19,7 +19,7 @@ module.exports = {
 			const text = args.slice(1).join(" ");
 			if (!text) {
 				return message.channel.send(
-					"<:vError:725270799124004934> Please provide valid text (eg. `hi`).",
+					"<:vError:725270799124004934> Text not found, please provide valid text (eg. `hi`).",
 				);
 			}
 			else if(text.length >= 1024) {
@@ -52,7 +52,7 @@ module.exports = {
 			const text = args.slice(1).join(" ");
 			if (!text) {
 				return message.channel.send(
-					"<:vError:725270799124004934> Please provide valid binary number (eg. `0110100001101001`).",
+					"<:vError:725270799124004934> Binary number not found, please provide valid binary number (eg. `0110100001101001`).",
 				);
 			}
 			else if(text.length >= 1024) {

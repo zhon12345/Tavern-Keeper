@@ -12,14 +12,14 @@ module.exports = {
 		const guildId = args[0];
 		if(!guildId || isNaN(guildId) || guildId.length > 18) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid guild id.",
+				"<:vError:725270799124004934> Guild ID not found, please provide a valid guild id. (eg. `450846546867519503`)",
 			);
 		}
 
 		const guild = client.guilds.cache.get(guildId);
 		if(!guild) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid guild id.",
+				"<:vError:725270799124004934> Guild ID not found, please provide a valid guild id. (eg. `450846546867519503`)",
 			);
 		}
 

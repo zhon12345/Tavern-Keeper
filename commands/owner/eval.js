@@ -16,7 +16,7 @@ module.exports = {
 		const code = args.join(" ").replace(/[“”]/g, "\"").replace(/[‘’]/g, "'");
 		if (!args.length) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide valid code.",
+				"<:vError:725270799124004934> Code not found, please provide valid code. (eg. `message.guild`)",
 			);
 		}
 

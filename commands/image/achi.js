@@ -32,7 +32,7 @@ module.exports = {
 		const achi = args.slice().join("+");
 		if(!achi) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide valid text.",
+				"<:vError:725270799124004934> Text not found, please provide valid text. (eg. `Hello`)",
 			);
 		}
 		if (achi.length >= 24) {

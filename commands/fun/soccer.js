@@ -34,7 +34,7 @@ module.exports = {
 						return message.channel.send("❌ The goalie skillfully blocked your shot!");
 					}
 					else{
-						return message.channel.send("🎉 Congratulations! You scorred a goal.");
+						return message.channel.send("🎉 Congratulations! You scored a goal.");
 					}
 				})
 				.catch(() => {

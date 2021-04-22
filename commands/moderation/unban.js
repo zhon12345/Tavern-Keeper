@@ -18,7 +18,7 @@ module.exports = {
 		const id = args[0];
 		if(!id || isNaN(id)) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid user id.",
+				"<:vError:725270799124004934> User ID not found, please provide a valid user ID. (eg. `450846017890549761`)",
 			);
 		}
 
@@ -26,7 +26,7 @@ module.exports = {
 		const user = bannedUsers.get(id);
 		if (!user) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Please provide a valid user id.",
+				"<:vError:725270799124004934> User not found, please provide a valid user ID.",
 			);
 		}
 
