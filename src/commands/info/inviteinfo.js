@@ -1,3 +1,4 @@
+const { isInvite } = require('../../functions');
 const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
 
@@ -11,14 +12,19 @@ module.exports = {
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		const code = args[0];
-		if(!code) {
+		if(!code || isInvite(code)) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid invite code.',
+				'<:vError:725270799124004934> Please provide a valid invite code (eg. `QUTBrY4r`).',
 			);
 		}
 
 		const invites = await message.guild.fetchInvites();
 		const invite = invites.find(i => i.code === code);
+		if(!invite) {
+			return message.channel.send(
+				'<:vError:725270799124004934> Please provide a valid invite code (eg. `QUTBrY4r`).',
+			);
+		}
 
 		const embed = new MessageEmbed()
 			.setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 512 }))

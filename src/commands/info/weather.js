@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
 	name: 'weather',
-	description: 'Shows the weather of a specified loction.',
+	description: 'Shows the weather of a specified location.',
 	usage: 'weather <location>',
 	category: 'Info',
 	aliases: ['temp'],
@@ -12,7 +12,7 @@ module.exports = {
 	run: async (client, message, args) => {
 		if(!args[0]) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid location',
+				'<:vError:725270799124004934> Please provide a valid location  (eg. `Melbourne`).',
 			);
 		}
 
@@ -24,9 +24,9 @@ module.exports = {
 				message.channel.send(err);
 			}
 
-			if (!result) {
+			if (!result[0]) {
 				return message.channel.send(
-					'<:vError:725270799124004934> Please provide a valid location',
+					'<:vError:725270799124004934> Please provide a valid location  (eg. `Melbourne`).',
 				);
 			}
 
