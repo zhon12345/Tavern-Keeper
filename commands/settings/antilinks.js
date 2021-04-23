@@ -13,7 +13,7 @@ module.exports = {
 			guildID: message.guild.id,
 		});
 
-		if(!args[0]) {
+		if(!args[0] || args[0].toLowerCase() !== "on" || args[0].toLowerCase() !== "off") {
 			if(settings.settings.antilinks === true) {
 				return message.channel.send(
 					`Anti Links for **${message.guild}** has been \`enabled\`.`,

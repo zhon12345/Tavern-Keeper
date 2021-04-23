@@ -15,7 +15,7 @@ module.exports = {
 
 		if(!args[0]) {
 			return message.channel.send(
-				`The prefix for **${message.guild}** has been set to \`${settings ? settings.prefix : prefix}\`.`,
+				`The prefix for **${message.guild}** is \`${settings ? settings.prefix : prefix}\`.`,
 			);
 		}
 
@@ -36,7 +36,7 @@ module.exports = {
 		});
 
 		return message.channel.send(
-			`\`✔️\` My prefix has been set to \`${args[0]}\``,
+			`\`✔️\` My prefix for **${message.guild}** has been set to \`${args[0]}\``,
 		);
 	},
 };
