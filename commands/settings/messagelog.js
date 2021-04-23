@@ -20,7 +20,7 @@ module.exports = {
 				{ "settings.messagelog": null },
 			);
 			message.channel.send(
-				`✔️` Mesasge logs has been `disabled`",
+				"`✔️` Mesasge logs has been `disabled`",
 			);
 		}
 		else if(channel) {

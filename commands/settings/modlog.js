@@ -20,7 +20,7 @@ module.exports = {
 				{ "settings.modlog": null },
 			);
 			message.channel.send(
-				`✔️` Mod logs has been `disabled`",
+				"`✔️` Mod logs has been `disabled`",
 			);
 		}
 		else if(channel) {
