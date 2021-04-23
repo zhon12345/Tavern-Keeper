@@ -28,7 +28,7 @@ module.exports = {
 		else if (args[0].toLowerCase() === 'off') {
 			if(settings.settings.antiprofanity === false) {
 				return message.channel.send(
-					'<:vError:725270799124004934> Anti Profanity is already `disabled`.',
+					'`❌` Anti Profanity is already `disabled`.',
 				);
 			}
 			else {
@@ -37,14 +37,14 @@ module.exports = {
 					{ 'settings.antiprofanity': false },
 				);
 				message.channel.send(
-					'<:vSuccess:725270799098970112> Anti Profanity has been `disabled`',
+					'`✔️` Anti Profanity has been `disabled`',
 				);
 			}
 		}
 		else if (args[0].toLowerCase() === 'on') {
 			if(settings.settings.antiprofanity === true) {
 				return message.channel.send(
-					'<:vError:725270799124004934> Anti Profanity is already `enabled`.',
+					'`❌` Anti Profanity is already `enabled`.',
 				);
 			}
 			else {
@@ -53,7 +53,7 @@ module.exports = {
 					{ 'settings.antiprofanity': true },
 				);
 				message.channel.send(
-					'<:vSuccess:725270799098970112> Anti Profanity has been `enabled`',
+					'`✔️` Anti Profanity has been `enabled`',
 				);
 			}
 		}

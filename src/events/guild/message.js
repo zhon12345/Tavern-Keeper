@@ -99,7 +99,7 @@ module.exports = async (client, message) => {
 							}
 							else if(!message.member.hasPermission(permission)) {
 								return message.reply(
-									`<:vError:725270799124004934> Insufficient Permission! \`${permission}\` required.`,
+									`\`❌\` Insufficient Permission! \`${permission}\` required.`,
 								);
 							}
 						}
@@ -113,7 +113,7 @@ module.exports = async (client, message) => {
 					for(const permission of command.botperms) {
 						if (!message.member.hasPermission(permission)) {
 							return message.channel.send(
-								`<:vError:725270799124004934> Insufficient Permission! \`${permission}\` required.`,
+								`\`❌\` Insufficient Permission! \`${permission}\` required.`,
 							);
 						}
 					}
@@ -134,7 +134,7 @@ module.exports = async (client, message) => {
 						});
 					}
 					catch (e) {
-						return message.channel.send('<:vError:725270799124004934> An error occurred, please try again!');
+						return message.channel.send('`❌` An error occurred, please try again!');
 					}
 
 					const embed = new MessageEmbed()

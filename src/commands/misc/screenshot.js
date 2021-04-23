@@ -12,13 +12,13 @@ module.exports = {
 	run: async (client, message, args) => {
 		if(!message.channel.nsfw) {
 			return message.channel.send(
-				'<:vError:725270799124004934> This command can only be used in a nsfw channel.',
+				'`❌` This command can only be used in a nsfw channel.',
 			);
 		}
 		const site = args[0];
 		if(!site || !isURL(site)) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid website URL (eg. `https://google.com`)',
+				'`❌` Please provide a valid website URL (eg. `https://google.com`)',
 			);
 		}
 		const url = `http://image.thum.io/get/${site}`;
@@ -33,7 +33,7 @@ module.exports = {
 		catch (e) {
 			console.log(e);
 			return message.channel.send(
-				'<:vError:725270799124004934> An error occurred, please try again!',
+				'`❌` An error occurred, please try again!',
 			);
 		}
 	},

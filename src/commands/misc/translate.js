@@ -14,7 +14,7 @@ module.exports = {
 		const text = args.slice().join(' ');
 		if(!text) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide valid text.',
+				'`❌` Please provide valid text.',
 			);
 		}
 
@@ -32,7 +32,7 @@ module.exports = {
 			message.channel.send(embed);
 		}).catch(e => {
 			return message.channel.send(
-				'<:vError:725270799124004934> An error occurred, please try again!',
+				'`❌` An error occurred, please try again!',
 			);
 		});
 	},

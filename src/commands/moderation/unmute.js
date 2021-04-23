@@ -18,13 +18,13 @@ module.exports = {
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]);
 		if(!member) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid user.',
+				'`❌` Please provide a valid user.',
 			);
 		}
 
 		if(member.id === message.author.id) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You are not allowed to unmute yourself.',
+				'`❌` You are not allowed to unmute yourself.',
 			);
 		}
 
@@ -40,7 +40,7 @@ module.exports = {
 		const muteRole = settings.settings.muterole;
 		if (!muteRole) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Mute role not found.',
+				'`❌` Mute role not found.',
 			);
 		}
 
@@ -49,7 +49,7 @@ module.exports = {
 				await member.send(`You have been unmuted in ${message.guild}\n\`[Reason]\` ${Reason}`);
 			}
 			catch(err) {
-				await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+				await channel.send(`\`❌\` Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
 			}
 
 			if(verifiedRole) {
@@ -64,13 +64,13 @@ module.exports = {
 			}
 
 			await message.channel.send(
-				`<:vSuccess:725270799098970112> Successfully unmuted **${member.user.username}**#${member.user.discriminator}`,
+				`\`✔️\` Successfully unmuted **${member.user.username}**#${member.user.discriminator}`,
 			).then(message.delete());
 
 		}
 		else {
 			message.channel.send(
-				'<:vError:725270799124004934> Member is not muted.',
+				'`❌` Member is not muted.',
 			);
 		}
 	},

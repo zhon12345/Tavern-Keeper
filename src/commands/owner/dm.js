@@ -11,26 +11,26 @@ module.exports = {
 		const member = message.mentions.users.first() || await client.users.fetch(args[0]);
 		if (!member) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid user.',
+				'`❌` Please provide a valid user.',
 			);
 		}
 
 		const text = args.slice(1).join(' ');
 		if(!text) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide valid text.',
+				'`❌` Please provide valid text.',
 			);
 		}
 
 		try{
 			member.send(text);
 			await message.channel.send(
-				`<:vSuccess:725270799098970112> Successfully sent a DM to \`${member.username}#${member.discriminator}\`.`,
+				`\`✔️\` Successfully sent a DM to \`${member.username}#${member.discriminator}\`.`,
 			);
 		}
 		catch (e) {
 			return message.channel.send(
-				'<:vError:725270799124004934> An error occurred, please try again!',
+				'`❌` An error occurred, please try again!',
 			);
 		}
 	},

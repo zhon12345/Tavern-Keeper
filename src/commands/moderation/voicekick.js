@@ -18,19 +18,19 @@ module.exports = {
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]);
 		if (!member) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid user.',
+				'`❌` Please provide a valid user.',
 			);
 		}
 
 		if(member.id === message.author.id) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You are not allowed to kick yourself.',
+				'`❌` You are not allowed to kick yourself.',
 			);
 		}
 
 		if(member.id === client.user.id) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You are not allowed to kick me.',
+				'`❌` You are not allowed to kick me.',
 			);
 		}
 
@@ -50,7 +50,7 @@ module.exports = {
 
 		if (!member.voice.channel) {
 			return message.channel.send(
-				'<:vError:725270799124004934> That member is not in a voice channel.',
+				'`❌` That member is not in a voice channel.',
 			);
 		}
 
@@ -58,7 +58,7 @@ module.exports = {
 			await member.send(`You have been voice kicked from \`${member.voice.channel.name}\`\n\`[Reason]\` ${Reason}`);
 		}
 		catch(err) {
-			await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+			await channel.send(`\`❌\` Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
 		}
 
 		member.voice.setChannel(null);
@@ -69,7 +69,7 @@ module.exports = {
 		}
 
 		await message.channel.send(
-			`<:vSuccess:725270799098970112> Successfully voice kicked **${member.user.username}**#${member.user.discriminator} from \`${member.voice.channel.name}\``,
+			`\`✔️\` Successfully voice kicked **${member.user.username}**#${member.user.discriminator} from \`${member.voice.channel.name}\``,
 		).then(message.delete());
 	},
 };

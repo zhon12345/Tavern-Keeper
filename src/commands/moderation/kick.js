@@ -18,19 +18,19 @@ module.exports = {
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]);
 		if (!member) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid user.',
+				'`❌` Please provide a valid user.',
 			);
 		}
 
 		if(member.id === message.author.id) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You are not allowed to kick yourself.',
+				'`❌` You are not allowed to kick yourself.',
 			);
 		}
 
 		if(member.id === client.user.id) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You are not allowed to kick me.',
+				'`❌` You are not allowed to kick me.',
 			);
 		}
 
@@ -50,7 +50,7 @@ module.exports = {
 
 		if (!member.kickable) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You are not allowed kick this user.',
+				'`❌` You are not allowed kick this user.',
 			);
 		}
 
@@ -58,7 +58,7 @@ module.exports = {
 			await member.send(`You have been kicked from ${message.guild}\n\`[Reason]\` ${Reason}`);
 		}
 		catch(err) {
-			await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+			await channel.send(`\`❌\` Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
 		}
 
 		member.kick({ reason: Reason });
@@ -69,7 +69,7 @@ module.exports = {
 		}
 
 		await message.channel.send(
-			`<:vSuccess:725270799098970112> Successfully kicked **${member.user.username}**#${member.user.discriminator}`,
+			`\`✔️\` Successfully kicked **${member.user.username}**#${member.user.discriminator}`,
 		).then(message.delete());
 	},
 };

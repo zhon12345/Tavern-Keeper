@@ -13,7 +13,7 @@ module.exports = {
 		const text = args.slice().join(' ');
 		if(!text) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide valid text',
+				'`❌` Please provide valid text',
 			);
 		}
 

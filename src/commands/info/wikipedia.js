@@ -13,7 +13,7 @@ module.exports = {
 		const query = args.slice().join(' ');
 		if(!query) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid query (eg. `Adidas`).',
+				'`❌` Please provide a valid query (eg. `Adidas`).',
 			);
 		}
 
@@ -21,7 +21,7 @@ module.exports = {
 		for(const word of nsfw) {
 			if (query.includes(word) && !message.channel.nsfw) {
 				return message.channel.send(
-					'<:vError:725270799124004934> This query can only be viewed in a nsfw channel.',
+					'`❌` This query can only be viewed in a nsfw channel.',
 				);
 			}
 		}
@@ -34,7 +34,7 @@ module.exports = {
 		}
 		catch (e) {
 			return message.channel.send(
-				'<:vError:725270799124004934> An error occurred, please try again!',
+				'`❌` An error occurred, please try again!',
 			);
 		}
 
@@ -65,7 +65,7 @@ module.exports = {
 		}
 		catch {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid query (eg. `Adidas`).',
+				'`❌` Please provide a valid query (eg. `Adidas`).',
 			);
 		}
 	},

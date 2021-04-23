@@ -11,7 +11,7 @@ module.exports = {
 	run: async (client, message, args) => {
 		if (!args[0]) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide valid text.',
+				'`❌` Please provide valid text.',
 			);
 		}
 

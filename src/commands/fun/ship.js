@@ -23,12 +23,12 @@ module.exports = {
 
 		const member1 = message.mentions.members.size === 2 ? message.mentions.members.first() : message.guild.members.cache.get(args.join(' ').split(' | ')[0]) || message.guild.members.cache.find(x => x.user.username === args.join(' ').split(' | ')[0] || x.user.username === args.join(' ').split(' | ')[0]);
 		if (!member1) {
-			return message.channel.send('<:vError:725270799124004934> Please provide valid 1st user');
+			return message.channel.send('`❌` Please provide valid 1st user');
 		}
 
 		const member2 = message.mentions.members.size === 2 && args[1] === '|' ? message.mentions.members.last() : message.guild.members.cache.get(args.join(' ').split(' | ')[1]) || message.guild.members.cache.find(x => x.user.username === args.join(' ').split(' | ')[1] || x.user.username === args.join(' ').split(' | ')[1]);
 		if (!member2) {
-			return message.channel.send('<:vError:725270799124004934> Please provide valid 2nd user');
+			return message.channel.send('`❌` Please provide valid 2nd user');
 		}
 
 		const shipName = member1.user.username.substr(0, member1.user.username.length * 0.5) + member2.user.username.substr(member2.user.username.length * 0.5);

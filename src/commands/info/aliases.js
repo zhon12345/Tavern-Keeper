@@ -13,7 +13,7 @@ module.exports = {
 		const cmd = client.commands.get(args[0].toLowerCase()) || client.commands.get(client.aliases.get(args[0].toLowerCase()));
 		if(!cmd) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provied a vaild command.',
+				'`❌` Please provied a vaild command.',
 			);
 		}
 

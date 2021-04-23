@@ -21,7 +21,7 @@ module.exports = {
 			corona = response;
 		}
 		catch (error) {
-			return message.channel.send('<:vError:725270799124004934> An error occurred, please try again!');
+			return message.channel.send('`❌` An error occurred, please try again!');
 		}
 
 		try{
@@ -56,7 +56,7 @@ module.exports = {
 		}
 		catch (e) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid country (eg. `Japan`).',
+				'`❌` Please provide a valid country (eg. `Japan`).',
 			);
 		}
 	},

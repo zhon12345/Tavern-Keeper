@@ -18,7 +18,7 @@ module.exports = {
 			response = await fetch(url).then(res => res.json());
 		}
 		catch (e) {
-			return message.channel.send('<:vError:725270799124004934> An error occurred, please try again!');
+			return message.channel.send('`❌` An error occurred, please try again!');
 		}
 		const attachment = new MessageAttachment(response.url, 'shit.png');
 		return message.channel.send(attachment);

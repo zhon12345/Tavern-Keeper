@@ -15,7 +15,7 @@ module.exports = {
 
 		if(member.id === message.author.id) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You are not allowed to spank yourself.',
+				'`❌` You are not allowed to spank yourself.',
 			);
 		}
 

@@ -20,12 +20,12 @@ module.exports = {
 		const amount = parseInt(args[0], 10);
 		if (isNaN(amount)) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid number.',
+				'`❌` Please provide a valid number.',
 			);
 		}
 		else if (amount <= 0 || amount >= 100) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid number between 1 and 99.',
+				'`❌` Please provide a valid number between 1 and 99.',
 			);
 		}
 
@@ -47,7 +47,7 @@ module.exports = {
 					});
 				}
 				catch (e) {
-					return message.channel.send('<:vError:725270799124004934> An error occurred, please try again!');
+					return message.channel.send('`❌` An error occurred, please try again!');
 				}
 
 				const embed = new MessageEmbed()
@@ -61,7 +61,7 @@ module.exports = {
 		message.channel.bulkDelete(amount + 1, true);
 
 		await message.channel.send(
-			`<:vSuccess:725270799098970112> Successfully cleared \`${amount}\`messages`,
+			`\`✔️\` Successfully cleared \`${amount}\`messages`,
 		).then(msg => msg.delete({ timeout: 5000 }));
 	},
 };

@@ -12,7 +12,7 @@ module.exports = {
 	run: async (client, message, args) => {
 		if (!args[0]) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide valid song (eg. `Shape of You`).',
+				'`❌` Please provide valid song (eg. `Shape of You`).',
 			);
 		}
 
@@ -24,7 +24,7 @@ module.exports = {
 			response = await fetch(url).then(res => res.json());
 		}
 		catch (e) {
-			return message.channel.send('<:vError:725270799124004934> An error occurred, please try again!');
+			return message.channel.send('`❌` An error occurred, please try again!');
 		}
 
 		const embed = new MessageEmbed()

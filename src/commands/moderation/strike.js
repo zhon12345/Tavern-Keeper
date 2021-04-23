@@ -21,19 +21,19 @@ module.exports = {
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]);
 		if(!member) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid user.',
+				'`❌` Please provide a valid user.',
 			);
 		}
 
 		if(member.user.bot) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Bots are not allowed to have strikes.',
+				'`❌` Bots are not allowed to have strikes.',
 			);
 		}
 
 		if(message.author.id === member.id) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You are not allowed to warn yourself.',
+				'`❌` You are not allowed to warn yourself.',
 			);
 		}
 
@@ -71,7 +71,7 @@ module.exports = {
 					await member.send(`You have been given \`1\` strikes in ${message.guild}\n\`[Reason]\` ${reason}`);
 				}
 				catch(err) {
-					await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+					await channel.send(`\`❌\` Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
 				}
 
 				if(channel) {
@@ -81,7 +81,7 @@ module.exports = {
 				}
 
 				await message.channel.send(
-					`<:vSuccess:725270799098970112> Successfully gave \`1\` strikes to **${member.user.username}**#${member.user.discriminator}`,
+					`\`✔️\` Successfully gave \`1\` strikes to **${member.user.username}**#${member.user.discriminator}`,
 				).then(message.delete());
 			}
 			else {
@@ -99,7 +99,7 @@ module.exports = {
 					await member.send(`You have been given \`1\` strikes in ${message.guild}\n\`[Reason]\` ${reason}`);
 				}
 				catch(err) {
-					await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+					await channel.send(`\`❌\` Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
 				}
 
 				if(channel) {
@@ -109,7 +109,7 @@ module.exports = {
 				}
 
 				await message.channel.send(
-					`<:vSuccess:725270799098970112> Successfully gave \`1\` strikes to **${member.user.username}**#${member.user.discriminator}`,
+					`\`✔️\` Successfully gave \`1\` strikes to **${member.user.username}**#${member.user.discriminator}`,
 				).then(message.delete());
 			}
 		});

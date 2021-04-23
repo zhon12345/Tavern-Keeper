@@ -23,12 +23,12 @@ module.exports = {
 				});
 			});
 			return message.channel.send(
-				`<:vSuccess:725270799098970112> Successfully unlocked \`${category.name}\``,
+				`\`✔️\` Successfully unlocked \`${category.name}\``,
 			).then(message.delete());
 		}
 		else {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid category ID.',
+				'`❌` Please provide a valid category ID.',
 			);
 		}
 	},

@@ -12,7 +12,7 @@ module.exports = {
 	run: async (client, message, args) => {
 		if (!args[0]) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid calculation (eg. `1 + 1`).',
+				'`❌` Please provide a valid calculation (eg. `1 + 1`).',
 			);
 		}
 		let resp;
@@ -21,7 +21,7 @@ module.exports = {
 		}
 		catch (e) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid calculation (eg. `1 + 1`)',
+				'`❌` Please provide a valid calculation (eg. `1 + 1`)',
 			);
 		}
 

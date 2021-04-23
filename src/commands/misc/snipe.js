@@ -14,7 +14,7 @@ module.exports = {
 		const msg = snipes[args[0] || 0];
 		if (!msg) {
 			return message.channel.send(
-				`<:vError:725270799124004934> There is no deleted message in ${channel}`,
+				`\`❌\` There is no deleted message in ${channel}`,
 			);
 		}
 		const embed = new MessageEmbed()
