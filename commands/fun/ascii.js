@@ -14,12 +14,12 @@ module.exports = {
 		const text = args.slice().join(" ");
 		if(!text) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Text not found, please provide text to draw. (eg. `Hello`)",
+				"`❌` Text not found, please provide text to draw. (eg. `Hello`)",
 			);
 		}
 		else if(text.match(regexp)) {
 			return message.channel.send(
-				"<:vError:725270799124004934> An error occurred, please try again!",
+				"`❌` An error occurred, please try again!",
 			);
 		}
 		else if(text.length >= 20) {
@@ -31,7 +31,7 @@ module.exports = {
 		figlet(text, function(err, data) {
 			if(err) {
 				return message.channel.send(
-					"<:vError:725270799124004934> An error occurred, please try again!",
+					"`❌` An error occurred, please try again!",
 				);
 			}
 			else {

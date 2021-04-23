@@ -13,7 +13,7 @@ module.exports = {
 		const emoji = args[0];
 		if (!emoji) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Emoji not found, please provide a valid emoji.",
+				"`❌` Emoji not found, please provide a valid emoji.",
 			);
 		}
 
@@ -32,7 +32,7 @@ module.exports = {
 			const parsed = parse(emoji, { assetType: "png" });
 			if (!parsed[0]) {
 				return message.channel.send(
-					"<:vError:725270799124004934> Emoji not found, please provide a valid emoji. (eg. `😳`)",
+					"`❌` Emoji not found, please provide a valid emoji. (eg. `😳`)",
 				);
 			}
 			const embed = new Discord.MessageEmbed()

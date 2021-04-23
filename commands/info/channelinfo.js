@@ -24,7 +24,7 @@ module.exports = {
 		const channel = message.guild.channels.cache.get(args[0].slice(2, -1)) || message.guild.channels.cache.get(args[0]) || message.channel;
 		if(!channel) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Channel not found, please provide a valid channel. (eg. `#🌏｜general-chat`)",
+				"`❌` Channel not found, please provide a valid channel. (eg. `#🌏｜general-chat`)",
 			);
 		}
 

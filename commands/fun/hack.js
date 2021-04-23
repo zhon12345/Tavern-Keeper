@@ -30,12 +30,12 @@ module.exports = {
 			const hacked = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(" ") || x.user.username === args[0]);
 			if(!hacked) {
 				return message.channel.send(
-					"<:vError:725270799124004934> User not found, please provide a valid user (eg. `@zhon12345#8585`).",
+					"`❌` User not found, please provide a valid user (eg. `@zhon12345#8585`).",
 				);
 			}
 			else if(hacked.id === BOT_OWNER) {
 				return message.channel.send(
-					"<:vError:725270799124004934> An error occurred, please try again!",
+					"`❌` An error occurred, please try again!",
 				);
 			}
 			await message.channel.send(`Hacking ${hacked.user.username} now...`).then(async msg => {
@@ -70,11 +70,11 @@ module.exports = {
 					.setTitle(`${hacked.user.username}'s Information`)
 					.setDescription(`Email: \`${hacked.user.username.split(" ").join("").toLowerCase()}${genending}\`\nPassword: \`${genpass}\`\nIP: \`${jj}\``)
 					.setColor("BLUE");
-				await msg.edit(`<:vSuccess:725270799098970112> Successfully hacked ${hacked.user.username}`, embed);
+				await msg.edit(`\`✔️\` Successfully hacked ${hacked.user.username}`, embed);
 			});
 		}
 		catch(err) {
-			message.channel.send("<:vError:725270799124004934> An error occurred, please try again!");
+			message.channel.send("`❌` An error occurred, please try again!");
 		}
 	},
 };

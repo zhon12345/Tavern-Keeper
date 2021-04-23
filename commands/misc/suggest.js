@@ -13,7 +13,7 @@ module.exports = {
 		const text = args.slice().join(" ");
 		if(!text) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Text not found, please provide valid text. (eg. `Add a Lyrics command.`)",
+				"`❌` Text not found, please provide valid text. (eg. `Add a Lyrics command.`)",
 			);
 		}
 		const channel = client.channels.cache.get("720955196494053376");
@@ -22,7 +22,7 @@ module.exports = {
 			`\`[${moment(message.createdTimestamp).format("HH:mm:ss")}]\` ❗ **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id}) has made a suggestion in **${message.guild.name}** (ID: ${message.guild.id}).\n\`[Suggestion]\` ${text}`,
 		);
 		await message.channel.send(
-			"<:vSuccess:725270799098970112> Successfully made the suggestion.",
+			`✔️` Successfully made the suggestion.",
 		).then(message.delete());
 	},
 };

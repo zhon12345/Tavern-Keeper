@@ -18,19 +18,19 @@ module.exports = {
 		const member = message.mentions.users.first() || await client.users.fetch(args[0]);
 		if (!member) {
 			return message.channel.send(
-				"<:vError:725270799124004934> User not found, please provide a valid user. (eg. `@zhon12345#8585`)",
+				"`❌` User not found, please provide a valid user. (eg. `@zhon12345#8585`)",
 			);
 		}
 
 		if(member.id === message.author.id) {
 			return message.channel.send(
-				"<:vError:725270799124004934> You are not allowed to ban yourself.",
+				"`❌` You are not allowed to ban yourself.",
 			);
 		}
 
 		if(member.id === client.user.id) {
 			return message.channel.send(
-				"<:vError:725270799124004934> You are not allowed to ban me.",
+				"`❌` You are not allowed to ban me.",
 			);
 		}
 
@@ -50,7 +50,7 @@ module.exports = {
 
 		if (!member.bannable) {
 			return message.channel.send(
-				"<:vError:725270799124004934> You are not allowed ban this user.",
+				"`❌` You are not allowed ban this user.",
 			);
 		}
 
@@ -59,7 +59,7 @@ module.exports = {
 		}
 		catch(err) {
 			if(channel) {
-				await channel.send(`<:vError:725270799124004934> Failed to DM **${member.username}**#${member.discriminator} (ID: ${member.id})`);
+				await channel.send(`\`❌\` Failed to DM **${member.username}**#${member.discriminator} (ID: ${member.id})`);
 			}
 		}
 
@@ -71,7 +71,7 @@ module.exports = {
 		}
 
 		await message.channel.send(
-			`<:vSuccess:725270799098970112> Successfully banned **${member.username}**#${member.discriminator}`,
+			`\`✔️\` Successfully banned **${member.username}**#${member.discriminator}`,
 		).then(message.delete());
 	},
 };

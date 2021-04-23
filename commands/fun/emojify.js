@@ -12,12 +12,12 @@ module.exports = {
 		const text = args.slice().join(" ");
 		if(!text) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Text not found, please provide valid text (eg. `Hello`).",
+				"`❌` Text not found, please provide valid text (eg. `Hello`).",
 			);
 		}
 
 		if(text.length > 2000) {
-			return message.channel.send("<:vError:725270799124004934> The provided message exceeds 2000 characters.");
+			return message.channel.send("`❌` The provided message exceeds 2000 characters.");
 		}
 
 		const emojified = text.toLowerCase().split("").map(letter => {

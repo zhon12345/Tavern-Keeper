@@ -12,7 +12,7 @@ module.exports = {
 		const query = args.slice().join(" ");
 		if(!query) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Query not found, please provide a valid query (eg. `message`).",
+				"`❌` Query not found, please provide a valid query (eg. `message`).",
 			);
 		}
 		const url = `https://djsdocs.sorta.moe/v2/embed?src=stable&q=${encodeURIComponent(query)}`;
@@ -26,14 +26,14 @@ module.exports = {
 					}
 					else {
 						return message.channel.send(
-							"<:vError:725270799124004934> Query not found, please provide a valid query (eg. `message`).",
+							"`❌` Query not found, please provide a valid query (eg. `message`).",
 						);
 					}
 				});
 		}
 		catch (e) {
 			return message.channel.send(
-				"<:vError:725270799124004934> An error occurred, please try again!",
+				"`❌` An error occurred, please try again!",
 			);
 		}
 	},

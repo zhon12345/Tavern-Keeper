@@ -16,7 +16,7 @@ module.exports = {
 		const code = args.join(" ").replace(/[“”]/g, "\"").replace(/[‘’]/g, "'");
 		if (!args.length) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Code not found, please provide valid code. (eg. `message.guild`)",
+				"`❌` Code not found, please provide valid code. (eg. `message.guild`)",
 			);
 		}
 
@@ -55,7 +55,7 @@ module.exports = {
 					});
 				}
 				catch (e) {
-					return message.channel.send("<:vError:725270799124004934> An error occurred, please try again!");
+					return message.channel.send("`❌` An error occurred, please try again!");
 				}
 
 				const embed = new MessageEmbed()
@@ -92,7 +92,7 @@ module.exports = {
 					});
 				}
 				catch (e) {
-					return message.channel.send("<:vError:725270799124004934> An error occurred, please try again!");
+					return message.channel.send("`❌` An error occurred, please try again!");
 				}
 
 				const embed = new MessageEmbed()

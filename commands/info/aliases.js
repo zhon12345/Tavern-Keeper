@@ -13,7 +13,7 @@ module.exports = {
 		const cmd = client.commands.get(args[0]) || client.commands.get(client.aliases.get(args[0]));
 		if(!cmd) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Command not found, please provide a valid command (eg. `help`).",
+				"`❌` Command not found, please provide a valid command (eg. `help`).",
 			);
 		}
 

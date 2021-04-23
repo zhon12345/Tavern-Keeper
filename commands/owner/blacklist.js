@@ -14,14 +14,14 @@ module.exports = {
 		if(args[0] === "add") {
 			if (!member) {
 				return message.channel.send(
-					"<:vError:725270799124004934> User not found, please provide a valid user. (eg. `@zhon12345#8585`)",
+					"`❌` User not found, please provide a valid user. (eg. `@zhon12345#8585`)",
 				);
 			}
 
 			Blacklist.findOne({ id : member.user.id }, async (err, data) => {
 				if(err) throw err;
 				if(data) {
-					message.channel.send(`<:vError:725270799124004934> \`${member.user.tag}\` has already been blacklisted.`);
+					message.channel.send(`\`❌\` \`${member.user.tag}\` has already been blacklisted.`);
 				}
 				else {
 					data = new Blacklist({
@@ -29,14 +29,14 @@ module.exports = {
 						id : member.user.id,
 					});
 					data.save();
-					message.channel.send(`<:vSuccess:725270799098970112> \`${member.user.tag}\` has been added to blacklist.`);
+					message.channel.send(`\`✔️\` \`${member.user.tag}\` has been added to blacklist.`);
 				}
 			});
 		}
 		else if(args[0] === "remove") {
 			if (!member) {
 				return message.channel.send(
-					"<:vError:725270799124004934> User not found, please provide a valid user. (eg. `@zhon12345#8585`)",
+					"`❌` User not found, please provide a valid user. (eg. `@zhon12345#8585`)",
 				);
 			}
 
@@ -44,10 +44,10 @@ module.exports = {
 				if(err) throw err;
 				if(data) {
 					await Blacklist.findOneAndDelete({ id : member.user.id });
-					message.channel.send(`<:vSuccess:725270799098970112> \`${member.user.tag}\` has been removed from blacklist.`);
+					message.channel.send(`\`✔️\` \`${member.user.tag}\` has been removed from blacklist.`);
 				}
 				else {
-					message.channel.send(`<:vError:725270799124004934> \`${member.user.tag}\` has not been blacklisted.`);
+					message.channel.send(`\`❌\` \`${member.user.tag}\` has not been blacklisted.`);
 				}
 			});
 		}

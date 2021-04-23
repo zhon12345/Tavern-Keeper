@@ -13,7 +13,7 @@ module.exports = {
 		const name = args.join(" ");
 		if (!name) {
 			return message.channel.send(
-				"<:vError:725270799124004934> User not found, please provide a valid user (eg. `Nike`).",
+				"`❌` User not found, please provide a valid user (eg. `Nike`).",
 			);
 		}
 
@@ -29,7 +29,7 @@ module.exports = {
 		}
 		catch (e) {
 			return message.channel.send(
-				"<:vError:725270799124004934> An error occurred, please try again!",
+				"`❌` An error occurred, please try again!",
 			);
 		}
 
@@ -57,7 +57,7 @@ module.exports = {
 		}
 		catch (err) {
 			return message.channel.send(
-				"<:vError:725270799124004934> User not found, please provide a valid user (eg. `Nike`).",
+				"`❌` User not found, please provide a valid user (eg. `Nike`).",
 			);
 		}
 	},
