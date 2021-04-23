@@ -14,7 +14,7 @@ module.exports = {
 		const pokemon = args.slice().join(" ").toLowerCase();
 		if(!pokemon) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Pokémon not found, please provide a valid Pokémon (eg. `Pikachu`).",
+				"`❌` Pokémon not found, please provide a valid Pokémon (eg. `Pikachu`).",
 			);
 		}
 		const url = "https://some-random-api.ml/pokedex?pokemon=" + pokemon;
@@ -28,12 +28,12 @@ module.exports = {
 		catch (e) {
 			if(response.error.includes("could not find")) {
 				return message.channel.send(
-					"<:vError:725270799124004934> Pokémon not found, please provide a valid Pokémon (eg. `Pikachu`).",
+					"`❌` Pokémon not found, please provide a valid Pokémon (eg. `Pikachu`).",
 				);
 			}
 			else {
 				return message.channel.send(
-					"<:vError:725270799124004934> An error occurred, please try again!",
+					"`❌` An error occurred, please try again!",
 				);
 			}
 		}

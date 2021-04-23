@@ -12,19 +12,19 @@ module.exports = {
 	run: async (client, message, args) => {
 		if(!args[0]) {
 			return message.channel.send(
-				"<:vError:725270799124004934> What do you want to do? Encode or decode.",
+				"`❌` What do you want to do? Encode or decode.",
 			);
 		}
 		else if (args[0].toLowerCase() === "encode") {
 			const text = args.slice(1).join(" ");
 			if (!text) {
 				return message.channel.send(
-					"<:vError:725270799124004934> Text not found, please provide valid text (eg. `hi`). ",
+					"`❌` Text not found, please provide valid text (eg. `hi`). ",
 				);
 			}
 			else if(text.length >= 1024) {
 				return message.channel.send(
-					"<:vError:725270799124004934> Please provide text that has less than 1024 words.",
+					"`❌` Please provide text that has less than 1024 words.",
 				);
 			}
 
@@ -35,7 +35,7 @@ module.exports = {
 				response = await fetch(url).then(res => res.json());
 			}
 			catch (e) {
-				return message.channel.send("<:vError:725270799124004934> An error occurred, please try again!");
+				return message.channel.send("`❌` An error occurred, please try again!");
 			}
 
 			const embed = new MessageEmbed()
@@ -52,12 +52,12 @@ module.exports = {
 			const text = args.slice(1).join(" ");
 			if (!text) {
 				return message.channel.send(
-					"<:vError:725270799124004934> Base64 string not found, please provide valid base64 string (eg. `aGk=`)",
+					"`❌` Base64 string not found, please provide valid base64 string (eg. `aGk=`)",
 				);
 			}
 			else if(text.length >= 1024) {
 				return message.channel.send(
-					"<:vError:725270799124004934> Please provide text that has less than 1024 words.",
+					"`❌` Please provide text that has less than 1024 words.",
 				);
 			}
 
@@ -68,7 +68,7 @@ module.exports = {
 				response = await fetch(url).then(res => res.json());
 			}
 			catch (e) {
-				return message.channel.send("<:vError:725270799124004934> An error occurred, please try again!");
+				return message.channel.send("`❌` An error occurred, please try again!");
 			}
 
 			const embed = new MessageEmbed()

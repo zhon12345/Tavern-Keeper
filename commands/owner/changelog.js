@@ -13,7 +13,7 @@ module.exports = {
 	run: async (client, message, args) => {
 		if(!args[0] || args.length > 1) {
 			return message.channel.send(
-				"<:vError:725270799124004934> GitHub repository not found, please provide a valid GitHub repository. (eg. `Tavern-Keeper`)",
+				"`❌` GitHub repository not found, please provide a valid GitHub repository. (eg. `Tavern-Keeper`)",
 			);
 		}
 
@@ -25,7 +25,7 @@ module.exports = {
 				.then(res => res.json());
 		}
 		catch (e) {
-			return message.channel.send("<:vError:725270799124004934> An error occurred, please try again!");
+			return message.channel.send("`❌` An error occurred, please try again!");
 		}
 
 		const commits = response.slice(0, 12);

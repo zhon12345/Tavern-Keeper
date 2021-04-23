@@ -12,21 +12,21 @@ module.exports = {
 		const guildId = args[0];
 		if(!guildId || isNaN(guildId) || guildId.length > 18) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Guild ID not found, please provide a valid guild id. (eg. `450846546867519503`)",
+				"`❌` Guild ID not found, please provide a valid guild id. (eg. `450846546867519503`)",
 			);
 		}
 
 		const guild = client.guilds.cache.get(guildId);
 		if(!guild) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Guild ID not found, please provide a valid guild id. (eg. `450846546867519503`)",
+				"`❌` Guild ID not found, please provide a valid guild id. (eg. `450846546867519503`)",
 			);
 		}
 
 		const invitePossiblites = guild.channels.cache.filter(cha => cha.type === "text" && cha.permissionsFor(guild.me).has("CREATE_INSTANT_INVITE"));
 		if(!invitePossiblites) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Insufficient Permission! `Create Instant Invite` required.",
+				"`❌` Insufficient Permission! `Create Instant Invite` required.",
 			);
 		}
 
@@ -37,13 +37,13 @@ module.exports = {
 						.setColor("BLUE")
 						.setDescription(`[Invite](https://discord.gg/${invite.code}) | Code: \`${invite.code}\``);
 					return message.channel.send(
-						"<:vSuccess:725270799098970112> Successfully found an invite.", embed,
+						`✔️` Successfully found an invite.", embed,
 					);
 				});
 		}
 		catch(err) {
 			return message.channel.send(
-				"<:vError:725270799124004934> An error occurred, please try again!",
+				"`❌` An error occurred, please try again!",
 			);
 		}
 	},

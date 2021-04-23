@@ -27,7 +27,7 @@ module.exports = {
 
 		if(args[0].length > 3) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Prefixes are not allowed to be more than 3 characters",
+				"`❌` Prefixes are not allowed to be more than 3 characters",
 			);
 		}
 
@@ -36,7 +36,7 @@ module.exports = {
 		});
 
 		return message.channel.send(
-			`<:vSuccess:725270799098970112> My prefix has been set to \`${args[0]}\``,
+			`\`✔️\` My prefix has been set to \`${args[0]}\``,
 		);
 	},
 };

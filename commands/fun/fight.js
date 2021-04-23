@@ -15,7 +15,7 @@ module.exports = {
 		const player2 = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(" ") || x.user.username === args[0]);
 		if(!player2) {
 			return message.channel.send(
-				"<:vError:725270799124004934> User not found, please provide valid user (eg. `@zhon12345#8585`)",
+				"`❌` User not found, please provide valid user (eg. `@zhon12345#8585`)",
 			);
 		}
 		let hp1 = 100;

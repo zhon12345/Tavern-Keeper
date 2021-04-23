@@ -25,22 +25,22 @@ module.exports = {
 		}
 		else if (args[0].toLowerCase() === "off") {
 			channel.setRateLimitPerUser(0);
-			return message.channel.send(`<:vSuccess:725270799098970112> Slowmode for <#${channel.id}> has been deactivated.`);
+			return message.channel.send(`\`✔️\` Slowmode for <#${channel.id}> has been deactivated.`);
 		}
 		else{
-			if (!time) return message.channel.send("<:vError:725270799124004934> Time format not found, please include a valid time format. (eg. `1s`)");
+			if (!time) return message.channel.send("`❌` Time format not found, please include a valid time format. (eg. `1s`)");
 
 			const convert = ms(time);
 			const toSecond = Math.floor(convert / 1000);
 
-			if (!toSecond) return message.channel.send("<:vError:725270799124004934> Time format not found, please include a valid time format. (eg. `1s`)");
+			if (!toSecond) return message.channel.send("`❌` Time format not found, please include a valid time format. (eg. `1s`)");
 
-			if (toSecond > 21600) return message.channel.send("<:vError:725270799124004934> Timer should be less than or equal to 6 hours.");
-			else if (toSecond < 1) return message.channel.send("<:vError:725270799124004934> Timer should be more than or equal to 1 second.");
+			if (toSecond > 21600) return message.channel.send("`❌` Timer should be less than or equal to 6 hours.");
+			else if (toSecond < 1) return message.channel.send("`❌` Timer should be more than or equal to 1 second.");
 
 			await channel.setRateLimitPerUser(toSecond);
 			return message.channel.send(
-				`<:vSuccess:725270799098970112> Successfully set slowmode for <#${channel.id}> to **${ms(ms(time), { long: true })}**.`,
+				`\`✔️\` Successfully set slowmode for <#${channel.id}> to **${ms(ms(time), { long: true })}**.`,
 			);
 		}
 	},

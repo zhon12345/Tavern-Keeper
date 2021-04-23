@@ -20,7 +20,7 @@ module.exports = {
 				{ "settings.modlog": null },
 			);
 			message.channel.send(
-				"<:vSuccess:725270799098970112> Mod logs has been `disabled`",
+				`✔️` Mod logs has been `disabled`",
 			);
 		}
 		else if(channel) {
@@ -29,7 +29,7 @@ module.exports = {
 				{ "settings.modlog": channel.id },
 			);
 			message.channel.send(
-				`<:vSuccess:725270799098970112> Mod logs has been set to ${channel}`,
+				`\`✔️\` Mod logs has been set to ${channel}`,
 			);
 		}
 		else if(settings.settings.modlog === null) {

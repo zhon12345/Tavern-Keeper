@@ -18,19 +18,19 @@ module.exports = {
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
 		if (!member) {
 			return message.channel.send(
-				"<:vError:725270799124004934> User not found, please provide a valid user. (eg. `@zhon12345#8585`)",
+				"`❌` User not found, please provide a valid user. (eg. `@zhon12345#8585`)",
 			);
 		}
 
 		if(member.id === message.author.id) {
 			return message.channel.send(
-				"<:vError:725270799124004934> You are not allowed to move yourself.",
+				"`❌` You are not allowed to move yourself.",
 			);
 		}
 
 		if(member.id === client.user.id) {
 			return message.channel.send(
-				"<:vError:725270799124004934> You are not allowed to move me.",
+				"`❌` You are not allowed to move me.",
 			);
 		}
 
@@ -43,13 +43,13 @@ module.exports = {
 		const channel = message.guild.channels.cache.get(args[1]);
 		if(!channel || channel.type !== "voice") {
 			return message.channel.send(
-				"<:vError:725270799124004934> Voice channel ID not found, please provide a valid voice channel ID. (eg. `743797576800927785`)",
+				"`❌` Voice channel ID not found, please provide a valid voice channel ID. (eg. `743797576800927785`)",
 			);
 		}
 
 		if (!member.voice.channel) {
 			return message.channel.send(
-				"<:vError:725270799124004934> That member is not in a voice channel.",
+				"`❌` That member is not in a voice channel.",
 			);
 		}
 
@@ -66,7 +66,7 @@ module.exports = {
 		}
 		catch(err) {
 			if(logchannel) {
-				await logchannel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+				await logchannel.send(`\`❌\` Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
 			}
 		}
 
@@ -78,7 +78,7 @@ module.exports = {
 		}
 
 		await message.channel.send(
-			`<:vSuccess:725270799098970112> Successfully moved **${member.user.username}**#${member.user.discriminator} from \`${member.voice.channel.name}\` to \`${channel.name}\``,
+			`\`✔️\` Successfully moved **${member.user.username}**#${member.user.discriminator} from \`${member.voice.channel.name}\` to \`${channel.name}\``,
 		).then(message.delete());
 	},
 };

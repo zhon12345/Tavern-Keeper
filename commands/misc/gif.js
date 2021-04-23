@@ -14,12 +14,12 @@ module.exports = {
 		const text = args.slice().join(" ");
 		if (!message.channel.nsfw) {
 			return message.channel.send(
-				"<:vError:725270799124004934> This command can only be used in a nsfw channel.",
+				"`❌` This command can only be used in a nsfw channel.",
 			);
 		}
 		if (!text) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Text not found, please provide valid text. (eg. `Hello`)",
+				"`❌` Text not found, please provide valid text. (eg. `Hello`)",
 			);
 		}
 
@@ -31,7 +31,7 @@ module.exports = {
 			response = await fetch(url).then(res => res.json());
 		}
 		catch (e) {
-			return message.channel.send("<:vError:725270799124004934> An error occurred, please try again!");
+			return message.channel.send("`❌` An error occurred, please try again!");
 		}
 
 		const embed = new MessageEmbed()

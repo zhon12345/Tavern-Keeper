@@ -13,7 +13,7 @@ module.exports = {
 	run: async (client, message, args) => {
 		if (!args[0]) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Text not found, please provide valid text. (eg. `Hello`)",
+				"`❌` Text not found, please provide valid text. (eg. `Hello`)",
 			);
 		}
 
@@ -27,7 +27,7 @@ module.exports = {
 		}
 		catch (e) {
 			return message.channel.send(
-				"<:vError:725270799124004934> An error occurred, please try again!",
+				"`❌` An error occurred, please try again!",
 			);
 		}
 

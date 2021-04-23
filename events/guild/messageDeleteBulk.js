@@ -35,7 +35,7 @@ module.exports = async (client, messages) => {
 		});
 	}
 	catch (e) {
-		return logsChannel.channel.send("<:vError:725270799124004934> An error occurred, please try again!");
+		return logsChannel.channel.send("`❌` An error occurred, please try again!");
 	}
 
 	const embed = new MessageEmbed()

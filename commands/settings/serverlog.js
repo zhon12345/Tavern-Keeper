@@ -20,7 +20,7 @@ module.exports = {
 				{ "settings.serverlog": null },
 			);
 			message.channel.send(
-				"<:vSuccess:725270799098970112> Server logs has been `disabled`",
+				`✔️` Server logs has been `disabled`",
 			);
 		}
 		else if(channel) {
@@ -29,7 +29,7 @@ module.exports = {
 				{ "settings.serverlog": channel.id },
 			);
 			message.channel.send(
-				`<:vSuccess:725270799098970112> Server logs has been set to ${channel}`,
+				`\`✔️\` Server logs has been set to ${channel}`,
 			);
 		}
 		else if(settings.settings.serverlog === null) {

@@ -10,7 +10,7 @@ module.exports = {
 		const msg = args[0];
 		if(!msg || isNaN(msg)) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Message ID not found, please provide a valid message ID. (eg. `834778767485960233`)",
+				"`❌` Message ID not found, please provide a valid message ID. (eg. `834778767485960233`)",
 			);
 		}
 		try {
@@ -19,19 +19,19 @@ module.exports = {
 					if(pinned.pinned) {
 						pinned.unpin(msg);
 						message.channel.send(
-							`<:vSuccess:725270799098970112> Successfully unpinned ${msg}`,
+							`\`✔️\` Successfully unpinned ${msg}`,
 						).then(message.delete());
 					}
 					else {
 						return message.channel.send(
-							"<:vError:725270799124004934> That message is not pinned.",
+							"`❌` That message is not pinned.",
 						);
 					}
 				});
 		}
 		catch (e) {
 			return message.channel.send(
-				"<:vError:725270799124004934> An error occurred, please try again!",
+				"`❌` An error occurred, please try again!",
 			);
 		}
 	},

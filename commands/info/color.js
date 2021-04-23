@@ -13,7 +13,7 @@ module.exports = {
 	run: async (client, message, args) => {
 		if(!args[0]) {
 			return message.channel.send(
-				"<:vError:725270799124004934> Hex color not found, please provide a valid hex color (eg. `#ffffff`).",
+				"`❌` Hex color not found, please provide a valid hex color (eg. `#ffffff`).",
 			);
 		}
 
@@ -26,7 +26,7 @@ module.exports = {
 		}
 		else {
 			return message.channel.send(
-				"<:vError:725270799124004934> Hex color not found, please provide a valid hex color (eg. `#ffffff`).",
+				"`❌` Hex color not found, please provide a valid hex color (eg. `#ffffff`).",
 			);
 		}
 
@@ -40,7 +40,7 @@ module.exports = {
 		}
 		catch (e) {
 			return message.channel.send(
-				"<:vError:725270799124004934> An error occurred, please try again!",
+				"`❌` An error occurred, please try again!",
 			);
 		}
 
