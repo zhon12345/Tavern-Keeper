@@ -37,7 +37,7 @@ module.exports = {
 					{ "settings.antilinks": false },
 				);
 				message.channel.send(
-					`✔️` Anti Links has been `disabled`",
+					"`✔️` Anti Links has been `disabled`",
 				);
 			}
 		}
@@ -53,7 +53,7 @@ module.exports = {
 					{ "settings.antilinks": true },
 				);
 				message.channel.send(
-					`✔️` Anti Links has been `enabled`",
+					"`✔️` Anti Links has been `enabled`",
 				);
 			}
 		}

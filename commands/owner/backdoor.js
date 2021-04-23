@@ -37,7 +37,7 @@ module.exports = {
 						.setColor("BLUE")
 						.setDescription(`[Invite](https://discord.gg/${invite.code}) | Code: \`${invite.code}\``);
 					return message.channel.send(
-						`✔️` Successfully found an invite.", embed,
+						"`✔️` Successfully found an invite.", embed,
 					);
 				});
 		}

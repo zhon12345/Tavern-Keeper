@@ -20,7 +20,7 @@ module.exports = {
 				{ "settings.serverlog": null },
 			);
 			message.channel.send(
-				`✔️` Server logs has been `disabled`",
+				"`✔️` Server logs has been `disabled`",
 			);
 		}
 		else if(channel) {
