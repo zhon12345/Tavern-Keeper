@@ -23,7 +23,6 @@ module.exports = {
 			.setTimestamp()
 			.addField("<:documents:773950876347793449> Settings ❯", [
 				`> **Prefix: \`${settings ? settings.prefix : prefix}\`**`,
-				"> **Anti Profanity: `Coming Soon...`**",
 				`> **Anti Links: \`${settings ? settings.settings.antilinks ? "On" : "Off" : "Off"}\`**`,
 				`> **Muted Role:** ${settings ? settings.settings.muterole ? message.guild.roles.cache.get(settings.settings.muterole) : "`None`" : "`None`"}`,
 				`> **Member Role:** ${settings ? settings.settings.memberrole ? message.guild.roles.cache.get(settings.settings.memberrole) : "`None`" : "`None`"}`,
