@@ -36,7 +36,11 @@ module.exports = async (client, message) => {
 	const prefix = settings ? settings.prefix : BOT_PREFIX;
 
 	if (message.content.match(`^<@!?${client.user.id}>( |)$`)) {
-		message.channel.send(`${message.guild.name}'s prefix is \`${prefix}\``);
+		const m = new MessageEmbed()
+			.setDescription(`Hello there! My prefix for **${message.guild.name}** is \`${prefix}\`. To get stated, run \`${prefix}help\`! To change my prefix, run \`${prefix}setprefix <prefix>\``)
+			.addField("Links:", "[Discord server](https://discord.gg/jMpw3jw) | [Bot invite](https://discord.com/oauth2/authorize?client_id=722054700308103200&scope=bot&permissions=490056959)")
+			.setColor("BLUE");
+		message.channel.send(m);
 	}
 
 	if (settings && settings.settings.antilinks) {
