@@ -28,7 +28,7 @@ module.exports = {
 				);
 			}
 
-			const url = `http://some-random-api.ml/base64?encode=${text}`;
+			const url = `http://some-random-api.ml/base64?encode=${encodeURIComponent(text)}`;
 
 			let response;
 			try {
@@ -61,7 +61,7 @@ module.exports = {
 				);
 			}
 
-			const url = `http://some-random-api.ml/base64?decode=${text}`;
+			const url = `http://some-random-api.ml/base64?decode=${encodeURIComponent(text)}`;
 
 			let response;
 			try {
