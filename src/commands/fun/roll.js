@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const { MessageEmbed } = require('discord.js');
-const rollDice = () => Math.floor(Math.random() * 6) + 1;
+const rollDice = Math.floor(Math.random() * 6) + 1;
 
 module.exports = {
 	name: 'roll',
@@ -16,7 +16,7 @@ module.exports = {
 				.setTitle('You rolled a . .')
 				.setColor('BLUE')
 				.setDescription(
-					`${rollDice()}!`,
+					`${rollDice}!`,
 				)
 				.setFooter(`Requested by ${message.author.tag}`)
 				.setTimestamp();
