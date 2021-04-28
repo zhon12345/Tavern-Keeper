@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 module.exports = async (client, message) => {
 	if (message.author.bot) return;
 	if (!message.guild) return;
-	if(!message.guild.me.hasPermission("SEND_MESSAGES")) return;
+	if (!message.channel.permissionsFor(client.user).has('SEND_MESSAGES')) return;
 
 	const settings = await Guild.findOne({
 		guildID: message.guild.id,
