@@ -20,7 +20,7 @@ module.exports = {
 				{ 'settings.muterole': null },
 			);
 			message.channel.send(
-				'<:vSuccess:725270799098970112> Muted role has been set to `None`.',
+				'`✔️` Muted role has been set to `None`.',
 			);
 		}
 		else if(role) {
@@ -29,7 +29,7 @@ module.exports = {
 				{ 'settings.muterole': role.id },
 			);
 			message.channel.send(
-				`<:vSuccess:725270799098970112> Muted role has been set to \`${role.name}\``,
+				`\`✔️\` Muted role has been set to \`${role.name}\``,
 			);
 		}
 		else if(settings.settings.muterole === null) {

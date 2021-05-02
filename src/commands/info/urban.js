@@ -4,7 +4,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
 	name: 'urban',
 	category: 'Info',
-	description: 'Get a definition from the Urban Dictonary. (NSFW Channel required)',
+	description: 'Get a definition from the Urban Dictionary. (NSFW Channel required)',
 	aliases: ['ud'],
 	usage: 'urban <query>',
 	userperms: [],
@@ -12,16 +12,16 @@ module.exports = {
 	run: async (client, message, args) => {
 		if(!message.channel.nsfw) {
 			return message.channel.send(
-				'<:vError:725270799124004934> This command can only be used in a nsfw channel.',
+				'`❌` This command can only be used in a nsfw channel.',
 			);
 		}
 		const query = args.slice().join(' ');
 		if(!query) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid query',
+				'`❌` Please provide a valid query  (eg. `Friday`).',
 			);
 		}
-		const url = 'https://api.urbandictionary.com/v0/define?term=' + query;
+		const url = 'https://api.urbandictionary.com/v0/define?term=' + encodeURIComponent(query);
 
 		let definition;
 		try {
@@ -29,7 +29,7 @@ module.exports = {
 		}
 		catch (e) {
 			return message.channel.send(
-				'<:vError:725270799124004934> An error occurred, please try again!',
+				'`❌` An error occurred, please try again!',
 			);
 		}
 
@@ -50,7 +50,7 @@ module.exports = {
 		}
 		catch (e) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid word.',
+				'`❌` Please provide a valid query  (eg. `Friday`).',
 			);
 		}
 	},

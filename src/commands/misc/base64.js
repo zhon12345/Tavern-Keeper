@@ -12,30 +12,30 @@ module.exports = {
 	run: async (client, message, args) => {
 		if(!args[0]) {
 			return message.channel.send(
-				'<:vError:725270799124004934> What do you want to do? Encode or decode.',
+				'`❌` What do you want to do? Encode or decode.',
 			);
 		}
 		else if (args[0].toLowerCase() === 'encode') {
 			const text = args.slice(1).join(' ');
 			if (!text) {
 				return message.channel.send(
-					'<:vError:725270799124004934> Please provide valid text',
+					'`❌` Please provide valid text (eg. `hi`). ',
 				);
 			}
 			else if(text.length >= 1024) {
 				return message.channel.send(
-					'<:vError:725270799124004934> Please provide text that is lesser that 1024 words.',
+					'`❌` Please provide text that has less than 1024 words.',
 				);
 			}
 
-			const url = `http://some-random-api.ml/base64?encode=${text}`;
+			const url = `http://some-random-api.ml/base64?encode=${encodeURIComponent(text)}`;
 
 			let response;
 			try {
 				response = await fetch(url).then(res => res.json());
 			}
 			catch (e) {
-				return message.channel.send('<:vError:725270799124004934> An error occurred, please try again!');
+				return message.channel.send('`❌` An error occurred, please try again!');
 			}
 
 			const embed = new MessageEmbed()
@@ -52,23 +52,23 @@ module.exports = {
 			const text = args.slice(1).join(' ');
 			if (!text) {
 				return message.channel.send(
-					'<:vError:725270799124004934> Please provide valid text',
+					'`❌` Please provide valid base64 string (eg. `aGk=`)',
 				);
 			}
 			else if(text.length >= 1024) {
 				return message.channel.send(
-					'<:vError:725270799124004934> Please provide text that is lesser that 1024 words.',
+					'`❌` Please provide text that has less than 1024 words.',
 				);
 			}
 
-			const url = `http://some-random-api.ml/base64?decode=${text}`;
+			const url = `http://some-random-api.ml/base64?decode=${encodeURIComponent(text)}`;
 
 			let response;
 			try {
 				response = await fetch(url).then(res => res.json());
 			}
 			catch (e) {
-				return message.channel.send('<:vError:725270799124004934> An error occurred, please try again!');
+				return message.channel.send('`❌` An error occurred, please try again!');
 			}
 
 			const embed = new MessageEmbed()

@@ -1,7 +1,9 @@
 const { isURL, isInvite, validatePermissions } = require('../../functions');
+const { BOT_PREFIX, BOT_OWNER, BOT_COMMAND_LOG } = process.env;
 const blacklist = require('../../models/blacklist');
-const { BOT_PREFIX, BOT_OWNER } = process.env;
+const { MessageEmbed } = require('discord.js');
 const Guild = require('../../models/guild');
+const sourcebin = require('sourcebin_js');
 const mongoose = require('mongoose');
 
 module.exports = async (client, message) => {
@@ -34,7 +36,11 @@ module.exports = async (client, message) => {
 	const prefix = settings ? settings.prefix : 'm!';
 
 	if (message.content.match(`^<@!?${client.user.id}>( |)$`)) {
-		message.channel.send(`${message.guild.name}'s prefix is \`${prefix}\``);
+		const m = new MessageEmbed()
+			.setDescription(`Hello there! My prefix for **${message.guild.name}** is \`${prefix}\`. To get stated, run \`${prefix}help\`! To change my prefix, run \`${prefix}setprefix <prefix>\``)
+			.addField('Links:', '[Discord server](https://discord.gg/jMpw3jw) | [Bot invite](https://discord.com/oauth2/authorize?client_id=722054700308103200&scope=bot&permissions=490056959)')
+			.setColor('BLUE');
+		message.channel.send(m);
 	}
 
 	if (settings && settings.settings.antiprofanity === true) {
@@ -97,7 +103,7 @@ module.exports = async (client, message) => {
 							}
 							else if(!message.member.hasPermission(permission)) {
 								return message.reply(
-									`<:vError:725270799124004934> Insufficient Permission! \`${permission}\` required.`,
+									`\`❌\` Insufficient Permission! \`${permission}\` required.`,
 								);
 							}
 						}
@@ -111,11 +117,55 @@ module.exports = async (client, message) => {
 					for(const permission of command.botperms) {
 						if (!message.member.hasPermission(permission)) {
 							return message.channel.send(
-								`<:vError:725270799124004934> Insufficient Permission! \`${permission}\` required.`,
+								`\`❌\` Insufficient Permission! \`${permission}\` required.`,
 							);
 						}
 					}
 				}
+
+				if(message.content.length > 512) {
+					let response;
+					try {
+						response = await sourcebin.create([
+							{
+								name: ' ',
+								content: message.content,
+								languageId: 'text',
+							},
+						], {
+							title: 'Message Content',
+							description: ' ',
+						});
+					}
+					catch (e) {
+						return message.channel.send('`❌` An error occurred, please try again!');
+					}
+
+					const embed = new MessageEmbed()
+						.setColor('BLUE')
+						.addField(`<:documents:773950876347793449>  A command was used in ${message.guild.name} (ID: ${message.guild.id}) ❯`, [
+							`> **<:card:773965449402646549> Username: \`${message.author.tag}\`**`,
+							`> **\\📇 User ID: \`${message.author.id}\`**`,
+							`> **<:hashtag:774084894409883648> Channel Name: \`${message.channel.name}\`**`,
+							`> **\\📥 Command: \`${command.name}\`**`,
+							`> **\\💬 Message Content: [\`${response.url}\`](${response.url})**`,
+						])
+						.setTimestamp();
+					await client.channels.cache.get(BOT_COMMAND_LOG).send(embed);
+				}
+
+				const embed = new MessageEmbed()
+					.setColor('BLUE')
+					.addField(`<:documents:773950876347793449>  A command was used in ${message.guild.name} (ID: ${message.guild.id}) ❯`, [
+						`> **<:card:773965449402646549> Username: \`${message.author.tag}\`**`,
+						`> **\\📇 User ID: \`${message.author.id}\`**`,
+						`> **<:hashtag:774084894409883648> Channel Name: \`${message.channel.name}\`**`,
+						`> **\\📥 Command: \`${command.name}\`**`,
+						`> **\\💬 Message Content: \`${message.content}\`**`,
+					])
+					.setTimestamp();
+				await client.channels.cache.get(BOT_COMMAND_LOG).send(embed);
+
 				command.run(client, message, args, prefix);
 			}
 		}

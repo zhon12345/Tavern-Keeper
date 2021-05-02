@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const translate = require('@vitalets/google-translate-api');
 const { MessageEmbed } = require('discord.js');
 
@@ -11,6 +12,11 @@ module.exports = {
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
 		const text = args.slice().join(' ');
+		if(!text) {
+			return message.channel.send(
+				'`❌` Please provide valid text.',
+			);
+		}
 
 		translate(text, {
 			to: 'en',
@@ -26,7 +32,7 @@ module.exports = {
 			message.channel.send(embed);
 		}).catch(e => {
 			return message.channel.send(
-				'<:vError:725270799124004934> An error occurred, please try again!',
+				'`❌` An error occurred, please try again!',
 			);
 		});
 	},

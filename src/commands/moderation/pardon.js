@@ -20,19 +20,19 @@ module.exports = {
 
 		if(!member) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid user.',
+				'`❌` Please provide a valid user.',
 			);
 		}
 
 		if(member.user.bot) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Bot are not allowed to have strikes',
+				'`❌` Bot are not allowed to have strikes',
 			);
 		}
 
 		if(message.author.id === member.id) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You are not allowed to reset your strikes',
+				'`❌` You are not allowed to reset your strikes',
 			);
 		}
 
@@ -40,7 +40,7 @@ module.exports = {
 		const code = args[1];
 		if(!code || code.length !== 5) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid code.',
+				'`❌` Please provide a valid code.',
 			);
 		}
 
@@ -56,7 +56,7 @@ module.exports = {
 					await member.send(`You have been pardoned \`1\` strikes in ${message.guild}\n\`[Reason]\` ${reason}`);
 				}
 				catch(err) {
-					await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+					await channel.send(`\`❌\` Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
 				}
 
 				if(channel) {
@@ -66,12 +66,12 @@ module.exports = {
 				}
 
 				await message.channel.send(
-					`<:vSuccess:725270799098970112> Successfully pardoned \`1\` strikes from **${member.user.username}**#${member.user.discriminator}`,
+					`\`✔️\` Successfully pardoned \`1\` strikes from **${member.user.username}**#${member.user.discriminator}`,
 				).then(message.delete());
 			}
 			else {
 				return message.channel.send(
-					`<:vError:725270799124004934> \`${member.user.tag}\` does not have any warns in ${message.guild.name}`,
+					`\`❌\` \`${member.user.tag}\` does not have any warns in ${message.guild.name}`,
 				);
 			}
 		});

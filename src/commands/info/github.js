@@ -14,7 +14,7 @@ module.exports = {
 		const name = args.join(' ');
 		if (!name) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid user',
+				'`❌` Please provide a valid user  (eg. `zhon12345`).',
 			);
 		}
 
@@ -26,7 +26,7 @@ module.exports = {
 		}
 		catch (e) {
 			return message.channel.send(
-				'<:vError:725270799124004934> An error occurred, please try again!',
+				'`❌` An error occurred, please try again!',
 			);
 		}
 
@@ -55,7 +55,7 @@ module.exports = {
 		}
 		catch (err) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid user',
+				'`❌` Please provide a valid user  (eg. `zhon12345`).',
 			);
 		}
 	},

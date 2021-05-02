@@ -20,7 +20,7 @@ module.exports = {
 				{ 'settings.memberrole': null },
 			);
 			message.channel.send(
-				'<:vSuccess:725270799098970112> Member role has been set to `None`.',
+				'`✔️` Member role has been set to `None`.',
 			);
 		}
 		else if(role) {
@@ -29,7 +29,7 @@ module.exports = {
 				{ 'settings.memberrole': role.id },
 			);
 			message.channel.send(
-				`<:vSuccess:725270799098970112> Member role has been set to \`${role.name}\``,
+				`\`✔️\` Member role has been set to \`${role.name}\``,
 			);
 		}
 		else if(settings.settings.memberrole === null) {

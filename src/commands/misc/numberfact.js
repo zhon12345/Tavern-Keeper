@@ -14,7 +14,7 @@ module.exports = {
 		const number = args[0];
 		if(isNaN(args[0])) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid number.',
+				'`❌` Please provide a valid number.',
 			);
 		}
 
@@ -31,7 +31,7 @@ module.exports = {
 		}
 		catch (e) {
 			return message.channel.send(
-				'<:vError:725270799124004934> An error occurred, please try again!',
+				'`❌` An error occurred, please try again!',
 			);
 		}
 

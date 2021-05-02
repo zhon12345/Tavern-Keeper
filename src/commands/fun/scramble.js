@@ -38,7 +38,7 @@ module.exports = {
 					}
 				})
 				.catch(collected => {
-					message.channel.send('<:vError:725270799124004934> Looks like you did not answer in time.');
+					message.channel.send('`❌` Looks like you did not answer in time.');
 				});
 		});
 	},

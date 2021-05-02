@@ -28,7 +28,7 @@ module.exports = {
 		else if (args[0].toLowerCase() === 'off') {
 			if(settings.settings.antilinks === false) {
 				return message.channel.send(
-					'<:vError:725270799124004934> Anti Links is already `disabled`.',
+					'`❌` Anti Links is already `disabled`.',
 				);
 			}
 			else {
@@ -37,14 +37,14 @@ module.exports = {
 					{ 'settings.antilinks': false },
 				);
 				message.channel.send(
-					'<:vSuccess:725270799098970112> Anti Links has been `disabled`',
+					'`✔️` Anti Links has been `disabled`',
 				);
 			}
 		}
 		else if (args[0].toLowerCase() === 'on') {
 			if(settings.settings.antilinks === true) {
 				return message.channel.send(
-					'<:vError:725270799124004934> Anti Links is already `enabled`.',
+					'`❌` Anti Links is already `enabled`.',
 				);
 			}
 			else {
@@ -53,7 +53,7 @@ module.exports = {
 					{ 'settings.antilinks': true },
 				);
 				message.channel.send(
-					'<:vSuccess:725270799098970112> Anti Links has been `enabled`',
+					'`✔️` Anti Links has been `enabled`',
 				);
 			}
 		}

@@ -12,7 +12,7 @@ module.exports = {
 		const question = args[0];
 		if (!question) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid question!',
+				'`❌` Please provide a valid question!',
 			);
 		}
 		const response = responses[Math.floor(Math.random() * responses.length)];

@@ -21,10 +21,10 @@ module.exports = {
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
-		const channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]) || message.channel;
+		const channel = message.guild.channels.cache.get(args[0].slice(2, -1)) || message.guild.channels.cache.get(args[0]) || message.channel;
 		if(!channel) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid channel',
+				'`❌` Please provide a valid channel',
 			);
 		}
 

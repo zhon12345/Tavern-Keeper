@@ -12,7 +12,7 @@ module.exports = {
 		const text = args.slice().join(' ');
 		if(!text) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide valid text.',
+				'`❌` Please provide valid text.',
 			);
 		}
 		const url = `https://api.funtranslations.com/translate/pirate.json?text=${text}`;
@@ -23,7 +23,7 @@ module.exports = {
 		}
 		catch (e) {
 			return message.channel.send(
-				'<:vError:725270799124004934> An error occurred, please try again!',
+				'`❌` An error occurred, please try again!',
 			);
 		}
 		message.channel.send(response.contents.translated);

@@ -1,9 +1,9 @@
-const fetch = require('node-fetch');
+const sourcebin = require('sourcebin_js');
 
 module.exports = {
 	name: 'hastebin',
 	category: 'Misc',
-	description: 'Upload specified text to hastebin.',
+	description: 'Upload specified text to sourcebin.',
 	aliases: ['pastebin', 'bin'],
 	usage: 'hastebin <text>',
 	userperms: [],
@@ -12,21 +12,27 @@ module.exports = {
 		const text = args.slice().join(' ');
 		if (!text) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide valid text',
+				'`❌` Please provide valid text',
 			);
 		}
 
-		const url = 'https://hastebin.com/documents';
-
 		let response;
 		try {
-			response = await fetch(url, { method: 'POST', body: text, headers: { 'Content-Type': 'text/plain' } });
+			response = await sourcebin.create([
+				{
+					name: ' ',
+					content: text,
+					languageId: 'text',
+				},
+			], {
+				title: `${message.author.tag}'s sourcebin`,
+				description: ' ',
+			});
 		}
 		catch (e) {
-			return message.channel.send('<:vError:725270799124004934> An error occurred, please try again!');
+			return message.channel.send('`❌` An error occurred, please try again!');
 		}
 
-		const { key } = await response.json();
-		message.channel.send(`https://hastebin.com/${key}.js`);
+		message.channel.send(`${response.url}`);
 	},
 };

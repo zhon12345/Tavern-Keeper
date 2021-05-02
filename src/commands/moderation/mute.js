@@ -18,19 +18,19 @@ module.exports = {
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(' ') || x.user.username === args[0]);
 		if(!member) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid user.',
+				'`❌` Please provide a valid user.',
 			);
 		}
 
 		if(member.id === message.author.id) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You are not allowed to mute yourself.',
+				'`❌` You are not allowed to mute yourself.',
 			);
 		}
 
 		if(member.id === client.user.id) {
 			return message.channel.send(
-				'<:vError:725270799124004934> You are not allowed to mute me.',
+				'`❌` You are not allowed to mute me.',
 			);
 		}
 
@@ -49,7 +49,7 @@ module.exports = {
 		const mutedRole = settings.settings.muterole;
 		if(!mutedRole) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Mute role not found.',
+				'`❌` Mute role not found.',
 			);
 		}
 
@@ -57,7 +57,7 @@ module.exports = {
 			await member.send(`You have been muted in ${message.guild}\n\`[Reason]\` ${Reason}`);
 		}
 		catch(err) {
-			await channel.send(`<:vError:725270799124004934> Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
+			await channel.send(`\`❌\` Failed to DM **${member.user.username}**#${member.user.discriminator} (ID: ${member.id})`);
 		}
 
 		if(verifiedRole && member.roles.cache.has(verifiedRole)) {
@@ -72,7 +72,7 @@ module.exports = {
 		}
 
 		await message.channel.send(
-			`<:vSuccess:725270799098970112> Successfully muted **${member.user.username}**#${member.user.discriminator}`,
+			`\`✔️\` Successfully muted **${member.user.username}**#${member.user.discriminator}`,
 		).then(message.delete());
 	},
 };

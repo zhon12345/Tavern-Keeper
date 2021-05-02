@@ -32,7 +32,7 @@ module.exports = {
 		const achi = args.slice().join('+');
 		if(!achi) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide valid text.',
+				'`❌` Please provide valid text.',
 			);
 		}
 		if (achi.length >= 24) {
@@ -51,7 +51,7 @@ module.exports = {
 		}
 		catch (e) {
 			return message.channel.send(
-				'<:vError:725270799124004934> An error occurred, please try again!',
+				'`❌` An error occurred, please try again!',
 			);
 		}
 

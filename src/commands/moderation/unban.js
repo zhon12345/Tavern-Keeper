@@ -18,7 +18,7 @@ module.exports = {
 		const id = args[0];
 		if(!id || isNaN(id)) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid user id.',
+				'`❌` Please provide a valid user id.',
 			);
 		}
 
@@ -26,7 +26,7 @@ module.exports = {
 		const user = bannedUsers.get(id);
 		if (!user) {
 			return message.channel.send(
-				'<:vError:725270799124004934> Please provide a valid user id.',
+				'`❌` Please provide a valid user id.',
 			);
 		}
 
@@ -46,7 +46,7 @@ module.exports = {
 		}
 
 		await message.channel.send(
-			`<:vSuccess:725270799098970112> Successfully unbanned **${user.user.username}**#${user.user.discriminator}`,
+			`\`✔️\` Successfully unbanned **${user.user.username}**#${user.user.discriminator}`,
 		).then(message.delete());
 	},
 };
