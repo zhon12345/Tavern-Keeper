@@ -1,5 +1,5 @@
 module.exports = {
-	// aliases.js & help.js
+	// aliases.js, anime.js & help.js
 	capitalizeFirstLetter(string) {
 		return string.charAt(0).toUpperCase() + string.slice(1);
 	},
@@ -16,6 +16,16 @@ module.exports = {
 		text = text.replace(/[LR]/g, 'W');
 		text = text.replace(/U/g, 'UW');
 		return text;
+	},
+
+	// anime.js
+	getSuggestions(searchResults) {
+		let suggestions = '';
+		for(let i = 1; i < 5; i++) {
+			const searchidx = searchResults[i];
+			suggestions += `• \`${searchidx.attributes.titles.en ? searchidx.attributes.titles.en : searchidx.attributes.titles.en_jp}\`\n`;
+		}
+		return suggestions;
 	},
 
 	// scramble.js
