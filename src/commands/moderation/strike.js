@@ -9,6 +9,7 @@ module.exports = {
 	description: 'Warn a specified user for breaking the rules.',
 	aliases: ['warn'],
 	usage: 'strike <user> [reason]',
+	disabled: false,
 	userperms: ['KICK_MEMBERS'],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
@@ -39,7 +40,7 @@ module.exports = {
 
 		if(member.id === message.guild.owner.id) {
 			return message.channel.send(
-				'<:vWarning:725276167346585681> Are you trying to get yourself into trouble?',
+				'`⚠️` Are you trying to get yourself into trouble?',
 			);
 		}
 

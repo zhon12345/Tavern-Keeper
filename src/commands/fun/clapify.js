@@ -4,6 +4,7 @@ module.exports = {
 	description: 'Generate clapified 👏 text 👏',
 	aliases: [],
 	usage: 'clapify <text>',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

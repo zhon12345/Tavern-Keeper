@@ -28,6 +28,7 @@ module.exports = {
 	description: 'Displays information about a provided user or the message author.',
 	aliases: ['user', 'ui'],
 	usage: 'userinfo [user]',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

@@ -9,6 +9,7 @@ module.exports = {
 	description: 'Did you know that bears have a heightened sense of smell?',
 	aliases: ['bears'],
 	usage: 'bear',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

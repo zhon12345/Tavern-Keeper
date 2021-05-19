@@ -8,6 +8,7 @@ module.exports = {
 	description: 'Shortens a provided link using bit.ly.',
 	aliases: ['short'],
 	usage: 'shorten <url>',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

@@ -8,6 +8,7 @@ module.exports = {
 	description: 'Sick of someone? Easy! Just roast them!',
 	aliases: ['insult'],
 	usage: 'roast [user]',
+	disabled: false,
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args) => {

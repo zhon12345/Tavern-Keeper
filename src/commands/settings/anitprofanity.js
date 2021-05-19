@@ -6,6 +6,7 @@ module.exports = {
 	description: 'Toggle the antiprofanity feature on/off.',
 	aliases: [],
 	usage: 'antiprofanity <on/off>',
+	disabled: false,
 	userperms: ['ADMINISTRATOR'],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

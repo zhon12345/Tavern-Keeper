@@ -8,6 +8,7 @@ module.exports = {
 	category: 'Info',
 	aliases: [ 'ontime' ],
 	usage: 'uptime',
+	disabled: false,
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args) => {

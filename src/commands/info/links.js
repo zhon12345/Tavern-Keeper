@@ -7,6 +7,7 @@ module.exports = {
 	description: 'Returns the bot\'s links.',
 	aliases: ['link', 'invite'],
 	usage: 'links',
+	disabled: false,
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args) => {

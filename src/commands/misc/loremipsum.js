@@ -5,6 +5,7 @@ module.exports = {
 	description: 'Send the Lorem Ipsum dummy text.',
 	aliases: [],
 	usage: 'loremipsum',
+	disabled: false,
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args) => {

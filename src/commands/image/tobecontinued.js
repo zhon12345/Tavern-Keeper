@@ -8,6 +8,7 @@ module.exports = {
 	description: 'To be continued...',
 	aliases: [],
 	usage: 'tobecontinued [user]',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'ATTACH_FILES'],
 	run: async (client, message, args) => {

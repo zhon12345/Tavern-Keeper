@@ -7,6 +7,7 @@ module.exports = {
 	description: 'Display a random kaomoji! (´・ω・｀) 3000 will definitely be enough to keep you busy! (ｖ｀▽´)ｖ',
 	aliases: [],
 	usage: 'kaomoji',
+	disabled: false,
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args) => {

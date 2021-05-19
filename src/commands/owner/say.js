@@ -4,6 +4,7 @@ module.exports = {
 	description: 'Make the bot say whatever you want.',
 	aliases: ['imitate'],
 	usage: 'say <text>',
+	disabled: false,
 	userperms: ['BOT_OWNER'],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

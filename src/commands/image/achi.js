@@ -8,6 +8,7 @@ module.exports = {
 	description: 'Get a personalised minecraft achievement.',
 	aliases: ['achivement'],
 	usage: 'achi <text>',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'ATTACH_FILES'],
 	run: async (client, message, args) => {
@@ -37,7 +38,7 @@ module.exports = {
 		}
 		if (achi.length >= 24) {
 			return message.channel.send(
-				'<:vWarning:725276167346585681> You have exceeded the character limit.',
+				'`⚠️` You have exceeded the character limit.',
 			);
 		}
 

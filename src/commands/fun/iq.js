@@ -7,6 +7,7 @@ module.exports = {
 	description: ' ̶ R̶a̶n̶d̶o̶m̶i̶s̶e̶  Calculate your IQ..',
 	aliases: [],
 	usage: 'iq',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

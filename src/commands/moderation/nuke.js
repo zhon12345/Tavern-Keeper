@@ -8,6 +8,7 @@ module.exports = {
 	description: 'Clones the current channel and deletes the old one.',
 	aliases: [],
 	usage: 'nuke [channel] [reason]',
+	disabled: false,
 	userperms: ['ADMINISTRATOR'],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'MANAGE_CHANNELS'],
 	run: async (client, message, args) => {

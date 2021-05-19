@@ -7,6 +7,7 @@ module.exports = {
 	description: 'Get a definition from the Urban Dictionary. (NSFW Channel required)',
 	aliases: ['ud'],
 	usage: 'urban <query>',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

@@ -8,6 +8,7 @@ module.exports = {
 	description: 'Shows the 10 latest commits.',
 	aliases: [],
 	usage: 'changelog <repository>',
+	disabled: false,
 	userperms: ['BOT_OWNER'],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

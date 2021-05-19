@@ -8,6 +8,7 @@ module.exports = {
 	description: 'Why are you so scary?',
 	aliases: [],
 	usage: 'scary [user]',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'ATTACH_FILES'],
 	run: async (client, message, args) => {

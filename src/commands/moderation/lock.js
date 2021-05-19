@@ -6,6 +6,7 @@ module.exports = {
 	description: 'Locks the specified channel to prevent raids.',
 	aliases: ['lockdown'],
 	usage: 'lock [category id]',
+	disabled: false,
 	userperms: ['MANAGE_CHANNELS'],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'MANAGE_CHANNELS'],
 	run: async (client, message, args) => {

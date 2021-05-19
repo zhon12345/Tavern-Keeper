@@ -8,6 +8,7 @@ module.exports = {
 	description: 'Get someone to say whatever you want!',
 	aliases: [],
 	usage: 'quote [user] <text>',
+	disabled: false,
 	userperms: [],
 	botperms: ['ATTACH_FILES'],
 	run: async (client, message, args) => {

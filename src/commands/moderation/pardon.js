@@ -8,6 +8,7 @@ module.exports = {
 	aliases: ['delwarn', 'unwarn'],
 	usage: 'pardon <user> <number> [reason]',
 	description: 'Remove strikes from a specified person.',
+	disabled: false,
 	userperms: ['BAN_MEMBERS'],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

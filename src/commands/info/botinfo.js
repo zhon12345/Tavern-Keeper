@@ -22,6 +22,7 @@ module.exports = {
 	description: 'Displays indept information about the bot.',
 	aliases: ['bot', 'bi'],
 	usage: 'botinfo',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

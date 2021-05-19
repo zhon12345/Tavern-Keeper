@@ -7,6 +7,7 @@ module.exports = {
 	description: 'Checks if the bot is working.',
 	aliases: [],
 	usage: 'test',
+	disabled: false,
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args) => {

@@ -8,6 +8,7 @@ module.exports = {
 	usage: 'fight <user>',
 	description: 'Simulates a fight against another user.',
 	aliases: [],
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

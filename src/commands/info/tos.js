@@ -8,6 +8,7 @@ module.exports = {
 	description: 'Shows the terms of service of the bot.',
 	aliases: ['termsofservice'],
 	usage: 'tos',
+	disabled: false,
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args, prefix) => {

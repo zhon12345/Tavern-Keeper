@@ -8,6 +8,7 @@ module.exports = {
 	description: 'Make your own bed meme.',
 	aliases: [],
 	usage: 'bed <user>',
+	disabled: false,
 	userperms: [],
 	botperms: ['ATTACH_FILES'],
 	run: async (client, message, args) => {

@@ -38,6 +38,7 @@ module.exports = {
 	description: 'Displays information about the server.',
 	aliases: ['server', 'guild', 'guildinfo', 'si', 'gi'],
 	usage: 'serverinfo',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

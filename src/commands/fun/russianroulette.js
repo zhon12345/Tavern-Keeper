@@ -7,6 +7,7 @@ module.exports = {
 	description: 'Gamble with your life and play russian roulette.',
 	aliases: ['rr'],
 	usage: 'russianroulette',
+	disabled: false,
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args) => {

@@ -7,6 +7,7 @@ module.exports = {
 	description: 'Searches for lyrics of a specified song.',
 	aliases: [],
 	usage: 'lyrics <song>',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

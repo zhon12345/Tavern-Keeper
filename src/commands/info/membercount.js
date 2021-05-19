@@ -6,6 +6,7 @@ module.exports = {
 	description: 'Displays the specified guild\'s member count.',
 	aliases: ['usercount', 'uc', 'mc'],
 	usage: 'membercount',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

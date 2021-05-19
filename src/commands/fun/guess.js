@@ -5,6 +5,7 @@ module.exports = {
 	description: 'guessing game of the year 10/10',
 	aliases: ['gtn'],
 	usage: 'guess',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

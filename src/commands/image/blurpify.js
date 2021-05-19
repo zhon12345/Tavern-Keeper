@@ -8,6 +8,7 @@ module.exports = {
 	description: 'Make someone\'s avatar blurple.',
 	aliases: [],
 	usage: 'blurpify [user]',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'ATTACH_FILES'],
 	run: async (client, message, args) => {

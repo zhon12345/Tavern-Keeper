@@ -4,6 +4,7 @@ module.exports = {
 	description: 'Make the bot leave a specified server.',
 	aliases: ['abandon'],
 	usage: 'leave <guild>',
+	disabled: false,
 	userperms: ['BOT_OWNER'],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

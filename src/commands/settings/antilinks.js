@@ -6,6 +6,7 @@ module.exports = {
 	description: 'Toggle the antilinks feature on/off.',
 	aliases: ['antilink'],
 	usage: 'antilinks <on/off>',
+	disabled: false,
 	userperms: ['ADMINISTRATOR'],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

@@ -6,6 +6,7 @@ module.exports = {
 	description: 'Change the bot\'s prefix for the server.',
 	aliases: ['prefix'],
 	usage: 'setprefix <prefix>',
+	disabled: false,
 	userperms: ['ADMINISTRATOR'],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args, prefix) => {
@@ -21,7 +22,7 @@ module.exports = {
 
 		if(args[0] === settings ? settings.prefix : prefix) {
 			return message.channel.send(
-				'<:vWarning:725276167346585681> That prefix is already in use.',
+				'`⚠️` That prefix is already in use.',
 			);
 		}
 

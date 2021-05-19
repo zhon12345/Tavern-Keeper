@@ -6,6 +6,7 @@ module.exports = {
 	description: 'Unlocks the specified channel after raids.',
 	aliases: [],
 	usage: 'unlock [channel id]',
+	disabled: false,
 	userperms: ['MANAGE_CHANNELS'],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'MANAGE_CHANNELS'],
 	run: async (client, message, args) => {

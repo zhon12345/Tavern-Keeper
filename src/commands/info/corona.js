@@ -8,6 +8,7 @@ module.exports = {
 	usage: 'corona <location>',
 	category: 'Info',
 	aliases: ['covid', 'cv'],
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

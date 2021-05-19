@@ -7,6 +7,7 @@ module.exports = {
 	description: 'Add or Remove a specified member from the blacklist.',
 	aliases: [],
 	usage: 'blacklist [add/remove] [member]',
+	disabled: false,
 	userperms: ['BOT_OWNER'],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
@@ -62,7 +63,7 @@ module.exports = {
 				}
 				else {
 					return message.channel.send(
-						'<:vWarning:725276167346585681> There is no blacklisted member',
+						'`⚠️` There is no blacklisted member',
 					);
 				}
 			});

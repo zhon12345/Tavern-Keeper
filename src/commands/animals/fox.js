@@ -9,6 +9,7 @@ module.exports = {
 	description: 'You want some cute animals? Here you go!',
 	aliases: ['foxes'],
 	usage: 'aww',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

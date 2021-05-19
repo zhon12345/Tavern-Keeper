@@ -8,6 +8,7 @@ module.exports = {
 	description: '*Fake* Hacks a user',
 	aliases: [],
 	category:'Fun',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (bot, message, args) => {

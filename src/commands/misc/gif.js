@@ -8,6 +8,7 @@ module.exports = {
 	description: 'Searches for a specified gif.',
 	aliases: [],
 	usage: 'gif <text>',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

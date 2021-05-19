@@ -9,6 +9,7 @@ module.exports = {
 	description: 'Get the latest news from around the world.',
 	aliases: [],
 	usage: 'news',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

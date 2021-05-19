@@ -7,6 +7,7 @@ module.exports = {
 	description: 'Restarts the bot.',
 	aliases: ['reload'],
 	usage: 'restart',
+	disabled: false,
 	userperms: ['BOT_OWNER'],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

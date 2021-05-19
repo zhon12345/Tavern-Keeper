@@ -6,6 +6,7 @@ module.exports = {
 	description: 'Sets the muted role for the server.',
 	aliases: [],
 	usage: 'muterole <role>',
+	disabled: false,
 	userperms: ['ADMINISTRATOR'],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

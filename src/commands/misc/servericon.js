@@ -6,6 +6,7 @@ module.exports = {
 	usage: 'serverinfo',
 	category: 'Misc',
 	aliases: ['sav'],
+	disabled: false,
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args) => {

@@ -8,6 +8,7 @@ module.exports = {
 	description: 'Display the wasted text on a specified user\'s avatar.',
 	aliases: [],
 	usage: 'wasted [user]',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'ATTACH_FILES'],
 	run: async (client, message, args) => {

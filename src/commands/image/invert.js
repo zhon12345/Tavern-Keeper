@@ -6,6 +6,7 @@ module.exports = {
 	description: 'Invert the colors of a user\'s avatar',
 	aliases: ['colorfilp'],
 	usage: 'invert <user>',
+	disabled: false,
 	userperms: [],
 	botperms: ['ATTACH_FILES'],
 	run: async (client, message, args) => {

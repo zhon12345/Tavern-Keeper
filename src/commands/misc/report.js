@@ -7,6 +7,7 @@ module.exports = {
 	description: 'Report an issue within the bot to the developers.',
 	aliases: [],
 	usage: 'report <issue>',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

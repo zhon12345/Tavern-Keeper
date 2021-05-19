@@ -8,6 +8,7 @@ module.exports = {
 	description: 'Show your inner gay pride.',
 	aliases: ['gaypride'],
 	usage: 'gay [user]',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'ATTACH_FILES'],
 	run: async (client, message, args) => {

@@ -80,7 +80,7 @@ module.exports = async (client, message) => {
 
 			const command = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
 
-			if (command) {
+			if (command && command.disabled === false) {
 				if (client.cooldowns.has(message.author.id)) {
 					return message.channel.send(`Hey ${message.author}, slow down, take a chill pill!`);
 				}
@@ -167,6 +167,11 @@ module.exports = async (client, message) => {
 				await client.channels.cache.get(BOT_COMMAND_LOG).send(embed);
 
 				command.run(client, message, args, prefix);
+			}
+			else {
+				message.channel.send(
+					'`⚠️` This command has been disabled for the time being. Please try again later.',
+				);
 			}
 		}
 	});

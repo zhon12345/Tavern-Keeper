@@ -5,6 +5,7 @@ module.exports = {
 	description: 'Direct message a specified user as the bot.',
 	aliases: ['message'],
 	usage: 'dm <text>',
+	disabled: false,
 	userperms: ['BOT_OWNER'],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

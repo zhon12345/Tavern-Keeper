@@ -4,6 +4,7 @@ module.exports = {
 	description: 'Set the nickname of a specified user.',
 	aliases: ['nick'],
 	usage: 'nickname <user> <nickname>',
+	disabled: false,
 	userperms: ['MANAGE_NICKNAMES'],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'MANAGE_NICKNAMES'],
 	run: async (client, message, args) => {

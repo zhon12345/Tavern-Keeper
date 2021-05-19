@@ -8,6 +8,7 @@ module.exports = {
 	description: 'Batslap a specified user.',
 	aliases: [],
 	usage: 'batslap <user>',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'ATTACH_FILES'],
 	run: async (client, message, args) => {

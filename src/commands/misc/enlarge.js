@@ -7,6 +7,7 @@ module.exports = {
 	description: 'Enlarge a specified emoji.',
 	aliases: [],
 	usage: 'enlarge <emoji>',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

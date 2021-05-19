@@ -5,6 +5,7 @@ module.exports = {
 	description: '"Never Gonna Give You Up"',
 	aliases: [],
 	usage: 'rickroll',
+	disabled: false,
 	userperms: [],
 	botperms: ['ATTACH_FILES'],
 	run: async (client, message, args) => {

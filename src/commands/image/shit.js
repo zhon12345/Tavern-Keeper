@@ -7,6 +7,7 @@ module.exports = {
 	description: 'You worthless piece of shit! (jk)',
 	aliases: [],
 	usage: 'shit [user]',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'ATTACH_FILES'],
 	run: async (client, message, args) => {

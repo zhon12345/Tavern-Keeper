@@ -8,6 +8,7 @@ module.exports = {
 	description: 'Send your friends to jail!',
 	aliases: [],
 	usage: 'jail [user]',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'ATTACH_FILES'],
 	run: async (client, message, args) => {

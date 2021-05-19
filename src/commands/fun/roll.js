@@ -8,6 +8,7 @@ module.exports = {
 	description: 'Roll a dice and get a random number from 1 - 6.',
 	aliases: ['rolldice', ' diceroll'],
 	usage: 'roll',
+	disabled: false,
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args) => {

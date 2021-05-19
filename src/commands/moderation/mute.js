@@ -7,6 +7,7 @@ module.exports = {
 	description: 'Permanently mute a specified user.',
 	aliases: [],
 	usage: 'mute <user> [reason]',
+	disabled: false,
 	userperms: ['KICK_MEMBERS'],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'MANAGE_ROLES'],
 	run: async (client, message, args) => {
@@ -36,7 +37,7 @@ module.exports = {
 
 		if(member.id === message.guild.owner.id) {
 			return message.channel.send(
-				'<:vWarning:725276167346585681> Are you trying to get yourself into trouble?',
+				'`⚠️` Are you trying to get yourself into trouble?',
 			);
 		}
 

@@ -6,6 +6,7 @@ module.exports = {
 	description: 'Play a game of soccer.',
 	aliases: ['football'],
 	usage: 'soccer',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

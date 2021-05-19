@@ -8,6 +8,7 @@ module.exports = {
 	description: 'Get the warnings and other info of the message author or a specified user.',
 	aliases: ['warns', 'strikes'],
 	usage: 'warnings [user]',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

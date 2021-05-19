@@ -8,6 +8,7 @@ module.exports = {
 	description: 'Is looking at the misery of others funny?.',
 	aliases: ['fmylife'],
 	usage: 'fml',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

@@ -5,6 +5,7 @@ module.exports = {
 	description: 'Sends a fake image of a fly that looks suspiciously real.',
 	aliases: [],
 	usage: 'fly',
+	disabled: false,
 	userperms: [],
 	botperms: ['ATTACH_FILES'],
 	run: (client, message, args) => {

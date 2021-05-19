@@ -6,6 +6,7 @@ module.exports = {
 	category: 'Moderation',
 	description: 'Kick a specified user from a voice channel.',
 	aliases: [],
+	disabled: false,
 	userperms: ['MOVE_MEMBERS'],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'MOVE_MEMBERS'],
 	usage: 'voicekick <user> [reason]',
@@ -36,7 +37,7 @@ module.exports = {
 
 		if(member.id === message.guild.owner.id) {
 			return message.channel.send(
-				'<:vWarning:725276167346585681> Are you trying to get yourself into trouble?',
+				'`⚠️` Are you trying to get yourself into trouble?',
 			);
 		}
 

@@ -9,6 +9,7 @@ module.exports = {
 	usage: 'anime <anime>',
 	category: 'Info',
 	aliases: [],
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

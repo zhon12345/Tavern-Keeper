@@ -5,6 +5,7 @@ module.exports = {
 	description: 'Surely you know what lenny is, everyone does.',
 	aliases: ['nether'],
 	usage: 'portal  ',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

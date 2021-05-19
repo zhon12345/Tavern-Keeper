@@ -21,6 +21,7 @@ module.exports = {
 	description: 'Are they the imposter? They seem kinda sus.',
 	aliases: [],
 	usage: 'eject <user>',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'ATTACH_FILES'],
 	run: async (client, message, args) => {

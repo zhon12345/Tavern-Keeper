@@ -8,6 +8,7 @@ module.exports = {
 	description: 'Sick of someone? Easy! Just kill them! (virtually)',
 	aliases: [],
 	usage: 'kill <user>',
+	disabled: false,
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args) => {

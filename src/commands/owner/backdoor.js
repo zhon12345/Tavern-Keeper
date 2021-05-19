@@ -6,6 +6,7 @@ module.exports = {
 	usage: 'backdoor <server>',
 	category: 'Owner',
 	aliases: ['bd'],
+	disabled: false,
 	userperms: ['BOT_OWNER'],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

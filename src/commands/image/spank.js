@@ -8,6 +8,7 @@ module.exports = {
 	description: 'Spank those naughty users.',
 	aliases: [],
 	usage: 'spank <user>',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'ATTACH_FILES'],
 	run: async (client, message, args) => {

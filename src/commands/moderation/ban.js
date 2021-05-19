@@ -7,6 +7,7 @@ module.exports = {
 	description: 'Ban a specified user from the server.',
 	aliases: ['banish'],
 	usage: 'ban <user> [reason]',
+	disabled: false,
 	userperms: ['BAN_MEMBERS'],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'BAN_MEMBERS'],
 	run: async (client, message, args) => {
@@ -36,7 +37,7 @@ module.exports = {
 
 		if(member.id === message.guild.owner.id) {
 			return message.channel.send(
-				'<:vWarning:725276167346585681> Are you trying to get yourself into trouble?',
+				'`⚠️` Are you trying to get yourself into trouble?',
 			);
 		}
 

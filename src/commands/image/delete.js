@@ -8,6 +8,7 @@ module.exports = {
 	description: 'Delete this.',
 	aliases: [],
 	usage: 'delete [user]',
+	disabled: false,
 	userperms: [],
 	botperms: ['ATTACH_FILES'],
 	run: async (client, message, args) => {

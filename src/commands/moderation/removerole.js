@@ -4,6 +4,7 @@ module.exports = {
 	description: 'Removes a specified role from a specified user.',
 	aliases: [],
 	usage: 'removerole <user> <role>',
+	disabled: false,
 	userperms: ['MANAGE_ROLES'],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'MANAGE_ROLES'],
 	run: async (client, message, args) => {
@@ -42,7 +43,7 @@ module.exports = {
 
 		if(member.id === message.guild.owner.id) {
 			return message.channel.send(
-				'<:vWarning:725276167346585681> What do you want to remove?',
+				'`⚠️` What do you want to remove?',
 			);
 		}
 

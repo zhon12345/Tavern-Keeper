@@ -7,6 +7,7 @@ module.exports = {
 	description: 'Get a nice ascii art.',
 	aliases: ['art'],
 	usage: 'ascii <message>',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
@@ -24,7 +25,7 @@ module.exports = {
 		}
 		else if(text.length >= 20) {
 			return message.channel.send(
-				'<:vWarning:725276167346585681> You have exceeded the character limit.',
+				'`⚠️` You have exceeded the character limit.',
 			);
 		}
 

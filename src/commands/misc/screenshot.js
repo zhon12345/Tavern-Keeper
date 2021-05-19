@@ -7,6 +7,7 @@ module.exports = {
 	description: 'Get a screenshot of a website of your choosing. (NSFW Channel required)',
 	aliases: [],
 	usage: 'quotes',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

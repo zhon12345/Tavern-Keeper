@@ -8,6 +8,7 @@ module.exports = {
 	usage: 'github <username>',
 	category: 'Info',
 	aliases: ['git', 'gh'],
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

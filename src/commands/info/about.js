@@ -8,6 +8,7 @@ module.exports = {
 	description: 'Returns the bot\'s about page.',
 	aliases: [],
 	usage: 'about',
+	disabled: false,
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args) => {

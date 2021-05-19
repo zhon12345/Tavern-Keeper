@@ -5,6 +5,7 @@ module.exports = {
 	description: 'Makes a worm of a random length',
 	aliases: [],
 	usage: 'worm',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

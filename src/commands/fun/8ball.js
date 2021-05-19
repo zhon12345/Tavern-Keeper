@@ -6,6 +6,7 @@ module.exports = {
 	description: 'Ask the magic 8-ball for an answer.',
 	aliases: ['ask'],
 	usage: '8ball <question>',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

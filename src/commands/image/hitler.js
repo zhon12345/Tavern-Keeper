@@ -8,6 +8,7 @@ module.exports = {
 	description: 'It\'s not offensive if it\'s true, so use this wisely.',
 	aliases: [],
 	usage: 'hitler [user]',
+	disabled: false,
 	userperms: [],
 	botperms: ['ATTACH_FILES'],
 	run: async (client, message, args) => {

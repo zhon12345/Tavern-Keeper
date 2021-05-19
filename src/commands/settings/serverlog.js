@@ -6,6 +6,7 @@ module.exports = {
 	description: 'Sets the serverlogs channel for the server.',
 	aliases: [],
 	usage: 'serverlog <channel>',
+	disabled: false,
 	userperms: ['ADMINISTRATOR'],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

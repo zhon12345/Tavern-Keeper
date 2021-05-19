@@ -9,6 +9,7 @@ module.exports = {
 	description: 'Feeling bored? Get some activities to do.',
 	aliases: [],
 	usage: 'activity',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

@@ -7,6 +7,7 @@ module.exports = {
 	description: 'Unmute a muted user.',
 	aliases: ['unsilent'],
 	usage: 'unmute <user> [reason]',
+	disabled: false,
 	userperms: ['MANAGE_ROLES'],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'MANAGE_ROLES'],
 	run: async (client, message, args) => {

@@ -7,6 +7,7 @@ module.exports = {
 	description: 'Tells you which devices a user is on.',
 	aliases: [],
 	usage: 'device <member>',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

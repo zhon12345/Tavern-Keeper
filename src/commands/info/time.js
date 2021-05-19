@@ -8,6 +8,7 @@ module.exports = {
 	description: 'Shows the current time.',
 	aliases: [],
 	usage: 'time',
+	disabled: false,
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args) => {

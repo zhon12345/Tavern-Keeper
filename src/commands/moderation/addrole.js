@@ -3,6 +3,7 @@ module.exports = {
 	category: 'Moderation',
 	description: 'Adds a role to a specified user.',
 	aliases: [],
+	disabled: false,
 	userperms: ['MANAGE_ROLES'],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'MANAGE_ROLES'],
 	usage: 'addrole <user> <role>',
@@ -41,7 +42,7 @@ module.exports = {
 
 		if(member.id === message.guild.owner.id) {
 			return message.channel.send(
-				'<:vWarning:725276167346585681> What do you want to add?',
+				'`⚠️` What do you want to add?',
 			);
 		}
 

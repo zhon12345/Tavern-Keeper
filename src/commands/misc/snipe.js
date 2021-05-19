@@ -6,6 +6,7 @@ module.exports = {
 	aliases: [],
 	usage: 'snipe [number]',
 	category: 'Misc',
+	disabled: false,
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {

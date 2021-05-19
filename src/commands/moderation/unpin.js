@@ -4,6 +4,7 @@ module.exports = {
 	description: 'Unpin a specific messaged to the channel.',
 	aliases: [],
 	usage: 'unpin <message>',
+	disabled: false,
 	userperms: ['MANAGE_MESSAGES'],
 	botperms: ['USE_EXTERNAL_EMOJIS', 'MANAGE_MESSAGES'],
 	run: async (bot, message, args) => {
