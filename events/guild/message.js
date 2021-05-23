@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 module.exports = async (client, message) => {
 	if (message.author.bot) return;
 	if (!message.guild) return;
-	if (!message.channel.permissionsFor(client.user).has('SEND_MESSAGES')) return;
+	if (!message.channel.permissionsFor(client.user).has("SEND_MESSAGES")) return;
 
 	const settings = await Guild.findOne({
 		guildID: message.guild.id,
@@ -86,9 +86,9 @@ module.exports = async (client, message) => {
 					if(permission === "BOT_OWNER" && message.member.id !== BOT_OWNER) {
 						return;
 					}
-					else if(!message.member.hasPermission(permission)) {
+					else if(!message.channel.permissionsFor(message.member).has(permission)) {
 						return message.channel.send(
-							`\`❌\` Insufficient Permission! \`${permission}\` required.`,
+							`\`❌\` Insufficient Permission! You are required to have \`${permission}\` in this channel.`,
 						);
 					}
 				}
@@ -100,9 +100,9 @@ module.exports = async (client, message) => {
 			}
 
 			for(const permission of command.botperms) {
-				if (!message.guild.me.hasPermission(permission)) {
+				if (!message.channel.permissionsFor(client.user).has(permission)) {
 					return message.channel.send(
-						`\`❌\` Insufficient Permission! I require \`${permission}\`.`,
+						`\`❌\` Insufficient Permission! I require \`${permission}\` in this channel.`,
 					);
 				}
 			}

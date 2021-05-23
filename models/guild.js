@@ -9,8 +9,6 @@ const guildSchema = mongoose.Schema({
 		id: mongoose.Schema.Types.ObjectId,
 		antiprofanity: Boolean,
 		antilinks: Boolean,
-		muterole: String,
-		memberrole: String,
 		modlog: String,
 		serverlog: String,
 		messagelog: String,
