@@ -40,7 +40,7 @@ module.exports = {
 			}
 			await message.channel.send(`Hacking ${hacked.user.username} now...`).then(async msg => {
 				await delay(1500);
-				await msg.edit("[▖] Fiding discord login... (2fa bypassed)");
+				await msg.edit("[▖] Finding discord login... (2fa bypassed)");
 				await delay(2000);
 				await msg.edit(`[▘] Found:\n**Email:** \`${hacked.user.username.split(" ").join("").toLowerCase()}${genending}\`\n**Password:** ${genpass}`);
 				await delay(2500);
