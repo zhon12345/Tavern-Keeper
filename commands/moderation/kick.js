@@ -36,7 +36,7 @@ module.exports = {
 
 		if(member.id === message.guild.owner.id) {
 			return message.channel.send(
-				"<:vWarning:725276167346585681> Are you trying to get yourself into trouble?",
+				"⚠️ Are you trying to get yourself into trouble?",
 			);
 		}
 

@@ -41,7 +41,7 @@ module.exports = {
 
 		if(member.id === message.guild.owner.id) {
 			return message.channel.send(
-				"<:vWarning:725276167346585681> What do you want to add?",
+				"⚠️ What do you want to add?",
 			);
 		}
 

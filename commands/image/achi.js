@@ -37,7 +37,7 @@ module.exports = {
 		}
 		if (achi.length >= 24) {
 			return message.channel.send(
-				"<:vWarning:725276167346585681> You have exceeded the character limit.",
+				"⚠️ You have exceeded the character limit.",
 			);
 		}
 

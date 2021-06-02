@@ -62,7 +62,7 @@ module.exports = {
 				}
 				else {
 					return message.channel.send(
-						"<:vWarning:725276167346585681> There is no blacklisted member",
+						"⚠️ There is no blacklisted member",
 					);
 				}
 			});
