@@ -25,7 +25,7 @@ module.exports = {
 		}
 		else if(text.length >= 20) {
 			return message.channel.send(
-				"⚠️ You have exceeded the 20 character limit.",
+				"`⚠️` You have exceeded the 20 character limit.",
 			);
 		}
 

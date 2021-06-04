@@ -42,7 +42,7 @@ module.exports = {
 
 		if(member.id === message.guild.owner.id) {
 			return message.channel.send(
-				"⚠️ What do you want to add?",
+				"`⚠️` What more do they need?",
 			);
 		}
 
