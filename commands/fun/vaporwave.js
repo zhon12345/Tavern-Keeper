@@ -6,6 +6,7 @@ module.exports = {
 	description: "Converts text into ｖａｐｏｒｗａｖｅ.",
 	usage: "vaporwave <text>",
 	category: "Fun",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

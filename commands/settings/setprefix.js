@@ -6,6 +6,7 @@ module.exports = {
 	description: "Change the bot's prefix for the server.",
 	aliases: ["prefix"],
 	usage: "setprefix <prefix>",
+	disabled: false,
 	userperms: ["ADMINISTRATOR"],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args, prefix) => {

@@ -8,6 +8,7 @@ module.exports = {
 	description: "Why you so TRIGGERED bro?",
 	aliases: ["trigger"],
 	usage: "triggered [user]",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS", "ATTACH_FILES"],
 	run: async (client, message, args) => {

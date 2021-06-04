@@ -9,6 +9,7 @@ module.exports = {
 	description: "What do you prefer? Red pandas or Pandas.",
 	aliases: ["redpandas"],
 	usage: "redpanda",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

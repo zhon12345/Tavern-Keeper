@@ -7,6 +7,7 @@ module.exports = {
 	category: "Info",
 	description: "Find a user's instagram statistics.",
 	usage: "instagram <user>",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

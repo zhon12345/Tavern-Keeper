@@ -8,6 +8,7 @@ module.exports = {
 	description: "Get a random fact from the internet.",
 	aliases: [],
 	usage: "randomfact",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

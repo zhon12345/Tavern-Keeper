@@ -8,6 +8,7 @@ module.exports = {
 	description: "Get the youngest account in the guild.",
 	aliases: [],
 	usage: "youngest",
+	disabled: false,
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args) => {

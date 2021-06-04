@@ -5,6 +5,7 @@ module.exports = {
 	description: "Sends spam images.",
 	aliases: [],
 	usage: "spam",
+	disabled: false,
 	userperms: [],
 	botperms: ["ATTACH_FILES"],
 	run: async (client, message, args) => {

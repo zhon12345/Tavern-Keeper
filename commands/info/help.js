@@ -8,6 +8,7 @@ module.exports = {
 	category: "Info",
 	description: "Returns the help page, or one specific command info.",
 	usage: "help [command]",
+	disabled: false,
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args, prefix) => {

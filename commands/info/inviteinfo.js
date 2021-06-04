@@ -8,6 +8,7 @@ module.exports = {
 	description: "Displays in-depth information about a specified invite code in the current guild.",
 	aliases: ["ii"],
 	usage: "inviteinfo",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

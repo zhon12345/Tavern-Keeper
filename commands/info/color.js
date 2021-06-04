@@ -8,6 +8,7 @@ module.exports = {
 	description: "Shows information about a specified color.",
 	aliases: [],
 	usage: "color <color>",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

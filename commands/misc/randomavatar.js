@@ -8,6 +8,7 @@ module.exports = {
 	description: "Get random avatars!",
 	aliases: ["ravatar"],
 	usage: "randomavatar",
+	disabled: false,
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args) => {

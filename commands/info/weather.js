@@ -7,6 +7,7 @@ module.exports = {
 	usage: "weather <location>",
 	category: "Info",
 	aliases: ["temp"],
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

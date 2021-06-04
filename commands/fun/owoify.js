@@ -6,6 +6,7 @@ module.exports = {
 	description: "OwOify a provided text.",
 	aliases: [],
 	usage: "owoify <text>",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

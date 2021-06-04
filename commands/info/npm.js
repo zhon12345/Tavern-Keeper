@@ -7,6 +7,7 @@ module.exports = {
 	description: "Get info about a specified npm package.",
 	aliases: [],
 	usage: "npm <package>",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

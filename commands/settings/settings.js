@@ -8,6 +8,7 @@ module.exports = {
 	description: "Displays the server's settings.",
 	aliases: ["setting"],
 	usage: "settings",
+	disabled: false,
 	userperms: ["ADMINISTRATOR"],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args, prefix) => {

@@ -7,6 +7,7 @@ module.exports = {
 	description: "Converts normal text to QmFzZTY0.",
 	aliases: [],
 	usage: "base64 <encode/decode> <text>",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

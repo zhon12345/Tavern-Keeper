@@ -8,6 +8,7 @@ module.exports = {
 	description: "Pay your respects.",
 	aliases: [],
 	usage: "rip [user]",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS", "ATTACH_FILES"],
 	run: async (client, message, args) => {

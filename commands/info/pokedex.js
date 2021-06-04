@@ -8,6 +8,7 @@ module.exports = {
 	description: "Searches the Pokédex for a Pokémon.",
 	aliases: ["pokemon", "pokémon", "pokédex", "pkm"],
 	usage: "pokemon <pokemon>",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

@@ -8,6 +8,7 @@ module.exports = {
 	description: "Get a personalized minecraft achievement.",
 	aliases: ["achievement"],
 	usage: "achi <text>",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS", "ATTACH_FILES"],
 	run: async (client, message, args) => {

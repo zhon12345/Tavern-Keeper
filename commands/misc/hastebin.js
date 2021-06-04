@@ -6,6 +6,7 @@ module.exports = {
 	description: "Upload specified text to sourcebin.",
 	aliases: ["pastebin", "bin"],
 	usage: "hastebin <text>",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

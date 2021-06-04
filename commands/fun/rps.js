@@ -10,6 +10,7 @@ module.exports = {
 	description: "Play a game of Rock Paper Scissors.",
 	aliases: [],
 	usage: "rps",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS", "ADD_REACTIONS"],
 	run: async (client, message, args) => {

@@ -7,6 +7,7 @@ module.exports = {
 	description: "Get the compatibility rate of a two users.",
 	aliases: [],
 	usage: "ship <user> | <user>",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

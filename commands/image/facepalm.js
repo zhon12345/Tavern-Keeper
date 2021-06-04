@@ -5,6 +5,7 @@ module.exports = {
 	description: "I have no comment...",
 	aliases: [],
 	usage: "facepalm",
+	disabled: false,
 	userperms: [],
 	botperms: ["ATTACH_FILES"],
 	run: async (client, message, args) => {

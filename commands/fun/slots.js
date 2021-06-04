@@ -5,6 +5,7 @@ module.exports = {
 	description: "​How lucky are you? Play slots to find out.",
 	aliases: [],
 	usage: "slots",
+	disabled: false,
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args) => {

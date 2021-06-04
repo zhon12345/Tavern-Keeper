@@ -5,6 +5,7 @@ module.exports = {
 	description: "Do you even play minecraft?",
 	aliases: ["nether"],
 	usage: "portal  ",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

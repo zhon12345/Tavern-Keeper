@@ -7,6 +7,7 @@ module.exports = {
 	category: "Info",
 	description: "Searches a Game on Steam for your query.",
 	usage: "steam <query>",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

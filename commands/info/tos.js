@@ -7,6 +7,7 @@ module.exports = {
 	description: "Shows the terms of service of the bot.",
 	aliases: ["termsofservice"],
 	usage: "tos",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args, prefix) => {

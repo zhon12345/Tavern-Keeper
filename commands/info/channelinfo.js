@@ -18,6 +18,7 @@ module.exports = {
 	description: "Displays information about a provided channel.",
 	aliases: ["channel", "ci"],
 	usage: "channelinfo [channel]",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

@@ -9,6 +9,7 @@ module.exports = {
 	description: "Get a random wallpaper.",
 	aliases: [],
 	usage: "wallpaper",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

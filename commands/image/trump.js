@@ -7,6 +7,7 @@ module.exports = {
 	description: "Make trump tweet something.",
 	aliases: [],
 	usage: "trump <text>",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS", "ATTACH_FILES"],
 	run: async (client, message, args) => {
