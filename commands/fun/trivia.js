@@ -10,6 +10,7 @@ module.exports = {
 	description: "Test your knowledge with a trivia question.",
 	aliases: ["quiz"],
 	usage: "trivia",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

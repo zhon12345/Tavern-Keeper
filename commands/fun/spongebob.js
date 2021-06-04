@@ -6,6 +6,7 @@ module.exports = {
 	description: "Converts text into SpOnGeBoB mOcKiNg TeXt.",
 	aliases: ["mock"],
 	usage: "spongebob <text>",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

@@ -7,6 +7,7 @@ module.exports = {
 	description: "Helps you solve a math calculation.",
 	aliases: ["calculate", "calc"],
 	usage: "math <equation>",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

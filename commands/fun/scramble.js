@@ -9,6 +9,7 @@ module.exports = {
 	description: "Test your knowledge and unscramble a random word.",
 	aliases: [],
 	usage: "scramble",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

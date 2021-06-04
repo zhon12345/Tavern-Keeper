@@ -7,6 +7,7 @@ module.exports = {
 	description: "Make Clyde say something.",
 	aliases: [],
 	usage: "clyde <text>",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS", "ATTACH_FILES"],
 	run: async (client, message, args) => {

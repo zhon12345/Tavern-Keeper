@@ -8,6 +8,7 @@ module.exports = {
 	description: "Get a random inspiring quote.",
 	aliases: [],
 	usage: "quotes",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

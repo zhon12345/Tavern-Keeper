@@ -6,6 +6,7 @@ module.exports = {
 	category: "Moderation",
 	description: "Move a specified user from a voice channel.",
 	aliases: [],
+	disabled: false,
 	userperms: ["MOVE_MEMBERS"],
 	botperms: ["USE_EXTERNAL_EMOJIS", "MOVE_MEMBERS"],
 	usage: "move <user> <channel> [reason]",

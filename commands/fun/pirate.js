@@ -6,6 +6,7 @@ module.exports = {
 	description: "Converts a specified text into pirate text.",
 	aliases: [],
 	usage: "pirate <message>",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

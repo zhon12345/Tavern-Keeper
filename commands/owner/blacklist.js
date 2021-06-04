@@ -7,6 +7,7 @@ module.exports = {
 	description: "Add or Remove a specified member from the blacklist.",
 	aliases: [],
 	usage: "blacklist [add/remove] [member]",
+	disabled: false,
 	userperms: ["BOT_OWNER"],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

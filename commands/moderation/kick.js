@@ -7,6 +7,7 @@ module.exports = {
 	description: "Kick a specified user from the server.",
 	aliases: [],
 	usage: "kick <user> [reason]",
+	disabled: false,
 	userperms: ["KICK_MEMBERS"],
 	botperms: ["USE_EXTERNAL_EMOJIS", "KICK_MEMBERS"],
 	run: async (client, message, args) => {

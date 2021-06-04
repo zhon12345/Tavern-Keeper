@@ -7,6 +7,7 @@ module.exports = {
 	description: "Get a nice ascii art.",
 	aliases: ["art"],
 	usage: "ascii <message>",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

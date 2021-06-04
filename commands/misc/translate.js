@@ -8,6 +8,7 @@ module.exports = {
 	description: "Why does this mean? Time to translate it.",
 	aliases: [],
 	usage: "translate",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

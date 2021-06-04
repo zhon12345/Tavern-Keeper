@@ -4,6 +4,7 @@ module.exports = {
 	description: "Make the bot say whatever you want in annoying spoiler form.",
 	aliases: [],
 	usage: "spoiler <text>",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

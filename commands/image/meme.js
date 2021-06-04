@@ -8,6 +8,7 @@ module.exports = {
 	description: "Get some fresh new memes from reddit!",
 	aliases: ["memes"],
 	usage: "meme",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

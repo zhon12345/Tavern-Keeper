@@ -9,6 +9,7 @@ module.exports = {
 	description: "Only available in Australia!",
 	aliases: ["koalas"],
 	usage: "koala",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

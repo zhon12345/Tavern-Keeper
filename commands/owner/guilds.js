@@ -8,6 +8,7 @@ module.exports = {
 	description: "Shows a list of servers that the bot is in.",
 	aliases: ["servers"],
 	usage: "guilds",
+	disabled: false,
 	userperms: ["BOT_OWNER"],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

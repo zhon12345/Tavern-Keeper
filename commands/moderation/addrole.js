@@ -4,6 +4,7 @@ module.exports = {
 	description: "Adds a role to a specified user.",
 	aliases: [],
 	usage: "addrole <user> <role>",
+	disabled: false,
 	userperms: ["MANAGE_ROLES"],
 	botperms: ["USE_EXTERNAL_EMOJIS", "MANAGE_ROLES"],
 	run: async (client, message, args) => {

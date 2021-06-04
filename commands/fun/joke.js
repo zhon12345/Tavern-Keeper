@@ -8,6 +8,7 @@ module.exports = {
 	description: "Get a funny joke. Dad's love them!",
 	aliases: ["pun"],
 	usage: "joke",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

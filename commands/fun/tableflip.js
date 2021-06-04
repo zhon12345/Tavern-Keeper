@@ -14,6 +14,7 @@ module.exports = {
 	description: "Flips a table... with animation!",
 	aliases: [],
 	usage: "tableflip",
+	disabled: false,
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args) => {

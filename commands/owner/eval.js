@@ -10,6 +10,7 @@ module.exports = {
 	aliases: ["ev"],
 	description: "Evaluate a specified JavaScript code.",
 	usage: "eval <code>",
+	disabled: false,
 	userperms: ["BOT_OWNER"],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

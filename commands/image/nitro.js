@@ -5,6 +5,7 @@ module.exports = {
 	description: "Ever wanted a fake nitro giveaway? Now you've got one.",
 	aliases: [],
 	usage: "nitro",
+	disabled: false,
 	userperms: [],
 	botperms: ["ATTACH_FILES"],
 	run: async (client, message, args) => {

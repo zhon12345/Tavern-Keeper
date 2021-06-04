@@ -8,6 +8,7 @@ module.exports = {
 	description: "Make someone's avatar pixelated.",
 	aliases: [],
 	usage: "pixelate [user]",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS", "ATTACH_FILES"],
 	run: async (client, message, args) => {

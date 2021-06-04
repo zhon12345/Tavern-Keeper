@@ -7,6 +7,7 @@ module.exports = {
 	category: "Moderation",
 	description: "Set the slowmode for a specific channel.",
 	usage: "slowmode [channel] <time>",
+	disabled: false,
 	userperms: ["MANAGE_CHANNELS"],
 	botperms: ["USE_EXTERNAL_EMOJIS", "MANAGE_CHANNELS"],
 	run: async (client, message, args) => {

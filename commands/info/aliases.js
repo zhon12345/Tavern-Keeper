@@ -7,6 +7,7 @@ module.exports = {
 	description: "Shows you a list of aliases for the specified command.",
 	aliases: [],
 	usage: "aliases <command>",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {

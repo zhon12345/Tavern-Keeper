@@ -6,6 +6,7 @@ module.exports = {
 	description: "Get the avatar of the message author or a specified user.",
 	aliases: ["pfp", "icon"],
 	usage: "avatar [user]",
+	disabled: false,
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args) => {

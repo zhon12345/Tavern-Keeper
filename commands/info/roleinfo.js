@@ -8,6 +8,7 @@ module.exports = {
 	description: "Displays information about a provided role.",
 	aliases: ["role", "ri"],
 	usage: "roleinfo <role>",
+	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
