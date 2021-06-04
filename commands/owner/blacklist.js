@@ -63,7 +63,7 @@ module.exports = {
 				}
 				else {
 					return message.channel.send(
-						"⚠️ There is no blacklisted member",
+						"`⚠️` There is no blacklisted member",
 					);
 				}
 			});

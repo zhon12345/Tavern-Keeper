@@ -43,7 +43,7 @@ module.exports = {
 
 		if(member.id === message.guild.owner.id) {
 			return message.channel.send(
-				"⚠️ What do you want to remove?",
+				"`⚠️` What do they not need?",
 			);
 		}
 
