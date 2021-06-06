@@ -17,7 +17,9 @@ module.exports = {
 			);
 		}
 		if(text.length > 200) {
-			return message.channel.send("`❌` The provided message exceeds 200 characters.");
+			return message.channel.send(
+				"`❌` You have exceeded the 200 characters limit.",
+			);
 		}
 
 		const url = `https://nekos.life/api/v2/owoify?text=${encodeURIComponent(text)}`;

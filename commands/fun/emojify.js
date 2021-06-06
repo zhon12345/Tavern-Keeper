@@ -18,7 +18,9 @@ module.exports = {
 		}
 
 		if(text.length > 1024) {
-			return message.channel.send("`❌` The provided message exceeds 1024 characters.");
+			return message.channel.send(
+				"`❌` You have exceeded the 1024 characters limit.",
+			);
 		}
 
 		const emojified = text.toLowerCase().split("").map(letter => {
