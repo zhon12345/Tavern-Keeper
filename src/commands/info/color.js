@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
 const { MessageEmbed } = require('discord.js');
+const token = process.env.ALEXFLIPNOTE_API_TOKEN;
 
 module.exports = {
 	name: 'color',
@@ -19,10 +20,10 @@ module.exports = {
 
 		let colour;
 		if(args[0].startsWith('#') && args[0].length === 7) {
-			colour = args[0].split('#').join('');
+			colour = args[0].split('#')[1];
 		}
 		else if(args[0].startsWith('0x') && args[0].length === 8) {
-			colour = args[0].split('0x').join('');
+			colour = args[0].split('0x')[1];
 		}
 		else if(args[0].length === 6) {
 			colour = args[0];
@@ -33,11 +34,13 @@ module.exports = {
 			);
 		}
 
-		const url = `https://api.alexflipnote.xyz/colour/${colour}`;
+		const url = `https://api.alexflipnote.dev/colour/${colour}`;
 
 		let response;
 		try {
-			response = await fetch(url).then(res => res.json());
+			response = await fetch(url, { headers: {
+				'Authorization' : token,
+			} }).then(res => res.json());
 		}
 		catch (e) {
 			return message.channel.send(
@@ -46,14 +49,13 @@ module.exports = {
 		}
 
 		const embed = new MessageEmbed()
-			.setColor(`#${colour}`)
 			.setTitle(response.name)
-			.setDescription([
-				`**Name: \`${response.name}\`**`,
-				`**RGB Value: \`${response.rgb}\`**`,
-				`**Hex Value: \`${colour}\`**`,
-			])
-			.setImage(response.image)
+			.addField('RGB Value', response.rgb, true)
+			.addField('Brightness', response.brightness, true)
+			.addField('Hex Value', response.hex, true)
+			.setThumbnail(response.image)
+			.setImage(response.image_gradient, true)
+			.setColor(response.hex)
 			.setFooter(`Requested by ${message.author.tag}`)
 			.setTimestamp();
 		message.channel.send(embed);

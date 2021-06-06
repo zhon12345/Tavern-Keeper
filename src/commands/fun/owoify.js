@@ -1,4 +1,4 @@
-const { owoify } = require('../../functions');
+const fetch = require('node-fetch');
 
 module.exports = {
 	name: 'owoify',
@@ -16,10 +16,22 @@ module.exports = {
 				'`❌` Please provide valid text.',
 			);
 		}
-		if(text.length > 2000) {
-			return message.channel.send('`❌` The provided message exceeds 2000 characters.');
+		if(text.length > 200) {
+			return message.channel.send('`❌` The provided message exceeds 200 characters.');
 		}
 
-		message.channel.send(owoify(text));
+		const url = `https://nekos.life/api/v2/owoify?text=${encodeURIComponent(text)}`;
+
+		let response;
+		try {
+			response = await fetch(url).then(res => res.json());
+		}
+		catch (e) {
+			return message.channel.send(
+				'`❌` An error occurred, please try again!',
+			);
+		}
+
+		message.channel.send(response.owo);
 	},
 };

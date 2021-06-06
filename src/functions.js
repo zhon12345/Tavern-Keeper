@@ -9,15 +9,6 @@ module.exports = {
 		return new Promise(resolve => setTimeout(resolve, ms));
 	},
 
-	// owoify.js
-	owoify(text) {
-		text = text.replace(/[lr]/g, 'w');
-		text = text.replace(/u/g, 'uw');
-		text = text.replace(/[LR]/g, 'W');
-		text = text.replace(/U/g, 'UW');
-		return text;
-	},
-
 	// anime.js
 	getSuggestions(searchResults) {
 		let suggestions = '';

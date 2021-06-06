@@ -17,14 +17,14 @@ module.exports = {
 			);
 		}
 
-		if(text.length > 2000) {
-			return message.channel.send('`❌` The provided message exceeds 2000 characters.');
+		if(text.length > 1024) {
+			return message.channel.send('`❌` The provided message exceeds 1024 characters.');
 		}
 
-		const cursified = text.toLowerCase().split('').map(letter => {
+		const cursive = text.toLowerCase().split('').map(letter => {
 			return dictionary[letter] || letter;
 		}).join('');
 
-		message.channel.send(cursified);
+		message.channel.send(cursive);
 	},
 };

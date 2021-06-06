@@ -14,7 +14,7 @@ module.exports = {
 			);
 		}
 		if(args[0].length > 2000) {
-			return message.channel.send('`❌` The provided message exceeds 2000 characters.');
+			return message.channel.send('`❌` The provided message exceeds 1024 characters.');
 		}
 
 		let text;
