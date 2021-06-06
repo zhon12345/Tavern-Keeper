@@ -17,8 +17,8 @@ module.exports = {
 			);
 		}
 
-		if(text.length > 2000) {
-			return message.channel.send("`❌` The provided message exceeds 2000 characters.");
+		if(text.length > 1024) {
+			return message.channel.send("`❌` The provided message exceeds 1024 characters.");
 		}
 
 		const smallcaps = text.toLowerCase().split("").map(letter => {
