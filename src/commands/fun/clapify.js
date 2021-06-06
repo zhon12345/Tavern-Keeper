@@ -13,8 +13,10 @@ module.exports = {
 				'`❌` Please provide valid text.',
 			);
 		}
-		if(args[0].length > 2000) {
-			return message.channel.send('`❌` The provided message exceeds 1024 characters.');
+		if(args[0].length > 1024) {
+			return message.channel.send(
+				'`❌` You have exceeded the 1024 characters limit.',
+			);
 		}
 
 		let text;
