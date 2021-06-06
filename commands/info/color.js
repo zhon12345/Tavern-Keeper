@@ -20,10 +20,13 @@ module.exports = {
 
 		let colour;
 		if(args[0].startsWith("#") && args[0].length === 7) {
-			colour = args[0].split("#").join("");
+			colour = args[0].split("#")[1];
 		}
 		else if(args[0].startsWith("0x") && args[0].length === 8) {
-			colour = args[0].split("0x").join("");
+			colour = args[0].split("0x")[1];
+		}
+		else if(args[0].length === 6) {
+			colour = args[0];
 		}
 		else {
 			return message.channel.send(
@@ -46,14 +49,13 @@ module.exports = {
 		}
 
 		const embed = new MessageEmbed()
-			.setColor(`#${colour}`)
 			.setTitle(response.name)
-			.setDescription([
-				`**Name: \`${response.name}\`**`,
-				`**RGB Value: \`${response.rgb}\`**`,
-				`**Hex Value: \`${colour}\`**`,
-			])
-			.setImage(response.image)
+			.setThumbnail(response.image)
+			.addField("RGB Value", response.rgb, true)
+			.addField("Brightness", response.brightness, true)
+			.addField("Hex Value", response.hex, true)
+			.setImage(response.image_gradient)
+			.setColor(response.hex)
 			.setFooter(`Requested by ${message.author.tag}`)
 			.setTimestamp();
 		message.channel.send(embed);
