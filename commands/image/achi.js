@@ -13,14 +13,14 @@ module.exports = {
 	botperms: ["USE_EXTERNAL_EMOJIS", "ATTACH_FILES"],
 	run: async (client, message, args) => {
 		const tips = [
-			"Dont forget milk good for you!",
+			"Don't forget milk good for you!",
 			"2.2 when?",
 			"There is a lot of random 'tips' on this cmd.",
-			"Keep your diamond it's usefull!",
+			"Keep your diamonds it's useful!",
 			"Minecraft or geometry dash?",
 			"Easy to make right?",
 			":)",
-			" You can make whatever you want with the achivement command." ];
+			" You can make whatever you want with the achievement command." ];
 
 		const tip = tips[Math.floor(Math.random() * tips.length)];
 
@@ -36,9 +36,9 @@ module.exports = {
 				"`❌` Text not found, please provide valid text. (eg. `Hello`)",
 			);
 		}
-		if (achi.length >= 24) {
+		if (achi.length > 30) {
 			return message.channel.send(
-				"`⚠️` You have exceeded the character limit.",
+				"`❌` You have exceeded the 30 characters limit.",
 			);
 		}
 
@@ -56,7 +56,7 @@ module.exports = {
 			);
 		}
 
-		const attachment = new MessageAttachment(response, "achivement.png");
+		const attachment = new MessageAttachment(response, "achievement.png");
 		message.channel.send(tip, attachment);
 	},
 };

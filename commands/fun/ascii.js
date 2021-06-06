@@ -13,19 +13,14 @@ module.exports = {
 	run: async (client, message, args) => {
 		const regexp = "\\u00a9|\\u00ae|\[\\u2000-\\u3300\]|\\ud83c\[\\ud000-\\udfff\]|\\ud83d\[\\ud000-\\udfff\]|\\ud83e\[\\ud000-\\udfff\]";
 		const text = args.slice().join(" ");
-		if(!text) {
+		if(!text || text.match(regexp)) {
 			return message.channel.send(
 				"`❌` Text not found, please provide text to draw. (eg. `Hello`)",
 			);
 		}
-		else if(text.match(regexp)) {
+		else if(text.length > 20) {
 			return message.channel.send(
-				"`❌` An error occurred, please try again!",
-			);
-		}
-		else if(text.length >= 20) {
-			return message.channel.send(
-				"`⚠️` You have exceeded the 20 character limit.",
+				"`❌` You have exceeded the 20 characters limit.",
 			);
 		}
 
