@@ -113,8 +113,8 @@ module.exports = async (client, message) => {
 			}
 		}
 
+		let response;
 		if(message.content.length > 512) {
-			let response;
 			try {
 				response = await sourcebin.create([
 					{
@@ -130,30 +130,19 @@ module.exports = async (client, message) => {
 			catch (e) {
 				return message.channel.send("`❌` An error occurred, please try again!");
 			}
-
-			const embed = new MessageEmbed()
-				.setColor("BLUE")
-				.addField(`<:documents:773950876347793449>  A command was used in ${message.guild.name} (ID: ${message.guild.id}) ❯`, [
-					`> **<:card:773965449402646549> Username: \`${message.author.tag}\`**`,
-					`> **\\📇 User ID: \`${message.author.id}\`**`,
-					`> **<:hashtag:774084894409883648> Channel Name: \`${message.channel.name}\`**`,
-					`> **\\📥 Command: \`${command.name}\`**`,
-					`> **\\💬 Message Content: [\`${response.url}\`](${response.url})**`,
-				])
-				.setTimestamp();
-			await client.channels.cache.get(COMMAND_LOGS).send(embed);
 		}
 
 		const embed = new MessageEmbed()
 			.setColor("BLUE")
+			.setTimestamp()
 			.addField(`<:documents:773950876347793449>  A command was used in ${message.guild.name} (ID: ${message.guild.id}) ❯`, [
 				`> **<:card:773965449402646549> Username: \`${message.author.tag}\`**`,
 				`> **\\📇 User ID: \`${message.author.id}\`**`,
 				`> **<:hashtag:774084894409883648> Channel Name: \`${message.channel.name}\`**`,
 				`> **\\📥 Command: \`${command.name}\`**`,
-				`> **\\💬 Message Content: \`${message.content}\`**`,
-			])
-			.setTimestamp();
+				`> **\\💬 Message Content: ${message.content.length > 512 ? `[\`${response.url}\`](${response.url})` : `\`${message.content}\``}**`,
+			]);
+
 		await client.channels.cache.get(COMMAND_LOGS).send(embed);
 
 		command.run(client, message, args, prefix);
