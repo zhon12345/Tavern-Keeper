@@ -9,6 +9,11 @@ module.exports = {
 		return new Promise(resolve => setTimeout(resolve, ms));
 	},
 
+	// avatar.js
+	pfpStr(avatar, isGif, file) {
+		return isGif ? avatar.replace('gif', file) : avatar.replace('webp', file);
+	},
+
 	// anime.js
 	getSuggestions(searchResults) {
 		let suggestions = '';
