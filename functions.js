@@ -9,6 +9,11 @@ module.exports = {
 		return new Promise(resolve => setTimeout(resolve, ms));
 	},
 
+	// avatar.js
+	avatarStr(avatar, isGif, file) {
+		return isGif ? avatar.replace("gif", file) : avatar.replace("webp", file);
+	},
+
 	// roleinfo.js
 	formatPerms(perm) {
 		return perm
