@@ -1,8 +1,8 @@
 const { readdirSync } = require('fs');
 
 module.exports = (client) => {
-	readdirSync('./commands/').forEach(dir => {
-		const commands = readdirSync(`./commands/${dir}/`).filter(file => file.endsWith('.js'));
+	readdirSync('./src/commands/').forEach(dir => {
+		const commands = readdirSync(`./src/commands/${dir}/`).filter(file => file.endsWith('.js'));
 
 		commands.forEach((file) => {
 			const pull = require(`../commands/${dir}/${file}`);

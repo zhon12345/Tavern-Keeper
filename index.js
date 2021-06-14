@@ -9,7 +9,7 @@ client.snipes = new Collection();
 client.cooldowns = new Set();
 
 ['command', 'event'].forEach(handler => {
-	require(`./handlers/${handler}`)(client);
+	require(`./src/handlers/${handler}`)(client);
 });
 
 client.login(process.env.BOT_TOKEN);
