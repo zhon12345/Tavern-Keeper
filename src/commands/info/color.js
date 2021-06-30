@@ -22,10 +22,7 @@ module.exports = {
 		if(args[0].startsWith('#') && args[0].length === 7) {
 			colour = args[0].split('#')[1];
 		}
-		else if(args[0].startsWith('0x') && args[0].length === 8) {
-			colour = args[0].split('0x')[1];
-		}
-		else if(args[0].length === 6) {
+		else if(!args[0].startsWith('#') && args[0].length === 6) {
 			colour = args[0];
 		}
 		else {
