@@ -3,3 +3,4 @@ bot_assets
 .env
 .eslintrc.json
 .vscode
+.replit
