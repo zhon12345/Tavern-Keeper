@@ -16,7 +16,7 @@ module.exports = {
 		});
 
 		const channel = message.guild.channels.cache.get(settings.settings.modlog);
-		const member = message.mentions.users.first() || await client.users.fetch(args[0]);
+		const member = message.mentions.users.first() || message.guild.members.cache.get(args[0]);
 		if (!member) {
 			return message.channel.send(
 				"`❌` User not found, please provide a valid user. (eg. `@zhon12345#8585`)",
@@ -51,7 +51,7 @@ module.exports = {
 
 		if (!member.bannable) {
 			return message.channel.send(
-				"`❌` You are not allowed ban this user.",
+				"`❌` An error occurred, I am unable to ban this user.",
 			);
 		}
 
