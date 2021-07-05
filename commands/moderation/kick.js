@@ -51,7 +51,7 @@ module.exports = {
 
 		if (!member.kickable) {
 			return message.channel.send(
-				"`❌` You are not allowed kick this user.",
+				"`❌` An error occurred, I am unable to kick this user.",
 			);
 		}
 
