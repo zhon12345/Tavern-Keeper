@@ -3,7 +3,8 @@ const keepAlive = require("./server");
 const { Client, Collection } = require("discord.js");
 const client = new Client({
 	disableMentions: "everyone",
-	ws: { intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS", "GUILD_PRESENCES", "GUILD_VOICE_STATES"] },
+	partials: ["MESSAGE", "GUILD_MEMBER", "MESSAGE"],
+	ws: { intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_BANS", "GUILD_INVITES", "GUILD_PRESENCES", "GUILD_MESSAGES", "DIRECT_MESSAGES"] },
 });
 
 client.commands = new Collection();
