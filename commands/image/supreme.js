@@ -18,7 +18,7 @@ module.exports = {
 			);
 		}
 
-		const url = `https://api.alexflipnote.dev/supreme?text=${args.join("%20")}`;
+		const url = `https://api.alexflipnote.dev/supreme?text=${encodeURIComponent(args.join(" "))}`;
 
 		let response;
 		try {
