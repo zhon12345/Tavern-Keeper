@@ -20,7 +20,7 @@ module.exports = {
 			text2 = "actually providing text";
 		}
 
-		const url = `https://api.alexflipnote.dev/drake?top=${text1}&bottom=${text2}`;
+		const url = `https://api.alexflipnote.dev/drake?top=${encodeURIComponent(text1)}&bottom=${encodeURIComponent(text2)}`;
 
 		let response;
 		try {

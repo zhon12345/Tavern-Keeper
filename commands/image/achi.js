@@ -42,7 +42,7 @@ module.exports = {
 			);
 		}
 
-		const url = `https://api.alexflipnote.dev/achievement?text=${achi}&icon=${logo}`;
+		const url = `https://api.alexflipnote.dev/achievement?text=${encodeURIComponent(achi)}&icon=${logo}`;
 
 		let response;
 		try {
