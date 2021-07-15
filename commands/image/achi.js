@@ -30,7 +30,7 @@ module.exports = {
 
 		const logo = Math.floor(Math.random() * (+max - +min)) + +min;
 
-		const achi = args.slice().join("+");
+		const achi = args.join(" ");
 		if(!achi) {
 			return message.channel.send(
 				"`❌` Text not found, please provide valid text. (eg. `Hello`)",
