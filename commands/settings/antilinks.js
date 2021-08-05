@@ -6,7 +6,7 @@ module.exports = {
 	description: "Toggle the antilinks feature on/off.",
 	aliases: ["antilink"],
 	usage: "antilinks <on/off>",
-	disabled: true,
+	disabled: false,
 	userperms: ["ADMINISTRATOR"],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
@@ -14,22 +14,15 @@ module.exports = {
 			guildID: message.guild.id,
 		});
 
-		if(!args[0] || args[0].toLowerCase() !== "on" || args[0].toLowerCase() !== "off") {
-			if(settings.settings.antilinks === true) {
-				return message.channel.send(
-					`Anti Links for **${message.guild}** has been \`enabled\`.`,
-				);
-			}
-			else if(settings.settings.antilinks === false) {
-				return message.channel.send(
-					`Anti Links for **${message.guild}** has been \`disabled\`.`,
-				);
-			}
+		if(!args[0]) {
+			return message.channel.send(
+				`Anti Links for **${message.guild}** has been \`${settings.settings.antilinks ? "enabled" : "disabled"}\`.`,
+			);
 		}
 		else if (args[0].toLowerCase() === "off") {
 			if(settings.settings.antilinks === false) {
 				return message.channel.send(
-					"`❌` Anti Links is already `disabled`.",
+					"`❌` Anti Links has already been `disabled`.",
 				);
 			}
 			else {
@@ -38,14 +31,14 @@ module.exports = {
 					{ "settings.antilinks": false },
 				);
 				message.channel.send(
-					"`✔️` Anti Links has been `disabled`",
+					"`✔️` Anti Links is now `disabled`",
 				);
 			}
 		}
 		else if (args[0].toLowerCase() === "on") {
 			if(settings.settings.antilinks === true) {
 				return message.channel.send(
-					"`❌` Anti Links is already `enabled`.",
+					"`❌` Anti Links has already been `enabled`.",
 				);
 			}
 			else {
@@ -54,9 +47,14 @@ module.exports = {
 					{ "settings.antilinks": true },
 				);
 				message.channel.send(
-					"`✔️` Anti Links has been `enabled`",
+					"`✔️` Anti Links is now `enabled`",
 				);
 			}
+		}
+		else {
+			return message.channel.send(
+				"`❌` Valid argument not found, please provide valid arguments (eg. `on`).",
+			);
 		}
 	},
 };
