@@ -11,16 +11,15 @@ module.exports = {
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
-		const text = args.join(" ");
-		if (!text) {
+		if (!args.join(" ") || args.join(" ").includes("Infinity")) {
 			return message.channel.send(
 				"`❌` Calculation not found, please provide a valid calculation (eg. 1 + 1).",
 			);
 		}
-		if (text.startsWith(":")) return;
+
 		let resp;
 		try {
-			resp = math.evaluate(text);
+			resp = math.evaluate(args.join(" "));
 		}
 		catch (e) {
 			return message.channel.send(
