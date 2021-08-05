@@ -9,6 +9,8 @@ module.exports = async (client, oldMessage, newMessage) => {
 	});
 
 	if(oldMessage.author.bot) return;
+	if(oldMessage.content === newMessage.content) return;
+
 	const embed = new MessageEmbed()
 		.setColor('YELLOW')
 		.addFields(
