@@ -18,7 +18,7 @@ const regions = {
 	russia: ":flag_ru: `Russia`",
 	singapore: ":flag_sg: `Singapore`",
 	southafrica: ":flag_za: `South Africa`",
-	sydney: ":flag_au: `Sydeny`",
+	sydney: ":flag_au: `Sydney`",
 	"us-central": ":flag_us: `US Central`",
 	"us-east": ":flag_us: `US East`",
 	"us-west": ":flag_us: `US West`",
