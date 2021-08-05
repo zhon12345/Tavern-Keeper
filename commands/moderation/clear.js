@@ -11,7 +11,7 @@ module.exports = {
 	usage: "purge <amount>",
 	disabled: false,
 	userperms: ["MANAGE_MESSAGES"],
-	botperms: ["USE_EXTERNAL_EMOJIS", "MANAGE_MESSAGES"],
+	botperms: ["MANAGE_MESSAGES"],
 	run: async (client, message, args) => {
 		const settings = await Guild.findOne({
 			guildID: message.guild.id,

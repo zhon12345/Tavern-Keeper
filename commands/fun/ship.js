@@ -9,7 +9,7 @@ module.exports = {
 	usage: "ship <user> | <user>",
 	disabled: false,
 	userperms: [],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args) => {
 		let rating = Math.floor(Math.random() * 100) + 1;
 		const meter = ["▬", "▬", "▬", "▬", "▬", "▬", "▬", "▬", "▬"];

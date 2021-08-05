@@ -6,7 +6,7 @@ module.exports = {
 	usage: "leave <guild>",
 	disabled: false,
 	userperms: ["BOT_OWNER"],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args) => {
 		const guild = client.guilds.cache.get(args[0]);
 		if(!guild) {

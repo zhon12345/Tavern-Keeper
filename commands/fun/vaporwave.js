@@ -8,7 +8,7 @@ module.exports = {
 	category: "Fun",
 	disabled: false,
 	userperms: [],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args) => {
 		const text = args.slice().join(" ");
 		if(!args[0]) {

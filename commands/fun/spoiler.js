@@ -6,7 +6,7 @@ module.exports = {
 	usage: "spoiler <text>",
 	disabled: false,
 	userperms: [],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args) => {
 		if(!args[0]) {
 			return message.channel.send(

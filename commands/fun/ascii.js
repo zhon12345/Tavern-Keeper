@@ -9,7 +9,7 @@ module.exports = {
 	usage: "ascii <message>",
 	disabled: false,
 	userperms: [],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args) => {
 		const regexp = "\\u00a9|\\u00ae|\[\\u2000-\\u3300\]|\\ud83c\[\\ud000-\\udfff\]|\\ud83d\[\\ud000-\\udfff\]|\\ud83e\[\\ud000-\\udfff\]";
 		const text = args.slice().join(" ");

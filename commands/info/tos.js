@@ -9,7 +9,7 @@ module.exports = {
 	usage: "tos",
 	disabled: false,
 	userperms: [],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args, prefix) => {
 		const pEmbed = new MessageEmbed()
 			.setThumbnail("https://www.symphonyenvironmental.com/wp-content/uploads/2019/10/Terms-and-conditions-icon-V2.png")

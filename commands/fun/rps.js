@@ -12,7 +12,7 @@ module.exports = {
 	usage: "rps",
 	disabled: false,
 	userperms: [],
-	botperms: ["USE_EXTERNAL_EMOJIS", "ADD_REACTIONS"],
+	botperms: ["ADD_REACTIONS"],
 	run: async (client, message, args) => {
 		const filter = (reaction, user) => chooseArr.includes(reaction.emoji.name) && user.id === message.author.id;
 		const embed = new MessageEmbed()

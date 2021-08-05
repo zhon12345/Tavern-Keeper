@@ -6,7 +6,7 @@ module.exports = {
 	usage: "unpin <message>",
 	disabled: false,
 	userperms: ["MANAGE_MESSAGES"],
-	botperms: ["USE_EXTERNAL_EMOJIS", "MANAGE_MESSAGES"],
+	botperms: ["MANAGE_MESSAGES"],
 	run: async (bot, message, args) => {
 		const msg = args[0];
 		if(!msg || isNaN(msg)) {

@@ -9,7 +9,7 @@ module.exports = {
 	usage: "softban <user> [reason]",
 	disabled: false,
 	userperms: ["BAN_MEMBERS"],
-	botperms: ["USE_EXTERNAL_EMOJIS", "BAN_MEMBERS"],
+	botperms: ["BAN_MEMBERS"],
 	run: async (client, message, args) => {
 		const settings = await Guild.findOne({
 			guildID: message.guild.id,

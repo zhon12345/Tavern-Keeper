@@ -6,7 +6,7 @@ module.exports = {
 	usage: "dm <text>",
 	disabled: false,
 	userperms: ["BOT_OWNER"],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args) => {
 		const member = message.mentions.users.first() || await client.users.fetch(args[0]);
 		if (!member) {

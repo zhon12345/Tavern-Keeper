@@ -9,7 +9,7 @@ module.exports = {
 	usage: "enlarge <emoji>",
 	disabled: false,
 	userperms: [],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args) => {
 		const emoji = args[0];
 		if (!emoji) {

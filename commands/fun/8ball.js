@@ -8,7 +8,7 @@ module.exports = {
 	usage: "8ball <question>",
 	disabled: false,
 	userperms: [],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args) => {
 		const question = args[0];
 		if (!question) {

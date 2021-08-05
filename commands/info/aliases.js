@@ -9,7 +9,7 @@ module.exports = {
 	usage: "aliases <command>",
 	disabled: false,
 	userperms: [],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args) => {
 		const cmd = client.commands.get(args[0]) || client.commands.get(client.aliases.get(args[0]));
 		if(!cmd) {

@@ -10,7 +10,7 @@ module.exports = {
 	usage: "meme",
 	disabled: false,
 	userperms: [],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args) => {
 		const subreddits = [
 			"memes",

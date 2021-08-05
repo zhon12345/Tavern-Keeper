@@ -9,7 +9,7 @@ module.exports = {
 	usage: "blacklist [add/remove] [member]",
 	disabled: false,
 	userperms: ["BOT_OWNER"],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args) => {
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[1]);
 		if(args[0] === "add") {

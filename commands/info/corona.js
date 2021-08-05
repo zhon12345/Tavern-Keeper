@@ -10,7 +10,7 @@ module.exports = {
 	aliases: ["covid", "cv"],
 	disabled: false,
 	userperms: [],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args) => {
 		const baseUrl = "https://disease.sh/v3/covid-19/";
 

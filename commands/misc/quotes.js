@@ -10,7 +10,7 @@ module.exports = {
 	usage: "quotes",
 	disabled: false,
 	userperms: [],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args) => {
 		const url = "https://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json";
 

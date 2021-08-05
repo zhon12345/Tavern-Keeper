@@ -8,7 +8,7 @@ module.exports = {
 	usage: "setprefix <prefix>",
 	disabled: false,
 	userperms: ["ADMINISTRATOR"],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args, prefix) => {
 		const settings = await Guild.findOne({
 			guildID: message.guild.id,

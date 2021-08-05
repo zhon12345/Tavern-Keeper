@@ -10,7 +10,7 @@ module.exports = {
 	usage: "guilds",
 	disabled: false,
 	userperms: ["BOT_OWNER"],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args) => {
 		const list = client.guilds.cache.sort((a, b) => a.joinedAt - b.joinedAt).map(guild => `${guild.name} (${guild.id})`).join("\n");
 

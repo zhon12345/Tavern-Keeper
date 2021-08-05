@@ -12,7 +12,7 @@ module.exports = {
 	usage: "eval <code>",
 	disabled: false,
 	userperms: ["BOT_OWNER"],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args) => {
 		const code = args.join(" ").replace(/[“”]/g, "\"").replace(/[‘’]/g, "'");
 		if (!args.length) {

@@ -6,7 +6,7 @@ module.exports = {
 	usage: "say <text>",
 	disabled: false,
 	userperms: ["BOT_OWNER"],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args) => {
 		const text = args.slice().join(" ");
 		if(!text) {

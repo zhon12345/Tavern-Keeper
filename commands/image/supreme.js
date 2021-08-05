@@ -10,7 +10,7 @@ module.exports = {
 	usage: "supreme <text>",
 	disabled: false,
 	userperms: [],
-	botperms: ["USE_EXTERNAL_EMOJIS", "ATTACH_FILES"],
+	botperms: ["ATTACH_FILES"],
 	run: async (client, message, args) => {
 		if (!args[0]) {
 			return message.channel.send(

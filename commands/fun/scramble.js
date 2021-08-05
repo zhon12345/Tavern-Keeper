@@ -11,7 +11,7 @@ module.exports = {
 	usage: "scramble",
 	disabled: false,
 	userperms: [],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args) => {
 		const filter = m => m.author.id === message.author.id;
 		const word = words[Math.floor(Math.random() * words.length)];

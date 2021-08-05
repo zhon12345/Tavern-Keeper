@@ -10,7 +10,7 @@ module.exports = {
 	usage: "nuke [channel]",
 	disabled: false,
 	userperms: ["ADMINISTRATOR"],
-	botperms: ["USE_EXTERNAL_EMOJIS", "MANAGE_CHANNELS"],
+	botperms: ["MANAGE_CHANNELS"],
 	run: async (client, message, args) => {
 		const settings = await Guild.findOne({
 			guildID: message.guild.id,

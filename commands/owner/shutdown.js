@@ -7,7 +7,7 @@ module.exports = {
 	usage: "restart",
 	disabled: false,
 	userperms: ["BOT_OWNER"],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args) => {
 		try {
 			message.channel.send("⚙ Shutting down...")
