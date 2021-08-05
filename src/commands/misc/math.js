@@ -11,7 +11,7 @@ module.exports = {
 	userperms: [],
 	botperms: ['USE_EXTERNAL_EMOJIS'],
 	run: async (client, message, args) => {
-		if (!args[0]) {
+		if (!args[0] || args.join(' ').includes('Infinity')) {
 			return message.channel.send(
 				'`❌` Please provide a valid calculation (eg. `1 + 1`).',
 			);
