@@ -8,7 +8,7 @@ module.exports = {
 	aliases: ["bd"],
 	disabled: false,
 	userperms: ["BOT_OWNER"],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args) => {
 		const guildId = args[0];
 		if(!guildId || isNaN(guildId) || guildId.length > 18) {

@@ -10,7 +10,7 @@ module.exports = {
 	usage: "numberfact <number>",
 	disabled: false,
 	userperms: [],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args) => {
 		const number = args[0];
 		if(isNaN(args[0])) {

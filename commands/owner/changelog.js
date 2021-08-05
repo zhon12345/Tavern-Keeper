@@ -10,7 +10,7 @@ module.exports = {
 	usage: "changelog <repository>",
 	disabled: false,
 	userperms: ["BOT_OWNER"],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args) => {
 		if(!args[0] || args.length > 1) {
 			return message.channel.send(

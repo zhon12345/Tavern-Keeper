@@ -9,7 +9,7 @@ module.exports = {
 	usage: "russianroulette",
 	disabled: false,
 	userperms: [],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args) => {
 		const rrbullet = Math.floor(Math.random() * 6);
 		const rrcount = 1 ;

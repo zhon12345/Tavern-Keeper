@@ -10,7 +10,7 @@ module.exports = {
 	usage: "randomfact",
 	disabled: false,
 	userperms: [],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args) => {
 		const url = "https://useless-facts.sameerkumar.website/api";
 

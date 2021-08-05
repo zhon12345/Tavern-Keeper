@@ -9,7 +9,7 @@ module.exports = {
 	usage: "npm <package>",
 	disabled: false,
 	userperms: [],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args) => {
 		const package = args[0];
 		if(!package) {

@@ -9,7 +9,7 @@ module.exports = {
 	usage: "kick <user> [reason]",
 	disabled: false,
 	userperms: ["KICK_MEMBERS"],
-	botperms: ["USE_EXTERNAL_EMOJIS", "KICK_MEMBERS"],
+	botperms: ["KICK_MEMBERS"],
 	run: async (client, message, args) => {
 		const settings = await Guild.findOne({
 			guildID: message.guild.id,

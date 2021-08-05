@@ -8,7 +8,7 @@ module.exports = {
 	aliases: [],
 	disabled: false,
 	userperms: ["MOVE_MEMBERS"],
-	botperms: ["USE_EXTERNAL_EMOJIS", "MOVE_MEMBERS"],
+	botperms: ["MOVE_MEMBERS"],
 	usage: "voicekick <user> [reason]",
 	run: async (client, message, args) => {
 		const settings = await Guild.findOne({

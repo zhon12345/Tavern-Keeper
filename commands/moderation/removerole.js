@@ -6,7 +6,7 @@ module.exports = {
 	usage: "removerole <user> <role>",
 	disabled: false,
 	userperms: ["MANAGE_ROLES"],
-	botperms: ["USE_EXTERNAL_EMOJIS", "MANAGE_ROLES"],
+	botperms: ["MANAGE_ROLES"],
 	run: async (client, message, args) => {
 		const role = message.mentions.roles.first() || message.guild.roles.cache.get(args[1]);
 		if(!role) {

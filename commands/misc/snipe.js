@@ -8,7 +8,7 @@ module.exports = {
 	category: "Misc",
 	disabled: false,
 	userperms: ["MANAGE_MESSAGES"],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args) => {
 		const channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]) || message.channel;
 		const snipes = client.snipes.get(channel.id) || [];

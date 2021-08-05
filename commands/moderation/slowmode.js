@@ -9,7 +9,7 @@ module.exports = {
 	usage: "slowmode [channel] <time>",
 	disabled: false,
 	userperms: ["MANAGE_CHANNELS"],
-	botperms: ["USE_EXTERNAL_EMOJIS", "MANAGE_CHANNELS"],
+	botperms: ["MANAGE_CHANNELS"],
 	run: async (client, message, args) => {
 		let channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]),
 			time = args[1];

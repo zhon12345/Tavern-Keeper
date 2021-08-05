@@ -12,7 +12,7 @@ module.exports = {
 	usage: "trivia",
 	disabled: false,
 	userperms: [],
-	botperms: ["USE_EXTERNAL_EMOJIS"],
+	botperms: [],
 	run: async (client, message, args) => {
 		const filter = (m) => m.author.id === message.author.id;
 		const url = "https://opentdb.com/api.php?amount=1&type=boolean";

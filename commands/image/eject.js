@@ -23,7 +23,7 @@ module.exports = {
 	usage: "eject <user>",
 	disabled: false,
 	userperms: [],
-	botperms: ["USE_EXTERNAL_EMOJIS", "ATTACH_FILES"],
+	botperms: ["ATTACH_FILES"],
 	run: async (client, message, args) => {
 		const color = colors[Math.floor(Math.random() * colors.length)];
 		const isimpostor = ["true", "false"][Math.floor(Math.random() * 2)];

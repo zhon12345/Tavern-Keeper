@@ -10,7 +10,7 @@ module.exports = {
 	usage: "achi <text>",
 	disabled: false,
 	userperms: [],
-	botperms: ["USE_EXTERNAL_EMOJIS", "ATTACH_FILES"],
+	botperms: ["ATTACH_FILES"],
 	run: async (client, message, args) => {
 		const tips = [
 			"Don't forget milk good for you!",
