@@ -19,7 +19,7 @@ module.exports = {
 					const response = await sourcebin(`${client.user.username} user blacklist`, '', '', data.map(u => u).map((u, i) => {return `${i + 1} - ${client.users.cache.get(u.id).tag}\nID: ${u.id}\n`;}).join('\n'));
 					const embed = new MessageEmbed()
 						.setColor('BLUE')
-						.setDescription(`There are currently **${data.length}** blacklisted users.${data.length > 0 ? `\nThe blacklist exceeds the character limit, click [here](${response}) for the full list.` : ''}`)
+						.setDescription(`There are currently **${data.length}** blacklisted users.${data.length > 10 ? `\nThe blacklist exceeds the character limit, click [here](${response}) for the full list.` : ''}`)
 						.addField('Users', data.map(u => u).map((u, i) => {return `**${i + 1}** - ${client.users.cache.get(u.id)} (\`${u.name}\`)\nID: \`${u.id}\`\n`;}).slice(0, 10).join('\n'));
 					message.channel.send(embed);
 				}
