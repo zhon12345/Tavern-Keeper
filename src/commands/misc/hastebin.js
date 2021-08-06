@@ -1,4 +1,4 @@
-const sourcebin = require('sourcebin_js');
+const { sourcebin } = require('../../functions');
 
 module.exports = {
 	name: 'hastebin',
@@ -17,23 +17,6 @@ module.exports = {
 			);
 		}
 
-		let response;
-		try {
-			response = await sourcebin.create([
-				{
-					name: ' ',
-					content: text,
-					languageId: 'text',
-				},
-			], {
-				title: `${message.author.tag}'s sourcebin`,
-				description: ' ',
-			});
-		}
-		catch (e) {
-			return message.channel.send('`❌` An error occurred, please try again!');
-		}
-
-		message.channel.send(`${response.url}`);
+		message.channel.send(await sourcebin(`${message.author.tag}'s sourcebin`, '', '', text));
 	},
 };

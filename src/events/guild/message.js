@@ -143,7 +143,7 @@ module.exports = async (client, message) => {
 						});
 					}
 					catch (e) {
-						return message.channel.send('`❌` An error occurred, please try again!');
+						return client.channels.cache.get(BOT_COMMAND_LOG).send('`❌` An error occurred, please try again!');
 					}
 				}
 

@@ -1,3 +1,5 @@
+const sourcebin = require('sourcebin_js');
+
 module.exports = {
 	// aliases.js, anime.js & help.js
 	capitalizeFirstLetter(string) {
@@ -122,6 +124,24 @@ module.exports = {
 		else {
 			return 'You lost!';
 		}
+	},
+
+	// hastebin.js, blacklist.js, eval.js guilds.js
+	async sourcebin(title, description, name, content) {
+		const response = await sourcebin.create([
+			{
+				name: name,
+				content: content,
+				languageId: 'text',
+			},
+		], {
+			title: title,
+			description: description,
+		}).catch(() => {
+			return '`❌` An error occurred, please try again!';
+		});
+
+		return response.url ? response.url : response;
 	},
 
 	// roleUpdate.js

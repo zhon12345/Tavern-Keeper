@@ -1,7 +1,7 @@
 const { Type } = require('@extreme_hero/deeptype');
 const { MessageEmbed } = require('discord.js');
 const { clean } = require('../../functions');
-const sourcebin = require('sourcebin_js');
+const { sourcebin } = require('../../functions');
 const { inspect } = require('util');
 
 module.exports = {
@@ -42,29 +42,13 @@ module.exports = {
 			const stop = process.hrtime(start);
 			const output = clean(inspect(evaled, { depth: 0 }));
 			if(output.length > 1024) {
-				let response;
-				try {
-					response = await sourcebin.create([
-						{
-							name: ' ',
-							content: output,
-							languageId: 'text',
-						},
-					], {
-						title: 'Eval results',
-						description: ' ',
-					});
-				}
-				catch (e) {
-					return message.channel.send('`❌` An error occurred, please try again!');
-				}
-
+				const response = await sourcebin('Eval results', '', '', output);
 				const embed = new MessageEmbed()
 					.setTitle('Success!')
 					.setColor('GREEN')
 					.setFooter(`Type: ${new Type(evaled).is} | Time Taken: ${(((stop[0] * 1e9) + stop[1]) / 1e6)}ms`)
 					.addField('Input', `\`\`\`js\n${code}\`\`\``)
-					.addField('Output', `\`\`\`\n${response.url}\n\`\`\``);
+					.addField('Output', `\`\`\`\n${response}\n\`\`\``);
 				await message.channel.send(embed);
 			}
 			else {
@@ -79,28 +63,12 @@ module.exports = {
 		}
 		catch (err) {
 			if(err.length > 1024) {
-				let response;
-				try {
-					response = await sourcebin.create([
-						{
-							name: ' ',
-							content: err,
-							languageId: 'text',
-						},
-					], {
-						title: 'Error',
-						description: ' ',
-					});
-				}
-				catch (e) {
-					return message.channel.send('`❌` An error occurred, please try again!');
-				}
-
+				const response = await sourcebin('❌ Error', '', '', err);
 				const embed = new MessageEmbed()
 					.setTitle('Success!')
 					.setColor('GREEN')
 					.addField('Input', `\`\`\`js\n${code}\`\`\``)
-					.addField('Output', `\`\`\`\n${response.url}\n\`\`\``);
+					.addField('Output', `\`\`\`\n${response}\n\`\`\``);
 				await message.channel.send(embed);
 			}
 			else {

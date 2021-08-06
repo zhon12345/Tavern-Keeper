@@ -48,7 +48,7 @@ module.exports = {
 					});
 				}
 				catch (e) {
-					return message.channel.send('`❌` An error occurred, please try again!');
+					return channel.send('`❌` An error occurred, please try again!');
 				}
 
 				const embed = new MessageEmbed()

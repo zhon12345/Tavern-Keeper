@@ -1,6 +1,6 @@
 const Blacklist = require('../../models/blacklist');
 const { MessageEmbed } = require('discord.js');
-const sourcebin = require('sourcebin_js');
+const { sourcebin } = require('../../functions');
 
 module.exports = {
 	name: 'blacklist',
@@ -16,26 +16,10 @@ module.exports = {
 		if(!args[0]) {
 			Blacklist.find({}, async (err, data) => {
 				if(data && data.length > 0) {
-					let response;
-					try {
-						response = await sourcebin.create([
-							{
-								name: ' ',
-								content: data.map(u => u).map((u, i) => {return `${i + 1} - ${client.users.cache.get(u.id).tag}\nID: ${u.id}\n`;}).join('\n'),
-								languageId: 'text',
-							},
-						], {
-							title: `${client.user.username} user blacklist`,
-							description: ' ',
-						});
-					}
-					catch (e) {
-						return message.channel.send('`❌` An error occurred, please try again!');
-					}
-
+					const response = await sourcebin(`${client.user.username} user blacklist`, '', '', data.map(u => u).map((u, i) => {return `${i + 1} - ${client.users.cache.get(u.id).tag}\nID: ${u.id}\n`;}).join('\n'));
 					const embed = new MessageEmbed()
 						.setColor('BLUE')
-						.setDescription(`There are currently **${data.length}** blacklisted users.${data.length > 10 ? `\nThe blacklist exceeds the character limit, click [here](${response.url}) for the full list.` : ''}`)
+						.setDescription(`There are currently **${data.length}** blacklisted users.${data.length > 0 ? `\nThe blacklist exceeds the character limit, click [here](${response}) for the full list.` : ''}`)
 						.addField('Users', data.map(u => u).map((u, i) => {return `**${i + 1}** - ${client.users.cache.get(u.id)} (\`${u.name}\`)\nID: \`${u.id}\`\n`;}).slice(0, 10).join('\n'));
 					message.channel.send(embed);
 				}
