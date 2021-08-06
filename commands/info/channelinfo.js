@@ -38,7 +38,7 @@ module.exports = {
 				`> **<:card:773965449402646549> Channel Name: \`${channel.name}\`**`,
 				`> **\\📇 Channel ID: \`${channel.id}\`**`,
 				`> **\\🗃️ Channel Type: \`${types[channel.type]}\`**`,
-				`> **\\⏰ Slowmode: ${parseDur(channel.rateLimitPerUser * 1000)}**`,
+				`> **\\⏰ Slowmode: ${isNaN(channel.rateLimitPerUser) ? "`None`" : parseDur(channel.rateLimitPerUser * 1000)}**`,
 				`> **\\🔞 NSFW: \`${channel.nsfw ? "Yes" : "No"}\`**`,
 				`> **\\📅 Created: \`${moment(channel.createdTimestamp).format("MMMM Do YYYY, h:mm:ss")}\` | \`${Math.floor((Date.now() - channel.createdTimestamp) / 86400000)}\` day(s) ago**`,
 				"\u200b",
