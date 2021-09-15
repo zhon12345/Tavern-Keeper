@@ -1,3 +1,4 @@
+const Guild = require("../../models/guild");
 const { BOT_PREFIX, BOT_DB } = process.env;
 const mongoose = require("mongoose");
 
@@ -13,6 +14,27 @@ module.exports = async (client) => {
 		.catch(err => {
 			console.error("Error connecting to mongo", err);
 		});
+
+	client.guilds.cache.map(async (guild) => {
+		const HasDB = await Guild.findOne({ guildID: guild.id });
+		if(HasDB) return;
+		guild = new Guild({
+			_id: mongoose.Types.ObjectId(),
+			guildID: guild.id,
+			guildName: guild.name,
+			prefix: BOT_PREFIX,
+			settings:{
+				antiprofanity: false,
+				antilinks: false,
+				muterole: null,
+				memberrole: null,
+				modlog: null,
+				serverlog: null,
+				messagelog: null,
+			},
+		});
+		guild.save();
+	});
 
 	const stats = [
 		`${client.commands.size} Commands`,

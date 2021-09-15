@@ -4,36 +4,13 @@ const blacklist = require("../../models/blacklist");
 const { MessageEmbed } = require("discord.js");
 const Guild = require("../../models/guild");
 const sourcebin = require("sourcebin_js");
-const mongoose = require("mongoose");
 
 module.exports = async (client, message) => {
 	if (message.author.bot) return;
 	if (!message.guild) return;
 	if (!message.channel.permissionsFor(client.user).has("SEND_MESSAGES")) return;
 
-	const settings = await Guild.findOne({
-		guildID: message.guild.id,
-	}, (err, guild) => {
-		if (!guild) {
-			const newGuild = new Guild({
-				_id: mongoose.Types.ObjectId(),
-				guildID: message.guild.id,
-				guildName: message.guild.name,
-				prefix: BOT_PREFIX,
-				settings:{
-					antiprofanity: false,
-					antilinks: false,
-					muterole: null,
-					memberrole: null,
-					modlog: null,
-					serverlog: null,
-					messagelog: null,
-				},
-			});
-			newGuild.save();
-		}
-	});
-
+	const settings = await Guild.findOne({ guildID: message.guild.id });
 	const prefix = settings ? settings.prefix : BOT_PREFIX;
 
 	if (message.content.match(`^<@!?${client.user.id}>( |)$`)) {
