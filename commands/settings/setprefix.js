@@ -20,7 +20,7 @@ module.exports = {
 			);
 		}
 
-		if(args[0] === settings ? settings.prefix : prefix) {
+		if(args[0] === prefix) {
 			return message.channel.send(
 				"`⚠️` That prefix is already in use.",
 			);
