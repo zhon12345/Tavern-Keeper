@@ -1,20 +1,8 @@
 const Guild = require("../../models/guild");
-const { BOT_PREFIX, BOT_DB } = process.env;
 const mongoose = require("mongoose");
+const { BOT_PREFIX } = process.env;
 
 module.exports = async (client) => {
-	mongoose.connect(BOT_DB, {
-		useNewUrlParser: true,
-		useUnifiedTopology: true,
-	}).then(x => {
-		console.log(
-			`Connected to MongoDB! Database: "${x.connections[0].name}"`,
-		);
-	})
-		.catch(err => {
-			console.error("Error connecting to mongo", err);
-		});
-
 	client.guilds.cache.map(async (guild) => {
 		const HasDB = await Guild.findOne({ guildID: guild.id });
 		if(HasDB) return;
