@@ -8,7 +8,7 @@ module.exports = {
 	description: "Make a supreme logo with the text of your choice.",
 	aliases: [],
 	usage: "supreme <text>",
-	disabled: false,
+	disabled: true,
 	userperms: [],
 	botperms: ["ATTACH_FILES"],
 	run: async (client, message, args) => {

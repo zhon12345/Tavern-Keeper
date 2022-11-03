@@ -8,7 +8,7 @@ module.exports = {
 	description: "Embrace your inner communist!",
 	aliases: ["communism"],
 	usage: "communist <user>",
-	disabled: false,
+	disabled: true,
 	userperms: [],
 	botperms: ["ATTACH_FILES"],
 	run: async (client, message, args) => {

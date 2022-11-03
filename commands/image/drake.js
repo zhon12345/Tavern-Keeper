@@ -8,7 +8,7 @@ module.exports = {
 	description: "Make a drake meme!",
 	aliases: [],
 	usage: "drake <text> | <text>",
-	disabled: false,
+	disabled: true,
 	userperms: [],
 	botperms: ["ATTACH_FILES"],
 	run: async (client, message, args) => {
