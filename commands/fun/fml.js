@@ -9,7 +9,7 @@ module.exports = {
 	description: "Is looking at the misery of others funny?",
 	aliases: ["fmylife"],
 	usage: "fml",
-	disabled: false,
+	disabled: true,
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args) => {
