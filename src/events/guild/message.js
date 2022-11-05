@@ -33,7 +33,7 @@ module.exports = async (client, message) => {
 		}
 	});
 
-	const prefix = settings ? settings.prefix : 'm!';
+	const prefix = settings ? settings.prefix : BOT_PREFIX;
 
 	if (message.content.match(`^<@!?${client.user.id}>( |)$`)) {
 		const m = new MessageEmbed()
