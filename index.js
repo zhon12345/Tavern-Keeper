@@ -1,5 +1,4 @@
 require("dotenv").config();
-const keepAlive = require("./server");
 const { BOT_DB } = process.env;
 const mongoose = require("mongoose");
 const { Client, Collection } = require("discord.js");
@@ -30,5 +29,4 @@ mongoose.connect(BOT_DB, {
 		console.error("Error connecting to mongo", err);
 	});
 
-keepAlive();
 client.login(process.env.BOT_TOKEN);
