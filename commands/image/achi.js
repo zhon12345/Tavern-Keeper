@@ -8,7 +8,7 @@ module.exports = {
 	description: "Get a personalized minecraft achievement.",
 	aliases: ["achievement"],
 	usage: "achi <text>",
-	disabled: true,
+	disabled: false,
 	userperms: [],
 	botperms: ["ATTACH_FILES"],
 	run: async (client, message, args) => {
@@ -26,7 +26,7 @@ module.exports = {
 
 
 		const min = 1;
-		const max = 35;
+		const max = 45;
 
 		const logo = Math.floor(Math.random() * (+max - +min)) + +min;
 

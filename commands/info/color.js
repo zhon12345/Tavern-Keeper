@@ -44,12 +44,12 @@ module.exports = {
 
 		const embed = new MessageEmbed()
 			.setTitle(response.name)
-			.setThumbnail(response.image)
-			.addField("RGB Value", response.rgb, true)
+			.setThumbnail(response.images.square)
+			.addField("RGB Value", response.rgb.string, true)
 			.addField("Brightness", response.brightness, true)
-			.addField("Hex Value", response.hex, true)
-			.setImage(response.image_gradient)
-			.setColor(response.hex)
+			.addField("Hex Value", response.hex.string, true)
+			.setImage(response.images.gradient)
+			.setColor(response.hex.string)
 			.setFooter(`Requested by ${message.author.tag}`)
 			.setTimestamp();
 		message.channel.send(embed);
