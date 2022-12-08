@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-const translate = require("@vitalets/google-translate-api");
+const { translate } = require("@vitalets/google-translate-api");
 const { MessageEmbed } = require("discord.js");
 
 module.exports = {
@@ -19,12 +19,12 @@ module.exports = {
 			);
 		}
 
-		translate(text, {
+		await translate(text, {
 			to: "en",
 		}).then(res => {
 			const embed = new MessageEmbed()
 				.setColor("BLUE")
-				.setTitle(`${res.from.language.iso} Translator`)
+				.setTitle(`${res.raw.src} Translator`)
 				.addField("Input", `\`\`\`\n${text}\`\`\``)
 				.addField("Output", `\`\`\`\n${res.text}\`\`\``)
 				.setFooter(`Requested by ${message.author.tag}`)
