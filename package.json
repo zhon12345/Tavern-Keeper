@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "node index.js"
+        "start": "pm2 start index.js --watch --name TavernKeeper"
     },
     "author": "zhon12345",
     "license": "ISC",
@@ -26,6 +26,7 @@
         "node-fetch": "^3.3.0",
         "nodemon": "^3.0.1",
         "os": "^0.1.2",
+        "pm2": "^5.3.0",
         "sourcebin_js": "0.0.3-ignore",
         "twemoji-parser": "^14.0.0",
         "weather-js": "^2.0.0"
