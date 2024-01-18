@@ -1,10 +1,14 @@
 require("dotenv").config();
 const { BOT_DB } = process.env;
 const mongoose = require("mongoose");
-const { Client, Collection } = require("discord.js");
+const { Client, GatewayIntentBits, Collection } = require("discord.js");
 const client = new Client({
-	disableMentions: "everyone",
-	intents: ["Guilds", "GuildMessages", "MessagesContent"],
+	intents: [
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.MessageContent,
+		GatewayIntentBits.GuildMembers,
+	],
 });
 
 client.commands = new Collection();
