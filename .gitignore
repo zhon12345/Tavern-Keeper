@@ -1,6 +1,6 @@
-node_modules
+.vscode
 bot_assets
+node_modules
 .env
 .eslintrc.json
-.vscode
-src/archives
+package-lock.json
