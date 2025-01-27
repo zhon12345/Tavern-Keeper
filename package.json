@@ -20,7 +20,7 @@
         "figlet": "^1.5.2",
         "google-tts-api": "^2.0.2",
         "html2plaintext": "^2.1.4",
-        "mathjs": "^13.1.1",
+        "mathjs": "^14.0.0",
         "moment": "^2.29.1",
         "mongoose": "^8.0.3",
         "ms": "^2.1.2",
