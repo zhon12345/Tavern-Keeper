@@ -1,7 +1,8 @@
 require("dotenv").config();
 const { BOT_DB } = process.env;
-const mongoose = require("mongoose");
 const { Client, GatewayIntentBits, Collection } = require("discord.js");
+const mongoose = require("mongoose");
+
 const client = new Client({
 	intents: [
 		GatewayIntentBits.Guilds,
@@ -17,19 +18,16 @@ client.aliases = new Collection();
 client.snipes = new Collection();
 client.cooldowns = new Set();
 
-["command", "event"].forEach(handler => {
+["command", "event"].forEach((handler) => {
 	require(`./handlers/${handler}`)(client);
 });
 
-mongoose.connect(BOT_DB, {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-}).then(x => {
-	console.log(
-		`Connected to MongoDB! Database: "${x.connections[0].name}"`,
-	);
+mongoose
+	.connect(BOT_DB)
+	.then((x) => {
+		console.log(`Connected to MongoDB! Database: "${x.connections[0].name}"`);
 })
-	.catch(err => {
+	.catch((err) => {
 		console.error("Error connecting to mongo", err);
 	});
 

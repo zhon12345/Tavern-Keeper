@@ -5,13 +5,13 @@ const { BOT_PREFIX } = process.env;
 module.exports = async (client) => {
 	client.guilds.cache.map(async (guild) => {
 		const HasDB = await Guild.findOne({ guildID: guild.id });
-		if(HasDB) return;
+		if (HasDB) return;
 		guild = new Guild({
-			_id: mongoose.Types.ObjectId(),
+			_id: new mongoose.Types.ObjectId(),
 			guildID: guild.id,
 			guildName: guild.name,
 			prefix: BOT_PREFIX,
-			settings:{
+			settings: {
 				antiprofanity: false,
 				antilinks: false,
 				muterole: null,
@@ -30,12 +30,9 @@ module.exports = async (client) => {
 		`${client.guilds.cache.size} Servers`,
 	];
 
-	const cmds = [
-		`${BOT_PREFIX}help`,
-		`${BOT_PREFIX}invite`,
-	];
+	const cmds = [`${BOT_PREFIX}help`, `${BOT_PREFIX}invite`];
 
-	setInterval(function() {
+	setInterval(function () {
 		const stat = stats[Math.floor(Math.random() * stats.length)];
 		const cmd = cmds[Math.floor(Math.random() * cmds.length)];
 		client.user.setActivity(`${cmd} | ${stat}`, { type: "PLAYING" });
