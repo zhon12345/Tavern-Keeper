@@ -1,5 +1,5 @@
 const { isURL, isInvite, validatePermissions } = require("../../functions");
-const { BOT_PREFIX, BOT_OWNER, COMMAND_LOGS } = process.env;
+const { BOT_PREFIX, BOT_OWNER, BOT_COMMAND_LOG } = process.env;
 const blacklist = require("../../models/blacklist");
 const { MessageEmbed } = require("discord.js");
 const Guild = require("../../models/guild");
@@ -123,7 +123,7 @@ module.exports = async (client, message) => {
 						`> **\\💬 Message Content: ${message.content.length > 512 ? `[\`${response.url}\`](${response.url})` : `\`${message.content}\``}**`,
 					]);
 
-				await client.channels.cache.get(COMMAND_LOGS).send(embed);
+				await client.channels.cache.get(BOT_COMMAND_LOG).send(embed);
 
 				command.run(client, message, args, prefix);
 			}
