@@ -4,6 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
+		"dev": "npx nodemon index.js",
 		"start": "node index.js"
 	},
 	"author": "zhon12345",
@@ -14,7 +15,6 @@
 		"cpu-stat": "^2.0.1",
 		"discord.js": "^12.5.3",
 		"dotenv": "^16.0.3",
-		"eslint": "^9.0.0",
 		"express": "^4.21.2",
 		"figlet": "^1.5.2",
 		"google-tts-api": "^2.0.2",
@@ -24,10 +24,13 @@
 		"mongoose": "^5.13.23",
 		"ms": "^2.1.2",
 		"node-fetch": "^2.7.0",
-		"nodemon": "^3.0.1",
 		"os": "^0.1.2",
 		"sourcebin_js": "0.0.3-ignore",
 		"twemoji-parser": "^14.0.0",
 		"weather-js": "^2.0.0"
+	},
+	"devDependencies": {
+		"eslint": "^6.8.0",
+		"nodemon": "^3.1.10"
 	}
 }
