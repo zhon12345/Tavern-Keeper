@@ -1,16 +1,12 @@
 require("dotenv").config();
-const { BOT_DB } = process.env;
-const { Client, GatewayIntentBits, Collection } = require("discord.js");
+const { BOT_TOKEN, BOT_DB } = process.env;
+const { Client, Intents, Collection } = require("discord.js");
 const mongoose = require("mongoose");
 const keepAlive = require("./server");
 
 const client = new Client({
-	intents: [
-		GatewayIntentBits.Guilds,
-		GatewayIntentBits.GuildMessages,
-		GatewayIntentBits.MessageContent,
-		GatewayIntentBits.GuildMembers,
-	],
+	disableMentions: "everyone",
+	ws: { intents: Intents.ALL },
 });
 
 client.commands = new Collection();
@@ -24,7 +20,10 @@ client.cooldowns = new Set();
 });
 
 mongoose
-	.connect(BOT_DB)
+	.connect(BOT_DB, {
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+	})
 	.then((x) => {
 		console.log(`Connected to MongoDB! Database: "${x.connections[0].name}"`);
 	})
@@ -33,4 +32,4 @@ mongoose
 	});
 
 keepAlive();
-client.login(process.env.BOT_TOKEN);
+client.login(BOT_TOKEN);
