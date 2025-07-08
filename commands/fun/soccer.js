@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const { randomNoRepeat } = require("../../functions");
 
 module.exports = {
@@ -10,14 +9,11 @@ module.exports = {
 	disabled: false,
 	userperms: [],
 	botperms: [],
-	run: async (client, message, args) => {
-		const filter = m => m.author.id === message.author.id;
-		const intro = "Soccer - Hit the ball into a goal where the goalkeeper is not! To hit the ball, type `left`, `right` or `middle`.";
-		const possible = [
-			"🥅🥅🥅\n      🕴️\n\n      ⚽",
-			"🥅🥅🥅\n🕴️\n\n      ⚽",
-			"🥅🥅🥅\n            🕴️\n\n      ⚽",
-		];
+	run: async (client, message) => {
+		const filter = (m) => m.author.id === message.author.id;
+		const intro =
+			"Soccer - Hit the ball into a goal where the goalkeeper is not! To hit the ball, type `left`, `right` or `middle`.";
+		const possible = ["🥅🥅🥅\n      🕴️\n\n      ⚽", "🥅🥅🥅\n🕴️\n\n      ⚽", "🥅🥅🥅\n            🕴️\n\n      ⚽"];
 		const panswers = [
 			["left", "right"],
 			["middle", "right"],
@@ -28,13 +24,13 @@ module.exports = {
 		const index = possible.indexOf(random);
 		const answers = panswers[index];
 		message.channel.send(`${intro}\n${random}`).then(() => {
-			message.channel.awaitMessages(filter, { max: 1, time: 30000, errors: ["time", "max"] })
-				.then(collected => {
+			message.channel
+				.awaitMessages(filter, { max: 1, time: 30000, errors: ["time", "max"] })
+				.then((collected) => {
 					const ans = collected.first();
-					if(!answers.includes(ans.content.toLowerCase())) {
+					if (!answers.includes(ans.content.toLowerCase())) {
 						return message.channel.send("❌ The goalie skillfully blocked your shot!");
-					}
-					else{
+					} else {
 						return message.channel.send("🎉 Congratulations! You scored a goal.");
 					}
 				})

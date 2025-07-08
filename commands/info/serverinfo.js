@@ -56,18 +56,18 @@ module.exports = {
 				"\u200b",
 			])
 			.addField("<:documents:773950876347793449> Statistics ❯", [
-				`> **\\👥 Member Count: \`${members.filter(member => !member.user.bot).size}\` Users \`${members.filter(member => member.user.bot).size}\` Bots**`,
-				`> **\\💬 Channel Count: \`${channels.filter(channel => channel.type === "text").size}\` Text \`${channels.filter(channel => channel.type === "voice").size}\` Voice**`,
-				`> **<:emojis:774070456059822090> Emoji Count: \`${emojis.filter(emoji => !emoji.animated).size}\` Regular \`${emojis.filter(emoji => emoji.animated).size}\` Animated**`,
+				`> **\\👥 Member Count: \`${members.filter((member) => !member.user.bot).size}\` Users \`${members.filter((member) => member.user.bot).size}\` Bots**`,
+				`> **\\💬 Channel Count: \`${channels.filter((channel) => channel.type === "text").size}\` Text \`${channels.filter((channel) => channel.type === "voice").size}\` Voice**`,
+				`> **<:emojis:774070456059822090> Emoji Count: \`${emojis.filter((emoji) => !emoji.animated).size}\` Regular \`${emojis.filter((emoji) => emoji.animated).size}\` Animated**`,
 				`> **<:tier:774071372942147594> Guild Boost Tier: \`Tier ${guild.premiumTier}\`**`,
 				`> **<:boost:774071372644483082> Guild Boost Count: \`${guild.premiumSubscriptionCount}\` Boost(s)**`,
 				"\u200b",
 			])
 			.addField("<:documents:773950876347793449> Presence ❯", [
-				`> **<:online:745651877382717560> Online: \`${members.filter(member => member.presence.status === "online").size}\`**`,
-				`> **<:idle:773964101390958632> Idle: \`${members.filter(member => member.presence.status === "idle").size}\`**`,
-				`> **<:dnd:773964313630998538> Do Not Disturb: \`${members.filter(member => member.presence.status === "dnd").size}\`**`,
-				`> **<:offline:745651876552376402> Offline: \`${members.filter(member => member.presence.status === "offline").size}\`**`,
+				`> **<:online:745651877382717560> Online: \`${members.filter((member) => member.presence.status === "online").size}\`**`,
+				`> **<:idle:773964101390958632> Idle: \`${members.filter((member) => member.presence.status === "idle").size}\`**`,
+				`> **<:dnd:773964313630998538> Do Not Disturb: \`${members.filter((member) => member.presence.status === "dnd").size}\`**`,
+				`> **<:offline:745651876552376402> Offline: \`${members.filter((member) => member.presence.status === "offline").size}\`**`,
 			])
 			.setFooter(`Requested by ${message.author.tag} `)
 			.setTimestamp();

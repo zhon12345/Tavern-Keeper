@@ -14,15 +14,13 @@ module.exports = {
 	userperms: ["BOT_OWNER"],
 	botperms: [],
 	run: async (client, message, args) => {
-		const code = args.join(" ").replace(/[“”]/g, "\"").replace(/[‘’]/g, "'");
+		const code = args.join(" ").replace(/[“”]/g, '"').replace(/[‘’]/g, "'");
 		if (!args.length) {
-			return message.channel.send(
-				"`❌` Code not found, please provide valid code. (eg. `message.guild`)",
-			);
+			return message.channel.send("`❌` Code not found, please provide valid code. (eg. `message.guild`)");
 		}
 
 		const words = ["token", "process.env", "bot_token"];
-		for(const word of words) {
+		for (const word of words) {
 			if (code.replace("\\", "").toLowerCase().includes(word)) {
 				const embed = new MessageEmbed()
 					.setTitle("Error!")
@@ -36,63 +34,65 @@ module.exports = {
 		try {
 			const start = process.hrtime();
 			let evaled = eval(code);
-			if(evaled instanceof Promise) {
+			if (evaled instanceof Promise) {
 				evaled = await evaled;
 			}
 			const stop = process.hrtime(start);
 			const output = clean(inspect(evaled, { depth: 0 }));
-			if(output.length > 1024) {
+			if (output.length > 1024) {
 				let response;
 				try {
-					response = await sourcebin.create([
+					response = await sourcebin.create(
+						[
+							{
+								name: " ",
+								content: output,
+								languageId: "text",
+							},
+						],
 						{
-							name: " ",
-							content: output,
-							languageId: "text",
+							title: "Eval results",
+							description: " ",
 						},
-					], {
-						title: "Eval results",
-						description: " ",
-					});
-				}
-				catch (e) {
+					);
+				} catch {
 					return message.channel.send("`❌` An error occurred, please try again!");
 				}
 
 				const embed = new MessageEmbed()
 					.setTitle("Success!")
 					.setColor("GREEN")
-					.setFooter(`Type: ${new Type(evaled).is} | Time Taken: ${(((stop[0] * 1e9) + stop[1]) / 1e6)}ms`)
+					.setFooter(`Type: ${new Type(evaled).is} | Time Taken: ${(stop[0] * 1e9 + stop[1]) / 1e6}ms`)
 					.addField("Input", `\`\`\`js\n${code}\`\`\``)
 					.addField("Output", `\`\`\`\n${response.url}\n\`\`\``);
 				await message.channel.send(embed);
-			}
-			else {
+			} else {
 				const embed = new MessageEmbed()
 					.setTitle("Success!")
 					.setColor("GREEN")
-					.setFooter(`Type: ${new Type(evaled).is} | Time Taken: ${(((stop[0] * 1e9) + stop[1]) / 1e6)}ms`)
+					.setFooter(`Type: ${new Type(evaled).is} | Time Taken: ${(stop[0] * 1e9 + stop[1]) / 1e6}ms`)
 					.addField("Input", `\`\`\`js\n${code}\`\`\``)
 					.addField("Output", `\`\`\`js\n${output}\n\`\`\``);
 				await message.channel.send(embed);
 			}
-		}
-		catch (err) {
-			if(err.length > 1024) {
+		} catch (err) {
+			if (err.length > 1024) {
 				let response;
 				try {
-					response = await sourcebin.create([
+					response = await sourcebin.create(
+						[
+							{
+								name: " ",
+								content: err,
+								languageId: "text",
+							},
+						],
 						{
-							name: " ",
-							content: err,
-							languageId: "text",
+							title: "Error",
+							description: " ",
 						},
-					], {
-						title: "Error",
-						description: " ",
-					});
-				}
-				catch (e) {
+					);
+				} catch {
 					return message.channel.send("`❌` An error occurred, please try again!");
 				}
 
@@ -102,8 +102,7 @@ module.exports = {
 					.addField("Input", `\`\`\`js\n${code}\`\`\``)
 					.addField("Output", `\`\`\`\n${response.url}\n\`\`\``);
 				await message.channel.send(embed);
-			}
-			else {
+			} else {
 				const embed = new MessageEmbed()
 					.setTitle("Error!")
 					.setColor("RED")

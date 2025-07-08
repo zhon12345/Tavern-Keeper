@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const { MessageEmbed } = require("discord.js");
 
 module.exports = {
@@ -10,7 +9,7 @@ module.exports = {
 	disabled: false,
 	userperms: [],
 	botperms: [],
-	run: async (client, message, args) => {
+	run: async (client, message) => {
 		const embed = new MessageEmbed()
 			.setTitle("I am working!")
 			.setColor("BLUE")

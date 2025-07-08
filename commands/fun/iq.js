@@ -11,13 +11,18 @@ module.exports = {
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args) => {
-		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(" ") || x.user.username === args[0]) || message.member;
+		const member =
+			message.mentions.members.first() ||
+			message.guild.members.cache.get(args[0]) ||
+			message.guild.members.cache.find(
+				(x) => x.user.username === args.slice(0).join(" ") || x.user.username === args[0],
+			) ||
+			message.member;
 
 		let love;
 		if (member.id === BOT_OWNER) {
 			love = "130";
-		}
-		else {
+		} else {
 			love = Math.floor(Math.random() * 130) + 1;
 		}
 
@@ -25,9 +30,7 @@ module.exports = {
 			const Embed = new MessageEmbed()
 				.setTitle(`🧠 ${member.user.username}'s IQ:`)
 				.setColor("BLUE")
-				.setDescription(
-					`${love}!`,
-				);
+				.setDescription(`${love}!`);
 			msg.edit(Embed);
 		});
 	},

@@ -21,8 +21,6 @@ module.exports = {
 		channel.send(
 			`\`[${moment(message.createdTimestamp).format("HH:mm:ss")}]\` ⚠️ **${message.author.username}**#${message.author.discriminator} (ID: ${message.author.id}) has reported an issue in **${message.guild.name}** (ID: ${message.guild.id}). \n\`[Issue]\` ${text}`,
 		);
-		await message.channel.send(
-			"`✔️` Successfully reported the issue.",
-		).then(message.delete());
+		await message.channel.send("`✔️` Successfully reported the issue.").then(message.delete());
 	},
 };

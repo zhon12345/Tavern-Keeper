@@ -1,12 +1,5 @@
-/* eslint-disable no-unused-vars */
 const { delay } = require("../../functions");
-const frames = [
-	"(-°□°)-  ┬─┬",
-	"(╯°□°)╯    ]",
-	"(╯°□°)╯  ︵  ┻━┻",
-	"(╯°□°)╯       [",
-	"(╯°□°)╯           ┬─┬",
-];
+const frames = ["(-°□°)-  ┬─┬", "(╯°□°)╯    ]", "(╯°□°)╯  ︵  ┻━┻", "(╯°□°)╯       [", "(╯°□°)╯           ┬─┬"];
 
 module.exports = {
 	name: "tableflip",
@@ -17,7 +10,7 @@ module.exports = {
 	disabled: false,
 	userperms: [],
 	botperms: [],
-	run: async (client, message, args) => {
+	run: async (client, message) => {
 		const msg = await message.channel.send("(\\\\°□°)\\\\  ┬─┬");
 		for (const frame of frames) {
 			await delay(1000);

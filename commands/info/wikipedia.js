@@ -12,49 +12,42 @@ module.exports = {
 	botperms: [],
 	run: async (client, message, args) => {
 		const query = args.slice().join(" ");
-		if(!query) {
-			return message.channel.send(
-				"`❌` Query not found, please provide a valid query (eg. `Adidas`).",
-			);
+		if (!query) {
+			return message.channel.send("`❌` Query not found, please provide a valid query (eg. `Adidas`).");
 		}
 
-		const nsfw = [	"porn", "vagina", "breats", "hentai", "bdsm", "naked", "rape", "nude", "sex"];
-		for(const word of nsfw) {
+		const nsfw = ["porn", "vagina", "breats", "hentai", "bdsm", "naked", "rape", "nude", "sex"];
+		for (const word of nsfw) {
 			if (query.includes(word) && !message.channel.nsfw) {
-				return message.channel.send(
-					"`❌` This query can only be viewed in a nsfw channel.",
-				);
+				return message.channel.send("`❌` This query can only be viewed in a nsfw channel.");
 			}
 		}
 
-
 		const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`;
 
-		let body ;
+		let body;
 		try {
-			body = await fetch(url).then(res => res.json());
-		}
-		catch (e) {
-			return message.channel.send(
-				"`❌` An error occurred, please try again!",
-			);
+			body = await fetch(url).then((res) => res.json());
+		} catch {
+			return message.channel.send("`❌` An error occurred, please try again!");
 		}
 
-		try{
+		try {
 			if (body.type === "disambiguation") {
 				const embed = new MessageEmbed()
 					.setColor("BLUE")
 					.setTitle(body.title)
 					.setURL(body.content_urls.desktop.page)
-					.setDescription([`
+					.setDescription([
+						`
 					${body.extract}
 
 					Disambiguation [page](${body.content_urls.desktop.page}) providing links to topics that could be referred to by the same search term
-					`]);
+					`,
+					]);
 
 				message.channel.send(embed);
-			}
-			else {
+			} else {
 				const embed = new MessageEmbed()
 					.setColor("BLUE")
 					.setTitle(body.title)
@@ -64,11 +57,8 @@ module.exports = {
 
 				message.channel.send(embed);
 			}
-		}
-		catch {
-			return message.channel.send(
-				"`❌` Query not found, please provide a valid query (eg. `Adidas`).",
-			);
+		} catch {
+			return message.channel.send("`❌` Query not found, please provide a valid query (eg. `Adidas`).");
 		}
 	},
 };

@@ -8,23 +8,18 @@ module.exports = {
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args) => {
-		if(!args[0]) {
-			return message.channel.send(
-				"`❌` Text not found, please provide valid text (eg. `meme review`).",
-			);
+		if (!args[0]) {
+			return message.channel.send("`❌` Text not found, please provide valid text (eg. `meme review`).");
 		}
-		if(args[0].length > 1024) {
-			return message.channel.send(
-				"`❌` You have exceeded the 1024 characters limit.",
-			);
+		if (args[0].length > 1024) {
+			return message.channel.send("`❌` You have exceeded the 1024 characters limit.");
 		}
 
 		let text;
 		const txt = args.join(" ");
-		if(/\s/.test(txt)) {
+		if (/\s/.test(txt)) {
 			text = args.join(" 👏 ");
-		}
-		else {
+		} else {
 			text = args.join(" ").split("").join(" 👏 ");
 		}
 		message.channel.send(`${text} 👏`);

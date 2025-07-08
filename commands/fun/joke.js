@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const fetch = require("node-fetch");
 const { MessageEmbed } = require("discord.js");
 
@@ -11,16 +10,13 @@ module.exports = {
 	disabled: false,
 	userperms: [],
 	botperms: [],
-	run: async (client, message, args) => {
+	run: async (client, message) => {
 		const url = "https://official-joke-api.appspot.com/jokes/random";
 		let response;
 		try {
-			response = await fetch(url).then(res => res.json());
-		}
-		catch (e) {
-			return message.channel.send(
-				"`❌` An error occurred, please try again!",
-			);
+			response = await fetch(url).then((res) => res.json());
+		} catch {
+			return message.channel.send("`❌` An error occurred, please try again!");
 		}
 		const embed = new MessageEmbed()
 			.setColor("BLUE")

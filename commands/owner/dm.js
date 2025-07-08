@@ -8,30 +8,21 @@ module.exports = {
 	userperms: ["BOT_OWNER"],
 	botperms: [],
 	run: async (client, message, args) => {
-		const member = message.mentions.users.first() || await client.users.fetch(args[0]);
+		const member = message.mentions.users.first() || (await client.users.fetch(args[0]));
 		if (!member) {
-			return message.channel.send(
-				"`❌` User not found, please provide a valid user. (eg. `@zhon12345#8585`)",
-			);
+			return message.channel.send("`❌` User not found, please provide a valid user. (eg. `@zhon12345#8585`)");
 		}
 
 		const text = args.slice(1).join(" ");
-		if(!text) {
-			return message.channel.send(
-				"`❌` Text not found, please provide valid text.",
-			);
+		if (!text) {
+			return message.channel.send("`❌` Text not found, please provide valid text.");
 		}
 
-		try{
+		try {
 			member.send(text);
-			await message.channel.send(
-				`\`✔️\` Successfully sent a DM to \`${member.username}#${member.discriminator}\`.`,
-			);
-		}
-		catch (e) {
-			return message.channel.send(
-				"`❌` An error occurred, please try again!",
-			);
+			await message.channel.send(`\`✔️\` Successfully sent a DM to \`${member.username}#${member.discriminator}\`.`);
+		} catch {
+			return message.channel.send("`❌` An error occurred, please try again!");
 		}
 	},
 };

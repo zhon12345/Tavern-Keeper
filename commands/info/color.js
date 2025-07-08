@@ -11,35 +11,26 @@ module.exports = {
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args) => {
-		if(!args[0]) {
-			return message.channel.send(
-				"`❌` Hex color not found, please provide a valid hex color (eg. `#ffffff`).",
-			);
+		if (!args[0]) {
+			return message.channel.send("`❌` Hex color not found, please provide a valid hex color (eg. `#ffffff`).");
 		}
 
 		let colour;
-		if(args[0].startsWith("#") && args[0].length === 7) {
+		if (args[0].startsWith("#") && args[0].length === 7) {
 			colour = args[0].split("#")[1];
-		}
-		else if(!args[0].startsWith("#") && args[0].length === 6) {
+		} else if (!args[0].startsWith("#") && args[0].length === 6) {
 			colour = args[0];
-		}
-		else {
-			return message.channel.send(
-				"`❌` Hex color not found, please provide a valid hex color (eg. `#ffffff`).",
-			);
+		} else {
+			return message.channel.send("`❌` Hex color not found, please provide a valid hex color (eg. `#ffffff`).");
 		}
 
 		const url = `https://api.alexflipnote.dev/colour/${colour}`;
 
 		let response;
 		try {
-			response = await fetch(url).then(res => res.json());
-		}
-		catch (e) {
-			return message.channel.send(
-				"`❌` An error occurred, please try again!",
-			);
+			response = await fetch(url).then((res) => res.json());
+		} catch {
+			return message.channel.send("`❌` An error occurred, please try again!");
 		}
 
 		const embed = new MessageEmbed()

@@ -19,36 +19,18 @@ module.exports = {
 			return message.channel.send(
 				`Mod Logs for **${message.guild}** has been ${settings.settings.modlog === null ? "`disabled`." : `set to <#${settings.settings.modlog}>.`}`,
 			);
-		}
-		else if (args[0].toLowerCase() === "off") {
+		} else if (args[0].toLowerCase() === "off") {
 			if (settings.settings.modlog === null) {
-				return message.channel.send(
-					"`❌` Mod Logs has already been `disabled`.",
-				);
+				return message.channel.send("`❌` Mod Logs has already been `disabled`.");
+			} else {
+				await Guild.updateOne({ guildID: message.guild.id }, { "settings.modlog": null });
+				message.channel.send("`✔️` Mod Logs is now `disabled`.");
 			}
-			else {
-				await Guild.updateOne(
-					{ guildID:message.guild.id },
-					{ "settings.modlog": null },
-				);
-				message.channel.send(
-					"`✔️` Mod Logs is now `disabled`.",
-				);
-			}
-		}
-		else if(channel) {
-			await Guild.updateOne(
-				{ guildID: message.guild.id },
-				{ "settings.modlog": channel.id },
-			);
-			message.channel.send(
-				`\`✔️\` Mod Logs has been set to ${channel}`,
-			);
-		}
-		else {
-			return message.channel.send(
-				`\`❌\` Channel not found, please provide a valid channel (eg. ${message.channel}).`,
-			);
+		} else if (channel) {
+			await Guild.updateOne({ guildID: message.guild.id }, { "settings.modlog": channel.id });
+			message.channel.send(`\`✔️\` Mod Logs has been set to ${channel}`);
+		} else {
+			return message.channel.send(`\`❌\` Channel not found, please provide a valid channel (eg. ${message.channel}).`);
 		}
 	},
 };

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const { MessageEmbed } = require("discord.js");
 const set = ["set1", "set2", "set3", "set4"][Math.floor(Math.random() * 4)];
 
@@ -11,7 +10,7 @@ module.exports = {
 	disabled: false,
 	userperms: [],
 	botperms: [],
-	run: async (client, message, args) => {
+	run: async (client, message) => {
 		const string = Math.random().toString(20).substr(2, 6);
 		const urls = [
 			`https://robohash.org/${string}?set=${set}`,

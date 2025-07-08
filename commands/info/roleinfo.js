@@ -13,17 +13,14 @@ module.exports = {
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const role = message.mentions.roles.first() || message.guild.roles.cache.get(args[0]);
-		if(!role) {
-			return message.channel.send(
-				"`❌` Role not found, please provide a valid role. (eg. `@👤 | Member`)",
-			);
+		if (!role) {
+			return message.channel.send("`❌` Role not found, please provide a valid role. (eg. `@👤 | Member`)");
 		}
 
 		let permissions;
-		if(role.permissions.toArray().length !== 0) {
+		if (role.permissions.toArray().length !== 0) {
 			permissions = role.permissions.toArray().map(formatPerms).join("`, `");
-		}
-		else {
+		} else {
 			permissions = "None";
 		}
 		const embed = new MessageEmbed()
@@ -41,9 +38,7 @@ module.exports = {
 				`> **\\📅 Created: \`${moment(role.createdTimestamp).format("MMMM Do YYYY, h:mm:ss")}\` | \`${Math.floor((Date.now() - role.createdTimestamp) / 86400000)}\` day(s) ago**`,
 				"\u200b",
 			])
-			.addField("<:documents:773950876347793449> Permissions ❯", [
-				`> **\`${permissions}\`**`,
-			]);
+			.addField("<:documents:773950876347793449> Permissions ❯", [`> **\`${permissions}\`**`]);
 
 		return message.channel.send(embed);
 	},

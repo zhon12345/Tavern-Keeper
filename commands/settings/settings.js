@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const { MessageEmbed } = require("discord.js");
 const Guild = require("../../models/guild");
 
@@ -24,10 +23,10 @@ module.exports = {
 			.setTimestamp()
 			.addField("<:documents:773950876347793449> Settings ❯", [
 				`> **Prefix: \`${settings ? settings.prefix : prefix}\`**`,
-				`> **Anti Links: \`${settings ? settings.settings.antilinks ? "On" : "Off" : "Off"}\`**`,
-				`> **Mod Log: ${settings ? settings.settings.modlog ? message.guild.channels.cache.get(settings.settings.modlog) : "`None`" : "`None`"}**`,
-				`> **Server Log: ${settings ? settings.settings.serverlog ? message.guild.channels.cache.get(settings.settings.serverlog) : "`None`" : "`None`"}**`,
-				`> **Message Log: ${settings ? settings.settings.messagelog ? message.guild.channels.cache.get(settings.settings.messagelog) : "`None`" : "`None`"}**`,
+				`> **Anti Links: \`${settings ? (settings.settings.antilinks ? "On" : "Off") : "Off"}\`**`,
+				`> **Mod Log: ${settings ? (settings.settings.modlog ? message.guild.channels.cache.get(settings.settings.modlog) : "`None`") : "`None`"}**`,
+				`> **Server Log: ${settings ? (settings.settings.serverlog ? message.guild.channels.cache.get(settings.settings.serverlog) : "`None`") : "`None`"}**`,
+				`> **Message Log: ${settings ? (settings.settings.messagelog ? message.guild.channels.cache.get(settings.settings.messagelog) : "`None`") : "`None`"}**`,
 			]);
 		return message.channel.send(embed);
 	},

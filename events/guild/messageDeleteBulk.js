@@ -7,7 +7,7 @@ module.exports = async (client, messages) => {
 	const guildArray = [];
 
 	messages.forEach(async (mes) => {
-		if(mes.partial) await mes.fetch();
+		if (mes.partial) await mes.fetch();
 		guildArray.push(mes.guild);
 	});
 
@@ -17,24 +17,33 @@ module.exports = async (client, messages) => {
 	});
 
 	const logsChannel = client.channels.cache.get(settings.settings.messagelog);
-	if(!logsChannel) return;
+	if (!logsChannel) return;
 
-	const output = messages.array().reverse().map(m => `${new Date(m.createdAt).toLocaleString("en-US")} - ${m.author.tag}: ${m.attachments.size > 0 ? m.attachments.first().proxyURL : m.content}`).join("\n");
+	const output = messages
+		.array()
+		.reverse()
+		.map(
+			(m) =>
+				`${new Date(m.createdAt).toLocaleString("en-US")} - ${m.author.tag}: ${m.attachments.size > 0 ? m.attachments.first().proxyURL : m.content}`,
+		)
+		.join("\n");
 
 	let response;
 	try {
-		response = await sourcebin.create([
+		response = await sourcebin.create(
+			[
+				{
+					name: " ",
+					content: output,
+					languageId: "text",
+				},
+			],
 			{
-				name: " ",
-				content: output,
-				languageId: "text",
+				title: `Deleted messages in ${messages.first().channel.name}`,
+				description: " ",
 			},
-		], {
-			title: `Deleted messages in ${messages.first().channel.name}`,
-			description: " ",
-		});
-	}
-	catch (e) {
+		);
+	} catch {
 		return logsChannel.channel.send("`❌` An error occurred, please try again!");
 	}
 

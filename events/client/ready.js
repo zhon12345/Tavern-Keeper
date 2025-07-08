@@ -32,7 +32,7 @@ module.exports = async (client) => {
 
 	const cmds = [`${BOT_PREFIX}help`, `${BOT_PREFIX}invite`];
 
-	setInterval(function () {
+	setInterval(() => {
 		const stat = stats[Math.floor(Math.random() * stats.length)];
 		const cmd = cmds[Math.floor(Math.random() * cmds.length)];
 		client.user.setActivity(`${cmd} | ${stat}`, { type: "PLAYING" });

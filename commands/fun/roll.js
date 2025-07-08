@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const { MessageEmbed } = require("discord.js");
 const rollDice = () => Math.floor(Math.random() * 6) + 1;
 
@@ -11,14 +10,9 @@ module.exports = {
 	disabled: false,
 	userperms: [],
 	botperms: [],
-	run: async (client, message, args) => {
+	run: async (client, message) => {
 		message.channel.send("🎲 Rolling...").then((msg) => {
-			const Embed = new MessageEmbed()
-				.setTitle("You rolled a . .")
-				.setColor("BLUE")
-				.setDescription(
-					`${rollDice()}!`,
-				);
+			const Embed = new MessageEmbed().setTitle("You rolled a . .").setColor("BLUE").setDescription(`${rollDice()}!`);
 			msg.edit(Embed);
 		});
 	},

@@ -13,9 +13,7 @@ module.exports = {
 	run: async (client, message, args) => {
 		const name = args.join(" ");
 		if (!name) {
-			return message.channel.send(
-				"`❌` User not found, please provide a valid user (eg. `Nike`).",
-			);
+			return message.channel.send("`❌` User not found, please provide a valid user (eg. `Nike`).");
 		}
 
 		const url = `https://instagram.com/${name}/?__a=1`;
@@ -27,14 +25,11 @@ module.exports = {
 					cookie: "sessionid=5442744739%3Azpl9fG3FjGXtH7%3A0",
 				},
 			}).then((res) => res.json());
-		}
-		catch (e) {
-			return message.channel.send(
-				"`❌` An error occurred, please try again!",
-			);
+		} catch {
+			return message.channel.send("`❌` An error occurred, please try again!");
 		}
 
-		try{
+		try {
 			const account = response.graphql.user;
 			const embed = new MessageEmbed()
 				.setColor("BLUE")
@@ -55,11 +50,8 @@ module.exports = {
 					`> **<:instaverified:775758117513199626> Verified: \`${account.is_verified ? "Yes" : "No"}\`**`,
 				]);
 			message.channel.send(embed);
-		}
-		catch (err) {
-			return message.channel.send(
-				"`❌` User not found, please provide a valid user (eg. `Nike`).",
-			);
+		} catch {
+			return message.channel.send("`❌` User not found, please provide a valid user (eg. `Nike`).");
 		}
 	},
 };

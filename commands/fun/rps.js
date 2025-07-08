@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const { MessageEmbed } = require("discord.js");
 const { getResult } = require("../../functions.js");
 
@@ -13,7 +12,7 @@ module.exports = {
 	disabled: false,
 	userperms: [],
 	botperms: ["ADD_REACTIONS"],
-	run: async (client, message, args) => {
+	run: async (client, message) => {
 		const filter = (reaction, user) => chooseArr.includes(reaction.emoji.name) && user.id === message.author.id;
 		const embed = new MessageEmbed()
 			.setColor("BLUE")
@@ -24,29 +23,26 @@ module.exports = {
 
 		for (const reaction of chooseArr) await m.react(reaction);
 
-		m.awaitReactions(filter, { max: 1, time: 10000 })
-			.then(collected => {
-				const emoji = collected.first() && collected.first().emoji.name;
-				if(!emoji) {
-					embed
-						.setDescription("Looks like you did not answer in time.");
+		m.awaitReactions(filter, { max: 1, time: 10000 }).then((collected) => {
+			const emoji = collected.first() && collected.first().emoji.name;
+			if (!emoji) {
+				embed.setDescription("Looks like you did not answer in time.");
 
-					return m.edit(embed);
-				}
-				else {
-					const botChoice = chooseArr[Math.floor(Math.random() * chooseArr.length)];
-					const result = getResult(emoji, botChoice);
+				return m.edit(embed);
+			} else {
+				const botChoice = chooseArr[Math.floor(Math.random() * chooseArr.length)];
+				const result = getResult(emoji, botChoice);
 
-					embed
-						.setTitle("Rock Paper Scissors")
-						.setDescription([`
+				embed.setTitle("Rock Paper Scissors").setDescription([
+					`
 						${emoji} vs ${botChoice}
 
 						${result}
-						`]);
+						`,
+				]);
 
-					m.edit(embed);
-				}
-			});
+				m.edit(embed);
+			}
+		});
 	},
 };

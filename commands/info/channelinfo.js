@@ -22,11 +22,12 @@ module.exports = {
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
-		const channel = message.guild.channels.cache.get(args[0].slice(2, -1)) || message.guild.channels.cache.get(args[0]) || message.channel;
-		if(!channel) {
-			return message.channel.send(
-				"`❌` Channel not found, please provide a valid channel. (eg. `#🌏｜general-chat`)",
-			);
+		const channel =
+			message.guild.channels.cache.get(args[0].slice(2, -1)) ||
+			message.guild.channels.cache.get(args[0]) ||
+			message.channel;
+		if (!channel) {
+			return message.channel.send("`❌` Channel not found, please provide a valid channel. (eg. `#🌏｜general-chat`)");
 		}
 
 		const embed = new MessageEmbed()
@@ -43,9 +44,7 @@ module.exports = {
 				`> **\\📅 Created: \`${moment(channel.createdTimestamp).format("MMMM Do YYYY, h:mm:ss")}\` | \`${Math.floor((Date.now() - channel.createdTimestamp) / 86400000)}\` day(s) ago**`,
 				"\u200b",
 			])
-			.addField("<:documents:773950876347793449> Channel Topic ❯", [
-				`> ${channel.topic ? channel.topic : "`None`"}`,
-			]);
+			.addField("<:documents:773950876347793449> Channel Topic ❯", [`> ${channel.topic ? channel.topic : "`None`"}`]);
 
 		return message.channel.send(embed);
 	},

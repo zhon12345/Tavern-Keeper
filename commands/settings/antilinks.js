@@ -14,47 +14,26 @@ module.exports = {
 			guildID: message.guild.id,
 		});
 
-		if(!args[0]) {
+		if (!args[0]) {
 			return message.channel.send(
 				`Anti Links for **${message.guild}** has been \`${settings.settings.antilinks ? "enabled" : "disabled"}\`.`,
 			);
-		}
-		else if (args[0].toLowerCase() === "off") {
-			if(settings.settings.antilinks === false) {
-				return message.channel.send(
-					"`❌` Anti Links has already been `disabled`.",
-				);
+		} else if (args[0].toLowerCase() === "off") {
+			if (settings.settings.antilinks === false) {
+				return message.channel.send("`❌` Anti Links has already been `disabled`.");
+			} else {
+				await Guild.updateOne({ guildID: message.guild.id }, { "settings.antilinks": false });
+				message.channel.send("`✔️` Anti Links is now `disabled`");
 			}
-			else {
-				await Guild.updateOne(
-					{ guildID: message.guild.id },
-					{ "settings.antilinks": false },
-				);
-				message.channel.send(
-					"`✔️` Anti Links is now `disabled`",
-				);
+		} else if (args[0].toLowerCase() === "on") {
+			if (settings.settings.antilinks === true) {
+				return message.channel.send("`❌` Anti Links has already been `enabled`.");
+			} else {
+				await Guild.updateOne({ guildID: message.guild.id }, { "settings.antilinks": true });
+				message.channel.send("`✔️` Anti Links is now `enabled`");
 			}
-		}
-		else if (args[0].toLowerCase() === "on") {
-			if(settings.settings.antilinks === true) {
-				return message.channel.send(
-					"`❌` Anti Links has already been `enabled`.",
-				);
-			}
-			else {
-				await Guild.updateOne(
-					{ guildID: message.guild.id },
-					{ "settings.antilinks": true },
-				);
-				message.channel.send(
-					"`✔️` Anti Links is now `enabled`",
-				);
-			}
-		}
-		else {
-			return message.channel.send(
-				"`❌` Valid argument not found, please provide valid arguments (eg. `on`).",
-			);
+		} else {
+			return message.channel.send("`❌` Valid argument not found, please provide valid arguments (eg. `on`).");
 		}
 	},
 };

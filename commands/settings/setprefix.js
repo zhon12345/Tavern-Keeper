@@ -14,30 +14,22 @@ module.exports = {
 			guildID: message.guild.id,
 		});
 
-		if(!args[0]) {
-			return message.channel.send(
-				`The prefix for **${message.guild}** is \`${settings ? settings.prefix : prefix}\`.`,
-			);
+		if (!args[0]) {
+			return message.channel.send(`The prefix for **${message.guild}** is \`${settings ? settings.prefix : prefix}\`.`);
 		}
 
-		if(args[0] === prefix) {
-			return message.channel.send(
-				"`⚠️` That prefix is already in use.",
-			);
+		if (args[0] === prefix) {
+			return message.channel.send("`⚠️` That prefix is already in use.");
 		}
 
-		if(args[0].length > 3) {
-			return message.channel.send(
-				"`❌` Prefixes are not allowed to be more than 3 characters",
-			);
+		if (args[0].length > 3) {
+			return message.channel.send("`❌` Prefixes are not allowed to be more than 3 characters");
 		}
 
 		await settings.updateOne({
 			prefix: args[0],
 		});
 
-		return message.channel.send(
-			`\`✔️\` My prefix for **${message.guild}** has been set to \`${args[0]}\``,
-		);
+		return message.channel.send(`\`✔️\` My prefix for **${message.guild}** has been set to \`${args[0]}\``);
 	},
 };

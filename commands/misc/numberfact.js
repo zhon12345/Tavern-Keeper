@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const fetch = require("node-fetch");
 const { MessageEmbed } = require("discord.js");
 
@@ -13,14 +12,12 @@ module.exports = {
 	botperms: [],
 	run: async (client, message, args) => {
 		const number = args[0];
-		if(isNaN(args[0])) {
-			return message.channel.send(
-				"`❌` Number not found, please provide a valid number. (eg. `1`)",
-			);
+		if (isNaN(args[0])) {
+			return message.channel.send("`❌` Number not found, please provide a valid number. (eg. `1`)");
 		}
 
 		try {
-			const text = await fetch(`http://numbersapi.com/${number}`).then(res => res.text());
+			const text = await fetch(`http://numbersapi.com/${number}`).then((res) => res.text());
 			const embed = new MessageEmbed()
 				.setColor("BLUE")
 				.setDescription(text)
@@ -29,12 +26,8 @@ module.exports = {
 				.setTimestamp();
 
 			message.channel.send(embed);
+		} catch {
+			return message.channel.send("`❌` An error occurred, please try again!");
 		}
-		catch (e) {
-			return message.channel.send(
-				"`❌` An error occurred, please try again!",
-			);
-		}
-
 	},
 };

@@ -12,10 +12,8 @@ module.exports = {
 	botperms: [],
 	run: async (client, message, args) => {
 		const cmd = client.commands.get(args[0]) || client.commands.get(client.aliases.get(args[0]));
-		if(!cmd) {
-			return message.channel.send(
-				"`❌` Command not found, please provide a valid command (eg. `help`).",
-			);
+		if (!cmd) {
+			return message.channel.send("`❌` Command not found, please provide a valid command (eg. `help`).");
 		}
 
 		const embed = new MessageEmbed()

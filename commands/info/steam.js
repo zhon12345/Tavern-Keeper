@@ -13,20 +13,18 @@ module.exports = {
 	run: async (client, message, args) => {
 		const query = args.slice().join(" ");
 		if (!query) {
-			return message.channel.send(
-				"`❌` Query not found, please provide a valid query (eg. `Terraria`).",
-			);
+			return message.channel.send("`❌` Query not found, please provide a valid query (eg. `Terraria`).");
 		}
 
 		const url1 = `https://store.steampowered.com/api/storesearch?cc=us&l=en&term=${encodeURIComponent(query)}`;
 
-		const id = await fetch(url1).then(res => res.json());
+		const id = await fetch(url1).then((res) => res.json());
 		if (!id.items[0]) {
 			return message.channel.send("`❌` Query not found, please provide a valid query (eg. `Terraria`).");
 		}
 
 		const url2 = `https://store.steampowered.com/api/appdetails?appids=${id.items[0].id}`;
-		const response = await fetch(url2).then(res => res.json());
+		const response = await fetch(url2).then((res) => res.json());
 		const data = response[id.items[0].id.toString()].data;
 
 		const platforms = [];
@@ -54,12 +52,8 @@ module.exports = {
 					`> **\\📢 Publishers: \`${data.publishers ? data.publishers.join(", ") : "Unknown"}\`**`,
 				]);
 			message.channel.send(embed);
-		}
-		catch (err) {
-			return message.channel.send(
-				"`❌` Query not found, please provide a valid query (eg. `Terraria`)",
-			);
+		} catch {
+			return message.channel.send("`❌` Query not found, please provide a valid query (eg. `Terraria`)");
 		}
 	},
-
 };

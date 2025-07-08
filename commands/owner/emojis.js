@@ -16,14 +16,24 @@ module.exports = {
 		function emote(id) {
 			return client.emojis.cache.get(id).toString();
 		}
-		guild.emojis.cache.forEach(emoji => {
-			emoji.animated ? emojisAnimated += emote(emoji.id) : emojis += emote(emoji.id);
+		guild.emojis.cache.forEach((emoji) => {
+			emoji.animated ? (emojisAnimated += emote(emoji.id)) : (emojis += emote(emoji.id));
 		});
 
 		const Embed = new MessageEmbed()
 			.setDescription(`**Total: [${guild.emojis.cache.size}]**`)
-			.addField(`Regular [${guild.emojis.cache.filter(emoji => !emoji.animated).size}]`, emojis ? emojis.length > 1024 ? `${emojis.slice(0, 1021)}...` : emojis : "`None`")
-			.addField(`Animated [${guild.emojis.cache.filter(emoji => emoji.animated).size}]`, emojisAnimated ? emojisAnimated.length > 1024 ? `${emojisAnimated.slice(0, 1021)}...` : emojisAnimated : "`None`")
+			.addField(
+				`Regular [${guild.emojis.cache.filter((emoji) => !emoji.animated).size}]`,
+				emojis ? (emojis.length > 1024 ? `${emojis.slice(0, 1021)}...` : emojis) : "`None`",
+			)
+			.addField(
+				`Animated [${guild.emojis.cache.filter((emoji) => emoji.animated).size}]`,
+				emojisAnimated
+					? emojisAnimated.length > 1024
+						? `${emojisAnimated.slice(0, 1021)}...`
+						: emojisAnimated
+					: "`None`",
+			)
 			.setColor("BLUE");
 		message.channel.send(Embed);
 	},

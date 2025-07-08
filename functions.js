@@ -6,7 +6,7 @@ module.exports = {
 
 	// hack.js & tableflip.js
 	delay(ms) {
-		return new Promise(resolve => setTimeout(resolve, ms));
+		return new Promise((resolve) => setTimeout(resolve, ms));
 	},
 
 	// avatar.js
@@ -29,7 +29,7 @@ module.exports = {
 		let shuffledWord = "";
 		word = word.split("");
 		while (word.length > 0) {
-			shuffledWord += word.splice(word.length * Math.random() << 0, 1);
+			shuffledWord += word.splice((word.length * Math.random()) << 0, 1);
 		}
 		return shuffledWord;
 	},
@@ -37,7 +37,9 @@ module.exports = {
 	// soccer.js
 	randomNoRepeat(array) {
 		let copy = array.slice(0);
-		if (copy.length < 1) { copy = array.slice(0); }
+		if (copy.length < 1) {
+			copy = array.slice(0);
+		}
 		const index = Math.floor(Math.random() * copy.length);
 		const item = copy[index];
 		copy.splice(index, 1);
@@ -46,22 +48,22 @@ module.exports = {
 
 	// message.js
 	isURL(string) {
-		const regexp = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
-		if(regexp.test(string)) {
+		const regexp =
+			/^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
+		if (regexp.test(string)) {
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	},
 
 	// message.js
 	isInvite(string) {
-		const regexp = /(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|club)|discordapp\.com\/invite|discord\.com\/invite)\/.+[a-z]/gi;
-		if(regexp.test(string)) {
+		const regexp =
+			/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|club)|discordapp\.com\/invite|discord\.com\/invite)\/.+[a-z]/gi;
+		if (regexp.test(string)) {
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	},
@@ -92,15 +94,15 @@ module.exports = {
 
 	// rps.js
 	getResult(me, clientChosen) {
-		if ((me === "🗻" && clientChosen === "✂") ||
-				(me === "📰" && clientChosen === "🗻") ||
-				(me === "✂" && clientChosen === "📰")) {
+		if (
+			(me === "🗻" && clientChosen === "✂") ||
+			(me === "📰" && clientChosen === "🗻") ||
+			(me === "✂" && clientChosen === "📰")
+		) {
 			return "You won!";
-		}
-		else if (me === clientChosen) {
+		} else if (me === clientChosen) {
 			return "It's a tie!";
-		}
-		else {
+		} else {
 			return "You lost!";
 		}
 	},
@@ -141,11 +143,9 @@ module.exports = {
 
 		if (days) {
 			return `\`${days}\` day, \`${hours}\` hours, \`${minutes}\` minutes`;
-		}
-		else if (hours) {
+		} else if (hours) {
 			return `\`${hours}\` hours, \`${minutes}\` minutes, \`${seconds}\` seconds`;
-		}
-		else if (minutes) {
+		} else if (minutes) {
 			return `\`${minutes}\` minutes, \`${seconds}\` seconds`;
 		}
 		return `\`${seconds}\` second(s)`;

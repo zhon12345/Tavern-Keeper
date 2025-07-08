@@ -9,12 +9,11 @@ module.exports = {
 	botperms: [],
 	run: async (client, message, args) => {
 		const guild = client.guilds.cache.get(args[0]);
-		if(!guild) {
+		if (!guild) {
 			return message.channel.send(
 				"`❌` Guild ID not found, please provide a valid guild ID. (eg. `450846546867519503`)",
 			);
-		}
-		else {
+		} else {
 			guild.leave();
 			await message.channel.send(`\`✔️\` Successfully left ${guild.name} (ID:${guild.id})`);
 		}

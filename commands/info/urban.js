@@ -11,30 +11,23 @@ module.exports = {
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args) => {
-		if(!message.channel.nsfw) {
-			return message.channel.send(
-				"`❌` This command can only be used in a nsfw channel.",
-			);
+		if (!message.channel.nsfw) {
+			return message.channel.send("`❌` This command can only be used in a nsfw channel.");
 		}
 		const query = args.slice().join(" ");
-		if(!query) {
-			return message.channel.send(
-				"`❌` Query not found, please provide a valid query (eg. `Friday`).",
-			);
+		if (!query) {
+			return message.channel.send("`❌` Query not found, please provide a valid query (eg. `Friday`).");
 		}
 		const url = "https://api.urbandictionary.com/v0/define?term=" + encodeURIComponent(query);
 
 		let definition;
 		try {
-			definition = await fetch(url).then(res => res.json());
-		}
-		catch (e) {
-			return message.channel.send(
-				"`❌` An error occurred, please try again!",
-			);
+			definition = await fetch(url).then((res) => res.json());
+		} catch {
+			return message.channel.send("`❌` An error occurred, please try again!");
 		}
 
-		try{
+		try {
 			const meaning = definition.list[0];
 			const embed = new MessageEmbed()
 				.setColor("BLUE")
@@ -48,11 +41,8 @@ module.exports = {
 				);
 
 			message.channel.send(embed);
-		}
-		catch (e) {
-			return message.channel.send(
-				"`❌` Query not found, please provide a valid query (eg. `Friday`).",
-			);
+		} catch {
+			return message.channel.send("`❌` Query not found, please provide a valid query (eg. `Friday`).");
 		}
 	},
 };

@@ -23,18 +23,20 @@ module.exports = {
 			return message.channel.send(
 				`The current slowmode for ${message.channel} is ${parseDur(channel.rateLimitPerUser * 1000)}`,
 			);
-		}
-		else if (args[0].toLowerCase() === "off") {
+		} else if (args[0].toLowerCase() === "off") {
 			channel.setRateLimitPerUser(0);
 			return message.channel.send(`\`✔️\` Slowmode for <#${channel.id}> has been deactivated.`);
-		}
-		else{
-			if (!time) return message.channel.send("`❌` Time format not found, please include a valid time format. (eg. `1s`)");
+		} else {
+			if (!time) {
+				return message.channel.send("`❌` Time format not found, please include a valid time format. (eg. `1s`)");
+			}
 
 			const convert = ms(time);
 			const toSecond = Math.floor(convert / 1000);
 
-			if (!toSecond) return message.channel.send("`❌` Time format not found, please include a valid time format. (eg. `1s`)");
+			if (!toSecond) {
+				return message.channel.send("`❌` Time format not found, please include a valid time format. (eg. `1s`)");
+			}
 
 			if (toSecond > 21600) return message.channel.send("`❌` Timer should be less than or equal to 6 hours.");
 			else if (toSecond < 1) return message.channel.send("`❌` Timer should be more than or equal to 1 second.");

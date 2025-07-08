@@ -13,23 +13,20 @@ module.exports = {
 	botperms: ["ATTACH_FILES"],
 	run: async (client, message, args) => {
 		if (!args[0]) {
-			return message.channel.send(
-				"`❌` Text not found, please provide valid text. (eg. `Hello`)",
-			);
+			return message.channel.send("`❌` Text not found, please provide valid text. (eg. `Hello`)");
 		}
 
 		const url = `https://api.alexflipnote.dev/supreme?text=${encodeURIComponent(args.join(" "))}`;
 
 		let response;
 		try {
-			response = await fetch(url, { headers: {
-				"Authorization" : token,
-			} }).then(res => res.buffer());
-		}
-		catch (e) {
-			return message.channel.send(
-				"`❌` An error occurred, please try again!",
-			);
+			response = await fetch(url, {
+				headers: {
+					Authorization: token,
+				},
+			}).then((res) => res.buffer());
+		} catch {
+			return message.channel.send("`❌` An error occurred, please try again!");
 		}
 
 		const attachment = new MessageAttachment(response, "supreme.png");

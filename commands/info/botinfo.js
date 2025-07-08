@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const { MessageEmbed, version: djsversion } = require("discord.js");
 const { formatBytes, parseDur } = require("../../functions.js");
 const cpuStat = require("cpu-stat");
@@ -25,8 +24,8 @@ module.exports = {
 	disabled: false,
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
-	run: async (client, message, args) => {
-		cpuStat.usagePercent(function(error, percent, seconds) {
+	run: async (client, message) => {
+		cpuStat.usagePercent(() => {
 			const embed = new MessageEmbed()
 				.setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 512 }))
 				.setColor(message.guild.members.cache.get(client.user.id).displayHexColor)
@@ -50,7 +49,7 @@ module.exports = {
 					`> **<:djs:773599989833400371> Discord.js: \`v${djsversion}\`**`,
 					`> **\\🖥 Platform: \`${formatOS[os.platform]}\`**`,
 					`> **\\📊 Memory: \`${formatBytes(process.memoryUsage().heapUsed)} / ${formatBytes(process.memoryUsage().heapTotal)}\`**`,
-					`> **\\💻 CPU: \`${os.cpus()[0].model.trim().split("CPU")[0]}${os.cpus().length} Cores ${os.cpus()[0].model.trim().split("CPU ")[1]}\`**`,
+					`> **\\💻 CPU: \`${os.cpus()[0].model.trim().split("CPU")[0]} ${os.cpus().length} Cores ${os.cpus()[0].model.trim().split("CPU ")[1]}\`**`,
 				]);
 			message.channel.send(embed);
 		});

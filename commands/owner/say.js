@@ -9,10 +9,8 @@ module.exports = {
 	botperms: [],
 	run: async (client, message, args) => {
 		const text = args.slice().join(" ");
-		if(!text) {
-			return message.channel.send(
-				"`❌` Text not found, please provide valid text. (eg. `Hello`)",
-			);
+		if (!text) {
+			return message.channel.send("`❌` Text not found, please provide valid text. (eg. `Hello`)");
 		}
 		message.channel.send(text);
 	},

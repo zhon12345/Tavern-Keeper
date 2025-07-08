@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 module.exports = {
 	name: "shutdown",
 	category: "Owner",
@@ -8,15 +7,11 @@ module.exports = {
 	disabled: false,
 	userperms: ["BOT_OWNER"],
 	botperms: [],
-	run: async (client, message, args) => {
+	run: async (client, message) => {
 		try {
-			message.channel.send("⚙ Shutting down...")
-				.then(() => process.exit());
-		}
-		catch (e) {
-			return message.channel.send(
-				"`❌` An error occurred, please try again!",
-			);
+			message.channel.send("⚙ Shutting down...").then(() => process.exit());
+		} catch {
+			return message.channel.send("`❌` An error occurred, please try again!");
 		}
 	},
 };

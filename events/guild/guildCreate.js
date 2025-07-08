@@ -7,7 +7,7 @@ module.exports = async (client, guild) => {
 		guildID: guild.id,
 		guildName: guild.name,
 		prefix: process.env.BOT_PREFIX,
-		settings:{
+		settings: {
 			antiprofanity: false,
 			antilinks: false,
 			muterole: null,

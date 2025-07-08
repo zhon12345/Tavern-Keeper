@@ -22,17 +22,37 @@ module.exports = {
 			5: "💜",
 		};
 
-		const member1 = message.mentions.members.size === 2 ? message.mentions.members.first() : message.guild.members.cache.get(args.join(" ").split(" | ")[0]) || message.guild.members.cache.find(x => x.user.username === args.join(" ").split(" | ")[0] || x.user.username === args.join(" ").split(" | ")[0]);
+		const member1 =
+			message.mentions.members.size === 2
+				? message.mentions.members.first()
+				: message.guild.members.cache.get(args.join(" ").split(" | ")[0]) ||
+					message.guild.members.cache.find(
+						(x) =>
+							x.user.username === args.join(" ").split(" | ")[0] || x.user.username === args.join(" ").split(" | ")[0],
+					);
 		if (!member1) {
-			return message.channel.send("`❌` User not found, please provide valid 1st user. (eg. `@zhon12345#8585 | @zhon12345#8585`)");
+			return message.channel.send(
+				"`❌` User not found, please provide valid 1st user. (eg. `@zhon12345#8585 | @zhon12345#8585`)",
+			);
 		}
 
-		const member2 = message.mentions.members.size === 2 && args[1] === "|" ? message.mentions.members.last() : message.guild.members.cache.get(args.join(" ").split(" | ")[1]) || message.guild.members.cache.find(x => x.user.username === args.join(" ").split(" | ")[1] || x.user.username === args.join(" ").split(" | ")[1]);
+		const member2 =
+			message.mentions.members.size === 2 && args[1] === "|"
+				? message.mentions.members.last()
+				: message.guild.members.cache.get(args.join(" ").split(" | ")[1]) ||
+					message.guild.members.cache.find(
+						(x) =>
+							x.user.username === args.join(" ").split(" | ")[1] || x.user.username === args.join(" ").split(" | ")[1],
+					);
 		if (!member2) {
-			return message.channel.send("`❌` User not found, please provide valid 2nd user. (eg. `@zhon12345#8585 | @zhon12345#8585`)");
+			return message.channel.send(
+				"`❌` User not found, please provide valid 2nd user. (eg. `@zhon12345#8585 | @zhon12345#8585`)",
+			);
 		}
 
-		const shipName = member1.user.username.substr(0, member1.user.username.length * 0.5) + member2.user.username.substr(member2.user.username.length * 0.5);
+		const shipName =
+			member1.user.username.substr(0, member1.user.username.length * 0.5) +
+			member2.user.username.substr(member2.user.username.length * 0.5);
 
 		if (shipName === client.users.cache.get(BOT_OWNER).username) {
 			rating = "100";

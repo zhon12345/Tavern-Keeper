@@ -11,31 +11,22 @@ module.exports = {
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args) => {
-		if(!args[0]) {
-			return message.channel.send(
-				"`❌` What do you want to do? Encode or decode.",
-			);
-		}
-		else if (args[0].toLowerCase() === "encode") {
+		if (!args[0]) {
+			return message.channel.send("`❌` What do you want to do? Encode or decode.");
+		} else if (args[0].toLowerCase() === "encode") {
 			const text = args.slice(1).join(" ");
 			if (!text) {
-				return message.channel.send(
-					"`❌` Text not found, please provide valid text (eg. `hi`). ",
-				);
-			}
-			else if(text.length >= 1024) {
-				return message.channel.send(
-					"`❌` Please provide text that has less than 1024 words.",
-				);
+				return message.channel.send("`❌` Text not found, please provide valid text (eg. `hi`). ");
+			} else if (text.length >= 1024) {
+				return message.channel.send("`❌` Please provide text that has less than 1024 words.");
 			}
 
 			const url = `http://some-random-api.ml/base64?encode=${encodeURIComponent(text)}`;
 
 			let response;
 			try {
-				response = await fetch(url).then(res => res.json());
-			}
-			catch (e) {
+				response = await fetch(url).then((res) => res.json());
+			} catch {
 				return message.channel.send("`❌` An error occurred, please try again!");
 			}
 
@@ -48,27 +39,20 @@ module.exports = {
 				.setTimestamp();
 
 			message.channel.send(embed);
-		}
-		else if (args[0].toLowerCase() === "decode") {
+		} else if (args[0].toLowerCase() === "decode") {
 			const text = args.slice(1).join(" ");
 			if (!text) {
-				return message.channel.send(
-					"`❌` Base64 string not found, please provide valid base64 string (eg. `aGk=`)",
-				);
-			}
-			else if(text.length >= 1024) {
-				return message.channel.send(
-					"`❌` Please provide text that has less than 1024 words.",
-				);
+				return message.channel.send("`❌` Base64 string not found, please provide valid base64 string (eg. `aGk=`)");
+			} else if (text.length >= 1024) {
+				return message.channel.send("`❌` Please provide text that has less than 1024 words.");
 			}
 
 			const url = `http://some-random-api.ml/base64?decode=${encodeURIComponent(text)}`;
 
 			let response;
 			try {
-				response = await fetch(url).then(res => res.json());
-			}
-			catch (e) {
+				response = await fetch(url).then((res) => res.json());
+			} catch {
 				return message.channel.send("`❌` An error occurred, please try again!");
 			}
 

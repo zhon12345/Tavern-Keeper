@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 module.exports = {
 	name: "lenny",
 	category: "Fun",
@@ -8,7 +7,7 @@ module.exports = {
 	disabled: false,
 	userperms: [],
 	botperms: [],
-	run: async (client, message, args) => {
+	run: async (client, message) => {
 		message.channel.send("( ͡° ͜ʖ ͡°)");
 	},
 };

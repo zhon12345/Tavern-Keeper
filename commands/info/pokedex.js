@@ -13,29 +13,21 @@ module.exports = {
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const pokemon = args.slice().join(" ").toLowerCase();
-		if(!pokemon) {
-			return message.channel.send(
-				"`❌` Pokémon not found, please provide a valid Pokémon (eg. `Pikachu`).",
-			);
+		if (!pokemon) {
+			return message.channel.send("`❌` Pokémon not found, please provide a valid Pokémon (eg. `Pikachu`).");
 		}
 		const url = "https://some-random-api.ml/pokedex?pokemon=" + pokemon;
 		const url2 = "https://pokeapi.co/api/v2/pokemon/" + pokemon;
 
 		let response, resp;
 		try {
-			response = await fetch(url).then(res => res.json());
-			resp = await fetch(url2).then(res => res.json());
-		}
-		catch (e) {
-			if(response.error.includes("could not find")) {
-				return message.channel.send(
-					"`❌` Pokémon not found, please provide a valid Pokémon (eg. `Pikachu`).",
-				);
-			}
-			else {
-				return message.channel.send(
-					"`❌` An error occurred, please try again!",
-				);
+			response = await fetch(url).then((res) => res.json());
+			resp = await fetch(url2).then((res) => res.json());
+		} catch {
+			if (response.error.includes("could not find")) {
+				return message.channel.send("`❌` Pokémon not found, please provide a valid Pokémon (eg. `Pikachu`).");
+			} else {
+				return message.channel.send("`❌` An error occurred, please try again!");
 			}
 		}
 		const embed = new MessageEmbed()

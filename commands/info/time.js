@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const { MessageEmbed } = require("discord.js");
 const moment = require("moment");
 
@@ -11,7 +10,7 @@ module.exports = {
 	disabled: false,
 	userperms: [],
 	botperms: [],
-	run: async (client, message, args) => {
+	run: async (client, message) => {
 		const pEmbed = new MessageEmbed()
 			.setColor("BLUE")
 			.addField("Today is", `${moment(Date.now()).format("dddd, MMMM Do YYYY, h:mm:ss a")}`);

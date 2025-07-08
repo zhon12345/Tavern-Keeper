@@ -14,24 +14,18 @@ module.exports = {
 	run: async (client, message, args) => {
 		const text = args.slice().join(" ");
 		if (!message.channel.nsfw) {
-			return message.channel.send(
-				"`❌` This command can only be used in a nsfw channel.",
-			);
+			return message.channel.send("`❌` This command can only be used in a nsfw channel.");
 		}
 		if (!text) {
-			return message.channel.send(
-				"`❌` Text not found, please provide valid text. (eg. `Hello`)",
-			);
+			return message.channel.send("`❌` Text not found, please provide valid text. (eg. `Hello`)");
 		}
-
 
 		const url = `http://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${encodeURIComponent(text)}`;
 
 		let response;
 		try {
-			response = await fetch(url).then(res => res.json());
-		}
-		catch (e) {
+			response = await fetch(url).then((res) => res.json());
+		} catch {
 			return message.channel.send("`❌` An error occurred, please try again!");
 		}
 

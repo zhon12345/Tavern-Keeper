@@ -14,24 +14,19 @@ module.exports = {
 	run: async (client, message, args) => {
 		const name = args.join(" ");
 		if (!name) {
-			return message.channel.send(
-				"`❌` User not found, please provide a valid user (eg. `zhon12345`).",
-			);
+			return message.channel.send("`❌` User not found, please provide a valid user (eg. `zhon12345`).");
 		}
 
 		const url = `https://api.github.com/users/${name}`;
 
 		let response;
 		try {
-			response = await fetch(url).then(res => res.json());
-		}
-		catch (e) {
-			return message.channel.send(
-				"`❌` An error occurred, please try again!",
-			);
+			response = await fetch(url).then((res) => res.json());
+		} catch {
+			return message.channel.send("`❌` An error occurred, please try again!");
 		}
 
-		try{
+		try {
 			const embed = new MessageEmbed()
 				.setColor("BLUE")
 				.setTitle(`${response.login}'s GitHub Profile`)
@@ -53,11 +48,8 @@ module.exports = {
 					`> **\\📅 Created: \`${moment(response.created_at).format("MMMM Do YYYY, h:mm:ss")}\` | \`${Math.floor((Date.now() - Date.parse(response.created_at)) / 86400000)}\` day(s) ago**`,
 				]);
 			message.channel.send(embed);
-		}
-		catch (err) {
-			return message.channel.send(
-				"`❌` User not found, please provide a valid user (eg. `zhon12345`).",
-			);
+		} catch {
+			return message.channel.send("`❌` User not found, please provide a valid user (eg. `zhon12345`).");
 		}
 	},
 };

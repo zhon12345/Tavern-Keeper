@@ -13,18 +13,14 @@ module.exports = {
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
 		const code = args[0];
-		if(!code || isInvite(code)) {
-			return message.channel.send(
-				"`❌` Invite code not found, please provide a valid invite code (eg. `QUTBrY4r`).",
-			);
+		if (!code || isInvite(code)) {
+			return message.channel.send("`❌` Invite code not found, please provide a valid invite code (eg. `QUTBrY4r`).");
 		}
 
 		const invites = await message.guild.fetchInvites();
-		const invite = invites.find(i => i.code === code);
-		if(!invite) {
-			return message.channel.send(
-				"`❌` Invite code not found, please provide a valid invite code (eg. `QUTBrY4r`).",
-			);
+		const invite = invites.find((i) => i.code === code);
+		if (!invite) {
+			return message.channel.send("`❌` Invite code not found, please provide a valid invite code (eg. `QUTBrY4r`).");
 		}
 
 		const embed = new MessageEmbed()
@@ -47,6 +43,5 @@ module.exports = {
 				`> **\\📅 Expires: ${invite.expiresTimestamp ? `\`${moment(invite.expiresTimestamp).format("MMMM Do YYYY, h:mm:ss")}\` | \`${Math.floor((invite.expiresTimestamp - Date.now()) / 86400000)}\` day(s) later` : "`Never`"}**`,
 			]);
 		message.channel.send(embed);
-
 	},
 };

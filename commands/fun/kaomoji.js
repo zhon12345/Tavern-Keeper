@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const kaomoji = require("../../assets/json/kaomoji.json");
 
 module.exports = {
@@ -10,7 +9,7 @@ module.exports = {
 	disabled: false,
 	userperms: [],
 	botperms: [],
-	run: async (client, message, args) => {
+	run: async (client, message) => {
 		const face = kaomoji[Math.floor(Math.random() * kaomoji.length)];
 		message.channel.send(face);
 	},

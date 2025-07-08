@@ -13,18 +13,15 @@ module.exports = {
 	run: async (client, message, args) => {
 		const text = args.slice().join(" ");
 		if (!text) {
-			return message.channel.send(
-				"`❌` Text not found, please provide valid text. (eg. `Hello`)",
-			);
+			return message.channel.send("`❌` Text not found, please provide valid text. (eg. `Hello`)");
 		}
 
 		const url = `https://nekobot.xyz/api/imagegen?type=clyde&text=${text}`;
 
 		let response;
 		try {
-			response = await fetch(url).then(res => res.json());
-		}
-		catch (e) {
+			response = await fetch(url).then((res) => res.json());
+		} catch {
 			return message.channel.send("`❌` An error occurred, please try again!");
 		}
 		const attachment = new MessageAttachment(response.message, "clyde.png");

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const { MessageEmbed } = require("discord.js");
 const h2p = require("html2plaintext");
 const fetch = require("node-fetch");
@@ -12,30 +11,23 @@ module.exports = {
 	disabled: false,
 	userperms: [],
 	botperms: [],
-	run: async (client, message, args) => {
-		const subreddits = [
-			"Snek",
-			"ballpython",
-			"Pythons",
-		];
+	run: async (client, message) => {
+		const subreddits = ["Snek", "ballpython", "Pythons"];
 
 		const sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
 
-		const url = [
-			`https://www.reddit.com/r/${sub}/hot.json`,
-		];
+		const url = [`https://www.reddit.com/r/${sub}/hot.json`];
 
-		let response;
 		try {
-			response = await fetch(url)
-				.then(res => res.json())
-				.then(json => json.data.children.map(v => v.data))
-				.then(post => {
+			await fetch(url)
+				.then((res) => res.json())
+				.then((json) => json.data.children.map((v) => v.data))
+				.then((post) => {
 					let random = post[Math.floor(Math.random() * post.length) + 1];
 					while (!random || !random.url.match(/(jpg|png|gif)$/)) {
 						random = post[Math.floor(Math.random() * post.length) + 1];
 					}
-					if(random.url.endsWith("gifv")) {
+					if (random.url.endsWith("gifv")) {
 						random.url.replace("gifv", "gif");
 					}
 					const embed = new MessageEmbed()
@@ -47,11 +39,8 @@ module.exports = {
 
 					message.channel.send(embed);
 				});
-		}
-		catch (e) {
-			return message.channel.send(
-				"`❌` An error occurred, please try again!",
-			);
+		} catch {
+			return message.channel.send("`❌` An error occurred, please try again!");
 		}
 	},
 };

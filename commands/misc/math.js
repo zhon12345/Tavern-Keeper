@@ -12,19 +12,14 @@ module.exports = {
 	botperms: [],
 	run: async (client, message, args) => {
 		if (!args.join(" ") || args.join(" ").includes("Infinity")) {
-			return message.channel.send(
-				"`❌` Calculation not found, please provide a valid calculation (eg. 1 + 1).",
-			);
+			return message.channel.send("`❌` Calculation not found, please provide a valid calculation (eg. 1 + 1).");
 		}
 
 		let resp;
 		try {
 			resp = math.evaluate(args.join(" "));
-		}
-		catch (e) {
-			return message.channel.send(
-				"`❌` Calculation not found, please provide a valid calculation (eg. 1 + 1).",
-			);
+		} catch {
+			return message.channel.send("`❌` Calculation not found, please provide a valid calculation (eg. 1 + 1).");
 		}
 
 		const embed = new MessageEmbed()

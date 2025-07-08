@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const { MessageEmbed } = require("discord.js");
 const moment = require("moment");
 
@@ -11,7 +10,7 @@ module.exports = {
 	disabled: false,
 	userperms: [],
 	botperms: [],
-	run: async (client, message, args) => {
+	run: async (client, message) => {
 		const member = message.guild.members.cache
 			.filter((m) => !m.user.bot)
 			.sort((a, b) => a.user.createdAt - b.user.createdAt)
@@ -26,8 +25,14 @@ module.exports = {
 				`**${member.user.username}**#${member.user.discriminator} (ID: ${member.user.id}) is the oldest user in **${message.guild.name}**!`,
 			])
 			.addFields(
-				{ name: "Created on:", value: `${moment(member.user.createdTimestamp).format("MMMM Do YYYY, h:mm:ss")} | ${Math.floor((Date.now() - member.user.createdTimestamp) / 86400000)} day(s) ago` },
-				{ name: "Joined on:", value: `${moment(member.joinedAt).format("MMMM Do YYYY, h:mm:ss")} | ${Math.floor((Date.now() - member.joinedAt) / 86400000)} day(s) ago` },
+				{
+					name: "Created on:",
+					value: `${moment(member.user.createdTimestamp).format("MMMM Do YYYY, h:mm:ss")} | ${Math.floor((Date.now() - member.user.createdTimestamp) / 86400000)} day(s) ago`,
+				},
+				{
+					name: "Joined on:",
+					value: `${moment(member.joinedAt).format("MMMM Do YYYY, h:mm:ss")} | ${Math.floor((Date.now() - member.joinedAt) / 86400000)} day(s) ago`,
+				},
 			);
 		message.channel.send(Embed);
 	},

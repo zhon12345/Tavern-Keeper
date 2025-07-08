@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const fetch = require("node-fetch");
 const { MessageEmbed } = require("discord.js");
 const token = process.env.UNSPLASH_CLIENT_TOKEN;
@@ -12,17 +11,14 @@ module.exports = {
 	disabled: false,
 	userperms: [],
 	botperms: [],
-	run: async (client, message, args) => {
+	run: async (client, message) => {
 		const url = "https://api.unsplash.com/photos/random?client_id=" + token;
 
 		let response;
 		try {
-			response = await fetch(url).then(res => res.json());
-		}
-		catch (e) {
-			return message.channel.send(
-				"`❌` An error occurred, please try again!",
-			);
+			response = await fetch(url).then((res) => res.json());
+		} catch {
+			return message.channel.send("`❌` An error occurred, please try again!");
 		}
 		const embed = new MessageEmbed()
 			.setColor("BLUE")

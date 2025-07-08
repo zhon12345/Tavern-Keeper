@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const fetch = require("node-fetch");
 const { MessageEmbed } = require("discord.js");
 const { capitalizeFirstLetter } = require("../../functions");
@@ -12,14 +11,13 @@ module.exports = {
 	disabled: false,
 	userperms: [],
 	botperms: [],
-	run: async (client, message, args) => {
+	run: async (client, message) => {
 		const url = "https://www.boredapi.com/api/activity/";
 
 		let response;
 		try {
-			response = await fetch(url).then(res => res.json());
-		}
-		catch (e) {
+			response = await fetch(url).then((res) => res.json());
+		} catch {
 			return message.channel.send("`❌` An error occurred, please try again!");
 		}
 

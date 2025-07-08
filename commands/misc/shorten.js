@@ -14,24 +14,17 @@ module.exports = {
 	run: async (client, message, args) => {
 		const link = args.slice().join(" ");
 		if (!link) {
-			return message.channel.send(
-				"`❌` Link not found, please provide a valid link (eg. `https://google.com`).",
-			);
-		}
-		else if(!isURL(link)) {
-			return message.channel.send(
-				"`❌` Link not found, please provide a valid link (eg. `https://google.com`).",
-			);
+			return message.channel.send("`❌` Link not found, please provide a valid link (eg. `https://google.com`).");
+		} else if (!isURL(link)) {
+			return message.channel.send("`❌` Link not found, please provide a valid link (eg. `https://google.com`).");
 		}
 
 		const url = `https://is.gd/create.php?format=simple&url=${encodeURI(link)}`;
 
 		let response;
 		try {
-			response = await fetch(url)
-				.then(res => res.text());
-		}
-		catch (e) {
+			response = await fetch(url).then((res) => res.text());
+		} catch {
 			return message.channel.send("`❌` An error occurred, please try again!");
 		}
 

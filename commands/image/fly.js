@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 module.exports = {
 	name: "fly",
 	category: "Image",
@@ -8,7 +7,7 @@ module.exports = {
 	disabled: false,
 	userperms: [],
 	botperms: ["ATTACH_FILES"],
-	run: async (client, message, args) => {
+	run: async (client, message) => {
 		message.channel.send({ files: ["./assets/image/fly.png"] }).then(message.delete());
 	},
 };

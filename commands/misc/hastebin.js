@@ -12,25 +12,25 @@ module.exports = {
 	run: async (client, message, args) => {
 		const text = args.slice().join(" ");
 		if (!text) {
-			return message.channel.send(
-				"`❌` Text not found, please provide valid text. (eg. `Hello`)",
-			);
+			return message.channel.send("`❌` Text not found, please provide valid text. (eg. `Hello`)");
 		}
 
 		let response;
 		try {
-			response = await sourcebin.create([
+			response = await sourcebin.create(
+				[
+					{
+						name: " ",
+						content: text,
+						languageId: "text",
+					},
+				],
 				{
-					name: " ",
-					content: text,
-					languageId: "text",
+					title: `${message.author.tag}'s sourcebin`,
+					description: " ",
 				},
-			], {
-				title: `${message.author.tag}'s sourcebin`,
-				description: " ",
-			});
-		}
-		catch (e) {
+			);
+		} catch {
 			return message.channel.send("`❌` An error occurred, please try again!");
 		}
 

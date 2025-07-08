@@ -32,8 +32,14 @@ module.exports = {
 	userperms: [],
 	botperms: ["USE_EXTERNAL_EMOJIS"],
 	run: async (client, message, args) => {
-		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(" ") || x.user.username === args[0]) || message.member;
-		const roles = member.roles.cache.map(role => role.name.toString());
+		const member =
+			message.mentions.members.first() ||
+			message.guild.members.cache.get(args[0]) ||
+			message.guild.members.cache.find(
+				(x) => x.user.username === args.slice(0).join(" ") || x.user.username === args[0],
+			) ||
+			message.member;
+		const roles = member.roles.cache.map((role) => role.name.toString());
 		const embed = new MessageEmbed()
 			.setThumbnail(member.user.displayAvatarURL({ dynamic: true, size: 512 }))
 			.setColor(member.displayHexColor || "BLUE")
@@ -44,7 +50,14 @@ module.exports = {
 				`> **<:card:773965449402646549> Username: \`${member.user.tag}\`**`,
 				`> **\\📇 User ID: \`${member.id}\`**`,
 				`> **\\👦 Avatar: [\`Click here!\`](${member.user.displayAvatarURL({ dynamic: true })})**`,
-				`> **\\📛 Badges: ${member.user.flags.toArray().length ? member.user.flags.toArray().map(flag => flags[flag]).join("") : "None"}**`,
+				`> **\\📛 Badges: ${
+					member.user.flags.toArray().length
+						? member.user.flags
+								.toArray()
+								.map((flag) => flags[flag])
+								.join("")
+						: "None"
+				}**`,
 				`> **<:online:745651877382717560> Status: ${Presence[member.user.presence.status]}**`,
 				`> **\\📅 Created: \`${moment(member.user.createdTimestamp).format("MMMM Do YYYY, h:mm:ss")}\` | \`${Math.floor((Date.now() - member.user.createdTimestamp) / 86400000)}\` day(s) ago**`,
 				"\u200b",

@@ -11,21 +11,20 @@ module.exports = {
 	botperms: [],
 	run: async (client, message, args) => {
 		const text = args.slice().join(" ");
-		if(!args[0]) {
-			return message.channel.send(
-				"`❌` Text not found, please provide valid text. (eg. `Hello`)",
-			);
+		if (!args[0]) {
+			return message.channel.send("`❌` Text not found, please provide valid text. (eg. `Hello`)");
 		}
 
-		if(text.length > 1024) {
-			return message.channel.send(
-				"`❌` You have exceeded the 1024 characters limit.",
-			);
+		if (text.length > 1024) {
+			return message.channel.send("`❌` You have exceeded the 1024 characters limit.");
 		}
 
-		const vapour = text.split("").map(letter => {
-			return dictionary[letter] || letter;
-		}).join("");
+		const vapour = text
+			.split("")
+			.map((letter) => {
+				return dictionary[letter] || letter;
+			})
+			.join("");
 
 		message.channel.send(vapour);
 	},

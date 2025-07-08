@@ -11,35 +11,32 @@ module.exports = {
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args) => {
-		const package = args[0];
-		if(!package) {
-			return message.channel.send(
-				"`❌` Package not found, please provide a valid package  (eg. `moment`).",
-			);
+		const input = args[0];
+		if (!input) {
+			return message.channel.send("`❌` Package not found, please provide a valid package  (eg. `moment`).");
 		}
 
 		let response;
 		try {
-			response = await fetch(`https://api.npms.io/v2/search?q=${args[0]}`).then(res => res.json());
-		}
-		catch (e) {
-			return message.channel.send(
-				"`❌` An error occurred, please try again!",
-			);
+			response = await fetch(`https://api.npms.io/v2/search?q=${args[0]}`).then((res) => res.json());
+		} catch {
+			return message.channel.send("`❌` An error occurred, please try again!");
 		}
 
-		try{
+		try {
 			const pkg = response.results[0].package;
 			const embed = new MessageEmbed()
 				.setTitle(pkg.name)
-				.setThumbnail("https://images-ext-2.discordapp.net/external/ouvh4fn7V9pphARfI-8nQdcfnYgjHZdXWlEg2sNowyw/https/cdn.auth0.com/blog/npm-package-development/logo.png")
+				.setThumbnail(
+					"https://images-ext-2.discordapp.net/external/ouvh4fn7V9pphARfI-8nQdcfnYgjHZdXWlEg2sNowyw/https/cdn.auth0.com/blog/npm-package-development/logo.png",
+				)
 				.setURL(pkg.links.npm)
 				.setDescription(pkg.description)
 				.addFields(
 					{ name: "Author", value: pkg.author ? pkg.author.name : "None" },
 					{ name: "Version", value: pkg.version },
 					{ name: "Repository", value: pkg.links.repository ? pkg.links.repository : "None" },
-					{ name: "Maintainers", value: pkg.maintainers ? pkg.maintainers.map(e => e.username).join(", ") : "None" },
+					{ name: "Maintainers", value: pkg.maintainers ? pkg.maintainers.map((e) => e.username).join(", ") : "None" },
 					{ name: "Keywords", value: pkg.keywords ? pkg.keywords.join(", ") : "None" },
 				)
 				.setColor("BLUE")
@@ -47,11 +44,8 @@ module.exports = {
 				.setTimestamp();
 
 			message.channel.send(embed);
-		}
-		catch (e) {
-			return message.channel.send(
-				"`❌` Package not found, please provide a valid package (eg. `moment`).",
-			);
+		} catch {
+			return message.channel.send("`❌` Package not found, please provide a valid package (eg. `moment`).");
 		}
 	},
 };

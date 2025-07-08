@@ -11,31 +11,23 @@ module.exports = {
 	botperms: [],
 	run: async (client, message, args) => {
 		const query = args.slice().join(" ");
-		if(!query) {
-			return message.channel.send(
-				"`❌` Query not found, please provide a valid query (eg. `message`).",
-			);
+		if (!query) {
+			return message.channel.send("`❌` Query not found, please provide a valid query (eg. `message`).");
 		}
 		const url = `https://djsdocs.sorta.moe/v2/embed?src=stable&q=${encodeURIComponent(query)}`;
 
 		try {
 			await fetch(url)
-				.then(res => res.json())
-				.then(embed => {
-					if(embed && !embed.error) {
+				.then((res) => res.json())
+				.then((embed) => {
+					if (embed && !embed.error) {
 						message.channel.send({ embed });
-					}
-					else {
-						return message.channel.send(
-							"`❌` Query not found, please provide a valid query (eg. `message`).",
-						);
+					} else {
+						return message.channel.send("`❌` Query not found, please provide a valid query (eg. `message`).");
 					}
 				});
-		}
-		catch (e) {
-			return message.channel.send(
-				"`❌` An error occurred, please try again!",
-			);
+		} catch {
+			return message.channel.send("`❌` An error occurred, please try again!");
 		}
 	},
 };

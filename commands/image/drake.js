@@ -24,14 +24,13 @@ module.exports = {
 
 		let response;
 		try {
-			response = await fetch(url, { headers: {
-				"Authorization" : token,
-			} }).then(res => res.buffer());
-		}
-		catch (e) {
-			return message.channel.send(
-				"`❌` An error occurred, please try again!",
-			);
+			response = await fetch(url, {
+				headers: {
+					Authorization: token,
+				},
+			}).then((res) => res.buffer());
+		} catch {
+			return message.channel.send("`❌` An error occurred, please try again!");
 		}
 
 		const attachment = new MessageAttachment(response, "drake.png");

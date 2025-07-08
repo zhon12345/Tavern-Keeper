@@ -27,11 +27,14 @@ module.exports = {
 	run: async (client, message, args) => {
 		const color = colors[Math.floor(Math.random() * colors.length)];
 		const isimpostor = ["true", "false"][Math.floor(Math.random() * 2)];
-		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(" ") || x.user.username === args[0]);
-		if(!member) {
-			return message.channel.send(
-				"`❌` User not found, please provide valid user. (eg. `@zhon12345#8585`)",
+		const member =
+			message.mentions.members.first() ||
+			message.guild.members.cache.get(args[0]) ||
+			message.guild.members.cache.find(
+				(x) => x.user.username === args.slice(0).join(" ") || x.user.username === args[0],
 			);
+		if (!member) {
+			return message.channel.send("`❌` User not found, please provide valid user. (eg. `@zhon12345#8585`)");
 		}
 
 		const image = `https://vacefron.nl/api/ejected?name=${member.user.username}&impostor=${isimpostor}&crewmate=${color}`;

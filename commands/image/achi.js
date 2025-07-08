@@ -20,10 +20,10 @@ module.exports = {
 			"Minecraft or geometry dash?",
 			"Easy to make right?",
 			":)",
-			" You can make whatever you want with the achievement command." ];
+			" You can make whatever you want with the achievement command.",
+		];
 
 		const tip = tips[Math.floor(Math.random() * tips.length)];
-
 
 		const min = 1;
 		const max = 45;
@@ -31,29 +31,24 @@ module.exports = {
 		const logo = Math.floor(Math.random() * (+max - +min)) + +min;
 
 		const achi = args.join(" ");
-		if(!achi) {
-			return message.channel.send(
-				"`❌` Text not found, please provide valid text. (eg. `Hello`)",
-			);
+		if (!achi) {
+			return message.channel.send("`❌` Text not found, please provide valid text. (eg. `Hello`)");
 		}
 		if (achi.length > 30) {
-			return message.channel.send(
-				"`❌` You have exceeded the 30 characters limit.",
-			);
+			return message.channel.send("`❌` You have exceeded the 30 characters limit.");
 		}
 
 		const url = `https://api.alexflipnote.dev/achievement?text=${encodeURIComponent(achi)}&icon=${logo}`;
 
 		let response;
 		try {
-			response = await fetch(url, { headers: {
-				"Authorization" : token,
-			} }).then(res => res.buffer());
-		}
-		catch (e) {
-			return message.channel.send(
-				"`❌` An error occurred, please try again!",
-			);
+			response = await fetch(url, {
+				headers: {
+					Authorization: token,
+				},
+			}).then((res) => res.buffer());
+		} catch {
+			return message.channel.send("`❌` An error occurred, please try again!");
 		}
 
 		const attachment = new MessageAttachment(response, "achievement.png");

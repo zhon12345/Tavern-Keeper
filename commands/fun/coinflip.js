@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const { MessageEmbed } = require("discord.js");
 
 module.exports = {
@@ -10,17 +9,11 @@ module.exports = {
 	disabled: false,
 	userperms: [],
 	botperms: [],
-	run: async (client, message, args) => {
+	run: async (client, message) => {
 		const responses = ["Heads", "Tails"];
-		const response =
-		responses[Math.floor(Math.random() * responses.length)];
+		const response = responses[Math.floor(Math.random() * responses.length)];
 		message.channel.send(" Flipping...").then((msg) => {
-			const Embed = new MessageEmbed()
-				.setTitle("You filpped a . .")
-				.setColor("BLUE")
-				.setDescription(
-					`${response}!`,
-				);
+			const Embed = new MessageEmbed().setTitle("You filpped a . .").setColor("BLUE").setDescription(`${response}!`);
 			msg.edit(Embed);
 		});
 	},
