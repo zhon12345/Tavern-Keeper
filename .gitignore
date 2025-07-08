@@ -1,6 +1,3 @@
 node_modules
-bot_assets
 package-lock.json
 .env
-.eslintrc.json
-.vscode
