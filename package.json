@@ -15,7 +15,6 @@
 	"dependencies": {
 		"@extreme_hero/deeptype": "^1.0.1",
 		"@vitalets/google-translate-api": "^9.0.0",
-		"cpu-stat": "^2.0.1",
 		"discord.js": "^12.5.3",
 		"dotenv": "^16.0.3",
 		"express": "^4.21.2",
@@ -27,7 +26,6 @@
 		"mongoose": "^5.13.23",
 		"ms": "^2.1.2",
 		"node-fetch": "^2.7.0",
-		"os": "^0.1.2",
 		"sourcebin_js": "0.0.3-ignore",
 		"twemoji-parser": "^14.0.0",
 		"weather-js": "^2.0.0"
