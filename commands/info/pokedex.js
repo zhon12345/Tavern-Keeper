@@ -16,7 +16,7 @@ module.exports = {
 		if (!pokemon) {
 			return message.channel.send("`❌` Pokémon not found, please provide a valid Pokémon (eg. `Pikachu`).");
 		}
-		const url = "https://some-random-api.ml/pokedex?pokemon=" + pokemon;
+		const url = "https://api.some-random-api.com/pokemon/pokedex?pokemon=" + pokemon;
 		const url2 = "https://pokeapi.co/api/v2/pokemon/" + pokemon;
 
 		let response, resp;

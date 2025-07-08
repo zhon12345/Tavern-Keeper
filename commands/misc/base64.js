@@ -21,7 +21,7 @@ module.exports = {
 				return message.channel.send("`❌` Please provide text that has less than 1024 words.");
 			}
 
-			const url = `http://some-random-api.ml/base64?encode=${encodeURIComponent(text)}`;
+			const url = `http://api.some-random-api.com/base64?encode=${encodeURIComponent(text)}`;
 
 			let response;
 			try {
@@ -47,7 +47,7 @@ module.exports = {
 				return message.channel.send("`❌` Please provide text that has less than 1024 words.");
 			}
 
-			const url = `http://some-random-api.ml/base64?decode=${encodeURIComponent(text)}`;
+			const url = `http://api.some-random-api.com/base64?decode=${encodeURIComponent(text)}`;
 
 			let response;
 			try {
