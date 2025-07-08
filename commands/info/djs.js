@@ -6,7 +6,7 @@ module.exports = {
 	description: "Searches the Discord.JS documentation for the specified query.",
 	aliases: ["docs"],
 	usage: "djs <query>",
-	disabled: false,
+	disabled: true,
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args) => {
