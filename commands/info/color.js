@@ -11,26 +11,25 @@ module.exports = {
 	userperms: [],
 	botperms: [],
 	run: async (client, message, args) => {
-		if (!args[0]) {
+		let color = args[0];
+
+		if (!color || (color.startsWith("#") && color.length !== 7) || (!color.startsWith("#") && color.length !== 6)) {
 			return message.channel.send("`❌` Hex color not found, please provide a valid hex color (eg. `#ffffff`).");
 		}
 
-		let colour;
-		if (args[0].startsWith("#") && args[0].length === 7) {
-			colour = args[0].split("#")[1];
-		} else if (!args[0].startsWith("#") && args[0].length === 6) {
-			colour = args[0];
-		} else {
-			return message.channel.send("`❌` Hex color not found, please provide a valid hex color (eg. `#ffffff`).");
-		}
+		color = color.startsWith("#") ? color.slice(1) : color;
 
-		const url = `https://api.alexflipnote.dev/colour/${colour}`;
+		const url = new URL(`https://api.alexflipnote.dev/colour/${encodeURIComponent(color)}`);
 
 		let response;
 		try {
-			response = await fetch(url).then((res) => res.json());
+			response = await fetch(url.toString()).then((res) => res.json());
 		} catch {
 			return message.channel.send("`❌` An error occurred, please try again!");
+		}
+
+		if (response.code) {
+			return message.channel.send(`\`❌\` No results found for color: ${color}`);
 		}
 
 		const embed = new MessageEmbed()

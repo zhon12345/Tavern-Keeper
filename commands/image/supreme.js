@@ -7,19 +7,21 @@ module.exports = {
 	description: "Make a supreme logo with the text of your choice.",
 	aliases: [],
 	usage: "supreme <text>",
-	disabled: true,
+	disabled: false,
 	userperms: [],
 	botperms: ["ATTACH_FILES"],
 	run: async (client, message, args) => {
-		if (!args[0]) {
+		const text = args.join(" ");
+		if (!text) {
 			return message.channel.send("`❌` Text not found, please provide valid text. (eg. `Hello`)");
 		}
 
-		const url = `https://api.alexflipnote.dev/supreme?text=${encodeURIComponent(args.join(" "))}`;
+		const url = new URL("https://api.alexflipnote.dev/supreme");
+		url.searchParams.append("text", text);
 
 		let response;
 		try {
-			response = await fetch(url).then((res) => res.buffer());
+			response = await fetch(url.toString()).then((res) => res.buffer());
 		} catch {
 			return message.channel.send("`❌` An error occurred, please try again!");
 		}

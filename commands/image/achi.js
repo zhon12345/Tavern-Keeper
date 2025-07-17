@@ -24,24 +24,17 @@ module.exports = {
 
 		const tip = tips[Math.floor(Math.random() * tips.length)];
 
-		const min = 1;
-		const max = 45;
-
-		const logo = Math.floor(Math.random() * (+max - +min)) + +min;
-
 		const achi = args.join(" ");
 		if (!achi) {
 			return message.channel.send("`❌` Text not found, please provide valid text. (eg. `Hello`)");
 		}
-		if (achi.length > 30) {
-			return message.channel.send("`❌` You have exceeded the 30 characters limit.");
-		}
 
-		const url = `https://api.alexflipnote.dev/achievement?text=${encodeURIComponent(achi)}&icon=${logo}`;
+		const url = new URL("https://api.alexflipnote.dev/achievement");
+		url.searchParams.append("text", achi);
 
 		let response;
 		try {
-			response = await fetch(url).then((res) => res.buffer());
+			response = await fetch(url.toString()).then((res) => res.buffer());
 		} catch {
 			return message.channel.send("`❌` An error occurred, please try again!");
 		}
