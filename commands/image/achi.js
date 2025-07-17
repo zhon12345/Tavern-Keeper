@@ -1,5 +1,4 @@
 const { MessageAttachment } = require("discord.js");
-const token = process.env.ALEXFLIPNOTE_API_TOKEN;
 const fetch = require("node-fetch");
 
 module.exports = {
@@ -42,11 +41,7 @@ module.exports = {
 
 		let response;
 		try {
-			response = await fetch(url, {
-				headers: {
-					Authorization: token,
-				},
-			}).then((res) => res.buffer());
+			response = await fetch(url).then((res) => res.buffer());
 		} catch {
 			return message.channel.send("`❌` An error occurred, please try again!");
 		}
