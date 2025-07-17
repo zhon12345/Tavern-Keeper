@@ -13,14 +13,14 @@ module.exports = {
 	botperms: ["ATTACH_FILES"],
 	run: async (client, message, args) => {
 		const tips = [
-			"Don't forget milk good for you!",
+			"Don't forget, milk is good for you!",
 			"2.2 when?",
-			"There is a lot of random 'tips' on this cmd.",
-			"Keep your diamonds it's useful!",
-			"Minecraft or geometry dash?",
-			"Easy to make right?",
+			"There is a lot of random 'tips' in this cmd.",
+			"Keep your diamonds; they're useful!",
+			"Minecraft or Geometry Dash?",
+			"Easy, right?",
 			":)",
-			" You can make whatever you want with the achievement command.",
+			"You can make whatever you want with the achievement command.",
 		];
 
 		const tip = tips[Math.floor(Math.random() * tips.length)];
