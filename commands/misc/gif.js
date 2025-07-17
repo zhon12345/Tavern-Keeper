@@ -13,28 +13,44 @@ module.exports = {
 	botperms: [],
 	run: async (client, message, args) => {
 		const text = args.slice().join(" ");
-		if (!message.channel.nsfw) {
-			return message.channel.send("`❌` This command can only be used in a nsfw channel.");
-		}
 		if (!text) {
-			return message.channel.send("`❌` Text not found, please provide valid text. (eg. `Hello`)");
+			return message.channel.send("`❌` Query not found, please provide a query. (eg. `Hello`)");
 		}
 
-		const url = `http://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${encodeURIComponent(text)}`;
+		const url = new URL("http://api.giphy.com/v1/gifs/search");
+		const params = new URLSearchParams({
+			api_key: API_KEY,
+			q: encodeURIComponent(text),
+			limit: 10,
+			rating: "pg",
+			remove_low_contrast: true,
+		});
+
+		url.search = params.toString();
 
 		let response;
 		try {
-			response = await fetch(url).then((res) => res.json());
-		} catch {
+			response = await fetch(url.toString()).then((res) => res.json());
+
+			if (response.meta.status !== 200) {
+				throw new Error(`Giphy API returned status ${response.meta.status}`);
+			}
+		} catch (err) {
+			console.error(err);
 			return message.channel.send("`❌` An error occurred, please try again!");
 		}
 
+		if (response.data.length === 0) {
+			return message.channel.send(`\`❌\` No results found for query: ${text}.`);
+		}
+
+		const data = response.data[0];
 		const embed = new MessageEmbed()
 			.setColor("BLUE")
-			.setTitle(response.data[0].title)
-			.setURL(response.data[0].url)
-			.setImage(response.data[0].images.original.url)
-			.setFooter(`Requested by ${message.author.tag}`)
+			.setTitle(data.title)
+			.setURL(data.url)
+			.setImage(data.images.original.webp)
+			.setFooter("Powered by GIPHY")
 			.setTimestamp();
 
 		message.channel.send(embed);
