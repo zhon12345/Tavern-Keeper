@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const set = ["set1", "set2", "set3", "set4"][Math.floor(Math.random() * 4)];
+const sets = ["set1", "set2", "set3", "set4"];
 
 module.exports = {
 	name: "randomavatar",
@@ -11,13 +11,9 @@ module.exports = {
 	userperms: [],
 	botperms: [],
 	run: async (client, message) => {
-		const string = Math.random().toString(20).substr(2, 6);
-		const urls = [
-			`https://robohash.org/${string}?set=${set}`,
-			`https://api.adorable.io/avatars/${string}.png`,
-			`https://api.kwelo.com/v1/media/identicon/${string}`,
-		];
-		const url = urls[Math.floor(Math.random() * urls.length)];
+		const string = Math.random().toString(20).slice(2, 8);
+		const set = sets[Math.floor(Math.random() * sets.length)];
+		const url = `https://robohash.org/${string}?set=${set}`;
 
 		const embed = new MessageEmbed()
 			.setColor("BLUE")
