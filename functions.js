@@ -107,6 +107,18 @@ module.exports = {
 		}
 	},
 
+	// leetify.js
+	leetify(text) {
+		text = text.replace(/a/gi, "4");
+		text = text.replace(/e/gi, "3");
+		text = text.replace(/g/gi, "6");
+		text = text.replace(/i/gi, "1");
+		text = text.replace(/o/gi, "0");
+		text = text.replace(/s/gi, "5");
+		text = text.replace(/t/gi, "7");
+		return text;
+	},
+
 	// spongebob.js
 	alternateCaps(text) {
 		const array = text.split("");
