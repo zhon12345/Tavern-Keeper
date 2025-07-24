@@ -2,7 +2,7 @@ module.exports = {
 	name: "loremipsum",
 	category: "Misc",
 	description: "Send the Lorem Ipsum dummy text.",
-	aliases: [],
+	aliases: ["lorem"],
 	usage: "loremipsum",
 	disabled: false,
 	userperms: [],
