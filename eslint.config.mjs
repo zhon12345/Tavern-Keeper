@@ -10,9 +10,8 @@ const gitignorePath = fileURLToPath(new URL(".gitignore", import.meta.url));
 
 export default defineConfig([
 	includeIgnoreFile(gitignorePath),
-	{ files: ["**/*.{js,mjs,cjs}"], plugins: { js }, extends: ["js/recommended"] },
+	{ files: ["**/*.{js,mjs,cjs}"], plugins: { js }, extends: ["js/recommended"], languageOptions: { globals: globals.node } },
 	{ files: ["**/*.js"], languageOptions: { sourceType: "commonjs" } },
-	{ files: ["**/*.{js,mjs,cjs}"], languageOptions: { globals: { ...globals.browser, ...globals.node } } },
 	{ files: ["**/*.json"], plugins: { json }, language: "json/json", extends: ["json/recommended"] },
 	{
 		rules: {
